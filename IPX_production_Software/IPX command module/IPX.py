@@ -34,7 +34,7 @@ class IPXSerialCommunicator:
 
 
     
-    def _send_and_receive_listen(self, command:str, listen_duration: float = 0.5) -> str:
+    def _send_and_receive_listen(self, command:str, listen_duration: float = 0.5, ) -> str:
         """ purely for sending command to IPX device, and receiving response
         Sends command and listens until no new data is received, or 
         listen_duration is exceeded"""
@@ -70,9 +70,9 @@ class IPXSerialCommunicator:
                 # no new data received within listen_duration
                 logging.info("No new data received within listen duration, ending read.") # change to debug later
                 break # break the while loop
-            time.sleep(0.01)  # short delay to stop loop from hogging CPU (gemini)
+                time.sleep(0.01)  # short delay to stop loop from hogging CPU (gemini)
 
-        response = all_responses #.decode("UTF-8").strip()
+        response = all_responses.decode("UTF-8").strip()
         if response:
             logging.info(f"Received response: {response}")
         else:
@@ -188,7 +188,7 @@ class IPXSerialCommunicator:
 
 
 
-    # all for use with with block
+    # all for use with 'with' block
     def __enter__(self):
         """ for use witj 'with' block, will handle opening the serial connection """
         try:
