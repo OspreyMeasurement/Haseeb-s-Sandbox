@@ -11,6 +11,13 @@ from IPX_Config import IPXCommands
 
 """
 
+# Initialise logging setup
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s')
+
+
+
 class IPXSerialCommunicator:
     """ Class for handling serial communication with IPX devices """
     def __init__(self, port: str, baudrate: int, timeout: int):
@@ -23,22 +30,61 @@ class IPXSerialCommunicator:
         self.port = port
         self.baudrate = baudrate
         self.timeout = timeout
-        self.connection = None
+        self.connection = None # used for initialising the serial connection in __enter__, holds serial.Serial()
 
+
+    
     def send_and_receive(self, command:str) -> str:
-        """ Sends command to IPX device, and receives response"""
+        """ purely for sending command to IPX device, and receiving response"""
         if not self.connection:
-            print("ERROR: Not connected")
+            logging.error("ERROR: Not connected")
             return ""
         # send command (add prints for debugging)
         self.connection.write(command.encode("UTF-8"))
-        print(f"Sent command: {command.strip()}")
+        logging.info(f"Sent command: {command.strip()}")
         # receive response
         response = self.connection.readline()
         response = response.decode("UTF-8").strip()
-        print("Received response:", response)
+        logging.info(f"Received response: {response}")
         return response
     
+    def execute_and_verify(self, command:str, expected_response:str, **kwargs) -> bool:
+        """ handles executing sending of commands and verifying the response to ensure command was successful """
+        try:
+            command = command.format(**kwargs)
+        except KeyError as e:
+            logging.error(f"Error formatting command: missing a required argument {e}")
+            return False, None
+        # uids not part of recieved response
+        if command == IPXCommands.Commands.list_uids:
+            response = self.send_and_receive(command)
+            return True, response
+        else:
+            response = self.send_and_receive(command)
+            if expected_response in response:
+                logging.info(f"Command executed successfully: {command.strip()}")
+                return True, response # return response as well for further processing (index 1 is response)
+            else:
+                logging.error(f"Command execution failed, expected: {expected_response}, got: {response}")
+                return False, None
+
+
+    
+    def list_uids(self) -> list[str]:
+        """ Lists all connected IPX device UIDs """
+        boolean, response = self._execute_and_verify(command=IPXCommands.Commands.list_uids, expected_response="Skip")
+        if boolean is False:
+            logging.error("Failed to list UIDs, ref execute and verify")
+        else: 
+            # process response to extract UIDs
+            response_list = []
+            lines = response.splitlines()
+            for line in lines:
+                response_list.append(line)
+        print (response_list)
+    
+
+
 
 
 
@@ -46,11 +92,11 @@ class IPXSerialCommunicator:
     def __enter__(self):
         """ for use witj 'with' block, will handle opening the serial connection """
         try:
-            self.connection = serial.Serial( self.port, self.baudrate, timeout=self.timeout)
-            print(f"Serial port opened successfully on {self.port}.")
+            self.connection = serial.Serial( self.port, self.baudrate, timeout=self.timeout) # initial paramaters are used here
+            logging.info(f"Serial port opened successfully on {self.port}.")
 
         except serial.SerialException as e:
-            print(f"Error opening serial port: {e}")
+            logging.error(f"Error opening serial port: {e}")
             self.connection = None
         return self
     
@@ -58,10 +104,10 @@ class IPXSerialCommunicator:
         """ for use with 'with' block, will handle closing the serial connection """
         if self.connection and self.connection.is_open:
             self.connection.close()
-            print("Serial port closed successfully.")
+            logging.info("Serial port closed successfully.")
 
 
 # Example usage
 with IPXSerialCommunicator(port='COM8', baudrate=9600, timeout=5) as ipx_comm:
-    ipx_comm.send_and_receive(IPXCommands.Commands.list_uids)
+    ipx_comm.execute_and_verify(command=IPXCommands.Commands.list_uids, expected_response="skip")
 
