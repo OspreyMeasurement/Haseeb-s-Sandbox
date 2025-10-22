@@ -13,7 +13,7 @@ from IPX_Config import IPXCommands
 
 # Initialise logging setup
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.WARNING,
     format='%(asctime)s - %(levelname)s - %(message)s')
 
 
@@ -34,55 +34,95 @@ class IPXSerialCommunicator:
 
 
     
-    def send_and_receive(self, command:str) -> str:
-        """ purely for sending command to IPX device, and receiving response"""
+    def _send_and_receive_listen(self, command:str, listen_duration: float = 0.5) -> str:
+        """ purely for sending command to IPX device, and receiving response
+        Sends command and listens until no new data is received, or 
+        listen_duration is exceeded"""
+        if not self.connection:
+            logging.error("ERROR: Not connected")
+            return ""
+        # send command (add prints for debugging)
+
+        # Clear input buffer to ensure we only read the response to *this* command
+        self.connection.reset_input_buffer()
+        self.connection.write(command.encode("UTF-8"))
+        logging.info(f"Sent command: {command.strip()}")
+
+        # 1. block and wait for the first byte to arrive
+        first_byte = self.connection.read(1)
+        if not first_byte:
+            logging.warning("No response received from device.")
+            return "" # timed out waiting for a response
+        
+
+        #2. once we have first byte, read remaining data in the buffer
+        all_responses = bytearray(first_byte)  # start with the first byte we already read
+
+        start_time = time.time() # record start time before loop
+
+        while True:
+            
+            if self.connection.in_waiting > 0: # whilst stuff still waiting in buffer
+                all_responses.extend(self.connection.read(self.connection.in_waiting)) # read bytes waiting and add to response byte array
+                #reset the timer since we got new data
+                start_time = time.time()
+            elif time.time() - start_time > listen_duration:
+                # no new data received within listen_duration
+                logging.info("No new data received within listen duration, ending read.") # change to debug later
+                break # break the while loop
+            time.sleep(0.01)  # short delay to stop loop from hogging CPU (gemini)
+
+        response = all_responses.decode("UTF-8").strip()
+        if response:
+            logging.info(f"Received response: {response}")
+        else:
+            logging.warning("No response received from device.")
+        return response
+    
+
+    def _send_and_receive(self, command:str) -> str:
+        """ Sends command to IPX device, and receives response
+        Simpler function more suited for reading responses from one device"""
         if not self.connection:
             logging.error("ERROR: Not connected")
             return ""
         # send command (add prints for debugging)
         self.connection.write(command.encode("UTF-8"))
         logging.info(f"Sent command: {command.strip()}")
-        # receive response
-        response = self.connection.readline()
+        # 1. block and wait for the first byte to arrive
+        first_byte = self.connection.read(1)
+        response = bytearray(first_byte)  # start with the first byte we already read
+        while self.connection.in_waiting > 0:
+            response.extend(self.connection.read(self.connection.in_waiting)) # read bytes waiting and add to response byte array
         response = response.decode("UTF-8").strip()
         logging.info(f"Received response: {response}")
         return response
-    
-    def execute_and_verify(self, command:str, expected_response:str, **kwargs) -> bool:
-        """ handles executing sending of commands and verifying the response to ensure command was successful """
-        try:
-            command = command.format(**kwargs)
-        except KeyError as e:
-            logging.error(f"Error formatting command: missing a required argument {e}")
-            return False, None
-        # uids not part of recieved response
-        if command == IPXCommands.Commands.list_uids:
-            response = self.send_and_receive(command)
-            return True, response
-        else:
-            response = self.send_and_receive(command)
-            if expected_response in response:
-                logging.info(f"Command executed successfully: {command.strip()}")
-                return True, response # return response as well for further processing (index 1 is response)
-            else:
-                logging.error(f"Command execution failed, expected: {expected_response}, got: {response}")
-                return False, None
+
+
+
 
 
     
-    def list_uids(self) -> list[str]:
+    def list_uids(self) -> str:
         """ Lists all connected IPX device UIDs """
-        boolean, response = self._execute_and_verify(command=IPXCommands.Commands.list_uids, expected_response="Skip")
-        if boolean is False:
-            logging.error("Failed to list UIDs, ref execute and verify")
-        else: 
-            # process response to extract UIDs
-            response_list = []
-            lines = response.splitlines()
-            for line in lines:
-                response_list.append(line)
-        print (response_list)
+        command = IPXCommands.Commands.list_uids
+        response = self._send_and_receive_listen(command)
+        # parse response to extract UIDs
+        return(response)
     
+
+    def get_status(self, uid: int) -> str:
+        """ Gets status of IPX device with given UID """
+        command = IPXCommands.Commands.get_status.format(uid=str(uid)) # change uid to str for formatting
+        response = self._send_and_receive_listen(command)
+        return(response)
+
+    def get_raw(self, uid: int) -> str:
+        """ Gets raw data from IPX device with given UID """
+        command = IPXCommands.Commands.get_raw.format(uid=str(uid)) # change uid to str for formatting
+        response = self._send_and_receive_listen(command)
+        return(response)
+
 
 
 
@@ -109,5 +149,7 @@ class IPXSerialCommunicator:
 
 # Example usage
 with IPXSerialCommunicator(port='COM8', baudrate=9600, timeout=5) as ipx_comm:
-    ipx_comm.execute_and_verify(command=IPXCommands.Commands.list_uids, expected_response="skip")
+    print(ipx_comm.list_uids(), '\n')
+    print(ipx_comm.get_status(1020901966), '\n')
+    print(ipx_comm.get_raw(1020901966))
 
