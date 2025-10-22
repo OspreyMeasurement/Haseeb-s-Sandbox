@@ -1,7 +1,9 @@
 import serial
 import logging
 import time
+from typing import Literal
 from IPX_Config import IPXCommands
+import numpy as np
 
 # com port 5 for testing
 
@@ -13,7 +15,7 @@ from IPX_Config import IPXCommands
 
 # Initialise logging setup
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.WARNING,
     format='%(asctime)s - %(levelname)s - %(message)s')
 
 
@@ -34,10 +36,11 @@ class IPXSerialCommunicator:
 
 
     
-    def _send_and_receive_listen(self, command:str, listen_duration: float = 0.5, ) -> str:
+    def _send_and_receive_listen(self, command:str, listen_duration: float = 0.5 ):
         """ purely for sending command to IPX device, and receiving response
         Sends command and listens until no new data is received, or 
-        listen_duration is exceeded"""
+        listen_duration is exceeded
+        This should always return bytes, higher level functions can decode if needed"""
         if not self.connection:
             logging.error("ERROR: Not connected")
             return ""
@@ -70,15 +73,15 @@ class IPXSerialCommunicator:
                 # no new data received within listen_duration
                 logging.info("No new data received within listen duration, ending read.") # change to debug later
                 break # break the while loop
-                time.sleep(0.01)  # short delay to stop loop from hogging CPU (gemini)
-
-        response = all_responses.decode("UTF-8").strip()
+            time.sleep(0.01)  # short delay to stop loop from hogging CPU (gemini)
+        
+        response = all_responses
         if response:
             logging.info(f"Received response: {response}")
         else:
             logging.warning("No response received from device.")
         return response
-    
+        
 
     def _send_and_receive(self, command:str) -> str:
         """ Sends command to IPX device, and receives response
@@ -89,13 +92,13 @@ class IPXSerialCommunicator:
         # send command (add prints for debugging)
         self.connection.write(command.encode("UTF-8"))
         logging.info(f"Sent command: {command.strip()}")
-        # 1. block and wait for the first byte to arrive
+        # 1. block and wait for the first byte to arrive            # dont think this function is needed anymore
         first_byte = self.connection.read(1)
         response = bytearray(first_byte)  # start with the first byte we already read
         while self.connection.in_waiting > 0:
             response.extend(self.connection.read(self.connection.in_waiting)) # read bytes waiting and add to response byte array
-        response = response.decode("UTF-8").strip()
-        logging.info(f"Received response: {response}")
+        response = response.decode("UTF-8").strip() # maybe move this to higher level functions?
+        logging.debug(f"Received raw bytes response: {response}")
         return response
 
 
@@ -103,26 +106,118 @@ class IPXSerialCommunicator:
 
 
     
-    def list_uids(self) -> str:
+    def list_uids(self, data_type: Literal['list', 'string', 'bytes', 'array'] = 'string'):
         """ Lists all connected IPX device UIDs """
-        command = IPXCommands.Commands.list_uids
-        response = self._send_and_receive_listen(command)
-        # parse response to extract UIDs
-        return(response)
+        #1 validation check
+        allowed_types = ['list', 'string', 'bytes', 'array']
+        if data_type not in allowed_types:
+            raise ValueError(f"Invalid data_type '{data_type}'. Allowed types are: {allowed_types}")
+        
+        response = self._send_and_receive_listen(IPXCommands.Commands.list_uids) # simplified into one line for simplicity
+        logging.debug("Moving to parsing response based on requested data type")
+        try:
+            response_str = response.decode("UTF-8").strip()
+        except UnicodeDecodeError:
+            logging.CRITICAL('Corrupted data received from sensors: Check wiring and sensors. Check inputs to ensure broadcasting is not being used etc')
+            raise ValueError("Corrupted data: could not decode UTF-8 bytes")
+
+        if data_type == 'string':
+            logging.debug("Parsing response as string")
+            return(response_str)
+        
+        elif data_type == 'list':
+            logging.debug("Parsing response as list")
+            uid_list = [int(line.split("uid:")[1]) for line in response_str.splitlines() if "uid:" in line]
+            return(uid_list)
+        
+        elif data_type == 'array':
+            logging.debug("Parsing response as numpy array")
+            uid_array = np.array([int(line.split("uid:")[1]) for line in response_str.splitlines() if "uid:" in line])
+            return(uid_array)
+        
+        elif data_type == 'bytes':
+            logging.debug("Returning response as bytes")
+            return(response)
     
 
-    def get_status(self, uid: int) -> str:
+
+    def get_status(self, uid: int, data_type: Literal['string', 'bytes', 'dict'] = 'dict'):
         """ Gets status of IPX device with given UID """
-        command = IPXCommands.Commands.get_status.format(uid=str(uid)) # change uid to str for formatting
-        response = self._send_and_receive_listen(command)
-        return(response)
+        # allowed data types check
+        allowed_types = ['string', 'bytes', 'dict']
+        if data_type not in allowed_types:
+            raise ValueError(f"Invalid data_type '{data_type}'. Allowed types are: {allowed_types}")
+        
+        if uid == 0:
+            logging.warning("UID 0 is reserved for broadcasting to all devices, please provide a valid device UID.")
+            return ""
+        else:
+            response = self._send_and_receive_listen(IPXCommands.Commands.get_status.format(uid=str(uid)))
 
-    def get_raw(self, uid: int) -> str:
+            try:
+                response_str = response.decode("UTF-8").strip()
+            except UnicodeDecodeError:
+                logging.CRITICAL('Corrupted data received from sensors: Check wiring and sensors. Check inputs to ensure broadcasting is not being used etc') # added error catching within the function in case of jargon
+                raise ValueError("Corrupted data: could not decode UTF-8 bytes")
+            
+            if data_type == 'string':
+                return(response_str)
+            
+            elif data_type == 'bytes':
+                return(response)
+            
+            elif data_type == 'dict':
+               # start with decoding to string
+                logging.debug(f"parsing response string to dictionary: {response_str}")
+                status_dict = {} # initialise empty dict
+                for line in response_str.splitlines()[1:]: # splits string into a list of lines, and iterates over them (skipping first line)
+                    if ':' in line: # lines containing : are processed
+                        logging.debug(f"Processing line: {line}")
+                        key, value = line.split(':', 1) # split only on first colon
+                        logging.debug(f"Key: {key.strip()}, Value: {value.strip()}")
+                        status_dict[key.strip()] = value.strip() # strip removes and remaining leading/trailing whitespace and adds to dictionary
+                        logging.debug(f"Added to dictionary: {key.strip()} : {value.strip()}")
+                return(status_dict) # may want to manipulate further to convert the numeric values to int/float later
+
+
+
+    def get_raw(self, uid: int, data_type: Literal['string', 'bytes', 'list', 'array'] = 'string') -> str:
         """ Gets raw data from IPX device with given UID """
-        command = IPXCommands.Commands.get_raw.format(uid=str(uid)) # change uid to str for formatting
-        response = self._send_and_receive_listen(command)
-        return(response)
+        #1. validation check
+        allowed_types = ['string', 'bytes', 'list', 'array']
+        if data_type not in allowed_types:
+            raise ValueError(f"Invalid data_type '{data_type}'. Allowed types are: {allowed_types}")
+        if uid == 0:
+            logging.warning("UID 0 is reserved for broadcasting to all devices, please provide a valid device UID.")
+            return ""
+        
+        # get response
+        response = self._send_and_receive_listen(IPXCommands.Commands.get_raw.format(uid=str(uid)))
+   
+        logging.debug('recieved response within get_raw functions and converted to response_str and raw_list')
+        
+
+        
+        try:
+            response_str = response.decode("UTF-8").strip()
+        except UnicodeDecodeError:
+            logging.CRITICAL('Corrupted data received from sensors: Check wiring and sensors. Check inputs to ensure broadcasting is not being used etc')
+            raise ValueError("Corrupted data: could not decode UTF-8 bytes")
+        raw_list = [int(x) for x in response_str.split(',')]
+
+        if data_type == 'bytes':
+            return(response)
+        if data_type == 'string':
+            return(response_str)
+        
+        elif data_type == 'list': # works as expected
+            return(raw_list)
+        
+        elif data_type == 'array':
+            return(np.array(raw_list))
     
+
+
     def calibrate(self, uid: int) -> str:
         """ Calibrates IPX device with given UID """
         command = IPXCommands.Commands.calibrate.format(uid=str(uid)) # change uid to str for formatting
