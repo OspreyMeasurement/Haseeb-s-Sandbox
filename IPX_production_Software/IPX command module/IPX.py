@@ -8,9 +8,50 @@ import numpy as np
 # com port 5 for testing
 
 # print(IPXConfig.Commands.list_uids)
+"""
+IPX Serial Communication Module
+--------------------------------
 
-""" This file is for handling all serial communication with the IPX devices
+This module provides a robust Python interface for communicating with
+IPX sensor devices over serial (COM) ports. It includes structured command
+handling, real-time logging, and error management for reliable device interaction.
 
+Main Features:
+- Context-managed serial connections (`with` support)
+- Command-specific timeouts (e.g. calibration vs. configuration)
+- Incremental line-by-line response logging
+- Custom exception classes for corrupted data and timeouts
+- Configurable response data types (string, list, array, bytes)
+
+Classes:
+    IPXSerialCommunicator
+        Main interface for sending commands and receiving responses.
+
+    IPXSerialError (Exception)
+        Base exception class for IPX serial errors.
+
+    IPXCorruptedDataError (IPXSerialError)
+        Raised when received data cannot be UTF-8 decoded.
+
+    IPXNoResponseError (IPXSerialError)
+        Raised when the IPX device fails to respond within the expected timeout.
+
+Usage Example:
+    with IPXSerialCommunicator("COM5", 115200) as ipx:
+        uids = ipx.list_uids("list")
+        print("Connected UIDs:", uids)
+        status = ipx.get_status(uid=uids[0])
+        print(status)
+
+Dependencies:
+    - pyserial
+    - numpy
+    - logging
+    - time
+    -IPX_Config.py
+
+Author:
+    Haseeb Mahmood
 """
 
 # Initialise logging setup
