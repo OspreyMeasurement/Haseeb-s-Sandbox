@@ -34,10 +34,10 @@ class IPXCommands:
         get_raw: str = "op ipx {uid} get_raw\n"
 
         # calibration string:
-        calibrate: str = "op ipx {uid} calibrate"
+        calibrate: str = "op ipx {uid} calibrate\n"
 
         # set function strings:
-        set_baud: str = "op ipx {uid} set_baud {baud}"
+        set_baud: str = "op ipx {uid} set_baud {baud}\n"
         set_uid: str = "op ipx {current_uid} set_uid 567892 {new_uid}\n"# play around with the formatting
                                                                         # using uids and old_uids might get confusing, maybe rename to current_uid and new_uid?
         set_axis: str = "op ipx {uid} set_axis {axis}\n"

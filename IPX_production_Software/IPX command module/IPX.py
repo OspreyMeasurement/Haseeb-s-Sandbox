@@ -15,9 +15,25 @@ import numpy as np
 
 # Initialise logging setup
 logging.basicConfig(
-    level=logging.WARNING,
+    level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s')
 
+
+
+#initialise custom IPX errors
+# start with base class for IPX serial errors
+
+class IPXSerialError(Exception):
+    """Base class for all IPX-related serial communication errors"""
+    pass
+
+class IPXCorruptedDataError(IPXSerialError):
+    """Raised when corrupted or non-decodable data is received from an IPX device"""
+    pass
+
+class IPXNoResponseError(IPXSerialError):
+    """Raised when IPX does not respond within the expected timeout"""
+    pass
 
 
 class IPXSerialCommunicator:
@@ -33,6 +49,22 @@ class IPXSerialCommunicator:
         self.baudrate = baudrate
         self.timeout = timeout
         self.connection = None # used for initialising the serial connection in __enter__, holds serial.Serial()
+    
+
+    # This is called default timeouts but it is for adjusting the listen duration within the send_receive_listen method
+    DEFAULT_TIMEOUTS = {
+        "calibrate" : 20, # 10s for sensors to start calibrating
+        "set_axis" : 5, # 10s
+        "set_baud" : 1,
+        "set_uid" : 1,
+        "set_gain" : 0.5,
+        "set_centroid_threshold" : 0.5,
+        "set_centroid_res" : 0.5,
+        "set_n_stds" : 0.5,
+        "set_term" : 0.5,
+        "set_alias" : 0.5,
+
+    }
 
 
     
@@ -43,7 +75,7 @@ class IPXSerialCommunicator:
         This should always return bytes, higher level functions can decode if needed"""
         if not self.connection:
             logging.error("ERROR: Not connected")
-            return ""
+            return bytearray()
         # send command (add prints for debugging)
 
         # Clear input buffer to ensure we only read the response to *this* command
@@ -55,7 +87,7 @@ class IPXSerialCommunicator:
         first_byte = self.connection.read(1)
         if not first_byte:
             logging.warning("No response received from device.")
-            return "" # timed out waiting for a response
+            return bytearray() # timed out waiting for a response
         
 
         #2. once we have first byte, read remaining data in the buffer
@@ -63,12 +95,40 @@ class IPXSerialCommunicator:
 
         start_time = time.time() # record start time before loop
 
+        #add decode_buffer for incremental line logging:
+        decode_buffer = b""
+
         while True: # byte level timeout -> try this instead
             
             if self.connection.in_waiting > 0: # whilst stuff still waiting in buffer
-                all_responses.extend(self.connection.read(self.connection.in_waiting)) # read bytes waiting and add to response byte array
+                chunk = self.connection.read(self.connection.in_waiting) # break the data up into 'chunks'
+                all_responses.extend(chunk)
+                decode_buffer += chunk
                 #reset the timer since we got new data
                 start_time = time.time()
+
+                # try decoding the new bytes for logging stuff line by line
+                try:
+                    decoded_text = decode_buffer.decode('utf-8')
+                except UnicodeDecodeError:
+                    #incomplete byte sequence, so should wait for the next chunk
+                    continue
+                #split into complete lines
+                lines = decoded_text.split("\n")
+                # if unfinished lines present put back in buffer for next iteration
+                if decoded_text.endswith("\n"):
+                    decode_buffer = b""
+                else:
+                    #save partial line for next iteration
+                    decode_buffer = lines.pop().encode("utf-8")
+                #now onto logging each line straight away: # in the calibration function we should end it when we get the final line whi
+                # -> calibration on all sensors complete, saving to memory
+                for line in lines:
+                    line = line.strip()
+                    if line:
+                        logging.info(line)
+
+            
             elif time.time() - start_time > listen_duration:
                 # no new data received within listen_duration
                 logging.info("No new data received within listen duration, ending read.") # change to debug later
@@ -77,29 +137,20 @@ class IPXSerialCommunicator:
         
         response = all_responses
         if response:
-            logging.info(f"Received response: {response}")
+            logging.debug(f"Received response: {response}")
         else:
             logging.warning("No response received from device.")
         return response
-        
+    
 
-    def _send_and_receive(self, command:str) -> str:
-        """ Sends command to IPX device, and receives response
-        Simpler function more suited for reading responses from one device"""
-        if not self.connection:
-            logging.error("ERROR: Not connected")
-            return ""
-        # send command (add prints for debugging)
-        self.connection.write(command.encode("UTF-8"))
-        logging.info(f"Sent command: {command.strip()}")
-        # 1. block and wait for the first byte to arrive            # dont think this function is needed anymore
-        first_byte = self.connection.read(1)
-        response = bytearray(first_byte)  # start with the first byte we already read
-        while self.connection.in_waiting > 0:
-            response.extend(self.connection.read(self.connection.in_waiting)) # read bytes waiting and add to response byte array
-        response = response.decode("UTF-8").strip() # maybe move this to higher level functions?
-        logging.debug(f"Received raw bytes response: {response}")
-        return response
+
+    def _decode_string_and_check(self, response: bytes) -> str:
+        try:
+            response_str = response.decode("utf-8").strip()
+        except UnicodeDecodeError:
+            logging.ERROR("Corrupted data recieved: UTF-8 decode failed")
+            raise IPXCorruptedDataError("Corrupted data could not decode UTF-8 bytes")
+        return response_str
 
 
 
@@ -115,11 +166,8 @@ class IPXSerialCommunicator:
         
         response = self._send_and_receive_listen(IPXCommands.Commands.list_uids) # simplified into one line for simplicity
         logging.debug("Moving to parsing response based on requested data type")
-        try:
-            response_str = response.decode("UTF-8").strip()
-        except UnicodeDecodeError:
-            logging.CRITICAL('Corrupted data received from sensors: Check wiring and sensors. Check inputs to ensure broadcasting is not being used etc')
-            raise ValueError("Corrupted data: could not decode UTF-8 bytes")
+        
+        response_str = self._decode_string_and_check(response)
 
         if data_type == 'string':
             logging.debug("Parsing response as string")
@@ -153,12 +201,7 @@ class IPXSerialCommunicator:
             return ""
         else:
             response = self._send_and_receive_listen(IPXCommands.Commands.get_status.format(uid=str(uid)))
-
-            try:
-                response_str = response.decode("UTF-8").strip()
-            except UnicodeDecodeError:
-                logging.CRITICAL('Corrupted data received from sensors: Check wiring and sensors. Check inputs to ensure broadcasting is not being used etc') # added error catching within the function in case of jargon
-                raise ValueError("Corrupted data: could not decode UTF-8 bytes")
+            response_str = self._decode_string_and_check(response) # use function for decoding and checkign instead
             
             if data_type == 'string':
                 return(response_str)
@@ -197,12 +240,7 @@ class IPXSerialCommunicator:
         logging.debug('recieved response within get_raw functions and converted to response_str and raw_list')
         
 
-        
-        try:
-            response_str = response.decode("UTF-8").strip()
-        except UnicodeDecodeError:
-            logging.CRITICAL('Corrupted data received from sensors: Check wiring and sensors. Check inputs to ensure broadcasting is not being used etc')
-            raise ValueError("Corrupted data: could not decode UTF-8 bytes")
+        response_str = self._decode_string_and_check(response)
         raw_list = [int(x) for x in response_str.split(',')]
 
         if data_type == 'bytes':
@@ -218,64 +256,75 @@ class IPXSerialCommunicator:
     
 
 
+
     def calibrate(self, uid: int) -> str:
         """ Calibrates IPX device with given UID """
         command = IPXCommands.Commands.calibrate.format(uid=str(uid)) # change uid to str for formatting
-        response = self._send_and_receive(command)
+        response = self._send_and_receive_listen(command, listen_duration=self.DEFAULT_TIMEOUTS['calibrate'])
+        response = self._decode_string_and_check(response)
         return(response)
     
     def set_baud(self, uid: int, baud: int) -> str:
         """ Sets baud rate of IPX device with given UID """
         command = IPXCommands.Commands.set_baud.format(uid=str(uid), baud=str(baud))
-        response = self._send_and_receive(command)
+        response = self._send_and_receive_listen(command, listen_duration= self.DEFAULT_TIMEOUTS['set_baud'])
+        response = self._decode_string_and_check(response)
         return(response)
     
     def set_uid(self, current_uid: int, new_uid: int) -> str:
         """ Sets UID of IPX device with given current UID to new UID """
         command = IPXCommands.Commands.set_uid.format(current_uid=str(current_uid), new_uid=str(new_uid))
-        response = self._send_and_receive(command)
+        response = self._send_and_receive_listen(command, listen_duration=self.DEFAULT_TIMEOUTS['set_uid'])
+        response = self._decode_string_and_check(response)
         return(response)
     
     def set_axis(self, uid: int, axis: int) -> str:
         """ Sets axis of IPX device with given UID """
         command = IPXCommands.Commands.set_axis.format(uid=str(uid), axis=str(axis))
-        response = self._send_and_receive(command)
+        response = self._send_and_receive_listen(command, listen_duration=self.DEFAULT_TIMEOUTS['set_axis'])
+        response = self._decode_string_and_check(response)
         return(response)
     
     def set_gain(self, uid: int, gain: int) -> str:
         """ Sets gain of IPX device with given UID """
         command = IPXCommands.Commands.set_gain.format(uid=str(uid), gain=str(gain))
-        response = self._send_and_receive(command)
+        response = self._send_and_receive_listen(command, listen_duration=self.DEFAULT_TIMEOUTS['set_gain'])
+        response = self._decode_string_and_check(response)
         return(response)
     
     def set_centroid_threshold(self, uid: int, threshold: int) -> str:
         """ Sets centroid threshold of IPX device with given UID """
         command = IPXCommands.Commands.set_centroid_threshold.format(uid=str(uid), threshold=str(threshold))
-        response = self._send_and_receive(command)
+        response = self._send_and_receive_listen(command, listen_duration=self.DEFAULT_TIMEOUTS['set_centroid_threshold'])
+        response = self._decode_string_and_check(response)
         return(response)
     
     def set_centroid_res(self, uid: int, resolution: int) -> str:
         """ Sets centroid resolution of IPX device with given UID """
         command = IPXCommands.Commands.set_centroid_res.format(uid=str(uid), resolution=str(resolution))
-        response = self._send_and_receive(command)
+        response = self._send_and_receive_listen(command, listen_duration=self.DEFAULT_TIMEOUTS["set_centroid_res"])
+        response = self._decode_string_and_check(response)
         return(response)
     
     def set_n_stds(self, uid: int, n_stds: int) -> str:
         """ Sets number of standard deviations of IPX device with given UID """
         command = IPXCommands.Commands.set_n_stds.format(uid=str(uid), n_stds=str(n_stds))
-        response = self._send_and_receive(command)
+        response=self._send_and_receive_listen(command, listen_duration=self.DEFAULT_TIMEOUTS['set_n_stds'])
+        response = self._decode_string_and_check(response)
         return(response)
     
     def set_term(self, uid: int, termination: int) -> str:
         """ Sets termination of IPX device with given UID """
         command = IPXCommands.Commands.set_term.format(uid=str(uid), termination=str(termination))
-        response = self._send_and_receive(command)
+        response = self._send_and_receive_listen(command, listen_duration= self.DEFAULT_TIMEOUTS['set_term'])
+        response = self._decode_string_and_check(response)
         return(response)
     
     def set_alias(self, uid: int, alias: str) -> str:
         """ Sets alias of IPX device with given UID """
         command = IPXCommands.Commands.set_alias.format(uid=str(uid), alias=str(alias))
-        response = self._send_and_receive(command)
+        response = self._send_and_receive_listen(command, listen_duration=self.DEFAULT_TIMEOUTS['set_alias'])
+        response = self._decode_string_and_check(response)
         return(response)
 
 
@@ -297,6 +346,10 @@ class IPXSerialCommunicator:
     
     def __exit__(self, exc_type, exc_value, traceback):
         """ for use with 'with' block, will handle closing the serial connection """
+        if exc_value or exc_type:
+            logging.error(f"Error during communication exc value: {exc_value}")
+            logging.error(f"Error during communication exc type: {exc_type}")
+
         if self.connection and self.connection.is_open:
             self.connection.close()
             logging.info("Serial port closed successfully.")
