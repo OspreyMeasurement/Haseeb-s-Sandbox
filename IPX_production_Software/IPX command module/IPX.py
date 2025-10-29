@@ -208,7 +208,7 @@ class IPXSerialCommunicator:
             logging.debug(f"Verifying response, expecting to find {expected_response}")
             if not response_str.lower().startswith(expected_response.lower()): # if the string doesnt start with expected response, raise an error
                 error_message = (
-                    f"verification failed for command: {command}",
+                    f"verification failed for command: {command}"
                     f"Expected response to start with {expected_response}, but got {response_str}"
                 )
                 logging.error(error_message)
@@ -440,13 +440,124 @@ class IPXSerialCommunicator:
 
 
 
+
+
+
 # create new IPX configurator class?
 
 class IPXConfigurator:
-    def __init__(self, port, max_retries: int=3, retry_delay: int=2):
+    """ High level class to manage the configuration process for extensometer"""
+    def __init__(self, port: str, initial_baudrate: int = 115200, max_retries: int=3, retry_delay: int=2):
+        """ Initialises configurator with connection settings
+
+        Args:
+        port(str): The com port to use
+        baudrate (int): The initial baudrate for communication
+        max_retries (int): Number of times to retry sensor detection
+        retry_delay (int): Seconds to wait between retries
+        """
         self.port = port
+        self.initial_baudrate = initial_baudrate
         self.max_retries = max_retries
         self.retry_delay = retry_delay
+        logging.debug(f"IPX Configurator initialised for port {self.port}")
+
+
+    def _verify_sensor_count(self, ipx: IPXSerialCommunicator ,num_sensors:int) -> list:
+        """Private helper to detect and verify the number of connected sensors
+        Should return uid list"""
+        logging.debug(f"Attempting to detect {num_sensors} sensors")
+        for attempt in range (1, self.max_retries + 1): # loop that retries so long as the right number of sensors are not detected, keeps retrying as long as doesnt exceed max_retries
+            uids_list = ipx.list_uids(data_type='list') # get uids list
+            detected_sensors = len(uids_list) # variable to hold the number of detected sensors
+            if detected_sensors == num_sensors: # check then number of uids received is the number that is expected, if not retry
+                logging.info("Number of expected sensors are connected")
+                return uids_list
+            else:
+                logging.error(f"Incorrect number of sensors detected. Detected: {detected_sensors}, expected {num_sensors}")
+                time.sleep(self.retry_delay)# retry delay
+
+            logging.error("Failed to detect all sensors after multiple retries| Check inputted number of sensors") # log error
+            raise RuntimeError(f"Failed to detect all sensors after multiple retries| Check inputted number of sensors")
+
+
+    def _set_default_parameters(self, ipx:IPXSerialCommunicator, uids_list: list):
+        """Private helper to loop through all uids and apply standard configurations + aliases"""
+        logging.info("Appling deafualt parameters to all detected sensors...")
+        uids_list
+        aliases_and_uids_list = list(zip(range(len(uids_list), 0, -1), uids_list)) # combine uids and list into a tuple in a list, of format (alias, uid)
+        logging.debug(f"Aliases and uid list completed succesfully: {aliases_and_uids_list}")
+        for alias_uid_tuple in aliases_and_uids_list:
+
+            alias = str(alias_uid_tuple[0]) # extract alias
+            uid = str(alias_uid_tuple[1]) # extract uid
+            logging.info(f"Beginning setting process for sensor uid :{uid}")
+            # now need to set all the paramaters, use all default config parameters in the IPXCommands section:
+            ipx.set_alias(uid, alias)
+
+            ipx.set_gain(uid, gain=IPXCommands.Default_settings.Gain)
+
+            ipx.set_centroid_threshold(uid, threshold=IPXCommands.Default_settings.Centroid_threshold)
+
+            ipx.set_n_stds(uid=uid, n_stds=IPXCommands.Default_settings.N_stds)
+
+            ipx.set_centroid_res(uid=uid, resolution=IPXCommands.Default_settings.Centroid_res)
+
+            ipx.set_centroid_threshold(uid=uid, threshold=IPXCommands.Default_settings.Centroid_threshold)
+
+            ipx.set_term(uid=uid, termination=IPXCommands.Default_settings.Termination)
+
+            logging.info(f"Setting parameters complete for sensor with uid:{uid}")
+        logging.info("All sensors have been set with default parameters")
+
+
+
+
+    def configure_extensometers(self, num_sensors: int) -> bool: 
+        """
+        Executes full configuratio and calibrations sequence
+        Args:
+        num_expected_sensors (int): Number of sensors that needs to be connected"""
+        logging.info(f"--- Starting new extensometer configuration for {num_sensors} sensors ---")
+        try:
+            with IPXSerialCommunicator(self.port, self.initial_baudrate, verify=True) as ipx:
+                #1. detect and verify the number of sensors
+                uids_list = self._verify_sensor_count(ipx, num_sensors=num_sensors)
+
+                #2. Apply default parameters to all sensors
+                self._set_default_parameters(ipx, uids_list)
+
+                #3. Run calibration
+                for uid in uids_list:
+                    ipx.calibrate(uid)
+                logging.info("Calibration complete successfully")
+
+                #4. set final baud rate to 9600
+                final_baud = IPXCommands.Default_settings.Baud_rate
+                logging.info(f"Setting baud rate for all devices to {final_baud}")
+                for uid in uids_list:
+                    ipx.set_baud(uid=uid, baud=final_baud)
+                logging.info(f"Extensometer configuration successful")
+                return True
+            
+        # Try to catch any unexpected errrors
+        except(IPXSerialError,RuntimeError) as e:
+            logging.critical(f" CONFIGURATION FAILED: A critical error occurred: {e}")
+            return False
+        
+        except Exception as e:
+            # Catch any other unexpected errors
+            logging.critical(f"CONFIGURATION FAILED: An unexpected error occurred: {e}", exc_info=True)
+            return False
+                
+
+
+
+
+
+            
+
+
 
 
 
