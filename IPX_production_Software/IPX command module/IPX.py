@@ -476,7 +476,7 @@ class IPXConfigurator:
             else:
                 logging.error(f"Incorrect number of sensors detected. Detected: {detected_sensors}, expected {num_sensors}")
                 time.sleep(self.retry_delay)# retry delay
-
+        else:
             logging.error("Failed to detect all sensors after multiple retries| Check inputted number of sensors") # log error
             raise RuntimeError(f"Failed to detect all sensors after multiple retries| Check inputted number of sensors")
 
@@ -502,8 +502,6 @@ class IPXConfigurator:
             ipx.set_n_stds(uid=uid, n_stds=IPXCommands.Default_settings.N_stds)
 
             ipx.set_centroid_res(uid=uid, resolution=IPXCommands.Default_settings.Centroid_res)
-
-            ipx.set_centroid_threshold(uid=uid, threshold=IPXCommands.Default_settings.Centroid_threshold)
 
             ipx.set_term(uid=uid, termination=IPXCommands.Default_settings.Termination)
 
