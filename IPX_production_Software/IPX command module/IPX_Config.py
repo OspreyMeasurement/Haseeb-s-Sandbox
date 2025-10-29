@@ -8,15 +8,16 @@ class IPXCommands:
     def __init__(self):
         raise RuntimeError("IPXConfig is a static class and cannot be instantiated")
     
-    # # Defaul IPX settings (Baud rate of 9600 is once configurated)
-    # class Default_settings:
-    #     Axis: int = 1
-    #     Gain: int = 3
-    #     Centroid_threshold: int = 800
-    #     Centroid_res: int = 10
-    #     Termination: int = 0 # or use false? Termination = False? (depends on how its used in terminal)
-    #     Check_sensor_uid: str = "1111111111"
-    #     Baud_rate: int = 9600
+    # Defaul IPX settings (Baud rate of 9600 is once configurated)
+    class Default_settings:
+        Axis: int = 1
+        Gain: int = 3
+        Centroid_threshold: int = 800
+        Centroid_res: int = 10
+        Termination: int = 0 # or use false? Termination = False? (depends on how its used in terminal)
+        Check_sensor_uid: str = "1111111111"
+        Baud_rate: int = 9600
+        N_stds: int = 10
 
 
     # # Serial communication settings
@@ -52,13 +53,14 @@ class IPXCommands:
         """ Expected response strings from IPX devices """
         set_axis: str = "CMD_EXEC_Set_Axis: Axis set to"
         set_gain: str = "CMD_EXEC_Set_Gain: Gain set to"
-        set_centroid_threshold: str = "CMD_EXEC_Set_Centroid_Threshold: Centroid threshold is set to"
+        set_centroid_threshold: str = "CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to"
         set_n_stds: str = "CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to"
         set_centroid_res: str = "CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to"
         set_term: str = "CMD_EXEC_Enable_120R: 120ohm termination"
         set_uid: str = "CMD_EXEC_Set_UID: UID set to"
-        set_baud: str = "CMD_EXEC_Set_Baud: Baud rate set to"
+        set_baud: str = "CMD_EXEC_Set_Baud: Baudrate set to"
         set_alias: str = "CMD_EXEC_Set_Alias: Alias set to"
+        CALIBRATION_COMPLETE: str = "CMD_EXEC_Calibrate: Calibration on all sensors complete, saving to memory."
 
 
 

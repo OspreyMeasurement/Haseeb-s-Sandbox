@@ -1,0 +1,311 @@
+2025-10-29 11:32:57,235 - INFO - Serial port opened successfully on COM8.
+2025-10-29 11:32:57,236 - INFO - Sent command: op ipx 0 list_uids
+2025-10-29 11:33:01,110 - INFO - CMD_EXEC_List_UIDs: uid: 1020901992
+2025-10-29 11:33:01,365 - INFO - CMD_EXEC_List_UIDs: uid: 1020901966
+2025-10-29 11:33:01,611 - INFO - CMD_EXEC_List_UIDs: uid: 1020901941
+2025-10-29 11:33:01,865 - INFO - CMD_EXEC_List_UIDs: uid: 1020910976
+2025-10-29 11:33:02,119 - INFO - CMD_EXEC_List_UIDs: uid: 1020901940
+2025-10-29 11:33:02,374 - INFO - CMD_EXEC_List_UIDs: uid: 1020901958
+2025-10-29 11:33:02,629 - INFO - CMD_EXEC_List_UIDs: uid: 1020901927
+2025-10-29 11:33:02,874 - INFO - CMD_EXEC_List_UIDs: uid: 1020910967
+2025-10-29 11:33:03,383 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:03,385 - INFO - Number of expected sensors are connected
+2025-10-29 11:33:03,387 - INFO - Beginning setting process for sensor uid :1020901992
+2025-10-29 11:33:03,388 - INFO - Sent command: op ipx 1020901992 set_alias 8
+2025-10-29 11:33:03,515 - INFO - CMD_EXEC_Set_Alias: Alias set to 8.
+2025-10-29 11:33:03,770 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:03,771 - INFO - response verified successfully for command: op ipx 1020901992 set_alias 8
+
+2025-10-29 11:33:03,773 - INFO - Sent command: op ipx 1020901992 set_gain 3
+2025-10-29 11:33:05,454 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
+2025-10-29 11:33:05,710 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:05,711 - INFO - response verified successfully for command: op ipx 1020901992 set_gain 3
+
+2025-10-29 11:33:05,714 - INFO - Sent command: op ipx 1020901992 set_centroid_threshold 800
+2025-10-29 11:33:05,915 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 11:33:06,170 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:06,172 - INFO - response verified successfully for command: op ipx 1020901992 set_centroid_threshold 800
+
+2025-10-29 11:33:06,174 - INFO - Sent command: op ipx 1020901992 set_n_stds 10
+2025-10-29 11:33:06,350 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
+2025-10-29 11:33:06,605 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:06,606 - INFO - response verified successfully for command: op ipx 1020901992 set_n_stds 10
+
+2025-10-29 11:33:06,609 - INFO - Sent command: op ipx 1020901992 set_centroid_res 10
+2025-10-29 11:33:06,785 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
+2025-10-29 11:33:07,040 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:07,041 - INFO - response verified successfully for command: op ipx 1020901992 set_centroid_res 10
+
+2025-10-29 11:33:07,043 - INFO - Sent command: op ipx 1020901992 set_centroid_threshold 800
+2025-10-29 11:33:07,245 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 11:33:07,501 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:07,502 - INFO - response verified successfully for command: op ipx 1020901992 set_centroid_threshold 800
+
+2025-10-29 11:33:07,505 - INFO - Sent command: op ipx 1020901992 set_term 0
+2025-10-29 11:33:07,644 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
+2025-10-29 11:33:07,899 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:07,900 - INFO - response verified successfully for command: op ipx 1020901992 set_term 0
+
+2025-10-29 11:33:07,902 - INFO - Setting parameters complete for sensor with uid:1020901992
+2025-10-29 11:33:07,903 - INFO - Beginning setting process for sensor uid :1020901966
+2025-10-29 11:33:07,904 - INFO - Sent command: op ipx 1020901966 set_alias 7
+2025-10-29 11:33:08,030 - INFO - CMD_EXEC_Set_Alias: Alias set to 7.
+2025-10-29 11:33:08,286 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:08,287 - INFO - response verified successfully for command: op ipx 1020901966 set_alias 7
+
+2025-10-29 11:33:08,290 - INFO - Sent command: op ipx 1020901966 set_gain 3
+2025-10-29 11:33:09,972 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
+2025-10-29 11:33:10,229 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:10,230 - INFO - response verified successfully for command: op ipx 1020901966 set_gain 3
+
+2025-10-29 11:33:10,233 - INFO - Sent command: op ipx 1020901966 set_centroid_threshold 800
+2025-10-29 11:33:10,434 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 11:33:10,690 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:10,691 - INFO - response verified successfully for command: op ipx 1020901966 set_centroid_threshold 800
+
+2025-10-29 11:33:10,693 - INFO - Sent command: op ipx 1020901966 set_n_stds 10
+2025-10-29 11:33:10,869 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
+2025-10-29 11:33:11,126 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:11,127 - INFO - response verified successfully for command: op ipx 1020901966 set_n_stds 10
+
+2025-10-29 11:33:11,129 - INFO - Sent command: op ipx 1020901966 set_centroid_res 10
+2025-10-29 11:33:11,307 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
+2025-10-29 11:33:11,563 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:11,564 - INFO - response verified successfully for command: op ipx 1020901966 set_centroid_res 10
+
+2025-10-29 11:33:11,567 - INFO - Sent command: op ipx 1020901966 set_centroid_threshold 800
+2025-10-29 11:33:11,767 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 11:33:12,022 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:12,023 - INFO - response verified successfully for command: op ipx 1020901966 set_centroid_threshold 800
+
+2025-10-29 11:33:12,025 - INFO - Sent command: op ipx 1020901966 set_term 0
+2025-10-29 11:33:12,164 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
+2025-10-29 11:33:12,419 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:12,420 - INFO - response verified successfully for command: op ipx 1020901966 set_term 0
+
+2025-10-29 11:33:12,422 - INFO - Setting parameters complete for sensor with uid:1020901966
+2025-10-29 11:33:12,423 - INFO - Beginning setting process for sensor uid :1020901941
+2025-10-29 11:33:12,425 - INFO - Sent command: op ipx 1020901941 set_alias 6
+2025-10-29 11:33:12,550 - INFO - CMD_EXEC_Set_Alias: Alias set to 6.
+2025-10-29 11:33:12,807 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:12,808 - INFO - response verified successfully for command: op ipx 1020901941 set_alias 6
+
+2025-10-29 11:33:12,809 - INFO - Sent command: op ipx 1020901941 set_gain 3
+2025-10-29 11:33:14,488 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
+2025-10-29 11:33:14,743 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:14,744 - INFO - response verified successfully for command: op ipx 1020901941 set_gain 3
+
+2025-10-29 11:33:14,747 - INFO - Sent command: op ipx 1020901941 set_centroid_threshold 800
+2025-10-29 11:33:14,948 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 11:33:15,204 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:15,206 - INFO - response verified successfully for command: op ipx 1020901941 set_centroid_threshold 800
+
+2025-10-29 11:33:15,208 - INFO - Sent command: op ipx 1020901941 set_n_stds 10
+2025-10-29 11:33:15,383 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
+2025-10-29 11:33:15,637 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:15,638 - INFO - response verified successfully for command: op ipx 1020901941 set_n_stds 10
+
+2025-10-29 11:33:15,640 - INFO - Sent command: op ipx 1020901941 set_centroid_res 10
+2025-10-29 11:33:15,818 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
+2025-10-29 11:33:16,075 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:16,077 - INFO - response verified successfully for command: op ipx 1020901941 set_centroid_res 10
+
+2025-10-29 11:33:16,080 - INFO - Sent command: op ipx 1020901941 set_centroid_threshold 800
+2025-10-29 11:33:16,281 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 11:33:16,538 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:16,540 - INFO - response verified successfully for command: op ipx 1020901941 set_centroid_threshold 800
+
+2025-10-29 11:33:16,542 - INFO - Sent command: op ipx 1020901941 set_term 0
+2025-10-29 11:33:16,681 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
+2025-10-29 11:33:16,936 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:16,936 - INFO - response verified successfully for command: op ipx 1020901941 set_term 0
+
+2025-10-29 11:33:16,937 - INFO - Setting parameters complete for sensor with uid:1020901941
+2025-10-29 11:33:16,938 - INFO - Beginning setting process for sensor uid :1020910976
+2025-10-29 11:33:16,939 - INFO - Sent command: op ipx 1020910976 set_alias 5
+2025-10-29 11:33:17,063 - INFO - CMD_EXEC_Set_Alias: Alias set to 5.
+2025-10-29 11:33:17,316 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:17,317 - INFO - response verified successfully for command: op ipx 1020910976 set_alias 5
+
+2025-10-29 11:33:17,317 - INFO - Sent command: op ipx 1020910976 set_gain 3
+2025-10-29 11:33:18,996 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
+2025-10-29 11:33:19,250 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:19,251 - INFO - response verified successfully for command: op ipx 1020910976 set_gain 3
+
+2025-10-29 11:33:19,254 - INFO - Sent command: op ipx 1020910976 set_centroid_threshold 800
+2025-10-29 11:33:19,453 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 11:33:19,704 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:19,705 - INFO - response verified successfully for command: op ipx 1020910976 set_centroid_threshold 800
+
+2025-10-29 11:33:19,706 - INFO - Sent command: op ipx 1020910976 set_n_stds 10
+2025-10-29 11:33:19,880 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
+2025-10-29 11:33:20,134 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:20,135 - INFO - response verified successfully for command: op ipx 1020910976 set_n_stds 10
+
+2025-10-29 11:33:20,137 - INFO - Sent command: op ipx 1020910976 set_centroid_res 10
+2025-10-29 11:33:20,315 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
+2025-10-29 11:33:20,568 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:20,570 - INFO - response verified successfully for command: op ipx 1020910976 set_centroid_res 10
+
+2025-10-29 11:33:20,572 - INFO - Sent command: op ipx 1020910976 set_centroid_threshold 800
+2025-10-29 11:33:20,772 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 11:33:21,027 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:21,028 - INFO - response verified successfully for command: op ipx 1020910976 set_centroid_threshold 800
+
+2025-10-29 11:33:21,030 - INFO - Sent command: op ipx 1020910976 set_term 0
+2025-10-29 11:33:21,178 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
+2025-10-29 11:33:21,432 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:21,434 - INFO - response verified successfully for command: op ipx 1020910976 set_term 0
+
+2025-10-29 11:33:21,435 - INFO - Setting parameters complete for sensor with uid:1020910976
+2025-10-29 11:33:21,436 - INFO - Beginning setting process for sensor uid :1020901940
+2025-10-29 11:33:21,438 - INFO - Sent command: op ipx 1020901940 set_alias 4
+2025-10-29 11:33:21,564 - INFO - CMD_EXEC_Set_Alias: Alias set to 4.
+2025-10-29 11:33:21,819 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:21,820 - INFO - response verified successfully for command: op ipx 1020901940 set_alias 4
+
+2025-10-29 11:33:21,821 - INFO - Sent command: op ipx 1020901940 set_gain 3
+2025-10-29 11:33:23,508 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
+2025-10-29 11:33:23,762 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:23,763 - INFO - response verified successfully for command: op ipx 1020901940 set_gain 3
+
+2025-10-29 11:33:23,764 - INFO - Sent command: op ipx 1020901940 set_centroid_threshold 800
+2025-10-29 11:33:23,965 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 11:33:24,219 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:24,221 - INFO - response verified successfully for command: op ipx 1020901940 set_centroid_threshold 800
+
+2025-10-29 11:33:24,222 - INFO - Sent command: op ipx 1020901940 set_n_stds 10
+2025-10-29 11:33:24,397 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
+2025-10-29 11:33:24,652 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:24,652 - INFO - response verified successfully for command: op ipx 1020901940 set_n_stds 10
+
+2025-10-29 11:33:24,653 - INFO - Sent command: op ipx 1020901940 set_centroid_res 10
+2025-10-29 11:33:24,832 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
+2025-10-29 11:33:25,087 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:25,088 - INFO - response verified successfully for command: op ipx 1020901940 set_centroid_res 10
+
+2025-10-29 11:33:25,090 - INFO - Sent command: op ipx 1020901940 set_centroid_threshold 800
+2025-10-29 11:33:25,290 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 11:33:25,544 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:25,545 - INFO - response verified successfully for command: op ipx 1020901940 set_centroid_threshold 800
+
+2025-10-29 11:33:25,547 - INFO - Sent command: op ipx 1020901940 set_term 0
+2025-10-29 11:33:25,686 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
+2025-10-29 11:33:25,939 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:25,940 - INFO - response verified successfully for command: op ipx 1020901940 set_term 0
+
+2025-10-29 11:33:25,941 - INFO - Setting parameters complete for sensor with uid:1020901940
+2025-10-29 11:33:25,942 - INFO - Beginning setting process for sensor uid :1020901958
+2025-10-29 11:33:25,943 - INFO - Sent command: op ipx 1020901958 set_alias 3
+2025-10-29 11:33:26,068 - INFO - CMD_EXEC_Set_Alias: Alias set to 3.
+2025-10-29 11:33:26,323 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:26,324 - INFO - response verified successfully for command: op ipx 1020901958 set_alias 3
+
+2025-10-29 11:33:26,326 - INFO - Sent command: op ipx 1020901958 set_gain 3
+2025-10-29 11:33:28,010 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
+2025-10-29 11:33:28,265 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:28,266 - INFO - response verified successfully for command: op ipx 1020901958 set_gain 3
+
+2025-10-29 11:33:28,268 - INFO - Sent command: op ipx 1020901958 set_centroid_threshold 800
+2025-10-29 11:33:28,469 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 11:33:28,724 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:28,725 - INFO - response verified successfully for command: op ipx 1020901958 set_centroid_threshold 800
+
+2025-10-29 11:33:28,728 - INFO - Sent command: op ipx 1020901958 set_n_stds 10
+2025-10-29 11:33:28,903 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
+2025-10-29 11:33:29,158 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:29,159 - INFO - response verified successfully for command: op ipx 1020901958 set_n_stds 10
+
+2025-10-29 11:33:29,160 - INFO - Sent command: op ipx 1020901958 set_centroid_res 10
+2025-10-29 11:33:29,338 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
+2025-10-29 11:33:29,591 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:29,592 - INFO - response verified successfully for command: op ipx 1020901958 set_centroid_res 10
+
+2025-10-29 11:33:29,592 - INFO - Sent command: op ipx 1020901958 set_centroid_threshold 800
+2025-10-29 11:33:29,793 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 11:33:30,053 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:30,054 - INFO - response verified successfully for command: op ipx 1020901958 set_centroid_threshold 800
+
+2025-10-29 11:33:30,056 - INFO - Sent command: op ipx 1020901958 set_term 0
+2025-10-29 11:33:30,204 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
+2025-10-29 11:33:30,454 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:30,455 - INFO - response verified successfully for command: op ipx 1020901958 set_term 0
+
+2025-10-29 11:33:30,455 - INFO - Setting parameters complete for sensor with uid:1020901958
+2025-10-29 11:33:30,455 - INFO - Beginning setting process for sensor uid :1020901927
+2025-10-29 11:33:30,456 - INFO - Sent command: op ipx 1020901927 set_alias 2
+2025-10-29 11:33:30,581 - INFO - CMD_EXEC_Set_Alias: Alias set to 2.
+2025-10-29 11:33:30,832 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:30,832 - INFO - response verified successfully for command: op ipx 1020901927 set_alias 2
+
+2025-10-29 11:33:30,833 - INFO - Sent command: op ipx 1020901927 set_gain 3
+2025-10-29 11:33:32,512 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
+2025-10-29 11:33:32,763 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:32,763 - INFO - response verified successfully for command: op ipx 1020901927 set_gain 3
+
+2025-10-29 11:33:32,764 - INFO - Sent command: op ipx 1020901927 set_centroid_threshold 800
+2025-10-29 11:33:32,963 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 11:33:33,215 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:33,216 - INFO - response verified successfully for command: op ipx 1020901927 set_centroid_threshold 800
+
+2025-10-29 11:33:33,217 - INFO - Sent command: op ipx 1020901927 set_n_stds 10
+2025-10-29 11:33:33,390 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
+2025-10-29 11:33:33,642 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:33,644 - INFO - response verified successfully for command: op ipx 1020901927 set_n_stds 10
+
+2025-10-29 11:33:33,646 - INFO - Sent command: op ipx 1020901927 set_centroid_res 10
+2025-10-29 11:33:33,822 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
+2025-10-29 11:33:34,072 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:34,073 - INFO - response verified successfully for command: op ipx 1020901927 set_centroid_res 10
+
+2025-10-29 11:33:34,075 - INFO - Sent command: op ipx 1020901927 set_centroid_threshold 800
+2025-10-29 11:33:34,274 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 11:33:34,525 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:34,525 - INFO - response verified successfully for command: op ipx 1020901927 set_centroid_threshold 800
+
+2025-10-29 11:33:34,526 - INFO - Sent command: op ipx 1020901927 set_term 0
+2025-10-29 11:33:34,673 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
+2025-10-29 11:33:34,926 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:34,926 - INFO - response verified successfully for command: op ipx 1020901927 set_term 0
+
+2025-10-29 11:33:34,927 - INFO - Setting parameters complete for sensor with uid:1020901927
+2025-10-29 11:33:34,927 - INFO - Beginning setting process for sensor uid :1020910967
+2025-10-29 11:33:34,927 - INFO - Sent command: op ipx 1020910967 set_alias 1
+2025-10-29 11:33:35,053 - INFO - CMD_EXEC_Set_Alias: Alias set to 1.
+2025-10-29 11:33:35,304 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:35,304 - INFO - response verified successfully for command: op ipx 1020910967 set_alias 1
+
+2025-10-29 11:33:35,304 - INFO - Sent command: op ipx 1020910967 set_gain 3
+2025-10-29 11:33:36,984 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
+2025-10-29 11:33:37,236 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:37,237 - INFO - response verified successfully for command: op ipx 1020910967 set_gain 3
+
+2025-10-29 11:33:37,238 - INFO - Sent command: op ipx 1020910967 set_centroid_threshold 800
+2025-10-29 11:33:37,437 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 11:33:37,691 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:37,692 - INFO - response verified successfully for command: op ipx 1020910967 set_centroid_threshold 800
+
+2025-10-29 11:33:37,693 - INFO - Sent command: op ipx 1020910967 set_n_stds 10
+2025-10-29 11:33:37,868 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
+2025-10-29 11:33:38,124 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:38,125 - INFO - response verified successfully for command: op ipx 1020910967 set_n_stds 10
+
+2025-10-29 11:33:38,128 - INFO - Sent command: op ipx 1020910967 set_centroid_res 10
+2025-10-29 11:33:38,306 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
+2025-10-29 11:33:38,559 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:38,561 - INFO - response verified successfully for command: op ipx 1020910967 set_centroid_res 10
+
+2025-10-29 11:33:38,563 - INFO - Sent command: op ipx 1020910967 set_centroid_threshold 800
+2025-10-29 11:33:38,764 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 11:33:39,019 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:39,021 - INFO - response verified successfully for command: op ipx 1020910967 set_centroid_threshold 800
+
+2025-10-29 11:33:39,023 - INFO - Sent command: op ipx 1020910967 set_term 0
+2025-10-29 11:33:39,161 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
+2025-10-29 11:33:39,418 - INFO - No new data received within listen duration, ending read.
+2025-10-29 11:33:39,419 - INFO - response verified successfully for command: op ipx 1020910967 set_term 0
+
+2025-10-29 11:33:39,420 - INFO - Setting parameters complete for sensor with uid:1020910967
+2025-10-29 11:33:39,422 - INFO - Setting parameters successful for all sensors
+2025-10-29 11:33:39,423 - INFO - Sent command: op ipx 1020901992 calibrate
+2025-10-29 11:33:39,572 - INFO - CMD_EXEC_Calibrate: Starting calibration procedure.

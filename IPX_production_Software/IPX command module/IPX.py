@@ -54,10 +54,7 @@ Author:
     Haseeb Mahmood
 """
 
-# Initialise logging setup
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s')
+
 
 
 
@@ -76,10 +73,14 @@ class IPXNoResponseError(IPXSerialError):
     """Raised when IPX does not respond within the expected timeout"""
     pass
 
+class IPXVerificationError(IPXSerialError):
+    """Raised when the device response does not match the expected success message"""
+    pass
+
 
 class IPXSerialCommunicator:
     """ Class for handling serial communication with IPX devices """
-    def __init__(self, port: str, baudrate: int, timeout: int=5):
+    def __init__(self, port: str, baudrate: int, timeout: int=5, verify: bool = False):
         """ Initialize the serial communicator , with serial settings
         Arguments:
             port {str} -- COM port to use
@@ -87,6 +88,7 @@ class IPXSerialCommunicator:
             timeout {int} -- Timeout for serial communication in seconds
         """
         self.port = port
+        self.verify = verify # holds whether the response command is being verified or not
         self.baudrate = baudrate
         self.timeout = timeout
         self.connection = None # used for initialising the serial connection in __enter__, holds serial.Serial()
@@ -95,25 +97,26 @@ class IPXSerialCommunicator:
     # This is called default timeouts but it is for adjusting the listen duration within the send_receive_listen method
     DEFAULT_TIMEOUTS = {
         "calibrate" : 20, # 10s for sensors to start calibrating
-        "set_axis" : 5, # 10s
-        "set_baud" : 1,
-        "set_uid" : 1,
-        "set_gain" : 0.5,
-        "set_centroid_threshold" : 0.5,
-        "set_centroid_res" : 0.5,
-        "set_n_stds" : 0.5,
-        "set_term" : 0.5,
-        "set_alias" : 0.5,
+        "set_axis" : 0.25, # 10s
+        "set_baud" : 0.25,
+        "set_uid" : 0.25,
+        "set_gain" : 0.25,
+        "set_centroid_threshold" : 0.25,       # no need for any listening period, as waits for first byte
+        "set_centroid_res" : 0.25,
+        "set_n_stds" : 0.25,
+        "set_term" : 0.25,
+        "set_alias" : 0.25,
 
     }
 
 
     
-    def _send_and_receive_listen(self, command:str, listen_duration: float = 0.5 ):
+    def _send_and_receive_listen(self, command:str, listen_duration: float = 0.5, stop_on_string: str = None ):
         """ purely for sending command to IPX device, and receiving response
         Sends command and listens until no new data is received, or 
         listen_duration is exceeded
-        This should always return bytes, higher level functions can decode if needed"""
+        This should always return bytes, higher level functions can decode if needed
+        Can now stop early, if a specific terminator string is found in the response stream"""
         if not self.connection:
             logging.error("ERROR: Not connected")
             return bytearray()
@@ -137,10 +140,12 @@ class IPXSerialCommunicator:
         start_time = time.time() # record start time before loop
 
         #add decode_buffer for incremental line logging:
-        decode_buffer = b""
+        decode_buffer = bytearray(first_byte)
 
         while True: # byte level timeout -> try this instead
-            
+            # initialise flag at start of every loop to avoid error
+            stop_reading_now = False
+
             if self.connection.in_waiting > 0: # whilst stuff still waiting in buffer
                 chunk = self.connection.read(self.connection.in_waiting) # break the data up into 'chunks'
                 all_responses.extend(chunk)
@@ -169,6 +174,12 @@ class IPXSerialCommunicator:
                     if line:
                         logging.info(line)
 
+                        # adding stop on string logic
+                        if stop_on_string and stop_on_string in line:
+                            logging.info(f" Terminator string found. Finalising read")
+                            stop_reading_now = True
+            if stop_reading_now == True:
+                break
             
             elif time.time() - start_time > listen_duration:
                 # no new data received within listen_duration
@@ -185,12 +196,27 @@ class IPXSerialCommunicator:
     
 
 
-    def _decode_string_and_check(self, response: bytes) -> str:
+    def _decode_string_and_check(self, response: bytes, expected_response:str = "", command:str = "") -> str:
+        """For ensuring random/corrupted data is not recieved by IPX, added verification within this function"""
         try:
             response_str = response.decode("utf-8").strip()
         except UnicodeDecodeError:
             logging.ERROR("Corrupted data recieved: UTF-8 decode failed")
             raise IPXCorruptedDataError("Corrupted data could not decode UTF-8 bytes")
+        
+        if self.verify and expected_response:
+            logging.debug(f"Verifying response, expecting to find {expected_response}")
+            if not response_str.lower().startswith(expected_response.lower()): # if the string doesnt start with expected response, raise an error
+                error_message = (
+                    f"verification failed for command: {command}",
+                    f"Expected response to start with {expected_response}, but got {response_str}"
+                )
+                logging.error(error_message)
+                raise IPXVerificationError(error_message)
+            else:
+                logging.info(f"response verified successfully for command: {command}")
+
+        
         return response_str
 
 
@@ -301,73 +327,89 @@ class IPXSerialCommunicator:
     def calibrate(self, uid: int) -> str:
         """ Calibrates IPX device with given UID """
         command = IPXCommands.Commands.calibrate.format(uid=str(uid)) # change uid to str for formatting
-        response = self._send_and_receive_listen(command, listen_duration=self.DEFAULT_TIMEOUTS['calibrate'])
+
+        response = self._send_and_receive_listen(command, 
+                                                 listen_duration=self.DEFAULT_TIMEOUTS['calibrate'],
+                                                 stop_on_string=IPXCommands.Responses.CALIBRATION_COMPLETE)
         response = self._decode_string_and_check(response)
         return(response)
     
     def set_baud(self, uid: int, baud: int) -> str:
         """ Sets baud rate of IPX device with given UID """
         command = IPXCommands.Commands.set_baud.format(uid=str(uid), baud=str(baud))
+        expected_response = IPXCommands.Responses.set_baud
         response = self._send_and_receive_listen(command, listen_duration= self.DEFAULT_TIMEOUTS['set_baud'])
-        response = self._decode_string_and_check(response)
+        response = self._decode_string_and_check(response, expected_response=expected_response, command=command)
         return(response)
     
     def set_uid(self, current_uid: int, new_uid: int) -> str:
         """ Sets UID of IPX device with given current UID to new UID """
         command = IPXCommands.Commands.set_uid.format(current_uid=str(current_uid), new_uid=str(new_uid))
+        expected_response = IPXCommands.Responses.set_uid
         response = self._send_and_receive_listen(command, listen_duration=self.DEFAULT_TIMEOUTS['set_uid'])
-        response = self._decode_string_and_check(response)
+        response = self._decode_string_and_check(response, expected_response=expected_response, command=command)
         return(response)
     
     def set_axis(self, uid: int, axis: int) -> str:
         """ Sets axis of IPX device with given UID """
         command = IPXCommands.Commands.set_axis.format(uid=str(uid), axis=str(axis))
+        expected_response = IPXCommands.Responses.set_axis
         response = self._send_and_receive_listen(command, listen_duration=self.DEFAULT_TIMEOUTS['set_axis'])
-        response = self._decode_string_and_check(response)
+        response = self._decode_string_and_check(response, expected_response=expected_response, command=command)
         return(response)
     
     def set_gain(self, uid: int, gain: int) -> str:
         """ Sets gain of IPX device with given UID """
         command = IPXCommands.Commands.set_gain.format(uid=str(uid), gain=str(gain))
+        expected_response = IPXCommands.Responses.set_gain
         response = self._send_and_receive_listen(command, listen_duration=self.DEFAULT_TIMEOUTS['set_gain'])
-        response = self._decode_string_and_check(response)
+        response = self._decode_string_and_check(response, expected_response=expected_response, command=command)
         return(response)
     
     def set_centroid_threshold(self, uid: int, threshold: int) -> str:
         """ Sets centroid threshold of IPX device with given UID """
         command = IPXCommands.Commands.set_centroid_threshold.format(uid=str(uid), threshold=str(threshold))
+        expected_response = IPXCommands.Responses.set_centroid_threshold
         response = self._send_and_receive_listen(command, listen_duration=self.DEFAULT_TIMEOUTS['set_centroid_threshold'])
-        response = self._decode_string_and_check(response)
+        response = self._decode_string_and_check(response, expected_response=expected_response, command=command)
         return(response)
     
     def set_centroid_res(self, uid: int, resolution: int) -> str:
         """ Sets centroid resolution of IPX device with given UID """
         command = IPXCommands.Commands.set_centroid_res.format(uid=str(uid), resolution=str(resolution))
+        expected_response = IPXCommands.Responses.set_centroid_res
         response = self._send_and_receive_listen(command, listen_duration=self.DEFAULT_TIMEOUTS["set_centroid_res"])
-        response = self._decode_string_and_check(response)
+        response = self._decode_string_and_check(response, expected_response, command=command)
         return(response)
     
     def set_n_stds(self, uid: int, n_stds: int) -> str:
         """ Sets number of standard deviations of IPX device with given UID """
         command = IPXCommands.Commands.set_n_stds.format(uid=str(uid), n_stds=str(n_stds))
+        expected_response = IPXCommands.Responses.set_n_stds
         response=self._send_and_receive_listen(command, listen_duration=self.DEFAULT_TIMEOUTS['set_n_stds'])
-        response = self._decode_string_and_check(response)
+        response = self._decode_string_and_check(response, expected_response=expected_response, command=command)
         return(response)
     
     def set_term(self, uid: int, termination: int) -> str:
         """ Sets termination of IPX device with given UID """
         command = IPXCommands.Commands.set_term.format(uid=str(uid), termination=str(termination))
+        expected_response = IPXCommands.Responses.set_term
         response = self._send_and_receive_listen(command, listen_duration= self.DEFAULT_TIMEOUTS['set_term'])
-        response = self._decode_string_and_check(response)
+        response = self._decode_string_and_check(response, expected_response=expected_response, command=command)
         return(response)
     
     def set_alias(self, uid: int, alias: str) -> str:
         """ Sets alias of IPX device with given UID """
         command = IPXCommands.Commands.set_alias.format(uid=str(uid), alias=str(alias))
+        expected_response = IPXCommands.Responses.set_alias
         response = self._send_and_receive_listen(command, listen_duration=self.DEFAULT_TIMEOUTS['set_alias'])
-        response = self._decode_string_and_check(response)
+        response = self._decode_string_and_check(response, expected_response=expected_response, command=command)
         return(response)
+    
 
+    # maybe add a verify method to this class???
+    # def verify_response(command, response):
+        
 
 
 
@@ -394,6 +436,17 @@ class IPXSerialCommunicator:
         if self.connection and self.connection.is_open:
             self.connection.close()
             logging.info("Serial port closed successfully.")
+
+
+
+
+# create new IPX configurator class?
+
+class IPXConfigurator:
+    def __init__(self, port, max_retries: int=3, retry_delay: int=2):
+        self.port = port
+        self.max_retries = max_retries
+        self.retry_delay = retry_delay
 
 
 
