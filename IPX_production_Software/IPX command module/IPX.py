@@ -63,9 +63,10 @@ Author:
 
 
 
-
+"""------------------------------------------------------------------------------------------------------------------------------------------------------"""
 #initialise custom IPX errors
 # start with base class for IPX serial errors
+""" FOLLOWIGN ERRORS ARE ALL COMMUNICATION ERRORS RELATED TO IPX DEVICES OVER SERIAL PORTS """
 
 class IPXSerialError(Exception):
     """Base class for all IPX-related serial communication errors"""
@@ -81,6 +82,21 @@ class IPXNoResponseError(IPXSerialError):
 
 class IPXVerificationError(IPXSerialError):
     """Raised when the device response does not match the expected success message"""
+    pass
+"""------------------------------------------------------------------------------------------------------------------------------------------------------"""
+
+"""THESE ERRORS ARE FOR CALIBRATION AND CONFIGURATION ERRORS"""
+
+class IPXConfigurationError(Exception):
+    """Base class for all IPX calibration errors"""
+    pass
+
+class HIGH_MAG_VALUE_ERROR(IPXConfigurationError):
+    """Raised when the calibration results show abnormally high magnitude values"""
+    pass
+
+class CALINBRATION_NO_CHANGE_ERROR(IPXConfigurationError):
+    """Raised when calibration raw data shows no change across multiple readings"""
     pass
 
 
@@ -556,65 +572,46 @@ class IPXConfigurator:
         logging.info("All sensors have been set with default parameters")
 
 
-    def _zero_mean_check(self, cal_df: pd.DataFrame) -> tuple[list, bool]:
-        """Checks calibration datafram for zero mean or zero std dev across all axes
-        should return tuple containing number of times 0 values showed up, and bool, true, if check was passed
-        Args:
-        cal_df (pd dataframe): Dataframe of calibration data"""
+
+
+    def _validate_calibration_results(self, cal_df: pd.DataFrame) -> tuple[list[int] | None, bool]:
+        """
+        Checks calibration DataFrame for zero mean OR zero std dev across all axes.
+        
+        Returns:
+            A tuple containing a list of unique failed sensor numbers, and a boolean for success.
+        """
         if cal_df.empty:
-            logging.error("Validation failed, cal_df was empty")
-            return (None, False)
+            logging.error("Validation failed: The calibration DataFrame was empty.")
+            return None, False
         
-        failed_sensors_mean = cal_df['mean'] == 0 
+        # Use boolean indexing to find all rows that meet EITHER failure condition
+        failed_df = cal_df[(cal_df['mean'] == 0) | (cal_df['std_dev'] == 0)]
         
-        if not failed_sensors_mean.empty: # if failed sensors for both mean and std dev isnt empty, throw warning and return false, and return number of sensors/axes failed in
-            logging.warning("Zero mean detected for following sensors/axes")
-            count=0
-            list_sensor_num = []# create a list of the sensor number that failed check
-            for _, row in failed_sensors_mean.iterrows():
-                count += 1
-                logging.warning(
-                    f" - Sensor {row['sensor_num']}, Axis {row['axis']}: Std dev is 0"
-                )
-                list_sensor_num.append(row['sensor_num'])
-            return (list_sensor_num, False)
-        logging.info("Calibration results passed zero mean check")
-        return(None , True)
+        if not failed_df.empty:
+            logging.warning("VALIDATION FAILED for the following sensors/axes:")
+            for _, row in failed_df.iterrows(): # ite rows lets youy loop through a dataframe row by row, guives row index and row data as pandas series
+                if row['mean'] == 0:
+                    logging.warning(f"  - Sensor {row['sensor_num']}, Axis {row['axis']}: Mean is zero.")
+                if row['std_dev'] == 0:
+                    logging.warning(f"  - Sensor {row['sensor_num']}, Axis {row['axis']}: Std Dev is zero.")
 
-
+            # Get the unique sensor numbers that had at least one failure
+            failed_sensor_nums = list(np.unique(failed_df['sensor_num']))
+            return failed_sensor_nums, False
                 
+        logging.info("Calibration results passed validation.")
+        return None, True  
 
 
-    def _zero_std_dev_check(self, cal_df: pd.DataFrame) -> tuple[list, bool]:
-        """ Checks calibration data for zero std dev across all axes and sensors
-        should return tuple containing number of 0 values detected, and bool (true if check was passed)
-        Args:
-        cal_df (pd dataframe): Dataframe of calibration data"""
-        if cal_df.empty:
-            logging.error("Validation failed, cal_df was empty")
-            return (None, False)
-        
-        failed_sensors_std_dev = cal_df(cal_df['std_dev'] == 0)
-        if not failed_sensors_std_dev.empty:
-            logging.warning("Zero std dev detected for following sensors/axes")
-            count = 0
-            list_sensor_num = [] # create a list of the sensor number that failed check
-            for _, row in failed_sensors_std_dev.iterrows(): # ite rows lets youy loop through a dataframe row by row, guives row index and row data as pandas series
-                count =+ 1
-                logging.warning(
-                    f" - Sensor {row['sensor_num']}, Axis {row['axis']}: Std dev is 0"
-                )
-                list_sensor_num.append(row['sensor_num']) # append failed sensor number to list
-            return (list_sensor_num, False)
-        logging.info("Calibration results passed zero std dev check")
-        return (None, True)
+
     
 
 
-    def _raw_data_check(self, ipx: IPXSerialCommunicator, uid:int, sensor_index: list, num_readings: int = 5) -> tuple [int, bool]:
+    def _raw_data_check(self, ipx: IPXSerialCommunicator, uid:int, sensor_index: list, num_readings: int = 5) -> tuple [(int, None), bool]:
         """Checks a sensors raw data ouptus, and ensures that the values are changing
         Secondary verification step after zero mean/ std dev are detected"""
-
+        num_no_changes_allowed = 3 # number of no change instances allowed before failing the check
         logging.info(f"Performing raw data check on UID:{uid}")
         raw_readings_list = []
         for i in range(num_readings):
@@ -624,22 +621,23 @@ class IPXConfigurator:
         # then need to check the readings for changes by comparing indexes of all measurements
         first = raw_readings_list[0] # first tuple of raw measurments in the list
         pairs = list(zip(raw_readings_list[:-1], raw_readings_list[1:])) # create list of tuple pairs to compare so tuple 1,2 then 2,3 then 3,4 etc
-        num_no_change = 0 # counter to keep tracks of number of readings with no change
         for pair in pairs:
             tuple_1, tuple_2 = pair # split data tuples into seperate tuples
             len_tuple = len(tuple_1)
             logging.debug(f"comparing tuples : {tuple_1} and {tuple_2}")
+
+            num_no_change = 0 # reset counter for each pair comparison
             for i in sensor_index: # iterate over the tuple values and compare them by index, if same value detected, increment counter by 1
                 if tuple_1[i] == tuple_2[i]:
                     num_no_change += 1
+
                     logging.debug(f"No change detected at index {i} between readings: {tuple_1} and {tuple_2}. Value was {tuple_1[i]}")
-        if num_no_change > 3:
-            logging.warning(f" Raw data check failed for UID:{uid}, {num_no_change} instances of no change detected between readings")
-            return (num_no_change, False)
+            if num_no_change > num_no_changes_allowed:
+                logging.warning(f" Raw data check failed for UID:{uid}, {num_no_change} instances of no change detected between readings")
+                return (num_no_change, False)
         else:
             logging.info(f" Raw data check passed for UID:{uid}")
-            logging.debug(f"Number of no change instances detected: {num_no_change}")
-            return (num_no_change, True)
+            return (None, True)
 
 
 
@@ -651,7 +649,7 @@ class IPXConfigurator:
 
 
 
-    def configure_extensometers(self, num_sensors: int) -> bool: 
+    def configure_extensometers(self, num_sensors: int, max_raw_value: int = 500) -> bool: 
         """
         Executes full configuratio and calibrations sequence
         Args:
@@ -667,9 +665,26 @@ class IPXConfigurator:
 
                 #3. Run calibration
                 for uid in uids_list:
-                    ipx.calibrate(uid)
-                logging.info("Calibration complete successfully")
-
+                    cal_df = ipx.calibrate(uid) # get calibration dataframe
+                    result = self._validate_calibration_results(cal_df) # validate the calibration results
+                    failed_sensors, success = result
+                    if success == False: # then perform raw calibration data check
+                        result2 = self._raw_data_check(ipx=ipx, uid=uid, sensor_index=failed_sensors)
+                        no_change_count, raw_success = result2
+                        if raw_success == False:
+                            logging.critical(f" CONFIGURATION FAILED: Sensor UID:{uid} failed both calibration validation and raw data check")
+                            raise CALINBRATION_NO_CHANGE_ERROR(f"Sensor UID:{uid} failed calibration validation")
+                        
+                # if all sensors pass calibration validation, move to next step
+                # check for abnormally high magnitude values raw_data_check
+                for uid in uids_list:
+                    raw_values = ipx.get_raw(uid=uid, data_type='array')
+                    
+                    if np.any(np.abs(raw_values) > max_raw_value):
+                        logging.critical(f" CONFIGURATION FAILED: Sensor UID:{uid} has abnormally high raw data values: {raw_values}")
+                        raise HIGH_MAG_VALUE_ERROR(f"Sensor UID:{uid} has abnormally high raw data values: {raw_values}")
+                    
+                    logging.debug(f"No abnormally high raw data values detected for UID:{uid}")
                 #4. set final baud rate to 9600
                 final_baud = IPXCommands.Default_settings.Baud_rate
                 logging.info(f"Setting baud rate for all devices to {final_baud}")

@@ -11,6 +11,17 @@ logging.basicConfig(
 
 # # software shoudl ask how many sensors we are expecting to configurate, sometimes for some reason, software does not pickup all sensors
 # with IPXSerialCommunicator(port='COM8', baudrate=9600, timeout=5, verify=True) as ipx_comm:
+
+
+    # ipx_comm.list_uids(data_type='list')
+    # ipx_comm.get_raw(uid=1020901966, data_type='array')
+    # ipx_comm.get_raw(uid=1020901992, data_type='array')
+    # ipx_comm.get_raw(uid=1020901941, data_type='array')
+    # ipx_comm.get_raw(uid=1020910976, data_type='array')
+    # ipx_comm.get_raw(uid=1020901940, data_type='array')
+    # ipx_comm.get_raw(uid=1020901958, data_type='array')
+    # ipx_comm.get_raw(uid=1020901927, data_type='array')
+    # ipx_comm.get_raw(uid=1020910967, data_type='array')
 #     for i in range(4):
         # print(ipx_comm.get_raw(uid=1020901966, data_type='array'))
         # time.sleep(0.5)
@@ -41,12 +52,13 @@ logging.basicConfig(
 
 
 
-with IPXSerialCommunicator(port='COM8', baudrate=9600, timeout=5, verify=True) as ipx_comm:
 
 
-    ipx_config_tool = IPXConfigurator(port='COM8', initial_baudrate=9600)
-    ipx_config_tool._raw_data_check(ipx=ipx_comm, uid=1020901966, sensor_index=[0, 5, 9, 10])
+# print(time.start())
+ipx_config_tool = IPXConfigurator(port='COM8', initial_baudrate=9600)
+ipx_config_tool.configure_extensometers(num_sensors=8)
 # num_sensors = int(input("How many sensors?"))
+# print(time.end())
 
 # success = ipx_config_tool.configure_extensometers(num_sensors=num_sensors)
 # if success:
