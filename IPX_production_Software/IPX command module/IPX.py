@@ -99,6 +99,9 @@ class CALINBRATION_NO_CHANGE_ERROR(IPXConfigurationError):
     """Raised when calibration raw data shows no change across multiple readings"""
     pass
 
+"""------------------------------------------------------------------------------------------------------------------------------------------------------"""
+
+
 
 class IPXSerialCommunicator:
     """ Class for handling serial communication with IPX devices """
@@ -377,7 +380,10 @@ class IPXSerialCommunicator:
             logging.debug(f"Created matches tuple as follows: {matches} ")
             if not matches:
                 logging.error(f"Match object was empty, received this as reponse: {response_str}")
-                raise Exception(f"Did not find any values for creation of DF: {response_str}")
+                # raise Exception(f"Did not find any values for creation of DF: {response_str}") # gemini says raising an exception is too harsh
+
+                # Return an empty DataFrame instead of raising an exception
+                return pd.DataFrame(columns=["sensor_num", "mean", "std_dev", "axis"])
 
             # Create data frame directly from list of tuples
             columns = ["sensor_num", "mean", "std_dev", "axis"]
