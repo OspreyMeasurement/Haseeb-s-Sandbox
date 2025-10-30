@@ -5,6 +5,12 @@ from typing import Literal
 from IPX_Config import IPXCommands
 import numpy as np
 
+import pandas as pd
+
+import re # apparently good for handling text
+
+
+
 # com port 5 for testing
 
 # print(IPXConfig.Commands.list_uids)
@@ -324,15 +330,56 @@ class IPXSerialCommunicator:
 
 
 
-    def calibrate(self, uid: int) -> str:
-        """ Calibrates IPX device with given UID """
+    def calibrate(self, uid: int, data_type: Literal['dataframe', 'string'] = 'dataframe') -> list| str:
+        """ Calibrates IPX device with given UID , and returns results as a parsed
+        list of dictionaries
+        
+        Args:
+        uid(int): UID of device to calibrate
+        data_type (str) 'parsed to return structured data (default), or 'string'"""
+        #1. validation check
+        allowed_types = ['dataframe', 'string']
+        if data_type not in allowed_types:
+            raise ValueError(f"Invalid data_type '{data_type}'. Allowed types are: {allowed_types}")
+        
         command = IPXCommands.Commands.calibrate.format(uid=str(uid)) # change uid to str for formatting
 
         response = self._send_and_receive_listen(command, 
                                                  listen_duration=self.DEFAULT_TIMEOUTS['calibrate'],
                                                  stop_on_string=IPXCommands.Responses.CALIBRATION_COMPLETE)
-        response = self._decode_string_and_check(response)
-        return(response)
+        response_str = self._decode_string_and_check(response)
+
+        if data_type == 'string': # return this as string
+            return(response_str)
+        
+        # New dictionary parsing logic using regex etc
+        if data_type == 'dataframe':
+            logging.debug("Passing calibration results into a dataframe...")
+            # use regex to define the pattern to capture the 4 data groups
+            pattern = re.compile(r"Sensor number (\d+) mean = (-?\d+), standard dev = (\d+) axis (\d+)") # extract sensor number, mean, std dev and axis number as seperate values
+            matches = pattern.findall(response_str) # do this to response_str, should generate list of tuples, of format ('sensornum', "mean", "std dev ", "axis number")
+            logging.debug(f"Created matches tuple as follows: {matches} ")
+            if not matches:
+                logging.error(f"Match object was empty, received this as reponse: {response_str}")
+                raise Exception(f"Did not find any values for creation of DF: {response_str}")
+
+            # Create data frame directly from list of tuples
+            columns = ["sensor_num", "mean", "std_dev", "axis"]
+            cal_df = pd.DataFrame(matches, columns=columns)
+
+            # Ensure to convert the columns to correct numeric types, all str right now, as regex captures everything as strings
+            convert_dict = {
+                "sensor_num": int,
+                "mean" : int,
+                "std_dev" : int,
+                "axis": int
+            }
+            cal_df = cal_df.astype(convert_dict) # assign correct int to columns
+            logging.debug(f"Successfully parsed {len(cal_df)} data points into a dataframe")
+            return cal_df
+            
+
+        
     
     def set_baud(self, uid: int, baud: int) -> str:
         """ Sets baud rate of IPX device with given UID """
@@ -507,6 +554,99 @@ class IPXConfigurator:
 
             logging.info(f"Setting parameters complete for sensor with uid:{uid}")
         logging.info("All sensors have been set with default parameters")
+
+
+    def _zero_mean_check(self, cal_df: pd.DataFrame) -> tuple[list, bool]:
+        """Checks calibration datafram for zero mean or zero std dev across all axes
+        should return tuple containing number of times 0 values showed up, and bool, true, if check was passed
+        Args:
+        cal_df (pd dataframe): Dataframe of calibration data"""
+        if cal_df.empty:
+            logging.error("Validation failed, cal_df was empty")
+            return (None, False)
+        
+        failed_sensors_mean = cal_df['mean'] == 0 
+        
+        if not failed_sensors_mean.empty: # if failed sensors for both mean and std dev isnt empty, throw warning and return false, and return number of sensors/axes failed in
+            logging.warning("Zero mean detected for following sensors/axes")
+            count=0
+            list_sensor_num = []# create a list of the sensor number that failed check
+            for _, row in failed_sensors_mean.iterrows():
+                count += 1
+                logging.warning(
+                    f" - Sensor {row['sensor_num']}, Axis {row['axis']}: Std dev is 0"
+                )
+                list_sensor_num.append(row['sensor_num'])
+            return (list_sensor_num, False)
+        logging.info("Calibration results passed zero mean check")
+        return(None , True)
+
+
+                
+
+
+    def _zero_std_dev_check(self, cal_df: pd.DataFrame) -> tuple[list, bool]:
+        """ Checks calibration data for zero std dev across all axes and sensors
+        should return tuple containing number of 0 values detected, and bool (true if check was passed)
+        Args:
+        cal_df (pd dataframe): Dataframe of calibration data"""
+        if cal_df.empty:
+            logging.error("Validation failed, cal_df was empty")
+            return (None, False)
+        
+        failed_sensors_std_dev = cal_df(cal_df['std_dev'] == 0)
+        if not failed_sensors_std_dev.empty:
+            logging.warning("Zero std dev detected for following sensors/axes")
+            count = 0
+            list_sensor_num = [] # create a list of the sensor number that failed check
+            for _, row in failed_sensors_std_dev.iterrows(): # ite rows lets youy loop through a dataframe row by row, guives row index and row data as pandas series
+                count =+ 1
+                logging.warning(
+                    f" - Sensor {row['sensor_num']}, Axis {row['axis']}: Std dev is 0"
+                )
+                list_sensor_num.append(row['sensor_num']) # append failed sensor number to list
+            return (list_sensor_num, False)
+        logging.info("Calibration results passed zero std dev check")
+        return (None, True)
+    
+
+
+    def _raw_data_check(self, ipx: IPXSerialCommunicator, uid:int, sensor_index: list, num_readings: int = 5) -> tuple [int, bool]:
+        """Checks a sensors raw data ouptus, and ensures that the values are changing
+        Secondary verification step after zero mean/ std dev are detected"""
+
+        logging.info(f"Performing raw data check on UID:{uid}")
+        raw_readings_list = []
+        for i in range(num_readings):
+            raw_readings_list.append(ipx.get_raw(uid=uid, data_type='array')) # get initial raw data
+            time.sleep(0.5) # wait a bit before next measurment
+
+        # then need to check the readings for changes by comparing indexes of all measurements
+        first = raw_readings_list[0] # first tuple of raw measurments in the list
+        pairs = list(zip(raw_readings_list[:-1], raw_readings_list[1:])) # create list of tuple pairs to compare so tuple 1,2 then 2,3 then 3,4 etc
+        num_no_change = 0 # counter to keep tracks of number of readings with no change
+        for pair in pairs:
+            tuple_1, tuple_2 = pair # split data tuples into seperate tuples
+            len_tuple = len(tuple_1)
+            logging.debug(f"comparing tuples : {tuple_1} and {tuple_2}")
+            for i in sensor_index: # iterate over the tuple values and compare them by index, if same value detected, increment counter by 1
+                if tuple_1[i] == tuple_2[i]:
+                    num_no_change += 1
+                    logging.debug(f"No change detected at index {i} between readings: {tuple_1} and {tuple_2}. Value was {tuple_1[i]}")
+        if num_no_change > 3:
+            logging.warning(f" Raw data check failed for UID:{uid}, {num_no_change} instances of no change detected between readings")
+            return (num_no_change, False)
+        else:
+            logging.info(f" Raw data check passed for UID:{uid}")
+            logging.debug(f"Number of no change instances detected: {num_no_change}")
+            return (num_no_change, True)
+
+
+
+     
+
+
+
 
 
 

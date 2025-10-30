@@ -1,6 +1,6 @@
 import serial
 import time
-
+import numpy as np
 # try:
 #     ser = serial.Serial(
 #         port = 'COM8',
@@ -65,15 +65,25 @@ import time
 # print (result)
 
 
-uids_list = [102, 103, 104, 105, 106]
-aliases = list(range(len(uids_list), 0, -1))
+# uids_list = [102, 103, 104, 105, 106]
+# aliases = list(range(len(uids_list), 0, -1))
 
-print(aliases)
+# print(aliases)
 
 
-combined_list = zip(range(len(uids_list), 0, -1), uids_list)
-print(combined_list)
+# combined_list = zip(range(len(uids_list), 0, -1), uids_list)
+# print(combined_list)
 
-combined_list = list(combined_list)
-print(combined_list)
-# for index, uid in 
+# combined_list = list(combined_list)
+# print(combined_list)
+# # for index, uid in 
+
+
+
+mylist = [(1, 5, 5, 7, 9), (2, 6, 6, 8, 10), (3, 7, 7, 9, 11), (4, 8, 8, 10, 12), (5, 9, 9, 11, 13)]
+first = mylist[0]
+print(first(1,2))
+
+
+
+

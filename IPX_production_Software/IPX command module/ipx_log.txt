@@ -1,311 +1,1462 @@
-2025-10-29 11:32:57,235 - INFO - Serial port opened successfully on COM8.
-2025-10-29 11:32:57,236 - INFO - Sent command: op ipx 0 list_uids
-2025-10-29 11:33:01,110 - INFO - CMD_EXEC_List_UIDs: uid: 1020901992
-2025-10-29 11:33:01,365 - INFO - CMD_EXEC_List_UIDs: uid: 1020901966
-2025-10-29 11:33:01,611 - INFO - CMD_EXEC_List_UIDs: uid: 1020901941
-2025-10-29 11:33:01,865 - INFO - CMD_EXEC_List_UIDs: uid: 1020910976
-2025-10-29 11:33:02,119 - INFO - CMD_EXEC_List_UIDs: uid: 1020901940
-2025-10-29 11:33:02,374 - INFO - CMD_EXEC_List_UIDs: uid: 1020901958
-2025-10-29 11:33:02,629 - INFO - CMD_EXEC_List_UIDs: uid: 1020901927
-2025-10-29 11:33:02,874 - INFO - CMD_EXEC_List_UIDs: uid: 1020910967
-2025-10-29 11:33:03,383 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:03,385 - INFO - Number of expected sensors are connected
-2025-10-29 11:33:03,387 - INFO - Beginning setting process for sensor uid :1020901992
-2025-10-29 11:33:03,388 - INFO - Sent command: op ipx 1020901992 set_alias 8
-2025-10-29 11:33:03,515 - INFO - CMD_EXEC_Set_Alias: Alias set to 8.
-2025-10-29 11:33:03,770 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:03,771 - INFO - response verified successfully for command: op ipx 1020901992 set_alias 8
+2025-10-29 14:54:47,373 - INFO - Serial port opened successfully on COM8.
+2025-10-29 14:54:47,376 - INFO - Sent command: op ipx 0 list_uids
+2025-10-29 14:54:51,254 - INFO - CMD_EXEC_List_UIDs: uid: 1020901992
+2025-10-29 14:54:51,510 - INFO - CMD_EXEC_List_UIDs: uid: 1020901966
+2025-10-29 14:54:51,757 - INFO - CMD_EXEC_List_UIDs: uid: 1020901941
+2025-10-29 14:54:52,016 - INFO - CMD_EXEC_List_UIDs: uid: 1020910976
+2025-10-29 14:54:52,261 - INFO - CMD_EXEC_List_UIDs: uid: 1020901940
+2025-10-29 14:54:52,518 - INFO - CMD_EXEC_List_UIDs: uid: 1020901958
+2025-10-29 14:54:52,765 - INFO - CMD_EXEC_List_UIDs: uid: 1020901927
+2025-10-29 14:54:53,014 - INFO - CMD_EXEC_List_UIDs: uid: 1020910967
+2025-10-29 14:54:53,515 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:54:53,516 - INFO - Number of expected sensors are connected
+2025-10-29 14:54:53,516 - INFO - Beginning setting process for sensor uid :1020901992
+2025-10-29 14:54:53,517 - INFO - Sent command: op ipx 1020901992 set_alias 8
+2025-10-29 14:54:53,643 - INFO - CMD_EXEC_Set_Alias: Alias set to 8.
+2025-10-29 14:54:53,898 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:54:53,899 - INFO - response verified successfully for command: op ipx 1020901992 set_alias 8
 
-2025-10-29 11:33:03,773 - INFO - Sent command: op ipx 1020901992 set_gain 3
-2025-10-29 11:33:05,454 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
-2025-10-29 11:33:05,710 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:05,711 - INFO - response verified successfully for command: op ipx 1020901992 set_gain 3
+2025-10-29 14:54:53,902 - INFO - Sent command: op ipx 1020901992 set_gain 3
+2025-10-29 14:54:55,584 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
+2025-10-29 14:54:55,842 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:54:55,843 - INFO - response verified successfully for command: op ipx 1020901992 set_gain 3
 
-2025-10-29 11:33:05,714 - INFO - Sent command: op ipx 1020901992 set_centroid_threshold 800
-2025-10-29 11:33:05,915 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
-2025-10-29 11:33:06,170 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:06,172 - INFO - response verified successfully for command: op ipx 1020901992 set_centroid_threshold 800
+2025-10-29 14:54:55,846 - INFO - Sent command: op ipx 1020901992 set_centroid_threshold 800
+2025-10-29 14:54:56,048 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 14:54:56,303 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:54:56,304 - INFO - response verified successfully for command: op ipx 1020901992 set_centroid_threshold 800
 
-2025-10-29 11:33:06,174 - INFO - Sent command: op ipx 1020901992 set_n_stds 10
-2025-10-29 11:33:06,350 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
-2025-10-29 11:33:06,605 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:06,606 - INFO - response verified successfully for command: op ipx 1020901992 set_n_stds 10
+2025-10-29 14:54:56,306 - INFO - Sent command: op ipx 1020901992 set_n_stds 10
+2025-10-29 14:54:56,481 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
+2025-10-29 14:54:56,742 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:54:56,743 - INFO - response verified successfully for command: op ipx 1020901992 set_n_stds 10
 
-2025-10-29 11:33:06,609 - INFO - Sent command: op ipx 1020901992 set_centroid_res 10
-2025-10-29 11:33:06,785 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
-2025-10-29 11:33:07,040 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:07,041 - INFO - response verified successfully for command: op ipx 1020901992 set_centroid_res 10
+2025-10-29 14:54:56,745 - INFO - Sent command: op ipx 1020901992 set_centroid_res 10
+2025-10-29 14:54:56,922 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
+2025-10-29 14:54:57,175 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:54:57,176 - INFO - response verified successfully for command: op ipx 1020901992 set_centroid_res 10
 
-2025-10-29 11:33:07,043 - INFO - Sent command: op ipx 1020901992 set_centroid_threshold 800
-2025-10-29 11:33:07,245 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
-2025-10-29 11:33:07,501 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:07,502 - INFO - response verified successfully for command: op ipx 1020901992 set_centroid_threshold 800
+2025-10-29 14:54:57,177 - INFO - Sent command: op ipx 1020901992 set_centroid_threshold 800
+2025-10-29 14:54:57,378 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 14:54:57,638 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:54:57,640 - INFO - response verified successfully for command: op ipx 1020901992 set_centroid_threshold 800
 
-2025-10-29 11:33:07,505 - INFO - Sent command: op ipx 1020901992 set_term 0
-2025-10-29 11:33:07,644 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
-2025-10-29 11:33:07,899 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:07,900 - INFO - response verified successfully for command: op ipx 1020901992 set_term 0
+2025-10-29 14:54:57,642 - INFO - Sent command: op ipx 1020901992 set_term 0
+2025-10-29 14:54:57,781 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
+2025-10-29 14:54:58,037 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:54:58,038 - INFO - response verified successfully for command: op ipx 1020901992 set_term 0
 
-2025-10-29 11:33:07,902 - INFO - Setting parameters complete for sensor with uid:1020901992
-2025-10-29 11:33:07,903 - INFO - Beginning setting process for sensor uid :1020901966
-2025-10-29 11:33:07,904 - INFO - Sent command: op ipx 1020901966 set_alias 7
-2025-10-29 11:33:08,030 - INFO - CMD_EXEC_Set_Alias: Alias set to 7.
-2025-10-29 11:33:08,286 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:08,287 - INFO - response verified successfully for command: op ipx 1020901966 set_alias 7
+2025-10-29 14:54:58,040 - INFO - Setting parameters complete for sensor with uid:1020901992
+2025-10-29 14:54:58,041 - INFO - Beginning setting process for sensor uid :1020901966
+2025-10-29 14:54:58,043 - INFO - Sent command: op ipx 1020901966 set_alias 7
+2025-10-29 14:54:58,168 - INFO - CMD_EXEC_Set_Alias: Alias set to 7.
+2025-10-29 14:54:58,425 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:54:58,427 - INFO - response verified successfully for command: op ipx 1020901966 set_alias 7
 
-2025-10-29 11:33:08,290 - INFO - Sent command: op ipx 1020901966 set_gain 3
-2025-10-29 11:33:09,972 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
-2025-10-29 11:33:10,229 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:10,230 - INFO - response verified successfully for command: op ipx 1020901966 set_gain 3
+2025-10-29 14:54:58,430 - INFO - Sent command: op ipx 1020901966 set_gain 3
+2025-10-29 14:55:00,111 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
+2025-10-29 14:55:00,369 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:00,370 - INFO - response verified successfully for command: op ipx 1020901966 set_gain 3
 
-2025-10-29 11:33:10,233 - INFO - Sent command: op ipx 1020901966 set_centroid_threshold 800
-2025-10-29 11:33:10,434 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
-2025-10-29 11:33:10,690 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:10,691 - INFO - response verified successfully for command: op ipx 1020901966 set_centroid_threshold 800
+2025-10-29 14:55:00,373 - INFO - Sent command: op ipx 1020901966 set_centroid_threshold 800
+2025-10-29 14:55:00,574 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 14:55:00,829 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:00,830 - INFO - response verified successfully for command: op ipx 1020901966 set_centroid_threshold 800
 
-2025-10-29 11:33:10,693 - INFO - Sent command: op ipx 1020901966 set_n_stds 10
-2025-10-29 11:33:10,869 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
-2025-10-29 11:33:11,126 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:11,127 - INFO - response verified successfully for command: op ipx 1020901966 set_n_stds 10
+2025-10-29 14:55:00,833 - INFO - Sent command: op ipx 1020901966 set_n_stds 10
+2025-10-29 14:55:01,008 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
+2025-10-29 14:55:01,266 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:01,268 - INFO - response verified successfully for command: op ipx 1020901966 set_n_stds 10
 
-2025-10-29 11:33:11,129 - INFO - Sent command: op ipx 1020901966 set_centroid_res 10
-2025-10-29 11:33:11,307 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
-2025-10-29 11:33:11,563 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:11,564 - INFO - response verified successfully for command: op ipx 1020901966 set_centroid_res 10
+2025-10-29 14:55:01,271 - INFO - Sent command: op ipx 1020901966 set_centroid_res 10
+2025-10-29 14:55:01,450 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
+2025-10-29 14:55:01,702 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:01,703 - INFO - response verified successfully for command: op ipx 1020901966 set_centroid_res 10
 
-2025-10-29 11:33:11,567 - INFO - Sent command: op ipx 1020901966 set_centroid_threshold 800
-2025-10-29 11:33:11,767 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
-2025-10-29 11:33:12,022 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:12,023 - INFO - response verified successfully for command: op ipx 1020901966 set_centroid_threshold 800
+2025-10-29 14:55:01,704 - INFO - Sent command: op ipx 1020901966 set_centroid_threshold 800
+2025-10-29 14:55:01,905 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 14:55:02,163 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:02,164 - INFO - response verified successfully for command: op ipx 1020901966 set_centroid_threshold 800
 
-2025-10-29 11:33:12,025 - INFO - Sent command: op ipx 1020901966 set_term 0
-2025-10-29 11:33:12,164 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
-2025-10-29 11:33:12,419 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:12,420 - INFO - response verified successfully for command: op ipx 1020901966 set_term 0
+2025-10-29 14:55:02,166 - INFO - Sent command: op ipx 1020901966 set_term 0
+2025-10-29 14:55:02,305 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
+2025-10-29 14:55:02,565 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:02,566 - INFO - response verified successfully for command: op ipx 1020901966 set_term 0
 
-2025-10-29 11:33:12,422 - INFO - Setting parameters complete for sensor with uid:1020901966
-2025-10-29 11:33:12,423 - INFO - Beginning setting process for sensor uid :1020901941
-2025-10-29 11:33:12,425 - INFO - Sent command: op ipx 1020901941 set_alias 6
-2025-10-29 11:33:12,550 - INFO - CMD_EXEC_Set_Alias: Alias set to 6.
-2025-10-29 11:33:12,807 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:12,808 - INFO - response verified successfully for command: op ipx 1020901941 set_alias 6
+2025-10-29 14:55:02,568 - INFO - Setting parameters complete for sensor with uid:1020901966
+2025-10-29 14:55:02,569 - INFO - Beginning setting process for sensor uid :1020901941
+2025-10-29 14:55:02,571 - INFO - Sent command: op ipx 1020901941 set_alias 6
+2025-10-29 14:55:02,696 - INFO - CMD_EXEC_Set_Alias: Alias set to 6.
+2025-10-29 14:55:02,953 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:02,955 - INFO - response verified successfully for command: op ipx 1020901941 set_alias 6
 
-2025-10-29 11:33:12,809 - INFO - Sent command: op ipx 1020901941 set_gain 3
-2025-10-29 11:33:14,488 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
-2025-10-29 11:33:14,743 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:14,744 - INFO - response verified successfully for command: op ipx 1020901941 set_gain 3
+2025-10-29 14:55:02,957 - INFO - Sent command: op ipx 1020901941 set_gain 3
+2025-10-29 14:55:04,635 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
+2025-10-29 14:55:04,894 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:04,896 - INFO - response verified successfully for command: op ipx 1020901941 set_gain 3
 
-2025-10-29 11:33:14,747 - INFO - Sent command: op ipx 1020901941 set_centroid_threshold 800
-2025-10-29 11:33:14,948 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
-2025-10-29 11:33:15,204 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:15,206 - INFO - response verified successfully for command: op ipx 1020901941 set_centroid_threshold 800
+2025-10-29 14:55:04,898 - INFO - Sent command: op ipx 1020901941 set_centroid_threshold 800
+2025-10-29 14:55:05,100 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 14:55:05,357 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:05,358 - INFO - response verified successfully for command: op ipx 1020901941 set_centroid_threshold 800
 
-2025-10-29 11:33:15,208 - INFO - Sent command: op ipx 1020901941 set_n_stds 10
-2025-10-29 11:33:15,383 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
-2025-10-29 11:33:15,637 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:15,638 - INFO - response verified successfully for command: op ipx 1020901941 set_n_stds 10
+2025-10-29 14:55:05,361 - INFO - Sent command: op ipx 1020901941 set_n_stds 10
+2025-10-29 14:55:05,535 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
+2025-10-29 14:55:05,792 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:05,794 - INFO - response verified successfully for command: op ipx 1020901941 set_n_stds 10
 
-2025-10-29 11:33:15,640 - INFO - Sent command: op ipx 1020901941 set_centroid_res 10
-2025-10-29 11:33:15,818 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
-2025-10-29 11:33:16,075 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:16,077 - INFO - response verified successfully for command: op ipx 1020901941 set_centroid_res 10
+2025-10-29 14:55:05,796 - INFO - Sent command: op ipx 1020901941 set_centroid_res 10
+2025-10-29 14:55:05,975 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
+2025-10-29 14:55:06,233 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:06,234 - INFO - response verified successfully for command: op ipx 1020901941 set_centroid_res 10
 
-2025-10-29 11:33:16,080 - INFO - Sent command: op ipx 1020901941 set_centroid_threshold 800
-2025-10-29 11:33:16,281 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
-2025-10-29 11:33:16,538 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:16,540 - INFO - response verified successfully for command: op ipx 1020901941 set_centroid_threshold 800
+2025-10-29 14:55:06,237 - INFO - Sent command: op ipx 1020901941 set_centroid_threshold 800
+2025-10-29 14:55:06,437 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 14:55:06,697 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:06,698 - INFO - response verified successfully for command: op ipx 1020901941 set_centroid_threshold 800
 
-2025-10-29 11:33:16,542 - INFO - Sent command: op ipx 1020901941 set_term 0
-2025-10-29 11:33:16,681 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
-2025-10-29 11:33:16,936 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:16,936 - INFO - response verified successfully for command: op ipx 1020901941 set_term 0
+2025-10-29 14:55:06,700 - INFO - Sent command: op ipx 1020901941 set_term 0
+2025-10-29 14:55:06,838 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
+2025-10-29 14:55:07,097 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:07,098 - INFO - response verified successfully for command: op ipx 1020901941 set_term 0
 
-2025-10-29 11:33:16,937 - INFO - Setting parameters complete for sensor with uid:1020901941
-2025-10-29 11:33:16,938 - INFO - Beginning setting process for sensor uid :1020910976
-2025-10-29 11:33:16,939 - INFO - Sent command: op ipx 1020910976 set_alias 5
-2025-10-29 11:33:17,063 - INFO - CMD_EXEC_Set_Alias: Alias set to 5.
-2025-10-29 11:33:17,316 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:17,317 - INFO - response verified successfully for command: op ipx 1020910976 set_alias 5
+2025-10-29 14:55:07,100 - INFO - Setting parameters complete for sensor with uid:1020901941
+2025-10-29 14:55:07,101 - INFO - Beginning setting process for sensor uid :1020910976
+2025-10-29 14:55:07,103 - INFO - Sent command: op ipx 1020910976 set_alias 5
+2025-10-29 14:55:07,228 - INFO - CMD_EXEC_Set_Alias: Alias set to 5.
+2025-10-29 14:55:07,488 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:07,490 - INFO - response verified successfully for command: op ipx 1020910976 set_alias 5
 
-2025-10-29 11:33:17,317 - INFO - Sent command: op ipx 1020910976 set_gain 3
-2025-10-29 11:33:18,996 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
-2025-10-29 11:33:19,250 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:19,251 - INFO - response verified successfully for command: op ipx 1020910976 set_gain 3
+2025-10-29 14:55:07,492 - INFO - Sent command: op ipx 1020910976 set_gain 3
+2025-10-29 14:55:09,171 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
+2025-10-29 14:55:09,429 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:09,430 - INFO - response verified successfully for command: op ipx 1020910976 set_gain 3
 
-2025-10-29 11:33:19,254 - INFO - Sent command: op ipx 1020910976 set_centroid_threshold 800
-2025-10-29 11:33:19,453 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
-2025-10-29 11:33:19,704 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:19,705 - INFO - response verified successfully for command: op ipx 1020910976 set_centroid_threshold 800
+2025-10-29 14:55:09,432 - INFO - Sent command: op ipx 1020910976 set_centroid_threshold 800
+2025-10-29 14:55:09,634 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 14:55:09,892 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:09,894 - INFO - response verified successfully for command: op ipx 1020910976 set_centroid_threshold 800
 
-2025-10-29 11:33:19,706 - INFO - Sent command: op ipx 1020910976 set_n_stds 10
-2025-10-29 11:33:19,880 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
-2025-10-29 11:33:20,134 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:20,135 - INFO - response verified successfully for command: op ipx 1020910976 set_n_stds 10
+2025-10-29 14:55:09,896 - INFO - Sent command: op ipx 1020910976 set_n_stds 10
+2025-10-29 14:55:10,071 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
+2025-10-29 14:55:10,321 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:10,322 - INFO - response verified successfully for command: op ipx 1020910976 set_n_stds 10
 
-2025-10-29 11:33:20,137 - INFO - Sent command: op ipx 1020910976 set_centroid_res 10
-2025-10-29 11:33:20,315 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
-2025-10-29 11:33:20,568 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:20,570 - INFO - response verified successfully for command: op ipx 1020910976 set_centroid_res 10
+2025-10-29 14:55:10,325 - INFO - Sent command: op ipx 1020910976 set_centroid_res 10
+2025-10-29 14:55:10,503 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
+2025-10-29 14:55:10,759 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:10,760 - INFO - response verified successfully for command: op ipx 1020910976 set_centroid_res 10
 
-2025-10-29 11:33:20,572 - INFO - Sent command: op ipx 1020910976 set_centroid_threshold 800
-2025-10-29 11:33:20,772 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
-2025-10-29 11:33:21,027 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:21,028 - INFO - response verified successfully for command: op ipx 1020910976 set_centroid_threshold 800
+2025-10-29 14:55:10,762 - INFO - Sent command: op ipx 1020910976 set_centroid_threshold 800
+2025-10-29 14:55:10,964 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 14:55:11,222 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:11,223 - INFO - response verified successfully for command: op ipx 1020910976 set_centroid_threshold 800
 
-2025-10-29 11:33:21,030 - INFO - Sent command: op ipx 1020910976 set_term 0
-2025-10-29 11:33:21,178 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
-2025-10-29 11:33:21,432 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:21,434 - INFO - response verified successfully for command: op ipx 1020910976 set_term 0
+2025-10-29 14:55:11,226 - INFO - Sent command: op ipx 1020910976 set_term 0
+2025-10-29 14:55:11,365 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
+2025-10-29 14:55:11,622 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:11,623 - INFO - response verified successfully for command: op ipx 1020910976 set_term 0
 
-2025-10-29 11:33:21,435 - INFO - Setting parameters complete for sensor with uid:1020910976
-2025-10-29 11:33:21,436 - INFO - Beginning setting process for sensor uid :1020901940
-2025-10-29 11:33:21,438 - INFO - Sent command: op ipx 1020901940 set_alias 4
-2025-10-29 11:33:21,564 - INFO - CMD_EXEC_Set_Alias: Alias set to 4.
-2025-10-29 11:33:21,819 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:21,820 - INFO - response verified successfully for command: op ipx 1020901940 set_alias 4
+2025-10-29 14:55:11,624 - INFO - Setting parameters complete for sensor with uid:1020910976
+2025-10-29 14:55:11,626 - INFO - Beginning setting process for sensor uid :1020901940
+2025-10-29 14:55:11,628 - INFO - Sent command: op ipx 1020901940 set_alias 4
+2025-10-29 14:55:11,753 - INFO - CMD_EXEC_Set_Alias: Alias set to 4.
+2025-10-29 14:55:12,007 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:12,008 - INFO - response verified successfully for command: op ipx 1020901940 set_alias 4
 
-2025-10-29 11:33:21,821 - INFO - Sent command: op ipx 1020901940 set_gain 3
-2025-10-29 11:33:23,508 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
-2025-10-29 11:33:23,762 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:23,763 - INFO - response verified successfully for command: op ipx 1020901940 set_gain 3
+2025-10-29 14:55:12,010 - INFO - Sent command: op ipx 1020901940 set_gain 3
+2025-10-29 14:55:13,697 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
+2025-10-29 14:55:13,953 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:13,955 - INFO - response verified successfully for command: op ipx 1020901940 set_gain 3
 
-2025-10-29 11:33:23,764 - INFO - Sent command: op ipx 1020901940 set_centroid_threshold 800
-2025-10-29 11:33:23,965 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
-2025-10-29 11:33:24,219 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:24,221 - INFO - response verified successfully for command: op ipx 1020901940 set_centroid_threshold 800
+2025-10-29 14:55:13,957 - INFO - Sent command: op ipx 1020901940 set_centroid_threshold 800
+2025-10-29 14:55:14,160 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 14:55:14,418 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:14,420 - INFO - response verified successfully for command: op ipx 1020901940 set_centroid_threshold 800
 
-2025-10-29 11:33:24,222 - INFO - Sent command: op ipx 1020901940 set_n_stds 10
-2025-10-29 11:33:24,397 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
-2025-10-29 11:33:24,652 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:24,652 - INFO - response verified successfully for command: op ipx 1020901940 set_n_stds 10
+2025-10-29 14:55:14,422 - INFO - Sent command: op ipx 1020901940 set_n_stds 10
+2025-10-29 14:55:14,598 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
+2025-10-29 14:55:14,855 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:14,857 - INFO - response verified successfully for command: op ipx 1020901940 set_n_stds 10
 
-2025-10-29 11:33:24,653 - INFO - Sent command: op ipx 1020901940 set_centroid_res 10
-2025-10-29 11:33:24,832 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
-2025-10-29 11:33:25,087 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:25,088 - INFO - response verified successfully for command: op ipx 1020901940 set_centroid_res 10
+2025-10-29 14:55:14,859 - INFO - Sent command: op ipx 1020901940 set_centroid_res 10
+2025-10-29 14:55:15,038 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
+2025-10-29 14:55:15,299 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:15,301 - INFO - response verified successfully for command: op ipx 1020901940 set_centroid_res 10
 
-2025-10-29 11:33:25,090 - INFO - Sent command: op ipx 1020901940 set_centroid_threshold 800
-2025-10-29 11:33:25,290 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
-2025-10-29 11:33:25,544 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:25,545 - INFO - response verified successfully for command: op ipx 1020901940 set_centroid_threshold 800
+2025-10-29 14:55:15,303 - INFO - Sent command: op ipx 1020901940 set_centroid_threshold 800
+2025-10-29 14:55:15,504 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 14:55:15,764 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:15,766 - INFO - response verified successfully for command: op ipx 1020901940 set_centroid_threshold 800
 
-2025-10-29 11:33:25,547 - INFO - Sent command: op ipx 1020901940 set_term 0
-2025-10-29 11:33:25,686 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
-2025-10-29 11:33:25,939 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:25,940 - INFO - response verified successfully for command: op ipx 1020901940 set_term 0
+2025-10-29 14:55:15,768 - INFO - Sent command: op ipx 1020901940 set_term 0
+2025-10-29 14:55:15,908 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
+2025-10-29 14:55:16,166 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:16,167 - INFO - response verified successfully for command: op ipx 1020901940 set_term 0
 
-2025-10-29 11:33:25,941 - INFO - Setting parameters complete for sensor with uid:1020901940
-2025-10-29 11:33:25,942 - INFO - Beginning setting process for sensor uid :1020901958
-2025-10-29 11:33:25,943 - INFO - Sent command: op ipx 1020901958 set_alias 3
-2025-10-29 11:33:26,068 - INFO - CMD_EXEC_Set_Alias: Alias set to 3.
-2025-10-29 11:33:26,323 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:26,324 - INFO - response verified successfully for command: op ipx 1020901958 set_alias 3
+2025-10-29 14:55:16,169 - INFO - Setting parameters complete for sensor with uid:1020901940
+2025-10-29 14:55:16,169 - INFO - Beginning setting process for sensor uid :1020901958
+2025-10-29 14:55:16,170 - INFO - Sent command: op ipx 1020901958 set_alias 3
+2025-10-29 14:55:16,296 - INFO - CMD_EXEC_Set_Alias: Alias set to 3.
+2025-10-29 14:55:16,553 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:16,554 - INFO - response verified successfully for command: op ipx 1020901958 set_alias 3
 
-2025-10-29 11:33:26,326 - INFO - Sent command: op ipx 1020901958 set_gain 3
-2025-10-29 11:33:28,010 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
-2025-10-29 11:33:28,265 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:28,266 - INFO - response verified successfully for command: op ipx 1020901958 set_gain 3
+2025-10-29 14:55:16,557 - INFO - Sent command: op ipx 1020901958 set_gain 3
+2025-10-29 14:55:18,240 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
+2025-10-29 14:55:18,500 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:18,502 - INFO - response verified successfully for command: op ipx 1020901958 set_gain 3
 
-2025-10-29 11:33:28,268 - INFO - Sent command: op ipx 1020901958 set_centroid_threshold 800
-2025-10-29 11:33:28,469 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
-2025-10-29 11:33:28,724 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:28,725 - INFO - response verified successfully for command: op ipx 1020901958 set_centroid_threshold 800
+2025-10-29 14:55:18,504 - INFO - Sent command: op ipx 1020901958 set_centroid_threshold 800
+2025-10-29 14:55:18,707 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 14:55:18,968 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:18,969 - INFO - response verified successfully for command: op ipx 1020901958 set_centroid_threshold 800
 
-2025-10-29 11:33:28,728 - INFO - Sent command: op ipx 1020901958 set_n_stds 10
-2025-10-29 11:33:28,903 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
-2025-10-29 11:33:29,158 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:29,159 - INFO - response verified successfully for command: op ipx 1020901958 set_n_stds 10
+2025-10-29 14:55:18,972 - INFO - Sent command: op ipx 1020901958 set_n_stds 10
+2025-10-29 14:55:19,147 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
+2025-10-29 14:55:19,403 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:19,405 - INFO - response verified successfully for command: op ipx 1020901958 set_n_stds 10
 
-2025-10-29 11:33:29,160 - INFO - Sent command: op ipx 1020901958 set_centroid_res 10
-2025-10-29 11:33:29,338 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
-2025-10-29 11:33:29,591 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:29,592 - INFO - response verified successfully for command: op ipx 1020901958 set_centroid_res 10
+2025-10-29 14:55:19,407 - INFO - Sent command: op ipx 1020901958 set_centroid_res 10
+2025-10-29 14:55:19,586 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
+2025-10-29 14:55:19,846 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:19,848 - INFO - response verified successfully for command: op ipx 1020901958 set_centroid_res 10
 
-2025-10-29 11:33:29,592 - INFO - Sent command: op ipx 1020901958 set_centroid_threshold 800
-2025-10-29 11:33:29,793 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
-2025-10-29 11:33:30,053 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:30,054 - INFO - response verified successfully for command: op ipx 1020901958 set_centroid_threshold 800
+2025-10-29 14:55:19,851 - INFO - Sent command: op ipx 1020901958 set_centroid_threshold 800
+2025-10-29 14:55:20,051 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 14:55:20,312 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:20,313 - INFO - response verified successfully for command: op ipx 1020901958 set_centroid_threshold 800
 
-2025-10-29 11:33:30,056 - INFO - Sent command: op ipx 1020901958 set_term 0
-2025-10-29 11:33:30,204 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
-2025-10-29 11:33:30,454 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:30,455 - INFO - response verified successfully for command: op ipx 1020901958 set_term 0
+2025-10-29 14:55:20,316 - INFO - Sent command: op ipx 1020901958 set_term 0
+2025-10-29 14:55:20,455 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
+2025-10-29 14:55:20,711 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:20,712 - INFO - response verified successfully for command: op ipx 1020901958 set_term 0
 
-2025-10-29 11:33:30,455 - INFO - Setting parameters complete for sensor with uid:1020901958
-2025-10-29 11:33:30,455 - INFO - Beginning setting process for sensor uid :1020901927
-2025-10-29 11:33:30,456 - INFO - Sent command: op ipx 1020901927 set_alias 2
-2025-10-29 11:33:30,581 - INFO - CMD_EXEC_Set_Alias: Alias set to 2.
-2025-10-29 11:33:30,832 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:30,832 - INFO - response verified successfully for command: op ipx 1020901927 set_alias 2
+2025-10-29 14:55:20,713 - INFO - Setting parameters complete for sensor with uid:1020901958
+2025-10-29 14:55:20,714 - INFO - Beginning setting process for sensor uid :1020901927
+2025-10-29 14:55:20,716 - INFO - Sent command: op ipx 1020901927 set_alias 2
+2025-10-29 14:55:20,841 - INFO - CMD_EXEC_Set_Alias: Alias set to 2.
+2025-10-29 14:55:21,101 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:21,102 - INFO - response verified successfully for command: op ipx 1020901927 set_alias 2
 
-2025-10-29 11:33:30,833 - INFO - Sent command: op ipx 1020901927 set_gain 3
-2025-10-29 11:33:32,512 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
-2025-10-29 11:33:32,763 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:32,763 - INFO - response verified successfully for command: op ipx 1020901927 set_gain 3
+2025-10-29 14:55:21,104 - INFO - Sent command: op ipx 1020901927 set_gain 3
+2025-10-29 14:55:22,783 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
+2025-10-29 14:55:23,042 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:23,043 - INFO - response verified successfully for command: op ipx 1020901927 set_gain 3
 
-2025-10-29 11:33:32,764 - INFO - Sent command: op ipx 1020901927 set_centroid_threshold 800
-2025-10-29 11:33:32,963 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
-2025-10-29 11:33:33,215 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:33,216 - INFO - response verified successfully for command: op ipx 1020901927 set_centroid_threshold 800
+2025-10-29 14:55:23,044 - INFO - Sent command: op ipx 1020901927 set_centroid_threshold 800
+2025-10-29 14:55:23,246 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 14:55:23,502 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:23,503 - INFO - response verified successfully for command: op ipx 1020901927 set_centroid_threshold 800
 
-2025-10-29 11:33:33,217 - INFO - Sent command: op ipx 1020901927 set_n_stds 10
-2025-10-29 11:33:33,390 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
-2025-10-29 11:33:33,642 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:33,644 - INFO - response verified successfully for command: op ipx 1020901927 set_n_stds 10
+2025-10-29 14:55:23,505 - INFO - Sent command: op ipx 1020901927 set_n_stds 10
+2025-10-29 14:55:23,681 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
+2025-10-29 14:55:23,939 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:23,940 - INFO - response verified successfully for command: op ipx 1020901927 set_n_stds 10
 
-2025-10-29 11:33:33,646 - INFO - Sent command: op ipx 1020901927 set_centroid_res 10
-2025-10-29 11:33:33,822 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
-2025-10-29 11:33:34,072 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:34,073 - INFO - response verified successfully for command: op ipx 1020901927 set_centroid_res 10
+2025-10-29 14:55:23,942 - INFO - Sent command: op ipx 1020901927 set_centroid_res 10
+2025-10-29 14:55:24,122 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
+2025-10-29 14:55:24,379 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:24,380 - INFO - response verified successfully for command: op ipx 1020901927 set_centroid_res 10
 
-2025-10-29 11:33:34,075 - INFO - Sent command: op ipx 1020901927 set_centroid_threshold 800
-2025-10-29 11:33:34,274 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
-2025-10-29 11:33:34,525 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:34,525 - INFO - response verified successfully for command: op ipx 1020901927 set_centroid_threshold 800
+2025-10-29 14:55:24,382 - INFO - Sent command: op ipx 1020901927 set_centroid_threshold 800
+2025-10-29 14:55:24,584 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 14:55:24,841 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:24,843 - INFO - response verified successfully for command: op ipx 1020901927 set_centroid_threshold 800
 
-2025-10-29 11:33:34,526 - INFO - Sent command: op ipx 1020901927 set_term 0
-2025-10-29 11:33:34,673 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
-2025-10-29 11:33:34,926 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:34,926 - INFO - response verified successfully for command: op ipx 1020901927 set_term 0
+2025-10-29 14:55:24,845 - INFO - Sent command: op ipx 1020901927 set_term 0
+2025-10-29 14:55:24,984 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
+2025-10-29 14:55:25,239 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:25,241 - INFO - response verified successfully for command: op ipx 1020901927 set_term 0
 
-2025-10-29 11:33:34,927 - INFO - Setting parameters complete for sensor with uid:1020901927
-2025-10-29 11:33:34,927 - INFO - Beginning setting process for sensor uid :1020910967
-2025-10-29 11:33:34,927 - INFO - Sent command: op ipx 1020910967 set_alias 1
-2025-10-29 11:33:35,053 - INFO - CMD_EXEC_Set_Alias: Alias set to 1.
-2025-10-29 11:33:35,304 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:35,304 - INFO - response verified successfully for command: op ipx 1020910967 set_alias 1
+2025-10-29 14:55:25,243 - INFO - Setting parameters complete for sensor with uid:1020901927
+2025-10-29 14:55:25,244 - INFO - Beginning setting process for sensor uid :1020910967
+2025-10-29 14:55:25,245 - INFO - Sent command: op ipx 1020910967 set_alias 1
+2025-10-29 14:55:25,371 - INFO - CMD_EXEC_Set_Alias: Alias set to 1.
+2025-10-29 14:55:25,625 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:25,627 - INFO - response verified successfully for command: op ipx 1020910967 set_alias 1
 
-2025-10-29 11:33:35,304 - INFO - Sent command: op ipx 1020910967 set_gain 3
-2025-10-29 11:33:36,984 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
-2025-10-29 11:33:37,236 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:37,237 - INFO - response verified successfully for command: op ipx 1020910967 set_gain 3
+2025-10-29 14:55:25,629 - INFO - Sent command: op ipx 1020910967 set_gain 3
+2025-10-29 14:55:27,307 - INFO - CMD_EXEC_Set_Gain: Gain set to 3.
+2025-10-29 14:55:27,565 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:27,566 - INFO - response verified successfully for command: op ipx 1020910967 set_gain 3
 
-2025-10-29 11:33:37,238 - INFO - Sent command: op ipx 1020910967 set_centroid_threshold 800
-2025-10-29 11:33:37,437 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
-2025-10-29 11:33:37,691 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:37,692 - INFO - response verified successfully for command: op ipx 1020910967 set_centroid_threshold 800
+2025-10-29 14:55:27,567 - INFO - Sent command: op ipx 1020910967 set_centroid_threshold 800
+2025-10-29 14:55:27,766 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 14:55:28,018 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:28,018 - INFO - response verified successfully for command: op ipx 1020910967 set_centroid_threshold 800
 
-2025-10-29 11:33:37,693 - INFO - Sent command: op ipx 1020910967 set_n_stds 10
-2025-10-29 11:33:37,868 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
-2025-10-29 11:33:38,124 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:38,125 - INFO - response verified successfully for command: op ipx 1020910967 set_n_stds 10
+2025-10-29 14:55:28,019 - INFO - Sent command: op ipx 1020910967 set_n_stds 10
+2025-10-29 14:55:28,192 - INFO - CMD_EXEC_Set_N_STDDevs: Number of standard deviations set to 10.000.
+2025-10-29 14:55:28,452 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:28,453 - INFO - response verified successfully for command: op ipx 1020910967 set_n_stds 10
 
-2025-10-29 11:33:38,128 - INFO - Sent command: op ipx 1020910967 set_centroid_res 10
-2025-10-29 11:33:38,306 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
-2025-10-29 11:33:38,559 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:38,561 - INFO - response verified successfully for command: op ipx 1020910967 set_centroid_res 10
+2025-10-29 14:55:28,454 - INFO - Sent command: op ipx 1020910967 set_centroid_res 10
+2025-10-29 14:55:28,630 - INFO - CMD_EXEC_Set_Centroid_Res: Centroiding resolution set to 0.010 mm.
+2025-10-29 14:55:28,889 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:28,890 - INFO - response verified successfully for command: op ipx 1020910967 set_centroid_res 10
 
-2025-10-29 11:33:38,563 - INFO - Sent command: op ipx 1020910967 set_centroid_threshold 800
-2025-10-29 11:33:38,764 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
-2025-10-29 11:33:39,019 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:39,021 - INFO - response verified successfully for command: op ipx 1020910967 set_centroid_threshold 800
+2025-10-29 14:55:28,891 - INFO - Sent command: op ipx 1020910967 set_centroid_threshold 800
+2025-10-29 14:55:29,090 - INFO - CMD_EXEC_Set_Centroid_Threshold: Centroiding threshold is set to +/- 800 count.
+2025-10-29 14:55:29,342 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:29,343 - INFO - response verified successfully for command: op ipx 1020910967 set_centroid_threshold 800
 
-2025-10-29 11:33:39,023 - INFO - Sent command: op ipx 1020910967 set_term 0
-2025-10-29 11:33:39,161 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
-2025-10-29 11:33:39,418 - INFO - No new data received within listen duration, ending read.
-2025-10-29 11:33:39,419 - INFO - response verified successfully for command: op ipx 1020910967 set_term 0
+2025-10-29 14:55:29,344 - INFO - Sent command: op ipx 1020910967 set_term 0
+2025-10-29 14:55:29,492 - INFO - CMD_EXEC_Enable_120R: 120ohm termination disabled.
+2025-10-29 14:55:29,744 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:55:29,744 - INFO - response verified successfully for command: op ipx 1020910967 set_term 0
 
-2025-10-29 11:33:39,420 - INFO - Setting parameters complete for sensor with uid:1020910967
-2025-10-29 11:33:39,422 - INFO - Setting parameters successful for all sensors
-2025-10-29 11:33:39,423 - INFO - Sent command: op ipx 1020901992 calibrate
-2025-10-29 11:33:39,572 - INFO - CMD_EXEC_Calibrate: Starting calibration procedure.
+2025-10-29 14:55:29,745 - INFO - Setting parameters complete for sensor with uid:1020910967
+2025-10-29 14:55:29,745 - INFO - Setting parameters successful for all sensors
+2025-10-29 14:55:29,745 - INFO - Sent command: op ipx 1020901992 calibrate
+2025-10-29 14:55:29,894 - INFO - CMD_EXEC_Calibrate: Starting calibration procedure.
+2025-10-29 14:55:45,620 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = 436, standard dev = 14 axis 0.
+2025-10-29 14:55:45,737 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = -156, standard dev = 19 axis 1.
+2025-10-29 14:55:45,853 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = 1170, standard dev = 14 axis 2.
+2025-10-29 14:55:45,971 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = -233, standard dev = 14 axis 0.
+2025-10-29 14:55:46,088 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = 83, standard dev = 12 axis 1.
+2025-10-29 14:55:46,206 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = 1031, standard dev = 20 axis 2.
+2025-10-29 14:55:46,322 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = 1174, standard dev = 22 axis 0.
+2025-10-29 14:55:46,429 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = 754, standard dev = 19 axis 1.
+2025-10-29 14:55:46,547 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = 481, standard dev = 9 axis 2.
+2025-10-29 14:55:46,663 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = 1266, standard dev = 19 axis 0.
+2025-10-29 14:55:46,779 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = 312, standard dev = 16 axis 1.
+2025-10-29 14:55:46,885 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = 358, standard dev = 20 axis 2.
+2025-10-29 14:55:47,003 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = -965, standard dev = 17 axis 0.
+2025-10-29 14:55:47,121 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = 655, standard dev = 19 axis 1.
+2025-10-29 14:55:47,238 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = 87, standard dev = 17 axis 2.
+2025-10-29 14:55:47,344 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = 536, standard dev = 24 axis 0.
+2025-10-29 14:55:47,460 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = -399, standard dev = 14 axis 1.
+2025-10-29 14:55:47,576 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = 869, standard dev = 21 axis 2.
+2025-10-29 14:55:47,693 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = 351, standard dev = 15 axis 0.
+2025-10-29 14:55:47,811 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = 1078, standard dev = 19 axis 1.
+2025-10-29 14:55:47,918 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = 280, standard dev = 23 axis 2.
+2025-10-29 14:55:48,037 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = 327, standard dev = 14 axis 0.
+2025-10-29 14:55:48,154 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = -807, standard dev = 23 axis 1.
+2025-10-29 14:55:48,273 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = 651, standard dev = 16 axis 2.
+2025-10-29 14:55:48,380 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = 16, standard dev = 23 axis 0.
+2025-10-29 14:55:48,497 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = -239, standard dev = 19 axis 1.
+2025-10-29 14:55:48,614 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = 87, standard dev = 14 axis 2.
+2025-10-29 14:55:48,731 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = -450, standard dev = 15 axis 0.
+2025-10-29 14:55:48,838 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = -374, standard dev = 14 axis 1.
+2025-10-29 14:55:48,957 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = -51, standard dev = 16 axis 2.
+2025-10-29 14:55:49,075 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = 1011, standard dev = 15 axis 0.
+2025-10-29 14:55:49,194 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = 643, standard dev = 13 axis 1.
+2025-10-29 14:55:49,311 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = -332, standard dev = 14 axis 2.
+2025-10-29 14:55:49,428 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = 1421, standard dev = 18 axis 0.
+2025-10-29 14:55:49,536 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = 724, standard dev = 22 axis 1.
+2025-10-29 14:55:49,655 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = 94, standard dev = 11 axis 2.
+2025-10-29 14:55:49,772 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = 726, standard dev = 9 axis 0.
+2025-10-29 14:55:49,889 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = 413, standard dev = 15 axis 1.
+2025-10-29 14:55:50,007 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = -626, standard dev = 18 axis 2.
+2025-10-29 14:55:50,115 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = 822, standard dev = 17 axis 0.
+2025-10-29 14:55:50,234 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = -422, standard dev = 19 axis 1.
+2025-10-29 14:55:50,353 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = 804, standard dev = 16 axis 2.
+2025-10-29 14:55:50,470 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = 1378, standard dev = 13 axis 0.
+2025-10-29 14:55:50,587 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = 556, standard dev = 15 axis 1.
+2025-10-29 14:55:50,705 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = -331, standard dev = 11 axis 2.
+2025-10-29 14:55:50,823 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = 1793, standard dev = 12 axis 0.
+2025-10-29 14:55:50,941 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = 232, standard dev = 16 axis 1.
+2025-10-29 14:55:51,058 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = 927, standard dev = 15 axis 2.
+2025-10-29 14:55:51,166 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = 463, standard dev = 20 axis 0.
+2025-10-29 14:55:51,282 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = -577, standard dev = 16 axis 1.
+2025-10-29 14:55:51,400 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = 378, standard dev = 18 axis 2.
+2025-10-29 14:55:51,517 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = -96, standard dev = 14 axis 0.
+2025-10-29 14:55:51,635 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = 590, standard dev = 21 axis 1.
+2025-10-29 14:55:51,751 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = 683, standard dev = 15 axis 2.
+2025-10-29 14:55:51,868 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = 501, standard dev = 23 axis 0.
+2025-10-29 14:55:51,987 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = 246, standard dev = 15 axis 1.
+2025-10-29 14:55:52,105 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = -309, standard dev = 16 axis 2.
+2025-10-29 14:55:52,224 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = 146, standard dev = 24 axis 0.
+2025-10-29 14:55:52,331 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = -404, standard dev = 18 axis 1.
+2025-10-29 14:55:52,449 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = -458, standard dev = 19 axis 2.
+2025-10-29 14:55:52,565 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = 1657, standard dev = 12 axis 0.
+2025-10-29 14:55:52,682 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = -636, standard dev = 16 axis 1.
+2025-10-29 14:55:52,801 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = 749, standard dev = 16 axis 2.
+2025-10-29 14:55:52,918 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = 750, standard dev = 17 axis 0.
+2025-10-29 14:55:53,035 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = -427, standard dev = 17 axis 1.
+2025-10-29 14:55:53,153 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = 147, standard dev = 16 axis 2.
+2025-10-29 14:55:53,273 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = 632, standard dev = 14 axis 0.
+2025-10-29 14:55:53,380 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = 625, standard dev = 19 axis 1.
+2025-10-29 14:55:53,498 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = 444, standard dev = 14 axis 2.
+2025-10-29 14:55:53,617 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = -13, standard dev = 9 axis 0.
+2025-10-29 14:55:53,725 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = 84, standard dev = 12 axis 1.
+2025-10-29 14:55:53,842 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = 343, standard dev = 14 axis 2.
+2025-10-29 14:55:53,960 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = 321, standard dev = 15 axis 0.
+2025-10-29 14:55:54,078 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = -95, standard dev = 19 axis 1.
+2025-10-29 14:55:54,197 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = 316, standard dev = 18 axis 2.
+2025-10-29 14:55:54,305 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = 73, standard dev = 11 axis 0.
+2025-10-29 14:55:54,423 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = 213, standard dev = 13 axis 1.
+2025-10-29 14:55:54,542 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = 225, standard dev = 13 axis 2.
+2025-10-29 14:55:54,660 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = 759, standard dev = 26 axis 0.
+2025-10-29 14:55:54,778 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = 642, standard dev = 19 axis 1.
+2025-10-29 14:55:54,895 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = 1013, standard dev = 12 axis 2.
+2025-10-29 14:55:55,003 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = 706, standard dev = 13 axis 0.
+2025-10-29 14:55:55,122 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = -1011, standard dev = 21 axis 1.
+2025-10-29 14:55:55,241 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = 749, standard dev = 15 axis 2.
+2025-10-29 14:55:55,359 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = 250, standard dev = 18 axis 0.
+2025-10-29 14:55:55,477 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = -387, standard dev = 17 axis 1.
+2025-10-29 14:55:55,595 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = 124, standard dev = 25 axis 2.
+2025-10-29 14:55:55,710 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = 374, standard dev = 18 axis 0.
+2025-10-29 14:55:55,824 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = 108, standard dev = 19 axis 1.
+2025-10-29 14:55:55,941 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = 305, standard dev = 17 axis 2.
+2025-10-29 14:55:56,058 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = -490, standard dev = 18 axis 0.
+2025-10-29 14:55:56,174 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = 666, standard dev = 22 axis 1.
+2025-10-29 14:55:56,292 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = 1096, standard dev = 18 axis 2.
+2025-10-29 14:55:56,410 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = 221, standard dev = 19 axis 0.
+2025-10-29 14:55:56,518 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = -535, standard dev = 18 axis 1.
+2025-10-29 14:55:56,637 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = 516, standard dev = 8 axis 2.
+2025-10-29 14:55:56,755 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = -197, standard dev = 14 axis 0.
+2025-10-29 14:55:56,872 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = 15, standard dev = 16 axis 1.
+2025-10-29 14:55:56,990 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = 487, standard dev = 14 axis 2.
+2025-10-29 14:55:57,107 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = 1613, standard dev = 19 axis 0.
+2025-10-29 14:55:57,225 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = -193, standard dev = 16 axis 1.
+2025-10-29 14:55:57,332 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = 157, standard dev = 16 axis 2.
+2025-10-29 14:55:57,449 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = 713, standard dev = 10 axis 0.
+2025-10-29 14:55:57,567 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = -758, standard dev = 17 axis 1.
+2025-10-29 14:55:57,686 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = 178, standard dev = 16 axis 2.
+2025-10-29 14:55:57,803 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = -656, standard dev = 15 axis 0.
+2025-10-29 14:55:57,921 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = 297, standard dev = 28 axis 1.
+2025-10-29 14:55:58,039 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = -109, standard dev = 16 axis 2.
+2025-10-29 14:55:58,157 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = 499, standard dev = 12 axis 0.
+2025-10-29 14:55:58,275 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = 104, standard dev = 16 axis 1.
+2025-10-29 14:55:58,383 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = 114, standard dev = 14 axis 2.
+2025-10-29 14:55:58,500 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = 536, standard dev = 22 axis 0.
+2025-10-29 14:55:58,618 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = -1052, standard dev = 16 axis 1.
+2025-10-29 14:55:58,737 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = -561, standard dev = 11 axis 2.
+2025-10-29 14:55:58,854 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = 151, standard dev = 20 axis 0.
+2025-10-29 14:55:58,973 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = 1537, standard dev = 16 axis 1.
+2025-10-29 14:55:59,092 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = -696, standard dev = 18 axis 2.
+2025-10-29 14:55:59,211 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = 1139, standard dev = 25 axis 0.
+2025-10-29 14:55:59,318 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = 720, standard dev = 14 axis 1.
+2025-10-29 14:55:59,437 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = 774, standard dev = 15 axis 2.
+2025-10-29 14:55:59,554 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = 365, standard dev = 18 axis 0.
+2025-10-29 14:55:59,673 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = -1459, standard dev = 17 axis 1.
+2025-10-29 14:55:59,790 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = 270, standard dev = 11 axis 2.
+2025-10-29 14:55:59,907 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = 797, standard dev = 17 axis 0.
+2025-10-29 14:56:00,025 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = -1285, standard dev = 12 axis 1.
+2025-10-29 14:56:00,144 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = 273, standard dev = 15 axis 2.
+2025-10-29 14:56:00,251 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = 213, standard dev = 13 axis 0.
+2025-10-29 14:56:00,369 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = -340, standard dev = 16 axis 1.
+2025-10-29 14:56:00,487 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = 29, standard dev = 21 axis 2.
+2025-10-29 14:56:00,605 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = 68, standard dev = 9 axis 0.
+2025-10-29 14:56:00,713 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = 798, standard dev = 13 axis 1.
+2025-10-29 14:56:00,831 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = -392, standard dev = 16 axis 2.
+2025-10-29 14:56:00,949 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = -764, standard dev = 15 axis 0.
+2025-10-29 14:56:01,067 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = 429, standard dev = 16 axis 1.
+2025-10-29 14:56:01,184 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = 309, standard dev = 17 axis 2.
+2025-10-29 14:56:01,564 - INFO - CMD_EXEC_Calibrate: Calibration on all sensors complete, saving to memory.
+2025-10-29 14:56:01,565 - INFO -  Terminator string found. Finalising read
+2025-10-29 14:56:01,568 - INFO - Sent command: op ipx 1020901966 calibrate
+2025-10-29 14:56:01,715 - INFO - CMD_EXEC_Calibrate: Starting calibration procedure.
+2025-10-29 14:56:17,433 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = 470, standard dev = 15 axis 0.
+2025-10-29 14:56:17,539 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = 967, standard dev = 9 axis 1.
+2025-10-29 14:56:17,657 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = 1095, standard dev = 17 axis 2.
+2025-10-29 14:56:17,775 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = -203, standard dev = 15 axis 0.
+2025-10-29 14:56:17,892 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = 1543, standard dev = 22 axis 1.
+2025-10-29 14:56:18,000 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = 468, standard dev = 14 axis 2.
+2025-10-29 14:56:18,117 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = 1296, standard dev = 13 axis 0.
+2025-10-29 14:56:18,235 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = 319, standard dev = 15 axis 1.
+2025-10-29 14:56:18,353 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = -196, standard dev = 16 axis 2.
+2025-10-29 14:56:18,460 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = 1766, standard dev = 8 axis 0.
+2025-10-29 14:56:18,576 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = 572, standard dev = 18 axis 1.
+2025-10-29 14:56:18,694 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = -295, standard dev = 13 axis 2.
+2025-10-29 14:56:18,812 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = -418, standard dev = 24 axis 0.
+2025-10-29 14:56:18,919 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = 150, standard dev = 7 axis 1.
+2025-10-29 14:56:19,035 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = 537, standard dev = 11 axis 2.
+2025-10-29 14:56:19,149 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = 883, standard dev = 19 axis 0.
+2025-10-29 14:56:19,274 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = -1454, standard dev = 20 axis 1.
+2025-10-29 14:56:19,379 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = -96, standard dev = 18 axis 2.
+2025-10-29 14:56:19,504 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = -786, standard dev = 16 axis 0.
+2025-10-29 14:56:19,609 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = 486, standard dev = 21 axis 1.
+2025-10-29 14:56:19,726 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = 290, standard dev = 18 axis 2.
+2025-10-29 14:56:19,844 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = -341, standard dev = 16 axis 0.
+2025-10-29 14:56:19,961 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = 436, standard dev = 19 axis 1.
+2025-10-29 14:56:20,077 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = 1088, standard dev = 19 axis 2.
+2025-10-29 14:56:20,193 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = 950, standard dev = 13 axis 0.
+2025-10-29 14:56:20,308 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = 306, standard dev = 19 axis 1.
+2025-10-29 14:56:20,414 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = -563, standard dev = 19 axis 2.
+2025-10-29 14:56:20,539 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = -520, standard dev = 18 axis 0.
+2025-10-29 14:56:20,644 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = 114, standard dev = 11 axis 1.
+2025-10-29 14:56:20,762 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = -336, standard dev = 11 axis 2.
+2025-10-29 14:56:20,887 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = 1682, standard dev = 15 axis 0.
+2025-10-29 14:56:21,002 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = 282, standard dev = 17 axis 1.
+2025-10-29 14:56:21,120 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = 405, standard dev = 12 axis 2.
+2025-10-29 14:56:21,227 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = 825, standard dev = 17 axis 0.
+2025-10-29 14:56:21,350 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = -359, standard dev = 15 axis 1.
+2025-10-29 14:56:21,466 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = 281, standard dev = 18 axis 2.
+2025-10-29 14:56:21,582 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = 1149, standard dev = 17 axis 0.
+2025-10-29 14:56:21,697 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = 524, standard dev = 16 axis 1.
+2025-10-29 14:56:21,812 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = 1037, standard dev = 19 axis 2.
+2025-10-29 14:56:21,936 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = -755, standard dev = 17 axis 0.
+2025-10-29 14:56:22,052 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = 1410, standard dev = 19 axis 1.
+2025-10-29 14:56:22,168 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = 213, standard dev = 25 axis 2.
+2025-10-29 14:56:22,285 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = 1123, standard dev = 12 axis 0.
+2025-10-29 14:56:22,400 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = -828, standard dev = 15 axis 1.
+2025-10-29 14:56:22,516 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = -633, standard dev = 20 axis 2.
+2025-10-29 14:56:22,634 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = 332, standard dev = 22 axis 0.
+2025-10-29 14:56:22,749 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = -240, standard dev = 19 axis 1.
+2025-10-29 14:56:22,867 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = 286, standard dev = 14 axis 2.
+2025-10-29 14:56:22,986 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = 1015, standard dev = 13 axis 0.
+2025-10-29 14:56:23,102 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = 2082, standard dev = 15 axis 1.
+2025-10-29 14:56:23,219 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = 823, standard dev = 17 axis 2.
+2025-10-29 14:56:23,326 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = 535, standard dev = 10 axis 0.
+2025-10-29 14:56:23,443 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = 104, standard dev = 15 axis 1.
+2025-10-29 14:56:23,560 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = 9, standard dev = 19 axis 2.
+2025-10-29 14:56:23,678 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = 4, standard dev = 16 axis 0.
+2025-10-29 14:56:23,785 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = 66, standard dev = 11 axis 1.
+2025-10-29 14:56:23,904 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = 59, standard dev = 14 axis 2.
+2025-10-29 14:56:24,012 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = 356, standard dev = 14 axis 0.
+2025-10-29 14:56:24,129 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = 269, standard dev = 13 axis 1.
+2025-10-29 14:56:24,247 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = 518, standard dev = 13 axis 2.
+2025-10-29 14:56:24,365 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = 362, standard dev = 18 axis 0.
+2025-10-29 14:56:24,482 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = -123, standard dev = 19 axis 1.
+2025-10-29 14:56:24,599 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = 81, standard dev = 21 axis 2.
+2025-10-29 14:56:24,719 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = -273, standard dev = 18 axis 0.
+2025-10-29 14:56:24,827 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = -962, standard dev = 19 axis 1.
+2025-10-29 14:56:24,945 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = 179, standard dev = 17 axis 2.
+2025-10-29 14:56:25,064 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = -618, standard dev = 11 axis 0.
+2025-10-29 14:56:25,183 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = -41, standard dev = 18 axis 1.
+2025-10-29 14:56:25,291 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = 19, standard dev = 18 axis 2.
+2025-10-29 14:56:25,409 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = 579, standard dev = 21 axis 0.
+2025-10-29 14:56:25,526 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = 879, standard dev = 23 axis 1.
+2025-10-29 14:56:25,641 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = -74, standard dev = 16 axis 2.
+2025-10-29 14:56:25,760 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = 258, standard dev = 17 axis 0.
+2025-10-29 14:56:25,877 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = 1160, standard dev = 18 axis 1.
+2025-10-29 14:56:25,992 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = -96, standard dev = 19 axis 2.
+2025-10-29 14:56:26,108 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = 330, standard dev = 17 axis 0.
+2025-10-29 14:56:26,224 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = 649, standard dev = 18 axis 1.
+2025-10-29 14:56:26,339 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = 213, standard dev = 17 axis 2.
+2025-10-29 14:56:26,454 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = -231, standard dev = 7 axis 0.
+2025-10-29 14:56:26,571 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = -126, standard dev = 15 axis 1.
+2025-10-29 14:56:26,689 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = 198, standard dev = 16 axis 2.
+2025-10-29 14:56:26,808 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = 731, standard dev = 15 axis 0.
+2025-10-29 14:56:26,927 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = -1252, standard dev = 15 axis 1.
+2025-10-29 14:56:27,037 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = 253, standard dev = 17 axis 2.
+2025-10-29 14:56:27,156 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = 810, standard dev = 12 axis 0.
+2025-10-29 14:56:27,275 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = 810, standard dev = 24 axis 1.
+2025-10-29 14:56:27,392 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = 352, standard dev = 19 axis 2.
+2025-10-29 14:56:27,501 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = 1349, standard dev = 19 axis 0.
+2025-10-29 14:56:27,619 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = -535, standard dev = 16 axis 1.
+2025-10-29 14:56:27,735 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = 861, standard dev = 15 axis 2.
+2025-10-29 14:56:27,861 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = -901, standard dev = 12 axis 0.
+2025-10-29 14:56:27,976 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = 1124, standard dev = 17 axis 1.
+2025-10-29 14:56:28,094 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = 770, standard dev = 12 axis 2.
+2025-10-29 14:56:28,209 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = 147, standard dev = 15 axis 0.
+2025-10-29 14:56:28,324 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = 1121, standard dev = 13 axis 1.
+2025-10-29 14:56:28,439 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = 503, standard dev = 11 axis 2.
+2025-10-29 14:56:28,553 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = 1677, standard dev = 19 axis 0.
+2025-10-29 14:56:28,678 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = -1496, standard dev = 11 axis 1.
+2025-10-29 14:56:28,793 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = 785, standard dev = 22 axis 2.
+2025-10-29 14:56:28,908 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = 500, standard dev = 12 axis 0.
+2025-10-29 14:56:29,023 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = 311, standard dev = 16 axis 1.
+2025-10-29 14:56:29,137 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = 890, standard dev = 14 axis 2.
+2025-10-29 14:56:29,252 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = 622, standard dev = 13 axis 0.
+2025-10-29 14:56:29,377 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = -632, standard dev = 15 axis 1.
+2025-10-29 14:56:29,492 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = 342, standard dev = 18 axis 2.
+2025-10-29 14:56:29,607 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = -171, standard dev = 22 axis 0.
+2025-10-29 14:56:29,722 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = 191, standard dev = 22 axis 1.
+2025-10-29 14:56:29,841 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = -362, standard dev = 18 axis 2.
+2025-10-29 14:56:29,959 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = 222, standard dev = 12 axis 0.
+2025-10-29 14:56:30,074 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = 1040, standard dev = 14 axis 1.
+2025-10-29 14:56:30,191 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = 642, standard dev = 19 axis 2.
+2025-10-29 14:56:30,308 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = 1132, standard dev = 13 axis 0.
+2025-10-29 14:56:30,424 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = -357, standard dev = 17 axis 1.
+2025-10-29 14:56:30,538 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = 152, standard dev = 15 axis 2.
+2025-10-29 14:56:30,654 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = -672, standard dev = 21 axis 0.
+2025-10-29 14:56:30,770 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = 184, standard dev = 19 axis 1.
+2025-10-29 14:56:30,888 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = 745, standard dev = 23 axis 2.
+2025-10-29 14:56:31,004 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = 1328, standard dev = 16 axis 0.
+2025-10-29 14:56:31,121 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = -3, standard dev = 14 axis 1.
+2025-10-29 14:56:31,238 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = -56, standard dev = 17 axis 2.
+2025-10-29 14:56:31,356 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = 609, standard dev = 14 axis 0.
+2025-10-29 14:56:31,472 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = 211, standard dev = 23 axis 1.
+2025-10-29 14:56:31,588 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = -928, standard dev = 10 axis 2.
+2025-10-29 14:56:31,704 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = 345, standard dev = 14 axis 0.
+2025-10-29 14:56:31,811 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = 22, standard dev = 9 axis 1.
+2025-10-29 14:56:31,938 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = -363, standard dev = 16 axis 2.
+2025-10-29 14:56:32,048 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = 435, standard dev = 14 axis 0.
+2025-10-29 14:56:32,163 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = -127, standard dev = 13 axis 1.
+2025-10-29 14:56:32,278 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = 70, standard dev = 12 axis 2.
+2025-10-29 14:56:32,393 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = 1004, standard dev = 20 axis 0.
+2025-10-29 14:56:32,508 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = 283, standard dev = 13 axis 1.
+2025-10-29 14:56:32,624 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = 843, standard dev = 16 axis 2.
+2025-10-29 14:56:32,750 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = -447, standard dev = 20 axis 0.
+2025-10-29 14:56:32,865 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = -616, standard dev = 12 axis 1.
+2025-10-29 14:56:32,981 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = 538, standard dev = 23 axis 2.
+2025-10-29 14:56:33,359 - INFO - CMD_EXEC_Calibrate: Calibration on all sensors complete, saving to memory.
+2025-10-29 14:56:33,360 - INFO -  Terminator string found. Finalising read
+2025-10-29 14:56:33,361 - INFO - Sent command: op ipx 1020901941 calibrate
+2025-10-29 14:56:33,507 - INFO - CMD_EXEC_Calibrate: Starting calibration procedure.
+2025-10-29 14:56:49,248 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = -282, standard dev = 21 axis 0.
+2025-10-29 14:56:49,365 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = -424, standard dev = 15 axis 1.
+2025-10-29 14:56:49,482 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = -287, standard dev = 9 axis 2.
+2025-10-29 14:56:49,599 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = 241, standard dev = 24 axis 0.
+2025-10-29 14:56:49,715 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = -495, standard dev = 17 axis 1.
+2025-10-29 14:56:49,830 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = 319, standard dev = 11 axis 2.
+2025-10-29 14:56:49,937 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = 895, standard dev = 15 axis 0.
+2025-10-29 14:56:50,052 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = 466, standard dev = 21 axis 1.
+2025-10-29 14:56:50,168 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = 243, standard dev = 26 axis 2.
+2025-10-29 14:56:50,284 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = 1715, standard dev = 16 axis 0.
+2025-10-29 14:56:50,401 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = 804, standard dev = 20 axis 1.
+2025-10-29 14:56:50,517 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = -326, standard dev = 13 axis 2.
+2025-10-29 14:56:50,623 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = 720, standard dev = 20 axis 0.
+2025-10-29 14:56:50,740 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = -914, standard dev = 17 axis 1.
+2025-10-29 14:56:50,856 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = -26, standard dev = 12 axis 2.
+2025-10-29 14:56:50,973 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = 247, standard dev = 19 axis 0.
+2025-10-29 14:56:51,079 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = 10, standard dev = 19 axis 1.
+2025-10-29 14:56:51,195 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = 907, standard dev = 20 axis 2.
+2025-10-29 14:56:51,311 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = -90, standard dev = 17 axis 0.
+2025-10-29 14:56:51,427 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = 221, standard dev = 18 axis 1.
+2025-10-29 14:56:51,542 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = 394, standard dev = 16 axis 2.
+2025-10-29 14:56:51,659 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = 1378, standard dev = 18 axis 0.
+2025-10-29 14:56:51,765 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = 958, standard dev = 16 axis 1.
+2025-10-29 14:56:51,881 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = 98, standard dev = 27 axis 2.
+2025-10-29 14:56:51,998 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = 288, standard dev = 16 axis 0.
+2025-10-29 14:56:52,115 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = 878, standard dev = 12 axis 1.
+2025-10-29 14:56:52,223 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = 16, standard dev = 23 axis 2.
+2025-10-29 14:56:52,337 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = 1167, standard dev = 22 axis 0.
+2025-10-29 14:56:52,454 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = 2203, standard dev = 18 axis 1.
+2025-10-29 14:56:52,570 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = 710, standard dev = 14 axis 2.
+2025-10-29 14:56:52,687 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = 731, standard dev = 15 axis 0.
+2025-10-29 14:56:52,803 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = 228, standard dev = 14 axis 1.
+2025-10-29 14:56:52,920 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = 1320, standard dev = 19 axis 2.
+2025-10-29 14:56:53,037 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = 225, standard dev = 17 axis 0.
+2025-10-29 14:56:53,153 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = -242, standard dev = 14 axis 1.
+2025-10-29 14:56:53,270 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = 158, standard dev = 18 axis 2.
+2025-10-29 14:56:53,386 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = 641, standard dev = 20 axis 0.
+2025-10-29 14:56:53,503 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = 1203, standard dev = 13 axis 1.
+2025-10-29 14:56:53,609 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = 364, standard dev = 18 axis 2.
+2025-10-29 14:56:53,736 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = 1908, standard dev = 36 axis 0.
+2025-10-29 14:56:53,851 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = 3382, standard dev = 55 axis 1.
+2025-10-29 14:56:53,966 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = 3359, standard dev = 35 axis 2.
+2025-10-29 14:56:54,081 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = 290, standard dev = 11 axis 0.
+2025-10-29 14:56:54,197 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = 603, standard dev = 13 axis 1.
+2025-10-29 14:56:54,313 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = -137, standard dev = 15 axis 2.
+2025-10-29 14:56:54,429 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = -513, standard dev = 11 axis 0.
+2025-10-29 14:56:54,545 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = 408, standard dev = 23 axis 1.
+2025-10-29 14:56:54,661 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = 455, standard dev = 12 axis 2.
+2025-10-29 14:56:54,775 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = 2235, standard dev = 13 axis 0.
+2025-10-29 14:56:54,891 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = -205, standard dev = 15 axis 1.
+2025-10-29 14:56:55,007 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = 848, standard dev = 10 axis 2.
+2025-10-29 14:56:55,123 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = 271, standard dev = 20 axis 0.
+2025-10-29 14:56:55,239 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = -444, standard dev = 9 axis 1.
+2025-10-29 14:56:55,356 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = 760, standard dev = 13 axis 2.
+2025-10-29 14:56:55,473 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = 837, standard dev = 22 axis 0.
+2025-10-29 14:56:55,588 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = -417, standard dev = 19 axis 1.
+2025-10-29 14:56:55,713 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = 222, standard dev = 15 axis 2.
+2025-10-29 14:56:55,828 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = 999, standard dev = 13 axis 0.
+2025-10-29 14:56:55,945 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = -768, standard dev = 11 axis 1.
+2025-10-29 14:56:56,061 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = 788, standard dev = 15 axis 2.
+2025-10-29 14:56:56,178 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = 693, standard dev = 10 axis 0.
+2025-10-29 14:56:56,285 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = 291, standard dev = 12 axis 1.
+2025-10-29 14:56:56,402 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = -705, standard dev = 16 axis 2.
+2025-10-29 14:56:56,518 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = -338, standard dev = 14 axis 0.
+2025-10-29 14:56:56,634 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = 631, standard dev = 17 axis 1.
+2025-10-29 14:56:56,749 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = 520, standard dev = 21 axis 2.
+2025-10-29 14:56:56,866 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = 1358, standard dev = 21 axis 0.
+2025-10-29 14:56:56,982 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = 604, standard dev = 22 axis 1.
+2025-10-29 14:56:57,099 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = -194, standard dev = 21 axis 2.
+2025-10-29 14:56:57,225 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = -785, standard dev = 14 axis 0.
+2025-10-29 14:56:57,340 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = -385, standard dev = 15 axis 1.
+2025-10-29 14:56:57,457 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = 194, standard dev = 24 axis 2.
+2025-10-29 14:56:57,574 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = 322, standard dev = 13 axis 0.
+2025-10-29 14:56:57,691 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = -233, standard dev = 19 axis 1.
+2025-10-29 14:56:57,798 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = 124, standard dev = 10 axis 2.
+2025-10-29 14:56:57,915 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = 347, standard dev = 16 axis 0.
+2025-10-29 14:56:58,031 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = -530, standard dev = 20 axis 1.
+2025-10-29 14:56:58,149 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = -485, standard dev = 17 axis 2.
+2025-10-29 14:56:58,265 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = 53, standard dev = 14 axis 0.
+2025-10-29 14:56:58,382 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = 497, standard dev = 23 axis 1.
+2025-10-29 14:56:58,499 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = 512, standard dev = 13 axis 2.
+2025-10-29 14:56:58,615 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = -289, standard dev = 17 axis 0.
+2025-10-29 14:56:58,731 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = -458, standard dev = 21 axis 1.
+2025-10-29 14:56:58,847 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = -501, standard dev = 14 axis 2.
+2025-10-29 14:56:58,965 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = 423, standard dev = 21 axis 0.
+2025-10-29 14:56:59,080 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = 363, standard dev = 18 axis 1.
+2025-10-29 14:56:59,198 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = 771, standard dev = 16 axis 2.
+2025-10-29 14:56:59,314 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = 335, standard dev = 11 axis 0.
+2025-10-29 14:56:59,430 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = -466, standard dev = 13 axis 1.
+2025-10-29 14:56:59,545 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = -268, standard dev = 22 axis 2.
+2025-10-29 14:56:59,661 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = 575, standard dev = 18 axis 0.
+2025-10-29 14:56:59,777 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = 1009, standard dev = 16 axis 1.
+2025-10-29 14:56:59,892 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = 101, standard dev = 13 axis 2.
+2025-10-29 14:57:00,008 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = -73, standard dev = 17 axis 0.
+2025-10-29 14:57:00,124 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = 990, standard dev = 20 axis 1.
+2025-10-29 14:57:00,240 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = -48, standard dev = 19 axis 2.
+2025-10-29 14:57:00,357 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = 472, standard dev = 20 axis 0.
+2025-10-29 14:57:00,474 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = -428, standard dev = 14 axis 1.
+2025-10-29 14:57:00,590 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = 812, standard dev = 17 axis 2.
+2025-10-29 14:57:00,705 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = -131, standard dev = 20 axis 0.
+2025-10-29 14:57:00,823 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = 781, standard dev = 15 axis 1.
+2025-10-29 14:57:00,939 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = 239, standard dev = 24 axis 2.
+2025-10-29 14:57:01,056 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = -222, standard dev = 16 axis 0.
+2025-10-29 14:57:01,172 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = -1835, standard dev = 13 axis 1.
+2025-10-29 14:57:01,288 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = 166, standard dev = 15 axis 2.
+2025-10-29 14:57:01,405 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = 263, standard dev = 14 axis 0.
+2025-10-29 14:57:01,521 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = 1169, standard dev = 11 axis 1.
+2025-10-29 14:57:01,637 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = 419, standard dev = 18 axis 2.
+2025-10-29 14:57:01,753 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = 449, standard dev = 17 axis 0.
+2025-10-29 14:57:01,871 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = -341, standard dev = 10 axis 1.
+2025-10-29 14:57:01,986 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = 167, standard dev = 17 axis 2.
+2025-10-29 14:57:02,102 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = 272, standard dev = 18 axis 0.
+2025-10-29 14:57:02,218 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = 357, standard dev = 21 axis 1.
+2025-10-29 14:57:02,334 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = 303, standard dev = 15 axis 2.
+2025-10-29 14:57:02,452 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = -199, standard dev = 13 axis 0.
+2025-10-29 14:57:02,569 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = -33, standard dev = 16 axis 1.
+2025-10-29 14:57:02,685 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = 1381, standard dev = 15 axis 2.
+2025-10-29 14:57:02,801 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = -336, standard dev = 22 axis 0.
+2025-10-29 14:57:02,918 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = 88, standard dev = 16 axis 1.
+2025-10-29 14:57:03,033 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = 75, standard dev = 17 axis 2.
+2025-10-29 14:57:03,148 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = -473, standard dev = 19 axis 0.
+2025-10-29 14:57:03,264 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = 661, standard dev = 16 axis 1.
+2025-10-29 14:57:03,380 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = 612, standard dev = 18 axis 2.
+2025-10-29 14:57:03,496 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = -538, standard dev = 20 axis 0.
+2025-10-29 14:57:03,612 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = -380, standard dev = 25 axis 1.
+2025-10-29 14:57:03,728 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = 640, standard dev = 12 axis 2.
+2025-10-29 14:57:03,845 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = 306, standard dev = 11 axis 0.
+2025-10-29 14:57:03,961 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = 980, standard dev = 20 axis 1.
+2025-10-29 14:57:04,076 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = 738, standard dev = 11 axis 2.
+2025-10-29 14:57:04,195 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = 705, standard dev = 16 axis 0.
+2025-10-29 14:57:04,310 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = 268, standard dev = 18 axis 1.
+2025-10-29 14:57:04,425 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = -94, standard dev = 18 axis 2.
+2025-10-29 14:57:04,541 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = 545, standard dev = 10 axis 0.
+2025-10-29 14:57:04,658 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = -134, standard dev = 10 axis 1.
+2025-10-29 14:57:04,773 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = 362, standard dev = 13 axis 2.
+2025-10-29 14:57:05,152 - INFO - CMD_EXEC_Calibrate: Calibration on all sensors complete, saving to memory.
+2025-10-29 14:57:05,153 - INFO -  Terminator string found. Finalising read
+2025-10-29 14:57:05,153 - INFO - Sent command: op ipx 1020910976 calibrate
+2025-10-29 14:57:05,301 - INFO - CMD_EXEC_Calibrate: Starting calibration procedure.
+2025-10-29 14:57:20,991 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = -835, standard dev = 13 axis 0.
+2025-10-29 14:57:21,107 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = -422, standard dev = 29 axis 1.
+2025-10-29 14:57:21,222 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = -383, standard dev = 18 axis 2.
+2025-10-29 14:57:21,339 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = 342, standard dev = 23 axis 0.
+2025-10-29 14:57:21,455 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = 822, standard dev = 16 axis 1.
+2025-10-29 14:57:21,571 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = -412, standard dev = 13 axis 2.
+2025-10-29 14:57:21,685 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = 185, standard dev = 15 axis 0.
+2025-10-29 14:57:21,801 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = 494, standard dev = 22 axis 1.
+2025-10-29 14:57:21,915 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = 1365, standard dev = 17 axis 2.
+2025-10-29 14:57:22,030 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = 924, standard dev = 16 axis 0.
+2025-10-29 14:57:22,146 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = 1678, standard dev = 13 axis 1.
+2025-10-29 14:57:22,261 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = 7, standard dev = 15 axis 2.
+2025-10-29 14:57:22,366 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = 658, standard dev = 14 axis 0.
+2025-10-29 14:57:22,481 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = 907, standard dev = 15 axis 1.
+2025-10-29 14:57:22,596 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = -24, standard dev = 17 axis 2.
+2025-10-29 14:57:22,711 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = 365, standard dev = 15 axis 0.
+2025-10-29 14:57:22,826 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = -288, standard dev = 23 axis 1.
+2025-10-29 14:57:22,942 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = 521, standard dev = 13 axis 2.
+2025-10-29 14:57:23,058 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = 702, standard dev = 12 axis 0.
+2025-10-29 14:57:23,174 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = 1498, standard dev = 22 axis 1.
+2025-10-29 14:57:23,289 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = 825, standard dev = 11 axis 2.
+2025-10-29 14:57:23,396 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = 213, standard dev = 20 axis 0.
+2025-10-29 14:57:23,512 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = 391, standard dev = 14 axis 1.
+2025-10-29 14:57:23,628 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = 292, standard dev = 11 axis 2.
+2025-10-29 14:57:23,745 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = -92, standard dev = 21 axis 0.
+2025-10-29 14:57:23,860 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = 236, standard dev = 14 axis 1.
+2025-10-29 14:57:23,965 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = 137, standard dev = 13 axis 2.
+2025-10-29 14:57:24,081 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = 608, standard dev = 22 axis 0.
+2025-10-29 14:57:24,200 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = -481, standard dev = 14 axis 1.
+2025-10-29 14:57:24,317 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = 965, standard dev = 19 axis 2.
+2025-10-29 14:57:24,433 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = 726, standard dev = 13 axis 0.
+2025-10-29 14:57:24,550 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = 959, standard dev = 27 axis 1.
+2025-10-29 14:57:24,657 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = 315, standard dev = 15 axis 2.
+2025-10-29 14:57:24,773 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = -50, standard dev = 10 axis 0.
+2025-10-29 14:57:24,889 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = -2, standard dev = 11 axis 1.
+2025-10-29 14:57:25,005 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = 606, standard dev = 17 axis 2.
+2025-10-29 14:57:25,120 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = -87, standard dev = 16 axis 0.
+2025-10-29 14:57:25,235 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = -270, standard dev = 13 axis 1.
+2025-10-29 14:57:25,359 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = 1123, standard dev = 11 axis 2.
+2025-10-29 14:57:25,474 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = 324, standard dev = 17 axis 0.
+2025-10-29 14:57:25,590 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = 802, standard dev = 18 axis 1.
+2025-10-29 14:57:25,705 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = 793, standard dev = 20 axis 2.
+2025-10-29 14:57:25,822 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = 659, standard dev = 16 axis 0.
+2025-10-29 14:57:25,937 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = 657, standard dev = 15 axis 1.
+2025-10-29 14:57:26,054 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = 273, standard dev = 20 axis 2.
+2025-10-29 14:57:26,169 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = 2, standard dev = 12 axis 0.
+2025-10-29 14:57:26,285 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = -1120, standard dev = 14 axis 1.
+2025-10-29 14:57:26,401 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = -76, standard dev = 17 axis 2.
+2025-10-29 14:57:26,518 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = 159, standard dev = 17 axis 0.
+2025-10-29 14:57:26,625 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = 147, standard dev = 22 axis 1.
+2025-10-29 14:57:26,751 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = 765, standard dev = 17 axis 2.
+2025-10-29 14:57:26,857 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = 41, standard dev = 18 axis 0.
+2025-10-29 14:57:26,973 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = 171, standard dev = 17 axis 1.
+2025-10-29 14:57:27,088 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = 183, standard dev = 12 axis 2.
+2025-10-29 14:57:27,203 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = 505, standard dev = 14 axis 0.
+2025-10-29 14:57:27,328 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = 577, standard dev = 12 axis 1.
+2025-10-29 14:57:27,433 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = 84, standard dev = 21 axis 2.
+2025-10-29 14:57:27,550 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = 229, standard dev = 23 axis 0.
+2025-10-29 14:57:27,667 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = 387, standard dev = 15 axis 1.
+2025-10-29 14:57:27,783 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = 257, standard dev = 12 axis 2.
+2025-10-29 14:57:27,899 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = 26, standard dev = 16 axis 0.
+2025-10-29 14:57:28,016 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = -158, standard dev = 13 axis 1.
+2025-10-29 14:57:28,132 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = -355, standard dev = 17 axis 2.
+2025-10-29 14:57:28,249 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = -204, standard dev = 16 axis 0.
+2025-10-29 14:57:28,369 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = 1321, standard dev = 18 axis 1.
+2025-10-29 14:57:28,486 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = 504, standard dev = 17 axis 2.
+2025-10-29 14:57:28,603 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = 1960, standard dev = 15 axis 0.
+2025-10-29 14:57:28,719 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = 1246, standard dev = 15 axis 1.
+2025-10-29 14:57:28,837 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = 599, standard dev = 13 axis 2.
+2025-10-29 14:57:28,953 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = -104, standard dev = 17 axis 0.
+2025-10-29 14:57:29,069 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = 148, standard dev = 21 axis 1.
+2025-10-29 14:57:29,185 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = -193, standard dev = 17 axis 2.
+2025-10-29 14:57:29,294 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = 717, standard dev = 14 axis 0.
+2025-10-29 14:57:29,413 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = -214, standard dev = 18 axis 1.
+2025-10-29 14:57:29,529 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = 106, standard dev = 20 axis 2.
+2025-10-29 14:57:29,646 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = -364, standard dev = 5 axis 0.
+2025-10-29 14:57:29,764 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = -496, standard dev = 15 axis 1.
+2025-10-29 14:57:29,880 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = -44, standard dev = 15 axis 2.
+2025-10-29 14:57:29,996 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = 455, standard dev = 13 axis 0.
+2025-10-29 14:57:30,112 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = -213, standard dev = 11 axis 1.
+2025-10-29 14:57:30,230 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = -113, standard dev = 13 axis 2.
+2025-10-29 14:57:30,339 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = 83, standard dev = 12 axis 0.
+2025-10-29 14:57:30,457 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = -945, standard dev = 17 axis 1.
+2025-10-29 14:57:30,572 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = 729, standard dev = 13 axis 2.
+2025-10-29 14:57:30,690 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = 874, standard dev = 16 axis 0.
+2025-10-29 14:57:30,809 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = 556, standard dev = 25 axis 1.
+2025-10-29 14:57:30,926 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = 209, standard dev = 19 axis 2.
+2025-10-29 14:57:31,044 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = -361, standard dev = 16 axis 0.
+2025-10-29 14:57:31,162 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = 219, standard dev = 15 axis 1.
+2025-10-29 14:57:31,268 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = 330, standard dev = 12 axis 2.
+2025-10-29 14:57:31,384 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = 938, standard dev = 13 axis 0.
+2025-10-29 14:57:31,502 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = 304, standard dev = 13 axis 1.
+2025-10-29 14:57:31,621 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = -482, standard dev = 17 axis 2.
+2025-10-29 14:57:31,739 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = -587, standard dev = 14 axis 0.
+2025-10-29 14:57:31,857 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = 902, standard dev = 19 axis 1.
+2025-10-29 14:57:31,965 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = 103, standard dev = 16 axis 2.
+2025-10-29 14:57:32,083 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = 280, standard dev = 21 axis 0.
+2025-10-29 14:57:32,202 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = -724, standard dev = 17 axis 1.
+2025-10-29 14:57:32,319 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = 157, standard dev = 13 axis 2.
+2025-10-29 14:57:32,436 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = 872, standard dev = 21 axis 0.
+2025-10-29 14:57:32,554 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = -23, standard dev = 21 axis 1.
+2025-10-29 14:57:32,671 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = 531, standard dev = 17 axis 2.
+2025-10-29 14:57:32,779 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = -626, standard dev = 18 axis 0.
+2025-10-29 14:57:32,898 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = 312, standard dev = 18 axis 1.
+2025-10-29 14:57:33,014 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = 8, standard dev = 19 axis 2.
+2025-10-29 14:57:33,131 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = 97, standard dev = 16 axis 0.
+2025-10-29 14:57:33,239 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = -86, standard dev = 15 axis 1.
+2025-10-29 14:57:33,356 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = -296, standard dev = 13 axis 2.
+2025-10-29 14:57:33,476 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = -719, standard dev = 19 axis 0.
+2025-10-29 14:57:33,594 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = -733, standard dev = 21 axis 1.
+2025-10-29 14:57:33,711 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = 457, standard dev = 16 axis 2.
+2025-10-29 14:57:33,829 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = 389, standard dev = 14 axis 0.
+2025-10-29 14:57:33,937 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = 668, standard dev = 15 axis 1.
+2025-10-29 14:57:34,055 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = -144, standard dev = 15 axis 2.
+2025-10-29 14:57:34,173 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = 1528, standard dev = 20 axis 0.
+2025-10-29 14:57:34,290 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = -283, standard dev = 16 axis 1.
+2025-10-29 14:57:34,408 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = 1108, standard dev = 15 axis 2.
+2025-10-29 14:57:34,526 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = 380, standard dev = 19 axis 0.
+2025-10-29 14:57:34,645 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = 1588, standard dev = 23 axis 1.
+2025-10-29 14:57:34,753 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = 648, standard dev = 13 axis 2.
+2025-10-29 14:57:34,873 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = -583, standard dev = 25 axis 0.
+2025-10-29 14:57:34,991 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = 379, standard dev = 12 axis 1.
+2025-10-29 14:57:35,109 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = 854, standard dev = 9 axis 2.
+2025-10-29 14:57:35,216 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = 637, standard dev = 19 axis 0.
+2025-10-29 14:57:35,333 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = 1456, standard dev = 19 axis 1.
+2025-10-29 14:57:35,453 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = 541, standard dev = 15 axis 2.
+2025-10-29 14:57:35,571 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = 430, standard dev = 13 axis 0.
+2025-10-29 14:57:35,689 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = -331, standard dev = 17 axis 1.
+2025-10-29 14:57:35,798 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = 226, standard dev = 18 axis 2.
+2025-10-29 14:57:35,919 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = 1025, standard dev = 12 axis 0.
+2025-10-29 14:57:36,038 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = 663, standard dev = 20 axis 1.
+2025-10-29 14:57:36,148 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = -270, standard dev = 12 axis 2.
+2025-10-29 14:57:36,265 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = 899, standard dev = 15 axis 0.
+2025-10-29 14:57:36,384 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = -551, standard dev = 15 axis 1.
+2025-10-29 14:57:36,503 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = 391, standard dev = 24 axis 2.
+2025-10-29 14:57:36,882 - INFO - CMD_EXEC_Calibrate: Calibration on all sensors complete, saving to memory.
+2025-10-29 14:57:36,884 - INFO -  Terminator string found. Finalising read
+2025-10-29 14:57:36,886 - INFO - Sent command: op ipx 1020901940 calibrate
+2025-10-29 14:57:37,025 - INFO - CMD_EXEC_Calibrate: Starting calibration procedure.
+2025-10-29 14:57:52,804 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = -14, standard dev = 16 axis 0.
+2025-10-29 14:57:52,922 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = -670, standard dev = 19 axis 1.
+2025-10-29 14:57:53,040 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = -336, standard dev = 15 axis 2.
+2025-10-29 14:57:53,149 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = 870, standard dev = 28 axis 0.
+2025-10-29 14:57:53,267 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = 1165, standard dev = 8 axis 1.
+2025-10-29 14:57:53,385 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = 489, standard dev = 17 axis 2.
+2025-10-29 14:57:53,492 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = 1251, standard dev = 17 axis 0.
+2025-10-29 14:57:53,609 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = 519, standard dev = 15 axis 1.
+2025-10-29 14:57:53,728 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = -339, standard dev = 12 axis 2.
+2025-10-29 14:57:53,845 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = 757, standard dev = 14 axis 0.
+2025-10-29 14:57:53,961 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = 641, standard dev = 14 axis 1.
+2025-10-29 14:57:54,068 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = 1213, standard dev = 13 axis 2.
+2025-10-29 14:57:54,185 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = 916, standard dev = 19 axis 0.
+2025-10-29 14:57:54,301 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = 520, standard dev = 17 axis 1.
+2025-10-29 14:57:54,416 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = 412, standard dev = 13 axis 2.
+2025-10-29 14:57:54,531 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = 938, standard dev = 19 axis 0.
+2025-10-29 14:57:54,649 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = 1002, standard dev = 18 axis 1.
+2025-10-29 14:57:54,764 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = 1064, standard dev = 20 axis 2.
+2025-10-29 14:57:54,880 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = -250, standard dev = 16 axis 0.
+2025-10-29 14:57:54,995 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = 643, standard dev = 9 axis 1.
+2025-10-29 14:57:55,102 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = -60, standard dev = 16 axis 2.
+2025-10-29 14:57:55,218 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = 242, standard dev = 17 axis 0.
+2025-10-29 14:57:55,335 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = 34, standard dev = 14 axis 1.
+2025-10-29 14:57:55,452 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = -391, standard dev = 24 axis 2.
+2025-10-29 14:57:55,567 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = 919, standard dev = 12 axis 0.
+2025-10-29 14:57:55,683 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = 120, standard dev = 14 axis 1.
+2025-10-29 14:57:55,800 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = -130, standard dev = 14 axis 2.
+2025-10-29 14:57:55,906 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = 128, standard dev = 19 axis 0.
+2025-10-29 14:57:56,023 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = 172, standard dev = 20 axis 1.
+2025-10-29 14:57:56,140 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = 270, standard dev = 18 axis 2.
+2025-10-29 14:57:56,254 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = 660, standard dev = 9 axis 0.
+2025-10-29 14:57:56,372 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = 299, standard dev = 19 axis 1.
+2025-10-29 14:57:56,489 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = -186, standard dev = 19 axis 2.
+2025-10-29 14:57:56,604 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = 513, standard dev = 11 axis 0.
+2025-10-29 14:57:56,721 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = -158, standard dev = 21 axis 1.
+2025-10-29 14:57:56,837 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = 160, standard dev = 13 axis 2.
+2025-10-29 14:57:56,963 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = 1752, standard dev = 12 axis 0.
+2025-10-29 14:57:57,071 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = 38, standard dev = 16 axis 1.
+2025-10-29 14:57:57,187 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = 412, standard dev = 18 axis 2.
+2025-10-29 14:57:57,304 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = -509, standard dev = 20 axis 0.
+2025-10-29 14:57:57,420 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = 266, standard dev = 13 axis 1.
+2025-10-29 14:57:57,537 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = 1115, standard dev = 13 axis 2.
+2025-10-29 14:57:57,653 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = 486, standard dev = 17 axis 0.
+2025-10-29 14:57:57,770 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = -202, standard dev = 24 axis 1.
+2025-10-29 14:57:57,886 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = -93, standard dev = 16 axis 2.
+2025-10-29 14:57:58,003 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = 678, standard dev = 18 axis 0.
+2025-10-29 14:57:58,121 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = 756, standard dev = 12 axis 1.
+2025-10-29 14:57:58,236 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = 266, standard dev = 15 axis 2.
+2025-10-29 14:57:58,353 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = -385, standard dev = 17 axis 0.
+2025-10-29 14:57:58,480 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = -1158, standard dev = 15 axis 1.
+2025-10-29 14:57:58,595 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = 183, standard dev = 17 axis 2.
+2025-10-29 14:57:58,711 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = -402, standard dev = 7 axis 0.
+2025-10-29 14:57:58,826 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = 235, standard dev = 18 axis 1.
+2025-10-29 14:57:58,943 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = 572, standard dev = 17 axis 2.
+2025-10-29 14:57:59,060 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = -2426, standard dev = 19 axis 0.
+2025-10-29 14:57:59,176 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = 497, standard dev = 17 axis 1.
+2025-10-29 14:57:59,292 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = 569, standard dev = 15 axis 2.
+2025-10-29 14:57:59,409 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = -136, standard dev = 21 axis 0.
+2025-10-29 14:57:59,525 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = 1719, standard dev = 11 axis 1.
+2025-10-29 14:57:59,643 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = 698, standard dev = 18 axis 2.
+2025-10-29 14:57:59,761 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = 1161, standard dev = 15 axis 0.
+2025-10-29 14:57:59,877 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = 824, standard dev = 22 axis 1.
+2025-10-29 14:57:59,994 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = 895, standard dev = 19 axis 2.
+2025-10-29 14:58:00,111 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = 688, standard dev = 19 axis 0.
+2025-10-29 14:58:00,227 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = -313, standard dev = 24 axis 1.
+2025-10-29 14:58:00,344 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = 131, standard dev = 15 axis 2.
+2025-10-29 14:58:00,462 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = 396, standard dev = 15 axis 0.
+2025-10-29 14:58:00,578 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = -998, standard dev = 23 axis 1.
+2025-10-29 14:58:00,695 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = 633, standard dev = 7 axis 2.
+2025-10-29 14:58:00,811 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = -455, standard dev = 22 axis 0.
+2025-10-29 14:58:00,926 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = 8, standard dev = 11 axis 1.
+2025-10-29 14:58:01,042 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = 257, standard dev = 14 axis 2.
+2025-10-29 14:58:01,158 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = 81, standard dev = 24 axis 0.
+2025-10-29 14:58:01,274 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = 998, standard dev = 16 axis 1.
+2025-10-29 14:58:01,392 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = 585, standard dev = 17 axis 2.
+2025-10-29 14:58:01,510 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = 1168, standard dev = 12 axis 0.
+2025-10-29 14:58:01,628 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = 811, standard dev = 12 axis 1.
+2025-10-29 14:58:01,746 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = 466, standard dev = 14 axis 2.
+2025-10-29 14:58:01,863 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = 897, standard dev = 20 axis 0.
+2025-10-29 14:58:01,980 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = -248, standard dev = 22 axis 1.
+2025-10-29 14:58:02,096 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = 118, standard dev = 19 axis 2.
+2025-10-29 14:58:02,211 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = 922, standard dev = 11 axis 0.
+2025-10-29 14:58:02,329 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = 882, standard dev = 22 axis 1.
+2025-10-29 14:58:02,445 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = 76, standard dev = 18 axis 2.
+2025-10-29 14:58:02,559 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = 696, standard dev = 14 axis 0.
+2025-10-29 14:58:02,676 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = 567, standard dev = 18 axis 1.
+2025-10-29 14:58:02,792 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = 416, standard dev = 13 axis 2.
+2025-10-29 14:58:02,909 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = 660, standard dev = 22 axis 0.
+2025-10-29 14:58:03,026 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = -490, standard dev = 16 axis 1.
+2025-10-29 14:58:03,133 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = 74, standard dev = 13 axis 2.
+2025-10-29 14:58:03,249 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = 72, standard dev = 23 axis 0.
+2025-10-29 14:58:03,367 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = -327, standard dev = 18 axis 1.
+2025-10-29 14:58:03,485 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = 274, standard dev = 14 axis 2.
+2025-10-29 14:58:03,601 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = -579, standard dev = 20 axis 0.
+2025-10-29 14:58:03,719 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = 548, standard dev = 13 axis 1.
+2025-10-29 14:58:03,835 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = 596, standard dev = 17 axis 2.
+2025-10-29 14:58:03,951 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = 490, standard dev = 19 axis 0.
+2025-10-29 14:58:04,066 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = 2297, standard dev = 20 axis 1.
+2025-10-29 14:58:04,191 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = 482, standard dev = 19 axis 2.
+2025-10-29 14:58:04,307 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = -100, standard dev = 19 axis 0.
+2025-10-29 14:58:04,424 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = -117, standard dev = 12 axis 1.
+2025-10-29 14:58:04,540 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = -232, standard dev = 12 axis 2.
+2025-10-29 14:58:04,657 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = 1428, standard dev = 12 axis 0.
+2025-10-29 14:58:04,775 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = -2007, standard dev = 14 axis 1.
+2025-10-29 14:58:04,889 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = 554, standard dev = 7 axis 2.
+2025-10-29 14:58:05,005 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = 939, standard dev = 18 axis 0.
+2025-10-29 14:58:05,121 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = -972, standard dev = 15 axis 1.
+2025-10-29 14:58:05,238 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = -80, standard dev = 14 axis 2.
+2025-10-29 14:58:05,354 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = 1142, standard dev = 17 axis 0.
+2025-10-29 14:58:05,470 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = 19, standard dev = 17 axis 1.
+2025-10-29 14:58:05,587 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = 388, standard dev = 14 axis 2.
+2025-10-29 14:58:05,702 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = 385, standard dev = 18 axis 0.
+2025-10-29 14:58:05,819 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = 274, standard dev = 12 axis 1.
+2025-10-29 14:58:05,935 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = 152, standard dev = 13 axis 2.
+2025-10-29 14:58:06,050 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = 94, standard dev = 18 axis 0.
+2025-10-29 14:58:06,169 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = 414, standard dev = 14 axis 1.
+2025-10-29 14:58:06,284 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = 439, standard dev = 22 axis 2.
+2025-10-29 14:58:06,400 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = 520, standard dev = 16 axis 0.
+2025-10-29 14:58:06,515 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = 36, standard dev = 18 axis 1.
+2025-10-29 14:58:06,630 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = 450, standard dev = 25 axis 2.
+2025-10-29 14:58:06,757 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = 1538, standard dev = 13 axis 0.
+2025-10-29 14:58:06,873 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = -634, standard dev = 18 axis 1.
+2025-10-29 14:58:06,988 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = 45, standard dev = 17 axis 2.
+2025-10-29 14:58:07,095 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = 42, standard dev = 23 axis 0.
+2025-10-29 14:58:07,221 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = -699, standard dev = 16 axis 1.
+2025-10-29 14:58:07,336 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = -997, standard dev = 14 axis 2.
+2025-10-29 14:58:07,453 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = -122, standard dev = 14 axis 0.
+2025-10-29 14:58:07,568 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = 319, standard dev = 20 axis 1.
+2025-10-29 14:58:07,684 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = 462, standard dev = 17 axis 2.
+2025-10-29 14:58:07,800 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = -633, standard dev = 18 axis 0.
+2025-10-29 14:58:07,914 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = 63, standard dev = 15 axis 1.
+2025-10-29 14:58:08,030 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = 1223, standard dev = 15 axis 2.
+2025-10-29 14:58:08,156 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = -735, standard dev = 18 axis 0.
+2025-10-29 14:58:08,272 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = 1202, standard dev = 17 axis 1.
+2025-10-29 14:58:08,387 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = 1395, standard dev = 21 axis 2.
+2025-10-29 14:58:08,764 - INFO - CMD_EXEC_Calibrate: Calibration on all sensors complete, saving to memory.
+2025-10-29 14:58:08,764 - INFO -  Terminator string found. Finalising read
+2025-10-29 14:58:08,765 - INFO - Sent command: op ipx 1020901958 calibrate
+2025-10-29 14:58:08,912 - INFO - CMD_EXEC_Calibrate: Starting calibration procedure.
+2025-10-29 14:58:24,654 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = 502, standard dev = 17 axis 0.
+2025-10-29 14:58:24,763 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = -9, standard dev = 15 axis 1.
+2025-10-29 14:58:24,881 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = 228, standard dev = 11 axis 2.
+2025-10-29 14:58:24,989 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = 1457, standard dev = 20 axis 0.
+2025-10-29 14:58:25,115 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = 1214, standard dev = 15 axis 1.
+2025-10-29 14:58:25,230 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = 609, standard dev = 14 axis 2.
+2025-10-29 14:58:25,335 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = 899, standard dev = 18 axis 0.
+2025-10-29 14:58:25,449 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = -365, standard dev = 19 axis 1.
+2025-10-29 14:58:25,564 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = 195, standard dev = 11 axis 2.
+2025-10-29 14:58:25,679 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = 844, standard dev = 20 axis 0.
+2025-10-29 14:58:25,796 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = -188, standard dev = 21 axis 1.
+2025-10-29 14:58:25,915 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = 162, standard dev = 15 axis 2.
+2025-10-29 14:58:26,033 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = -350, standard dev = 17 axis 0.
+2025-10-29 14:58:26,141 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = 33, standard dev = 8 axis 1.
+2025-10-29 14:58:26,257 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = 664, standard dev = 15 axis 2.
+2025-10-29 14:58:26,374 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = -154, standard dev = 17 axis 0.
+2025-10-29 14:58:26,492 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = 1878, standard dev = 17 axis 1.
+2025-10-29 14:58:26,599 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = -255, standard dev = 17 axis 2.
+2025-10-29 14:58:26,717 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = 1780, standard dev = 20 axis 0.
+2025-10-29 14:58:26,836 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = 938, standard dev = 22 axis 1.
+2025-10-29 14:58:26,954 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = 1175, standard dev = 16 axis 2.
+2025-10-29 14:58:27,060 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = 355, standard dev = 14 axis 0.
+2025-10-29 14:58:27,181 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = 309, standard dev = 9 axis 1.
+2025-10-29 14:58:27,288 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = -93, standard dev = 15 axis 2.
+2025-10-29 14:58:27,406 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = 317, standard dev = 14 axis 0.
+2025-10-29 14:58:27,523 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = 190, standard dev = 16 axis 1.
+2025-10-29 14:58:27,639 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = 660, standard dev = 14 axis 2.
+2025-10-29 14:58:27,756 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = 1334, standard dev = 15 axis 0.
+2025-10-29 14:58:27,862 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = 264, standard dev = 20 axis 1.
+2025-10-29 14:58:27,980 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = 830, standard dev = 20 axis 2.
+2025-10-29 14:58:28,098 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = 522, standard dev = 12 axis 0.
+2025-10-29 14:58:28,217 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = 365, standard dev = 11 axis 1.
+2025-10-29 14:58:28,334 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = 533, standard dev = 14 axis 2.
+2025-10-29 14:58:28,450 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = -141, standard dev = 17 axis 0.
+2025-10-29 14:58:28,567 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = 151, standard dev = 17 axis 1.
+2025-10-29 14:58:28,686 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = -521, standard dev = 13 axis 2.
+2025-10-29 14:58:28,795 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = 99, standard dev = 22 axis 0.
+2025-10-29 14:58:28,914 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = 174, standard dev = 17 axis 1.
+2025-10-29 14:58:29,032 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = 335, standard dev = 15 axis 2.
+2025-10-29 14:58:29,148 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = 519, standard dev = 14 axis 0.
+2025-10-29 14:58:29,265 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = -607, standard dev = 18 axis 1.
+2025-10-29 14:58:29,373 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = 162, standard dev = 10 axis 2.
+2025-10-29 14:58:29,488 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = 110, standard dev = 15 axis 0.
+2025-10-29 14:58:29,605 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = 163, standard dev = 16 axis 1.
+2025-10-29 14:58:29,724 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = -191, standard dev = 17 axis 2.
+2025-10-29 14:58:29,842 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = -422, standard dev = 20 axis 0.
+2025-10-29 14:58:29,959 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = 1127, standard dev = 14 axis 1.
+2025-10-29 14:58:30,075 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = -19, standard dev = 10 axis 2.
+2025-10-29 14:58:30,192 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = 585, standard dev = 16 axis 0.
+2025-10-29 14:58:30,310 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = -763, standard dev = 21 axis 1.
+2025-10-29 14:58:30,425 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = 107, standard dev = 19 axis 2.
+2025-10-29 14:58:30,540 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = 983, standard dev = 16 axis 0.
+2025-10-29 14:58:30,666 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = 1274, standard dev = 14 axis 1.
+2025-10-29 14:58:30,772 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = 930, standard dev = 17 axis 2.
+2025-10-29 14:58:30,899 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = -868, standard dev = 20 axis 0.
+2025-10-29 14:58:31,017 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = -233, standard dev = 12 axis 1.
+2025-10-29 14:58:31,125 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = 349, standard dev = 11 axis 2.
+2025-10-29 14:58:31,244 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = 718, standard dev = 15 axis 0.
+2025-10-29 14:58:31,363 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = 1289, standard dev = 17 axis 1.
+2025-10-29 14:58:31,482 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = 106, standard dev = 14 axis 2.
+2025-10-29 14:58:31,601 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = 1646, standard dev = 15 axis 0.
+2025-10-29 14:58:31,718 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = -137, standard dev = 13 axis 1.
+2025-10-29 14:58:31,826 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = 1215, standard dev = 20 axis 2.
+2025-10-29 14:58:31,945 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = 1259, standard dev = 15 axis 0.
+2025-10-29 14:58:32,064 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = 537, standard dev = 20 axis 1.
+2025-10-29 14:58:32,182 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = 757, standard dev = 20 axis 2.
+2025-10-29 14:58:32,301 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = 541, standard dev = 25 axis 0.
+2025-10-29 14:58:32,410 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = -147, standard dev = 15 axis 1.
+2025-10-29 14:58:32,529 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = 218, standard dev = 13 axis 2.
+2025-10-29 14:58:32,647 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = -73, standard dev = 19 axis 0.
+2025-10-29 14:58:32,766 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = 614, standard dev = 20 axis 1.
+2025-10-29 14:58:32,875 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = -278, standard dev = 13 axis 2.
+2025-10-29 14:58:32,995 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = 587, standard dev = 17 axis 0.
+2025-10-29 14:58:33,114 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = 158, standard dev = 10 axis 1.
+2025-10-29 14:58:33,222 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = 71, standard dev = 11 axis 2.
+2025-10-29 14:58:33,340 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = -164, standard dev = 24 axis 0.
+2025-10-29 14:58:33,461 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = -103, standard dev = 20 axis 1.
+2025-10-29 14:58:33,581 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = 1108, standard dev = 13 axis 2.
+2025-10-29 14:58:33,701 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = -375, standard dev = 13 axis 0.
+2025-10-29 14:58:33,809 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = 833, standard dev = 13 axis 1.
+2025-10-29 14:58:33,928 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = 399, standard dev = 10 axis 2.
+2025-10-29 14:58:34,047 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = 847, standard dev = 19 axis 0.
+2025-10-29 14:58:34,166 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = 1360, standard dev = 13 axis 1.
+2025-10-29 14:58:34,274 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = 1210, standard dev = 6 axis 2.
+2025-10-29 14:58:34,394 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = -380, standard dev = 17 axis 0.
+2025-10-29 14:58:34,514 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = -352, standard dev = 23 axis 1.
+2025-10-29 14:58:34,623 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = 55, standard dev = 9 axis 2.
+2025-10-29 14:58:34,741 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = 1203, standard dev = 18 axis 0.
+2025-10-29 14:58:34,860 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = 1418, standard dev = 14 axis 1.
+2025-10-29 14:58:34,980 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = -412, standard dev = 17 axis 2.
+2025-10-29 14:58:35,098 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = 424, standard dev = 14 axis 0.
+2025-10-29 14:58:35,215 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = 303, standard dev = 18 axis 1.
+2025-10-29 14:58:35,332 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = 194, standard dev = 11 axis 2.
+2025-10-29 14:58:35,440 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = 204, standard dev = 19 axis 0.
+2025-10-29 14:58:35,561 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = -42, standard dev = 16 axis 1.
+2025-10-29 14:58:35,681 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = 826, standard dev = 15 axis 2.
+2025-10-29 14:58:35,788 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = 828, standard dev = 16 axis 0.
+2025-10-29 14:58:35,905 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = -1112, standard dev = 19 axis 1.
+2025-10-29 14:58:36,023 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = -443, standard dev = 14 axis 2.
+2025-10-29 14:58:36,143 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = -398, standard dev = 25 axis 0.
+2025-10-29 14:58:36,263 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = -923, standard dev = 13 axis 1.
+2025-10-29 14:58:36,381 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = 497, standard dev = 15 axis 2.
+2025-10-29 14:58:36,490 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = -41, standard dev = 19 axis 0.
+2025-10-29 14:58:36,607 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = 187, standard dev = 13 axis 1.
+2025-10-29 14:58:36,725 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = 825, standard dev = 19 axis 2.
+2025-10-29 14:58:36,842 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = 751, standard dev = 15 axis 0.
+2025-10-29 14:58:36,960 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = -353, standard dev = 16 axis 1.
+2025-10-29 14:58:37,078 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = 832, standard dev = 20 axis 2.
+2025-10-29 14:58:37,198 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = 351, standard dev = 21 axis 0.
+2025-10-29 14:58:37,306 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = -336, standard dev = 13 axis 1.
+2025-10-29 14:58:37,423 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = -606, standard dev = 14 axis 2.
+2025-10-29 14:58:37,540 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = 1239, standard dev = 15 axis 0.
+2025-10-29 14:58:37,657 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = 412, standard dev = 19 axis 1.
+2025-10-29 14:58:37,773 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = 384, standard dev = 11 axis 2.
+2025-10-29 14:58:37,891 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = -109, standard dev = 12 axis 0.
+2025-10-29 14:58:38,009 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = -370, standard dev = 21 axis 1.
+2025-10-29 14:58:38,127 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = -719, standard dev = 9 axis 2.
+2025-10-29 14:58:38,244 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = 644, standard dev = 16 axis 0.
+2025-10-29 14:58:38,361 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = 51, standard dev = 14 axis 1.
+2025-10-29 14:58:38,479 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = 1030, standard dev = 18 axis 2.
+2025-10-29 14:58:38,597 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = 1187, standard dev = 15 axis 0.
+2025-10-29 14:58:38,715 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = 483, standard dev = 14 axis 1.
+2025-10-29 14:58:38,823 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = 728, standard dev = 12 axis 2.
+2025-10-29 14:58:38,939 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = -202, standard dev = 22 axis 0.
+2025-10-29 14:58:39,057 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = 820, standard dev = 19 axis 1.
+2025-10-29 14:58:39,175 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = 208, standard dev = 19 axis 2.
+2025-10-29 14:58:39,294 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = 311, standard dev = 18 axis 0.
+2025-10-29 14:58:39,403 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = 414, standard dev = 17 axis 1.
+2025-10-29 14:58:39,521 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = 186, standard dev = 8 axis 2.
+2025-10-29 14:58:39,640 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = 1077, standard dev = 19 axis 0.
+2025-10-29 14:58:39,748 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = 42, standard dev = 14 axis 1.
+2025-10-29 14:58:39,868 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = 690, standard dev = 24 axis 2.
+2025-10-29 14:58:39,986 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = -56, standard dev = 25 axis 0.
+2025-10-29 14:58:40,103 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = -659, standard dev = 16 axis 1.
+2025-10-29 14:58:40,222 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = -381, standard dev = 11 axis 2.
+2025-10-29 14:58:40,600 - INFO - CMD_EXEC_Calibrate: Calibration on all sensors complete, saving to memory.
+2025-10-29 14:58:40,602 - INFO -  Terminator string found. Finalising read
+2025-10-29 14:58:40,604 - INFO - Sent command: op ipx 1020901927 calibrate
+2025-10-29 14:58:40,751 - INFO - CMD_EXEC_Calibrate: Starting calibration procedure.
+2025-10-29 14:58:56,456 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = 766, standard dev = 16 axis 0.
+2025-10-29 14:58:56,571 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = 167, standard dev = 14 axis 1.
+2025-10-29 14:58:56,676 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = 282, standard dev = 15 axis 2.
+2025-10-29 14:58:56,793 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = 1088, standard dev = 23 axis 0.
+2025-10-29 14:58:56,908 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = 154, standard dev = 16 axis 1.
+2025-10-29 14:58:57,030 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = 411, standard dev = 18 axis 2.
+2025-10-29 14:58:57,134 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = 17, standard dev = 8 axis 0.
+2025-10-29 14:58:57,251 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = -97, standard dev = 15 axis 1.
+2025-10-29 14:58:57,367 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = 917, standard dev = 13 axis 2.
+2025-10-29 14:58:57,483 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = 194, standard dev = 20 axis 0.
+2025-10-29 14:58:57,589 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = 313, standard dev = 17 axis 1.
+2025-10-29 14:58:57,708 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = -679, standard dev = 10 axis 2.
+2025-10-29 14:58:57,826 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = -348, standard dev = 20 axis 0.
+2025-10-29 14:58:57,935 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = 39, standard dev = 19 axis 1.
+2025-10-29 14:58:58,054 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = 1292, standard dev = 14 axis 2.
+2025-10-29 14:58:58,172 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = -505, standard dev = 10 axis 0.
+2025-10-29 14:58:58,287 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = -315, standard dev = 16 axis 1.
+2025-10-29 14:58:58,404 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = 45, standard dev = 15 axis 2.
+2025-10-29 14:58:58,520 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = 1397, standard dev = 19 axis 0.
+2025-10-29 14:58:58,636 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = -305, standard dev = 14 axis 1.
+2025-10-29 14:58:58,742 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = -433, standard dev = 11 axis 2.
+2025-10-29 14:58:58,858 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = 25, standard dev = 16 axis 0.
+2025-10-29 14:58:58,974 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = 917, standard dev = 25 axis 1.
+2025-10-29 14:58:59,089 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = -101, standard dev = 20 axis 2.
+2025-10-29 14:58:59,205 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = 394, standard dev = 18 axis 0.
+2025-10-29 14:58:59,321 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = -370, standard dev = 19 axis 1.
+2025-10-29 14:58:59,427 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = 77, standard dev = 13 axis 2.
+2025-10-29 14:58:59,544 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = 256, standard dev = 18 axis 0.
+2025-10-29 14:58:59,658 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = 694, standard dev = 19 axis 1.
+2025-10-29 14:58:59,775 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = 730, standard dev = 17 axis 2.
+2025-10-29 14:58:59,891 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = 302, standard dev = 16 axis 0.
+2025-10-29 14:59:00,010 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = 217, standard dev = 20 axis 1.
+2025-10-29 14:59:00,117 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = 453, standard dev = 14 axis 2.
+2025-10-29 14:59:00,236 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = 35, standard dev = 15 axis 0.
+2025-10-29 14:59:00,355 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = -120, standard dev = 17 axis 1.
+2025-10-29 14:59:00,473 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = -44, standard dev = 16 axis 2.
+2025-10-29 14:59:00,581 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = 523, standard dev = 16 axis 0.
+2025-10-29 14:59:00,699 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = 768, standard dev = 18 axis 1.
+2025-10-29 14:59:00,817 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = -109, standard dev = 13 axis 2.
+2025-10-29 14:59:00,934 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = -400, standard dev = 17 axis 0.
+2025-10-29 14:59:01,053 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = -13, standard dev = 12 axis 1.
+2025-10-29 14:59:01,172 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = 1384, standard dev = 18 axis 2.
+2025-10-29 14:59:01,290 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = -168, standard dev = 19 axis 0.
+2025-10-29 14:59:01,397 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = 787, standard dev = 16 axis 1.
+2025-10-29 14:59:01,517 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = 463, standard dev = 15 axis 2.
+2025-10-29 14:59:01,634 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = 795, standard dev = 12 axis 0.
+2025-10-29 14:59:01,752 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = 653, standard dev = 20 axis 1.
+2025-10-29 14:59:01,868 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = 667, standard dev = 16 axis 2.
+2025-10-29 14:59:01,983 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = -459, standard dev = 15 axis 0.
+2025-10-29 14:59:02,098 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = 203, standard dev = 16 axis 1.
+2025-10-29 14:59:02,214 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = 424, standard dev = 20 axis 2.
+2025-10-29 14:59:02,330 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = 289, standard dev = 23 axis 0.
+2025-10-29 14:59:02,445 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = 556, standard dev = 13 axis 1.
+2025-10-29 14:59:02,561 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = 532, standard dev = 16 axis 2.
+2025-10-29 14:59:02,676 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = 759, standard dev = 14 axis 0.
+2025-10-29 14:59:02,795 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = 592, standard dev = 13 axis 1.
+2025-10-29 14:59:02,914 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = 1013, standard dev = 14 axis 2.
+2025-10-29 14:59:03,034 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = 1335, standard dev = 13 axis 0.
+2025-10-29 14:59:03,143 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = 16, standard dev = 22 axis 1.
+2025-10-29 14:59:03,261 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = -471, standard dev = 12 axis 2.
+2025-10-29 14:59:03,379 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = 521, standard dev = 12 axis 0.
+2025-10-29 14:59:03,496 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = -410, standard dev = 13 axis 1.
+2025-10-29 14:59:03,602 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = 22, standard dev = 15 axis 2.
+2025-10-29 14:59:03,719 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = 701, standard dev = 13 axis 0.
+2025-10-29 14:59:03,842 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = 1043, standard dev = 15 axis 1.
+2025-10-29 14:59:03,952 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = 825, standard dev = 11 axis 2.
+2025-10-29 14:59:04,068 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = 714, standard dev = 16 axis 0.
+2025-10-29 14:59:04,184 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = 470, standard dev = 14 axis 1.
+2025-10-29 14:59:04,301 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = -708, standard dev = 9 axis 2.
+2025-10-29 14:59:04,417 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = 710, standard dev = 19 axis 0.
+2025-10-29 14:59:04,533 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = 764, standard dev = 14 axis 1.
+2025-10-29 14:59:04,648 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = -330, standard dev = 9 axis 2.
+2025-10-29 14:59:04,764 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = 588, standard dev = 15 axis 0.
+2025-10-29 14:59:04,880 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = 788, standard dev = 19 axis 1.
+2025-10-29 14:59:04,995 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = 503, standard dev = 11 axis 2.
+2025-10-29 14:59:05,112 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = 150, standard dev = 17 axis 0.
+2025-10-29 14:59:05,227 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = -33, standard dev = 17 axis 1.
+2025-10-29 14:59:05,344 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = 713, standard dev = 19 axis 2.
+2025-10-29 14:59:05,460 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = 120, standard dev = 17 axis 0.
+2025-10-29 14:59:05,585 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = -1436, standard dev = 6 axis 1.
+2025-10-29 14:59:05,701 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = 1402, standard dev = 18 axis 2.
+2025-10-29 14:59:05,817 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = 272, standard dev = 10 axis 0.
+2025-10-29 14:59:05,933 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = 485, standard dev = 23 axis 1.
+2025-10-29 14:59:06,048 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = 1349, standard dev = 14 axis 2.
+2025-10-29 14:59:06,164 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = 355, standard dev = 17 axis 0.
+2025-10-29 14:59:06,280 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = 731, standard dev = 19 axis 1.
+2025-10-29 14:59:06,396 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = 436, standard dev = 16 axis 2.
+2025-10-29 14:59:06,512 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = -217, standard dev = 22 axis 0.
+2025-10-29 14:59:06,627 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = 805, standard dev = 20 axis 1.
+2025-10-29 14:59:06,743 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = 1165, standard dev = 15 axis 2.
+2025-10-29 14:59:06,859 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = 1503, standard dev = 16 axis 0.
+2025-10-29 14:59:06,975 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = -451, standard dev = 18 axis 1.
+2025-10-29 14:59:07,101 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = 342, standard dev = 18 axis 2.
+2025-10-29 14:59:07,218 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = 1791, standard dev = 16 axis 0.
+2025-10-29 14:59:07,334 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = -280, standard dev = 19 axis 1.
+2025-10-29 14:59:07,441 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = 304, standard dev = 17 axis 2.
+2025-10-29 14:59:07,560 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = 1834, standard dev = 14 axis 0.
+2025-10-29 14:59:07,677 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = 833, standard dev = 15 axis 1.
+2025-10-29 14:59:07,793 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = 314, standard dev = 18 axis 2.
+2025-10-29 14:59:07,912 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = 974, standard dev = 9 axis 0.
+2025-10-29 14:59:08,020 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = 31, standard dev = 18 axis 1.
+2025-10-29 14:59:08,139 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = 216, standard dev = 17 axis 2.
+2025-10-29 14:59:08,258 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = 870, standard dev = 13 axis 0.
+2025-10-29 14:59:08,374 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = 289, standard dev = 20 axis 1.
+2025-10-29 14:59:08,491 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = 678, standard dev = 12 axis 2.
+2025-10-29 14:59:08,598 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = 296, standard dev = 13 axis 0.
+2025-10-29 14:59:08,718 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = -480, standard dev = 10 axis 1.
+2025-10-29 14:59:08,835 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = -1226, standard dev = 12 axis 2.
+2025-10-29 14:59:08,952 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = -439, standard dev = 17 axis 0.
+2025-10-29 14:59:09,070 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = 604, standard dev = 16 axis 1.
+2025-10-29 14:59:09,187 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = 444, standard dev = 12 axis 2.
+2025-10-29 14:59:09,304 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = 981, standard dev = 14 axis 0.
+2025-10-29 14:59:09,420 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = -298, standard dev = 16 axis 1.
+2025-10-29 14:59:09,537 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = 924, standard dev = 10 axis 2.
+2025-10-29 14:59:09,654 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = 665, standard dev = 11 axis 0.
+2025-10-29 14:59:09,772 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = -690, standard dev = 21 axis 1.
+2025-10-29 14:59:09,883 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = -613, standard dev = 14 axis 2.
+2025-10-29 14:59:09,999 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = 1435, standard dev = 12 axis 0.
+2025-10-29 14:59:10,114 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = -862, standard dev = 10 axis 1.
+2025-10-29 14:59:10,231 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = -921, standard dev = 21 axis 2.
+2025-10-29 14:59:10,349 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = 416, standard dev = 21 axis 0.
+2025-10-29 14:59:10,465 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = -314, standard dev = 15 axis 1.
+2025-10-29 14:59:10,591 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = -268, standard dev = 17 axis 2.
+2025-10-29 14:59:10,708 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = 1102, standard dev = 20 axis 0.
+2025-10-29 14:59:10,824 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = 1208, standard dev = 13 axis 1.
+2025-10-29 14:59:10,940 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = -102, standard dev = 15 axis 2.
+2025-10-29 14:59:11,056 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = -299, standard dev = 16 axis 0.
+2025-10-29 14:59:11,172 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = 1039, standard dev = 19 axis 1.
+2025-10-29 14:59:11,289 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = -623, standard dev = 20 axis 2.
+2025-10-29 14:59:11,406 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = 1128, standard dev = 22 axis 0.
+2025-10-29 14:59:11,522 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = 203, standard dev = 15 axis 1.
+2025-10-29 14:59:11,637 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = -23, standard dev = 17 axis 2.
+2025-10-29 14:59:11,754 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = 898, standard dev = 14 axis 0.
+2025-10-29 14:59:11,871 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = 133, standard dev = 19 axis 1.
+2025-10-29 14:59:11,988 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = -470, standard dev = 15 axis 2.
+2025-10-29 14:59:12,365 - INFO - CMD_EXEC_Calibrate: Calibration on all sensors complete, saving to memory.
+2025-10-29 14:59:12,366 - INFO -  Terminator string found. Finalising read
+2025-10-29 14:59:12,366 - INFO - Sent command: op ipx 1020910967 calibrate
+2025-10-29 14:59:12,513 - INFO - CMD_EXEC_Calibrate: Starting calibration procedure.
+2025-10-29 14:59:28,209 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = 216, standard dev = 16 axis 0.
+2025-10-29 14:59:28,327 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = -224, standard dev = 13 axis 1.
+2025-10-29 14:59:28,443 - INFO - CMD_EXEC_Calibrate: Sensor number 0 mean = 313, standard dev = 20 axis 2.
+2025-10-29 14:59:28,549 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = -849, standard dev = 10 axis 0.
+2025-10-29 14:59:28,666 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = 328, standard dev = 13 axis 1.
+2025-10-29 14:59:28,784 - INFO - CMD_EXEC_Calibrate: Sensor number 1 mean = 748, standard dev = 23 axis 2.
+2025-10-29 14:59:28,900 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = 468, standard dev = 15 axis 0.
+2025-10-29 14:59:29,006 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = -360, standard dev = 18 axis 1.
+2025-10-29 14:59:29,124 - INFO - CMD_EXEC_Calibrate: Sensor number 2 mean = -100, standard dev = 16 axis 2.
+2025-10-29 14:59:29,240 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = 694, standard dev = 11 axis 0.
+2025-10-29 14:59:29,358 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = 1799, standard dev = 17 axis 1.
+2025-10-29 14:59:29,466 - INFO - CMD_EXEC_Calibrate: Sensor number 3 mean = 761, standard dev = 17 axis 2.
+2025-10-29 14:59:29,584 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = 454, standard dev = 21 axis 0.
+2025-10-29 14:59:29,701 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = 37, standard dev = 15 axis 1.
+2025-10-29 14:59:29,817 - INFO - CMD_EXEC_Calibrate: Sensor number 4 mean = 566, standard dev = 19 axis 2.
+2025-10-29 14:59:29,924 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = 818, standard dev = 12 axis 0.
+2025-10-29 14:59:30,041 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = -595, standard dev = 12 axis 1.
+2025-10-29 14:59:30,158 - INFO - CMD_EXEC_Calibrate: Sensor number 5 mean = 134, standard dev = 12 axis 2.
+2025-10-29 14:59:30,275 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = 442, standard dev = 18 axis 0.
+2025-10-29 14:59:30,381 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = 365, standard dev = 20 axis 1.
+2025-10-29 14:59:30,498 - INFO - CMD_EXEC_Calibrate: Sensor number 6 mean = -536, standard dev = 12 axis 2.
+2025-10-29 14:59:30,615 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = -265, standard dev = 18 axis 0.
+2025-10-29 14:59:30,735 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = 943, standard dev = 20 axis 1.
+2025-10-29 14:59:30,843 - INFO - CMD_EXEC_Calibrate: Sensor number 7 mean = 393, standard dev = 13 axis 2.
+2025-10-29 14:59:30,963 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = -191, standard dev = 16 axis 0.
+2025-10-29 14:59:31,071 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = 1012, standard dev = 13 axis 1.
+2025-10-29 14:59:31,191 - INFO - CMD_EXEC_Calibrate: Sensor number 8 mean = -6, standard dev = 13 axis 2.
+2025-10-29 14:59:31,300 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = 747, standard dev = 16 axis 0.
+2025-10-29 14:59:31,417 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = -11, standard dev = 19 axis 1.
+2025-10-29 14:59:31,533 - INFO - CMD_EXEC_Calibrate: Sensor number 9 mean = 658, standard dev = 10 axis 2.
+2025-10-29 14:59:31,650 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = -471, standard dev = 26 axis 0.
+2025-10-29 14:59:31,759 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = -327, standard dev = 21 axis 1.
+2025-10-29 14:59:31,880 - INFO - CMD_EXEC_Calibrate: Sensor number 10 mean = 869, standard dev = 12 axis 2.
+2025-10-29 14:59:31,998 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = 1504, standard dev = 11 axis 0.
+2025-10-29 14:59:32,116 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = -69, standard dev = 11 axis 1.
+2025-10-29 14:59:32,232 - INFO - CMD_EXEC_Calibrate: Sensor number 11 mean = 604, standard dev = 20 axis 2.
+2025-10-29 14:59:32,347 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = -736, standard dev = 15 axis 0.
+2025-10-29 14:59:32,462 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = 1228, standard dev = 26 axis 1.
+2025-10-29 14:59:32,584 - INFO - CMD_EXEC_Calibrate: Sensor number 12 mean = 871, standard dev = 17 axis 2.
+2025-10-29 14:59:32,700 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = 814, standard dev = 19 axis 0.
+2025-10-29 14:59:32,806 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = 651, standard dev = 14 axis 1.
+2025-10-29 14:59:32,931 - INFO - CMD_EXEC_Calibrate: Sensor number 13 mean = 851, standard dev = 12 axis 2.
+2025-10-29 14:59:33,046 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = 436, standard dev = 17 axis 0.
+2025-10-29 14:59:33,161 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = 861, standard dev = 20 axis 1.
+2025-10-29 14:59:33,276 - INFO - CMD_EXEC_Calibrate: Sensor number 14 mean = 265, standard dev = 25 axis 2.
+2025-10-29 14:59:33,391 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = -319, standard dev = 16 axis 0.
+2025-10-29 14:59:33,507 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = 841, standard dev = 23 axis 1.
+2025-10-29 14:59:33,621 - INFO - CMD_EXEC_Calibrate: Sensor number 15 mean = 594, standard dev = 11 axis 2.
+2025-10-29 14:59:33,735 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = 424, standard dev = 10 axis 0.
+2025-10-29 14:59:33,862 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = 1181, standard dev = 18 axis 1.
+2025-10-29 14:59:33,968 - INFO - CMD_EXEC_Calibrate: Sensor number 16 mean = 787, standard dev = 11 axis 2.
+2025-10-29 14:59:34,093 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = 331, standard dev = 20 axis 0.
+2025-10-29 14:59:34,208 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = 1167, standard dev = 12 axis 1.
+2025-10-29 14:59:34,323 - INFO - CMD_EXEC_Calibrate: Sensor number 17 mean = 595, standard dev = 18 axis 2.
+2025-10-29 14:59:34,441 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = 1793, standard dev = 18 axis 0.
+2025-10-29 14:59:34,558 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = 166, standard dev = 17 axis 1.
+2025-10-29 14:59:34,673 - INFO - CMD_EXEC_Calibrate: Sensor number 18 mean = -269, standard dev = 16 axis 2.
+2025-10-29 14:59:34,781 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = 64, standard dev = 19 axis 0.
+2025-10-29 14:59:34,897 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = 570, standard dev = 17 axis 1.
+2025-10-29 14:59:35,013 - INFO - CMD_EXEC_Calibrate: Sensor number 19 mean = 946, standard dev = 18 axis 2.
+2025-10-29 14:59:35,141 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = 1447, standard dev = 23 axis 0.
+2025-10-29 14:59:35,249 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = 437, standard dev = 15 axis 1.
+2025-10-29 14:59:35,368 - INFO - CMD_EXEC_Calibrate: Sensor number 20 mean = 1159, standard dev = 12 axis 2.
+2025-10-29 14:59:35,486 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = 499, standard dev = 13 axis 0.
+2025-10-29 14:59:35,603 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = 453, standard dev = 20 axis 1.
+2025-10-29 14:59:35,718 - INFO - CMD_EXEC_Calibrate: Sensor number 21 mean = 571, standard dev = 16 axis 2.
+2025-10-29 14:59:35,835 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = 2704, standard dev = 15 axis 0.
+2025-10-29 14:59:35,950 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = -525, standard dev = 13 axis 1.
+2025-10-29 14:59:36,066 - INFO - CMD_EXEC_Calibrate: Sensor number 22 mean = 1026, standard dev = 15 axis 2.
+2025-10-29 14:59:36,181 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = -33, standard dev = 19 axis 0.
+2025-10-29 14:59:36,296 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = 64, standard dev = 19 axis 1.
+2025-10-29 14:59:36,410 - INFO - CMD_EXEC_Calibrate: Sensor number 23 mean = 998, standard dev = 11 axis 2.
+2025-10-29 14:59:36,526 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = 1659, standard dev = 20 axis 0.
+2025-10-29 14:59:36,642 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = 119, standard dev = 18 axis 1.
+2025-10-29 14:59:36,758 - INFO - CMD_EXEC_Calibrate: Sensor number 24 mean = -13, standard dev = 23 axis 2.
+2025-10-29 14:59:36,875 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = 287, standard dev = 13 axis 0.
+2025-10-29 14:59:36,991 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = 501, standard dev = 21 axis 1.
+2025-10-29 14:59:37,107 - INFO - CMD_EXEC_Calibrate: Sensor number 25 mean = 559, standard dev = 12 axis 2.
+2025-10-29 14:59:37,224 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = 619, standard dev = 10 axis 0.
+2025-10-29 14:59:37,339 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = 111, standard dev = 15 axis 1.
+2025-10-29 14:59:37,456 - INFO - CMD_EXEC_Calibrate: Sensor number 26 mean = -405, standard dev = 9 axis 2.
+2025-10-29 14:59:37,572 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = 545, standard dev = 13 axis 0.
+2025-10-29 14:59:37,686 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = 394, standard dev = 19 axis 1.
+2025-10-29 14:59:37,802 - INFO - CMD_EXEC_Calibrate: Sensor number 27 mean = -587, standard dev = 17 axis 2.
+2025-10-29 14:59:37,917 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = 955, standard dev = 17 axis 0.
+2025-10-29 14:59:38,033 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = 252, standard dev = 15 axis 1.
+2025-10-29 14:59:38,149 - INFO - CMD_EXEC_Calibrate: Sensor number 28 mean = 525, standard dev = 14 axis 2.
+2025-10-29 14:59:38,264 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = 1323, standard dev = 15 axis 0.
+2025-10-29 14:59:38,391 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = -278, standard dev = 15 axis 1.
+2025-10-29 14:59:38,507 - INFO - CMD_EXEC_Calibrate: Sensor number 29 mean = -19, standard dev = 19 axis 2.
+2025-10-29 14:59:38,623 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = 263, standard dev = 13 axis 0.
+2025-10-29 14:59:38,739 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = 1179, standard dev = 12 axis 1.
+2025-10-29 14:59:38,855 - INFO - CMD_EXEC_Calibrate: Sensor number 30 mean = -183, standard dev = 11 axis 2.
+2025-10-29 14:59:38,973 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = -212, standard dev = 16 axis 0.
+2025-10-29 14:59:39,089 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = 201, standard dev = 14 axis 1.
+2025-10-29 14:59:39,194 - INFO - CMD_EXEC_Calibrate: Sensor number 31 mean = 613, standard dev = 9 axis 2.
+2025-10-29 14:59:39,319 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = 626, standard dev = 18 axis 0.
+2025-10-29 14:59:39,434 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = 834, standard dev = 22 axis 1.
+2025-10-29 14:59:39,549 - INFO - CMD_EXEC_Calibrate: Sensor number 32 mean = 917, standard dev = 14 axis 2.
+2025-10-29 14:59:39,663 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = 208, standard dev = 11 axis 0.
+2025-10-29 14:59:39,781 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = 326, standard dev = 18 axis 1.
+2025-10-29 14:59:39,898 - INFO - CMD_EXEC_Calibrate: Sensor number 33 mean = 434, standard dev = 17 axis 2.
+2025-10-29 14:59:40,014 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = -29, standard dev = 16 axis 0.
+2025-10-29 14:59:40,128 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = -498, standard dev = 17 axis 1.
+2025-10-29 14:59:40,242 - INFO - CMD_EXEC_Calibrate: Sensor number 34 mean = 247, standard dev = 15 axis 2.
+2025-10-29 14:59:40,357 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = -157, standard dev = 25 axis 0.
+2025-10-29 14:59:40,483 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = 1712, standard dev = 11 axis 1.
+2025-10-29 14:59:40,599 - INFO - CMD_EXEC_Calibrate: Sensor number 35 mean = 997, standard dev = 14 axis 2.
+2025-10-29 14:59:40,713 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = 715, standard dev = 23 axis 0.
+2025-10-29 14:59:40,828 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = 875, standard dev = 11 axis 1.
+2025-10-29 14:59:40,944 - INFO - CMD_EXEC_Calibrate: Sensor number 36 mean = 370, standard dev = 17 axis 2.
+2025-10-29 14:59:41,062 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = 1356, standard dev = 20 axis 0.
+2025-10-29 14:59:41,179 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = 471, standard dev = 15 axis 1.
+2025-10-29 14:59:41,296 - INFO - CMD_EXEC_Calibrate: Sensor number 37 mean = 769, standard dev = 18 axis 2.
+2025-10-29 14:59:41,404 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = 1296, standard dev = 22 axis 0.
+2025-10-29 14:59:41,520 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = 427, standard dev = 12 axis 1.
+2025-10-29 14:59:41,635 - INFO - CMD_EXEC_Calibrate: Sensor number 38 mean = -35, standard dev = 16 axis 2.
+2025-10-29 14:59:41,751 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = 408, standard dev = 19 axis 0.
+2025-10-29 14:59:41,868 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = -686, standard dev = 14 axis 1.
+2025-10-29 14:59:41,986 - INFO - CMD_EXEC_Calibrate: Sensor number 39 mean = 969, standard dev = 17 axis 2.
+2025-10-29 14:59:42,104 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = 762, standard dev = 21 axis 0.
+2025-10-29 14:59:42,220 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = 713, standard dev = 22 axis 1.
+2025-10-29 14:59:42,334 - INFO - CMD_EXEC_Calibrate: Sensor number 40 mean = 376, standard dev = 12 axis 2.
+2025-10-29 14:59:42,450 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = 1584, standard dev = 14 axis 0.
+2025-10-29 14:59:42,565 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = 270, standard dev = 19 axis 1.
+2025-10-29 14:59:42,689 - INFO - CMD_EXEC_Calibrate: Sensor number 41 mean = 142, standard dev = 17 axis 2.
+2025-10-29 14:59:42,804 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = 206, standard dev = 16 axis 0.
+2025-10-29 14:59:42,922 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = 1060, standard dev = 19 axis 1.
+2025-10-29 14:59:43,038 - INFO - CMD_EXEC_Calibrate: Sensor number 42 mean = 286, standard dev = 15 axis 2.
+2025-10-29 14:59:43,153 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = -334, standard dev = 10 axis 0.
+2025-10-29 14:59:43,269 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = 373, standard dev = 15 axis 1.
+2025-10-29 14:59:43,386 - INFO - CMD_EXEC_Calibrate: Sensor number 43 mean = 601, standard dev = 13 axis 2.
+2025-10-29 14:59:43,503 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = 703, standard dev = 17 axis 0.
+2025-10-29 14:59:43,620 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = -274, standard dev = 22 axis 1.
+2025-10-29 14:59:43,736 - INFO - CMD_EXEC_Calibrate: Sensor number 44 mean = 123, standard dev = 16 axis 2.
+2025-10-29 14:59:44,112 - INFO - CMD_EXEC_Calibrate: Calibration on all sensors complete, saving to memory.
+2025-10-29 14:59:44,113 - INFO -  Terminator string found. Finalising read
+2025-10-29 14:59:44,114 - INFO - Sent command: op ipx 1020901992 set_baud 9600
+2025-10-29 14:59:44,267 - INFO - CMD_EXEC_Set_Baud: Baudrate set to 9600, restarting.
+2025-10-29 14:59:44,518 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:59:44,518 - INFO - response verified successfully for command: op ipx 1020901992 set_baud 9600
+
+2025-10-29 14:59:44,519 - INFO - Sent command: op ipx 1020901966 set_baud 9600
+2025-10-29 14:59:44,671 - INFO - CMD_EXEC_Set_Baud: Baudrate set to 9600, restarting.
+2025-10-29 14:59:44,923 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:59:44,924 - INFO - response verified successfully for command: op ipx 1020901966 set_baud 9600
+
+2025-10-29 14:59:44,924 - INFO - Sent command: op ipx 1020901941 set_baud 9600
+2025-10-29 14:59:45,076 - INFO - CMD_EXEC_Set_Baud: Baudrate set to 9600, restarting.
+2025-10-29 14:59:45,336 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:59:45,337 - INFO - response verified successfully for command: op ipx 1020901941 set_baud 9600
+
+2025-10-29 14:59:45,338 - INFO - Sent command: op ipx 1020910976 set_baud 9600
+2025-10-29 14:59:45,491 - INFO - CMD_EXEC_Set_Baud: Baudrate set to 9600, restarting.
+2025-10-29 14:59:45,743 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:59:45,743 - INFO - response verified successfully for command: op ipx 1020910976 set_baud 9600
+
+2025-10-29 14:59:45,744 - INFO - Sent command: op ipx 1020901940 set_baud 9600
+2025-10-29 14:59:45,897 - INFO - CMD_EXEC_Set_Baud: Baudrate set to 9600, restarting.
+2025-10-29 14:59:46,147 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:59:46,148 - INFO - response verified successfully for command: op ipx 1020901940 set_baud 9600
+
+2025-10-29 14:59:46,149 - INFO - Sent command: op ipx 1020901958 set_baud 9600
+2025-10-29 14:59:46,301 - INFO - CMD_EXEC_Set_Baud: Baudrate set to 9600, restarting.
+2025-10-29 14:59:46,554 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:59:46,555 - INFO - response verified successfully for command: op ipx 1020901958 set_baud 9600
+
+2025-10-29 14:59:46,555 - INFO - Sent command: op ipx 1020901927 set_baud 9600
+2025-10-29 14:59:46,708 - INFO - CMD_EXEC_Set_Baud: Baudrate set to 9600, restarting.
+2025-10-29 14:59:46,959 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:59:46,960 - INFO - response verified successfully for command: op ipx 1020901927 set_baud 9600
+
+2025-10-29 14:59:46,961 - INFO - Sent command: op ipx 1020910967 set_baud 9600
+2025-10-29 14:59:47,113 - INFO - CMD_EXEC_Set_Baud: Baudrate set to 9600, restarting.
+2025-10-29 14:59:47,372 - INFO - No new data received within listen duration, ending read.
+2025-10-29 14:59:47,372 - INFO - response verified successfully for command: op ipx 1020910967 set_baud 9600
+
+2025-10-29 14:59:47,374 - INFO - Serial port closed successfully.
