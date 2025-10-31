@@ -510,9 +510,8 @@ class IPXSerialCommunicator:
 
 
 
-
-
 """------------------------------------------------------------------------------------------------------------------------------------------------------"""
+
 
 
 
@@ -652,18 +651,7 @@ class IPXConfigurator:
             return (None, True)
 
 
-    def _abnormal_high_magnitude_check(self, ipx: IPXSerialCommunicator, uids_list:list, max_raw_value:500) -> bool:
-        """ Small helper function for checking abnormally high magnitude values in raw data"""
 
-        for uid in uids_list:
-            logging.debug(f"Performing abnormally high magnitude check on UID:{uid}")
-            raw_values = ipx.get_raw(uid=uid, data_type='array')
-            
-            if np.any(np.abs(raw_values) > max_raw_value):
-                logging.critical(f" CONFIGURATION FAILED: Sensor UID:{uid} has abnormally high raw data values: {raw_values}")
-                raise HIGH_MAG_VALUE_ERROR(f"Sensor UID:{uid} has abnormally high raw data values: {raw_values}")
-            
-            logging.debug(f"No abnormally high raw data values detected for UID:{uid}")
      
 
 

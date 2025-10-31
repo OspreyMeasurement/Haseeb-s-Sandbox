@@ -518,10 +518,12 @@ class IPXSerialCommunicator:
 
 
 """IPX CONFIGURATOR CLASS FOR HIGH LEVEL CONFIGURATION OF EXTENSOMETERS"""
-# create new IPX configurator class?
+# This class should just be for performing the configuration tasks, not prompting the user for input etc
 
 class IPXConfigurator:
-    """ High level class to manage the configuration process for extensometer"""
+    """ High level class to manage the configuration process for extensometer
+    contains functions which perform various configuration tasks
+    """
     def __init__(self, port: str, initial_baudrate: int = 115200, max_retries: int=3, retry_delay: int=2):
         """ Initialises configurator with connection settings
 
@@ -538,7 +540,7 @@ class IPXConfigurator:
         logging.debug(f"IPX Configurator initialised for port {self.port}")
 
 
-    def _verify_sensor_count(self, ipx: IPXSerialCommunicator ,num_sensors:int) -> list:
+    def verify_sensor_count(self, ipx: IPXSerialCommunicator ,num_sensors:int) -> list:
         """Private helper to detect and verify the number of connected sensors
         Should return uid list"""
         logging.debug(f"Attempting to detect {num_sensors} sensors")
@@ -553,10 +555,10 @@ class IPXConfigurator:
                 time.sleep(self.retry_delay)# retry delay
         else:
             logging.error("Failed to detect all sensors after multiple retries| Check inputted number of sensors") # log error
-            raise RuntimeError(f"Failed to detect all sensors after multiple retries| Check inputted number of sensors")
+            return False # return false if failed to detect correct number of sensors after retries
 
 
-    def _set_default_parameters(self, ipx:IPXSerialCommunicator, uids_list: list):
+    def set_default_parameters(self, ipx:IPXSerialCommunicator, uids_list: list):
         """Private helper to loop through all uids and apply standard configurations + aliases"""
         logging.info("Appling deafualt parameters to all detected sensors...")
         uids_list
@@ -586,7 +588,7 @@ class IPXConfigurator:
 
 
 
-    def _validate_calibration_results(self, cal_df: pd.DataFrame) -> tuple[list[int] | None, bool]:
+    def validate_calibration_results(self, cal_df: pd.DataFrame) -> tuple[list[int] | None, bool]:
         """
         Checks calibration DataFrame for zero mean OR zero std dev across all axes.
         
@@ -595,7 +597,7 @@ class IPXConfigurator:
         """
         if cal_df.empty:
             logging.error("Validation failed: The calibration DataFrame was empty.")
-            return None, False
+            return False
         
         # Use boolean indexing to find all rows that meet EITHER failure condition
         failed_df = cal_df[(cal_df['mean'] == 0) | (cal_df['std_dev'] == 0)]
@@ -610,17 +612,17 @@ class IPXConfigurator:
 
             # Get the unique sensor numbers that had at least one failure
             failed_sensor_nums = list(np.unique(failed_df['sensor_num']))
-            return failed_sensor_nums, False
+            return failed_sensor_nums
                 
         logging.info("Calibration results passed validation.")
-        return None, True  
+        return True  
 
 
 
     
 
 
-    def _raw_data_check(self, ipx: IPXSerialCommunicator, uid:int, sensor_index: list, num_readings: int = 5) -> tuple [(int, None), bool]:
+    def raw_data_check(self, ipx: IPXSerialCommunicator, uid:int, sensor_index: list, num_readings: int = 5) -> tuple [(int, None), bool]:
         """Checks a sensors raw data ouptus, and ensures that the values are changing
         Secondary verification step after zero mean/ std dev are detected"""
         num_no_changes_allowed = 3 # number of no change instances allowed before failing the check
@@ -646,13 +648,13 @@ class IPXConfigurator:
                     logging.debug(f"No change detected at index {i} between readings: {tuple_1} and {tuple_2}. Value was {tuple_1[i]}")
             if num_no_change > num_no_changes_allowed:
                 logging.warning(f" Raw data check failed for UID:{uid}, {num_no_change} instances of no change detected between readings")
-                return (num_no_change, False)
+                return False
         else:
             logging.info(f" Raw data check passed for UID:{uid}")
-            return (None, True)
+            return True
 
 
-    def _abnormal_high_magnitude_check(self, ipx: IPXSerialCommunicator, uids_list:list, max_raw_value:500) -> bool:
+    def abnormal_high_magnitude_check(self, ipx: IPXSerialCommunicator, uids_list:list, max_raw_value:500) -> bool:
         """ Small helper function for checking abnormally high magnitude values in raw data"""
 
         for uid in uids_list:
@@ -661,9 +663,10 @@ class IPXConfigurator:
             
             if np.any(np.abs(raw_values) > max_raw_value):
                 logging.critical(f" CONFIGURATION FAILED: Sensor UID:{uid} has abnormally high raw data values: {raw_values}")
-                raise HIGH_MAG_VALUE_ERROR(f"Sensor UID:{uid} has abnormally high raw data values: {raw_values}")
+                return False
             
             logging.debug(f"No abnormally high raw data values detected for UID:{uid}")
+        return True
      
 
 
@@ -681,18 +684,18 @@ class IPXConfigurator:
         try:
             with IPXSerialCommunicator(self.port, self.initial_baudrate, verify=True) as ipx:
                 #1. detect and verify the number of sensors
-                uids_list = self._verify_sensor_count(ipx, num_sensors=num_sensors)
+                uids_list = self.verify_sensor_count(ipx, num_sensors=num_sensors)
 
                 #2. Apply default parameters to all sensors
-                self._set_default_parameters(ipx, uids_list)
+                self.set_default_parameters(ipx, uids_list)
 
                 #3. Run calibration
                 for uid in uids_list:
                     cal_df = ipx.calibrate(uid) # get calibration dataframe
-                    result = self._validate_calibration_results(cal_df) # validate the calibration results
+                    result = self.validate_calibration_results(cal_df) # validate the calibration results
                     failed_sensors, success = result
                     if success == False: # then perform raw calibration data check
-                        result2 = self._raw_data_check(ipx=ipx, uid=uid, sensor_index=failed_sensors)
+                        result2 = self.raw_data_check(ipx=ipx, uid=uid, sensor_index=failed_sensors)
                         no_change_count, raw_success = result2
                         if raw_success == False:
                             logging.critical(f" CONFIGURATION FAILED: Sensor UID:{uid} failed both calibration validation and raw data check")
@@ -735,5 +738,13 @@ class IPXConfigurator:
 
 """------------------------------------------------------------------------------------------------------------------------------------------------------"""
 
+""" The general structure for configuration is:
+1. First of all get UIDS
+2. Then set all default parameters for each sensor
+3. Then calibrate each sensor one by one, validating the results after each calibration
+4. Do abnormal raw data check to ensure no abnormally high magnitude values present
+5. Finally set baud rate to 9600 for all sensors
+
+""" 
 
 

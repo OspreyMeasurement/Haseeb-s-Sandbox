@@ -60,7 +60,7 @@ import numpy as np
 #     sum = a + b
 #     multi = a * b
 #     return sum, multi
-
+    
 # result = simpleaddition (2, 3)
 # print (result)
 
@@ -82,7 +82,7 @@ import numpy as np
 
 mylist = [(1, 5, 5, 7, 9), (2, 6, 6, 8, 10), (3, 7, 7, 9, 11), (4, 8, 8, 10, 12), (5, 9, 9, 11, 13)]
 first = mylist[0]
-print(first(1,2))
+print(first[])
 
 
 
