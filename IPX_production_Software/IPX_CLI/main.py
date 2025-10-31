@@ -7,6 +7,13 @@ from IPX import IPXConfigurator
 from IPX import IPXSerialError
 import numpy as np
 from IPX_Config import IPXCommands
+import os
+import time
+
+
+
+baudrate = int(input("Enter baud rate (default 9600): ") or "9600")
+
 
 # setup log level
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -95,16 +102,114 @@ def retry_on_failure(operation_func, prompt_func, success_message: str = None, *
             if success_message:
                 logging.info(success_message)
             return result
+        
+
+#Helper function for displaying UIDs:
+def display_uid_table(mappings, all_uids):
+    """Clears the terminal and displays the current UID mapping table."""
+    # Clear the terminal screen ('cls' for Windows, 'clear' for macOS/Linux)
+    os.system('cls' if os.name == 'nt' else 'clear') 
+    
+    print("--- UID Update In Progress ---")
+    print(f"{'Old UID':<15} -> {'New UID':<10}")
+    print(f"{'-------':<15}    {'-------':<10}")
+
+    # Display mappings that have already been entered
+    for item in mappings:
+        print(f"{item['old']:<15} -> {item['new']:<10}")
+
+    # Display remaining UIDs that haven't been mapped yet
+    mapped_uids = [item['old'] for item in mappings]
+    remaining_uids = [uid for uid in all_uids if uid not in mapped_uids]
+    for uid in remaining_uids:
+        print(f"{uid:<15} -> {'(pending scan)':<10}")
+    print("-" * 30)
+
+
+
+
+# function for updating sensor UIDs via barcode scanner
+def run_uid_update_flow():
+    """Handles UID updating via barcode scanner input."""
+    logging.info("--- Starting UID update session via barcode scanner ---")
+    com_port, num_sensors_int = get_initial_settings() # _ as we only need com_port here
+    if not com_port or not num_sensors_int:
+        logging.error("Invalid COM port or number of sensors.")
+        return
+    configurator = IPXConfigurator(port=com_port, initial_baudrate=baudrate)
+    try:
+        with IPXSerialCommunicator(port=com_port, baudrate=baudrate, verify=True) as ipx:
+            # UID updating logic here
+            logging.info("Discovering connected sensors...")
+            # Step 1: Verify sensor count with automatic retry handling
+            uids_list = retry_on_failure(
+                operation_func=configurator.verify_sensor_count,
+                prompt_func=prompt_user_on_other_failure,
+                success_message=f"Successfully detected {num_sensors_int} sensors",
+                ipx=ipx,
+                num_sensors=num_sensors_int
+            )
+
+            uid_mappings = [] # list will store our proposed uid changes
+
+            if uids_list is None: # small check to ensure we have uids
+                logging.error("Sensor detection failed or was skipped. Exiting UID update.")
+                return
+            
+            for old_uids in uids_list:
+                display_uid_table(uid_mappings, uids_list) # display the uid table before each scan
+
+                new_uid_str = input(f"Scan new UID for sensor with Old UID (Top to bottom): {old_uids}: ")
+                
+                try:
+                    new_uid = int(new_uid_str) # convert to int to
+                    # add to mapping list
+                    uid_mappings.append({'old': old_uids, 'new': new_uid})
+                    logging.info(f"Mapped Old UID {old_uids} to New UID {new_uid}")
+                except ValueError:
+                    logging.error(f"Invalid UID scanned: {new_uid_str}. Please try again.")
+                    continue
+            # After collecting all mappings, apply them, show the final table
+
+            display_uid_table(uid_mappings, uids_list) # final display
+
+            confirm = input("Confirm applying these UID changes? (y/n): ").strip().lower()
+            if confirm != 'y':
+                logging.warning("UID update cancelled by user.")
+                return
+            
+            logging.info("Applying UID changes to sensors...")
+            for mapping in uid_mappings:
+                ipx.set_uid(current_uid=mapping['old'], new_uid=mapping['new'])
+                
+                logging.debug(f"Set UID from {mapping['old']} to {mapping['new']}")
+                time.sleep(0.5)  # small delay to ensure command is processed
+                
+            # Final verification
+            logging.info("Verifying updated UIDs...")
+            final_uids = ipx.list_uids(data_type='list')
+
+            expected_uids = [m['new'] for m in uid_mappings]
+            if all(uid in final_uids for uid in expected_uids):
+                logging.info("✅ SUCCESS: All UIDs were updated successfully.")
+            else:
+                logging.error("❌ FAILURE: Some UIDs were not updated. Please check the device.")
+
+    except (IPXSerialError, SystemExit) as e:
+        logging.critical(f"An error occurred during the UID update process: {e}")
+
+
+
 
 
 # Main function for handling configuration with user inputs:
-def run_configuraton_flow(max_raw_value: int = 1000):
+def run_configuraton_flow(baudrate, max_raw_value: int = 1000):
     com_port, num_sensors_int = get_initial_settings()
-    configurator = IPXConfigurator(port=com_port, initial_baudrate=9600)
+    configurator = IPXConfigurator(port=com_port, initial_baudrate=baudrate)
 
     logging.info(f"--- Starting new external configuration session on {com_port} for {num_sensors_int} sensors ---")
     try:
-        with IPXSerialCommunicator(port=com_port, baudrate=9600, verify=True) as ipx:
+        with IPXSerialCommunicator(port=com_port, baudrate=baudrate, verify=True) as ipx:
             # Step 1: Verify sensor count with automatic retry handling
             uids_list = retry_on_failure(
                 operation_func=configurator.verify_sensor_count,
@@ -176,10 +281,25 @@ def run_configuraton_flow(max_raw_value: int = 1000):
         logging.critical(f"CONFIGURATION FAILED: An unexpected error occurred: {e}", exc_info=True)
         return False
         
+def main_menu():
+    print("Select an option:")
+    print("1. Update Sensor UIDs via Barcode Scanner")
+    print("2. Run Full Sensor Configuration")
+    choice = input("Enter your choice (1 or 2): ").strip()
+    
+    if choice == '1':
+        run_uid_update_flow()
+    elif choice == '2':
+        run_configuraton_flow(baudrate=baudrate)
+    else:
+        print("Invalid choice. Please enter 1 or 2.")
 
 
 if __name__ == "__main__":
-    run_configuraton_flow()
+    try:
+        main_menu()
+    except KeyboardInterrupt:
+        logging.info("Program terminated by user.")
 
 
 
