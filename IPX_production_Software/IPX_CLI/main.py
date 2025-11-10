@@ -50,15 +50,11 @@ def get_com_port():
 def list_uids():
     """Helper function to list UIDs of connected sensors."""
     port = get_com_port()
+    with IPXSerialCommunicator(port=port, baudrate=baudrate, verify=True) as ipx:
+        uids = ipx.list_uids(data_type='list')
+        logging.info(f"Connected sensor UIDs: {uids}")
+        return uids
 
-    try:
-        with IPXSerialCommunicator(port=port, baudrate=baudrate, verify=True) as ipx:
-            uids = ipx.list_uids(data_type='list')
-            logging.info(f"Connected sensor UIDs: {uids}")
-            return uids
-    except e:
-        logging.error(f"Failed to list UIDs: {e}")
-        raise e
 
     
 
@@ -288,7 +284,7 @@ def run_uid_update_flow():
 
 
 # Main function for handling configuration with user inputs:
-def run_configuraton_flow(baudrate, max_raw_value: int = 1000):
+def run_configuraton_flow(baudrate):
     com_port, num_sensors_int = get_initial_settings()
     configurator = IPXConfigurator(port=com_port, initial_baudrate=baudrate)
 
@@ -327,7 +323,7 @@ def run_configuraton_flow(baudrate, max_raw_value: int = 1000):
                             # ---- INITIAL CALIBRATION CHECK PASSED ----
                             # we should also do the abnormal high magnitude check here as well, if rawdatacheck is not called 
                             raw_data = ipx.get_raw(uid=uid, data_type='array')
-                            if not configurator.abnormal_high_magnitude_check(raw_values=raw_data): # if result is false run this loop
+                            if not configurator.abnormal_high_magnitude_check(uid, raw_values=raw_data): # if result is false run this loop
                                 choice = prompt_user_on_cal_failure(uid)
                                 if choice == "retry":
                                     logging.info(f"Retrying calibration for UID {uid} due to abnormal high magnitude...")
@@ -382,8 +378,6 @@ def run_configuraton_flow(baudrate, max_raw_value: int = 1000):
             #4. now check for abnormal high magnitude raw data across all sensors (after configuration):
             # the only thing is that we are already doing a raw data check and then doing the abnomalous high magnitude check, we should integrate this into the raw data check function?
             # The abnormal high magnitude check should be integrated during the calibration loop, as we can choose to re-calibrate a function an abnormal mag is present
-            
-            configurator.abnormal_high_magnitude_check(ipx=ipx, uids_list=uids_list, max_raw_value=max_raw_value)
                     
             #5. set final baud rate to 9600 for all sensors:
             final_baud = IPXCommands.Default_settings.Baud_rate
@@ -408,7 +402,7 @@ def initial_uid_update():
     """ Function for renaming the UIDs of sensors initially. Automatically renames sensors to 
     sequential UIDs starting from 1 based on the number of sensors detected."""
     logging.info("--- Starting initial UID update session ---")
-    com_port = get_com_port # _ as we only need com_port here
+    com_port = get_com_port() # _ as we only need com_port here
     if not com_port:
         logging.error("Invalid COM port")
         return
@@ -487,7 +481,7 @@ def main_menu():
                 print("Invalid choice. Please enter 1,2,3,4.")
             time.sleep(3) # brief pause before returning to main menu
 
-        except e:
+        except Exception as e:
             logging.error(f"An error occurred: {e}", exc_info=True)
             time.sleep(5)  # brief pause before returning to main menu
             continue

@@ -132,7 +132,7 @@ class IPXSerialCommunicator:
         Can now stop early, if a specific terminator string is found in the response stream"""
         if not self.connection:
             logging.error("ERROR: Not connected")
-            return bytearray()
+            raise IPXSerialError("Not connected to any serial device.")
         # send command (add prints for debugging)
 
         # Clear input buffer to ensure we only read the response to *this* command
@@ -143,9 +143,8 @@ class IPXSerialCommunicator:
         # 1. block and wait for the first byte to arrive
         first_byte = self.connection.read(1)
         if not first_byte:
-            logging.warning("No response received from device.")
-            raise IPXNoResponseError("No response received from device within the expected timeout.")
-            return bytearray() # timed out waiting for a response
+            logging.error("No response received from device.")
+            raise IPXNoResponseError("No response received from device within the expected timeout.") # didnt recieve response within timeout
         
 
         #2. once we have first byte, read remaining data in the buffer
@@ -484,6 +483,7 @@ class IPXSerialCommunicator:
         except serial.SerialException as e:
             logging.error(f"Error opening serial port: {e}")
             self.connection = None
+            raise
         return self
     
     def __exit__(self, exc_type, exc_value, traceback):
@@ -627,17 +627,17 @@ class IPXConfigurator:
 
 
 
-    # def abnormal_high_magnitude_check(self, uid, raw_values: np.ndarray, max_raw_value=500) -> bool:
-    #     """ small helper function for checking abnormally high magnitude values in raw data
-    #     Should also be used in raw_data_check_function"""
-    #     logging.debug(f"Performing abnormally high magnitude check on UID:{uid}")
+    def abnormal_high_magnitude_check(self, uid, raw_values: np.ndarray, max_raw_value=500) -> bool:
+        """ small helper function for checking abnormally high magnitude values in raw data
+        Should also be used in raw_data_check_function"""
+        logging.debug(f"Performing abnormally high magnitude check on UID:{uid}")
         
-    #     if np.any(np.abs(raw_values) > max_raw_value):
-    #         logging.error(f" CONFIGURATION FAILED: Sensor UID:{uid} has abnormally high raw data values: {raw_values}")
-    #         return False
-    #     else:
-    #         logging.debug(f"No abnormally high raw data values detected for UID:{uid}")
-    #         return True
+        if np.any(np.abs(raw_values) > max_raw_value):
+            logging.error(f" CONFIGURATION FAILED: Sensor UID:{uid} has abnormally high raw data values: {raw_values}")
+            return False
+        else:
+            logging.debug(f"No abnormally high raw data values detected for UID:{uid}")
+            return True
 
     
 # CHECK FUNCTIONS SHOULD JUST RETURN BOOLEAN SUCCESS/FAILURE SUCCESS == TRUE, FAILURE == FALSE
