@@ -86,21 +86,7 @@ class IPXVerificationError(IPXSerialError):
     pass
 """------------------------------------------------------------------------------------------------------------------------------------------------------"""
 
-"""THESE ERRORS ARE FOR CALIBRATION AND CONFIGURATION ERRORS"""
 
-class IPXConfigurationError(Exception):
-    """Base class for all IPX calibration errors"""
-    pass
-
-class HIGH_MAG_VALUE_ERROR(IPXConfigurationError):
-    """Raised when the calibration results show abnormally high magnitude values"""
-    pass
-
-class CALINBRATION_NO_CHANGE_ERROR(IPXConfigurationError):
-    """Raised when calibration raw data shows no change across multiple readings"""
-    pass
-
-"""------------------------------------------------------------------------------------------------------------------------------------------------------"""
 
 """------------------------------------------------------------------------------------------------------------------------------------------------------"""
 """ MAIN IPX SERIAL COMMUNICATOR CLASS FOR HANDLING SERIAL COMMUNICATION WITH IPX DEVICES """
@@ -158,6 +144,7 @@ class IPXSerialCommunicator:
         first_byte = self.connection.read(1)
         if not first_byte:
             logging.warning("No response received from device.")
+            raise IPXNoResponseError("No response received from device within the expected timeout.")
             return bytearray() # timed out waiting for a response
         
 
@@ -219,6 +206,7 @@ class IPXSerialCommunicator:
             logging.debug(f"Received response: {response}")
         else:
             logging.warning("No response received from device.")
+            raise IPXNoResponseError("No response received from device within the expected timeout.") # add this exception for error catching
         return response
     
 
@@ -227,19 +215,19 @@ class IPXSerialCommunicator:
         """For ensuring random/corrupted data is not recieved by IPX, added verification within this function"""
         try:
             response_str = response.decode("utf-8").strip()
-        except UnicodeDecodeError:
-            logging.ERROR("Corrupted data recieved: UTF-8 decode failed")
-            raise IPXCorruptedDataError("Corrupted data could not decode UTF-8 bytes")
+        except UnicodeDecodeError: # catch decode errors, should be thrown when the ipx is sending jibberish, etc when gets disconnected and connected again
+            logging.error("Corrupted data recieved: UTF-8 decode failed")
+            raise IPXCorruptedDataError("Corrupted data could not decode UTF-8 bytes | Please check connection and try again")
         
-        if self.verify and expected_response:
+        if self.verify and expected_response: # this is for verifying the response matches expected response
             logging.debug(f"Verifying response, expecting to find {expected_response}")
             if not response_str.lower().startswith(expected_response.lower()): # if the string doesnt start with expected response, raise an error
                 error_message = (
-                    f"verification failed for command: {command}"
-                    f"Expected response to start with {expected_response}, but got {response_str}"
+                    f"verification failed for command: {command}" # add command for debugging
+                    f"Expected response to start with {expected_response}, but got {response_str}"# detailed error message
                 )
                 logging.error(error_message)
-                raise IPXVerificationError(error_message)
+                raise IPXVerificationError(error_message) # raise verification error
             else:
                 logging.info(f"response verified successfully for command: {command}")
 
@@ -514,6 +502,23 @@ class IPXSerialCommunicator:
 
 """------------------------------------------------------------------------------------------------------------------------------------------------------"""
 
+#Move calibration errors to here, easier to reference
+
+"""THESE ERRORS ARE FOR CALIBRATION AND CONFIGURATION ERRORS"""
+
+class IPXConfigurationError(Exception):
+    """Base class for all IPX calibration errors"""
+    pass
+
+class HIGH_MAG_VALUE_ERROR(IPXConfigurationError):
+    """Raised when the calibration results show abnormally high magnitude values"""
+    pass
+
+class CALINBRATION_NO_CHANGE_ERROR(IPXConfigurationError):
+    """Raised when calibration raw data shows no change across multiple readings"""
+    pass
+
+"""------------------------------------------------------------------------------------------------------------------------------------------------------"""
 
 
 
@@ -587,8 +592,10 @@ class IPXConfigurator:
 
 
 
+# VALIDATION FUNCTIONS SHOULD ALWAYS RETURN A CONSISTENT TUPLE (SUCCESS BOOLEAN, DATA)
 
-    def validate_calibration_results(self, cal_df: pd.DataFrame) -> tuple[list[int] | None, bool]:
+
+    def validate_calibration_results(self, cal_df: pd.DataFrame) -> tuple[bool, list| None]:
         """
         Checks calibration DataFrame for zero mean OR zero std dev across all axes.
         
@@ -597,7 +604,7 @@ class IPXConfigurator:
         """
         if cal_df.empty:
             logging.error("Validation failed: The calibration DataFrame was empty.")
-            return False
+            return (False, None)
         
         # Use boolean indexing to find all rows that meet EITHER failure condition
         failed_df = cal_df[(cal_df['mean'] == 0) | (cal_df['std_dev'] == 0)]
@@ -612,15 +619,28 @@ class IPXConfigurator:
 
             # Get the unique sensor numbers that had at least one failure
             failed_sensor_nums = list(np.unique(failed_df['sensor_num']))
-            return failed_sensor_nums
+            return (False, failed_sensor_nums)
                 
         logging.info("Calibration results passed validation.")
-        return True  
+        return (True, None) # keep it consistent and for this function to always return a tuple
 
 
+
+
+    # def abnormal_high_magnitude_check(self, uid, raw_values: np.ndarray, max_raw_value=500) -> bool:
+    #     """ small helper function for checking abnormally high magnitude values in raw data
+    #     Should also be used in raw_data_check_function"""
+    #     logging.debug(f"Performing abnormally high magnitude check on UID:{uid}")
+        
+    #     if np.any(np.abs(raw_values) > max_raw_value):
+    #         logging.error(f" CONFIGURATION FAILED: Sensor UID:{uid} has abnormally high raw data values: {raw_values}")
+    #         return False
+    #     else:
+    #         logging.debug(f"No abnormally high raw data values detected for UID:{uid}")
+    #         return True
 
     
-
+# CHECK FUNCTIONS SHOULD JUST RETURN BOOLEAN SUCCESS/FAILURE SUCCESS == TRUE, FAILURE == FALSE
 
     def raw_data_check(self, ipx: IPXSerialCommunicator, uid:int, sensor_index: list, num_readings: int = 5) -> tuple [(int, None), bool]:
         """Checks a sensors raw data ouptus, and ensures that the values are changing
@@ -631,6 +651,12 @@ class IPXConfigurator:
         for i in range(num_readings):
             raw_readings_list.append(ipx.get_raw(uid=uid, data_type='array')) # get initial raw data
             time.sleep(0.5) # wait a bit before next measurment
+
+        # before comparing the readings, do an abnormally high magnitude check, just for the first tuple that is returned
+        if not self.abnormal_high_magnitude_check(uid=uid, raw_values=raw_readings_list[0]):
+            logging.error(f" Raw data check failed for UID:{uid} due to abnormally high magnitude values")
+            return False
+        logging.info(f" Abnormally high magnitude check passed for UID:{uid}, proceeding to no change check")
 
         # then need to check the readings for changes by comparing indexes of all measurements
         first = raw_readings_list[0] # first tuple of raw measurments in the list
@@ -653,88 +679,29 @@ class IPXConfigurator:
             logging.info(f" Raw data check passed for UID:{uid}")
             return True
 
-
-    def abnormal_high_magnitude_check(self, ipx: IPXSerialCommunicator, uids_list:list, max_raw_value:500) -> bool:
-        """ Small helper function for checking abnormally high magnitude values in raw data"""
-
-        for uid in uids_list:
-            logging.debug(f"Performing abnormally high magnitude check on UID:{uid}")
-            raw_values = ipx.get_raw(uid=uid, data_type='array')
-            
-            if np.any(np.abs(raw_values) > max_raw_value):
-                logging.critical(f" CONFIGURATION FAILED: Sensor UID:{uid} has abnormally high raw data values: {raw_values}")
-                return False
-            
-            logging.debug(f"No abnormally high raw data values detected for UID:{uid}")
-        return True
-     
+# debating whether i want the magnitude check function to do a get raw or not.
 
 
 
 
 
+    # def abnormal_high_magnitude_check(self, ipx: IPXSerialCommunicator, uid:int , max_raw_value:500) -> bool:
+    #     """ Small helper function for checking abnormally high magnitude values in raw data
+    #     Changed to just check on one sensor rather than loop through all uids"""
 
 
-    def configure_extensometers(self, num_sensors: int, max_raw_value: int = 500) -> bool: 
-        """
-        Executes full configuratio and calibrations sequence
-        Args:
-        num_expected_sensors (int): Number of sensors that needs to be connected"""
-        logging.info(f"--- Starting new extensometer configuration for {num_sensors} sensors ---")
-        try:
-            with IPXSerialCommunicator(self.port, self.initial_baudrate, verify=True) as ipx:
-                #1. detect and verify the number of sensors
-                uids_list = self.verify_sensor_count(ipx, num_sensors=num_sensors)
-
-                #2. Apply default parameters to all sensors
-                self.set_default_parameters(ipx, uids_list)
-
-                #3. Run calibration
-                for uid in uids_list:
-                    cal_df = ipx.calibrate(uid) # get calibration dataframe
-                    result = self.validate_calibration_results(cal_df) # validate the calibration results
-                    failed_sensors, success = result
-                    if success == False: # then perform raw calibration data check
-                        result2 = self.raw_data_check(ipx=ipx, uid=uid, sensor_index=failed_sensors)
-                        no_change_count, raw_success = result2
-                        if raw_success == False:
-                            logging.critical(f" CONFIGURATION FAILED: Sensor UID:{uid} failed both calibration validation and raw data check")
-                            raise CALINBRATION_NO_CHANGE_ERROR(f"Sensor UID:{uid} failed calibration validation")
-                        
-                # if all sensors pass calibration validation, move to next step
-                # check for abnormally high magnitude values raw_data_check
-                for uid in uids_list:
-                    raw_values = ipx.get_raw(uid=uid, data_type='array')
-                    
-                    if np.any(np.abs(raw_values) > max_raw_value):
-                        logging.critical(f" CONFIGURATION FAILED: Sensor UID:{uid} has abnormally high raw data values: {raw_values}")
-                        raise HIGH_MAG_VALUE_ERROR(f"Sensor UID:{uid} has abnormally high raw data values: {raw_values}")
-                    
-                    logging.debug(f"No abnormally high raw data values detected for UID:{uid}")
-                #4. set final baud rate to 9600
-                final_baud = IPXCommands.Default_settings.Baud_rate
-                logging.info(f"Setting baud rate for all devices to {final_baud}")
-                for uid in uids_list:
-                    ipx.set_baud(uid=uid, baud=final_baud)
-                logging.info(f"Extensometer configuration successful")
-                return True
-            
-        # Try to catch any unexpected errrors
-        except(IPXSerialError,RuntimeError) as e:
-            logging.critical(f" CONFIGURATION FAILED: A critical error occurred: {e}")
-            return False
+    #     logging.debug(f"Performing abnormally high magnitude check on UID:{uid}")
+    #     raw_values = ipx.get_raw(uid=uid, data_type='array')
         
-        except Exception as e:
-            # Catch any other unexpected errors
-            logging.critical(f"CONFIGURATION FAILED: An unexpected error occurred: {e}", exc_info=True)
-            return False
-                
+    #     if np.any(np.abs(raw_values) > max_raw_value):
+    #         logging.error(f" CONFIGURATION FAILED: Sensor UID:{uid} has abnormally high raw data values: {raw_values}")
+    #         return False
+    #     else:
+    #         logging.debug(f"No abnormally high raw data values detected for UID:{uid}")
+    #         return True
 
-
-
-
-
-            
+# need to clear up logic, i think they should return the uids of the failed sensors and a boolean for success/failure
+# I also think i should add the .configurate command back but only to reconfigurate a specific sensor if needed (in case of a failed sensor during initial configuration)       
 
 """------------------------------------------------------------------------------------------------------------------------------------------------------"""
 

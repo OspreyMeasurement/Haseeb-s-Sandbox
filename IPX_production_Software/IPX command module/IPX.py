@@ -158,6 +158,7 @@ class IPXSerialCommunicator:
         first_byte = self.connection.read(1)
         if not first_byte:
             logging.warning("No response received from device.")
+            raise IPXNoResponseError("No response received from device within expected timeout.")
             return bytearray() # timed out waiting for a response
         
 
@@ -217,9 +218,11 @@ class IPXSerialCommunicator:
         response = all_responses
         if response:
             logging.debug(f"Received response: {response}")
+            return response
         else:
             logging.warning("No response received from device.")
-        return response
+            raise IPXNoResponseError("No response received from device within expected timeout.")
+        
     
 
 
