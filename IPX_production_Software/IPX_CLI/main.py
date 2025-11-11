@@ -10,6 +10,9 @@ from IPX_Config import IPXCommands
 import os
 import time
 
+# import files for JSON report generation
+from report_generator import ReportGenerator
+
 # -----    CUSTOM ERRORS FOR USE IN THIS SCRIPT  -----
 class UserAbortError(Exception):
     """ Custom exception to indicate user aborted operation """
@@ -25,6 +28,18 @@ baudrate = int(input("Enter baud rate (default 9600): ") or "9600")
 
 # setup log level
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+
+# Function for getting order details from user:
+def get_order_details():
+    """Gets customer order details from user input."""
+    customer_order = input("Enter Customer Order (CO) number: ").strip()
+    manufacturing_order = input("Enter Manufacturing Order (MO) number: ").strip()
+    string_description = input("Enter String Description: ").strip()
+    operator = input("Enter Operator Name/ID: ").strip()
+    return customer_order, manufacturing_order, string_description, operator
+
+
 
 def get_initial_settings():
     """ Gets com port and number of sensors from user.
@@ -284,8 +299,22 @@ def run_uid_update_flow():
 
 
 # Main function for handling configuration with user inputs:
-def run_configuraton_flow(baudrate):
+def run_configuraton_flow():
+    """Handles full sensor configuration flow."""  
+    # get all the initial settings from user
     com_port, num_sensors_int = get_initial_settings()
+    co, mo, string_description, operator = get_order_details()
+    # initialise the report generator
+    report = ReportGenerator(
+        port = com_port,
+        customer_order = co,
+        manufacturing_order = mo,
+        string_description = string_description,
+        operator = operator
+    )
+
+
+
     configurator = IPXConfigurator(port=com_port, initial_baudrate=baudrate)
 
     logging.info(f"--- Starting new external configuration session on {com_port} for {num_sensors_int} sensors ---")
@@ -300,10 +329,14 @@ def run_configuraton_flow(baudrate):
                 num_sensors=num_sensors_int
             )
             
+            # could add failure rerpot?
             if uids_list is None:
                 logging.error("Sensor detection failed or was skipped. Exiting configuration.")
                 return
+
             
+            report.set_detected_sensors(uids_list) # NEW log detected UIDs to report:
+
             #2. apply default parameters to all sensors:
 
             configurator.set_default_parameters(ipx, uids_list)
@@ -333,7 +366,7 @@ def run_configuraton_flow(baudrate):
                                     break  # exit while loop to skip
                                 elif choice == "abort":
                                     logging.warning("User aborted configuration.")
-                                    raise SystemExit("Configuration aborted by user.") # maybe not system exit, return to main menu
+                                    raise UserAbortError("Configuration aborted by user.") # maybe not system exit, return to main menu
                             logging.info(f"Abnormal high magnitude check passed for UID {uid}")
                             logging.info(f"Calibration successful for UID {uid}")
                             break  # exit while loop on success
@@ -355,9 +388,12 @@ def run_configuraton_flow(baudrate):
                                     break  # exit while loop to skip
                                 elif choice == "abort":
                                     logging.warning("User aborted configuration.")
-                                    raise SystemExit("Configuration aborted by user.") # maybe not system exit, return to main menu
+                                    raise UserAbortError("Configuration aborted by user.") # maybe not system exit, return to main menu
                                 
                                 # if we reach here, it means we need to handle error and give user option to retry/skip/abort
+
+
+                        
 
                     except Exception as e: # if we get an error do we want to retry this calibration?
                         logging.error(f"An error occurred during calibration for UID {uid}: {e}", exc_info=True)
@@ -373,7 +409,7 @@ def run_configuraton_flow(baudrate):
 
                         elif choice == "abort" or choice: # or choice incase user inputs something else, so will always abort
                             logging.warning("User aborted configuration.")
-                            raise SystemExit("Configuration aborted by user.")
+                            raise UserAbortError("Configuration aborted by user.")
             
             #4. now check for abnormal high magnitude raw data across all sensors (after configuration):
             # the only thing is that we are already doing a raw data check and then doing the abnomalous high magnitude check, we should integrate this into the raw data check function?
@@ -385,7 +421,18 @@ def run_configuraton_flow(baudrate):
             for uid in uids_list:
                 ipx.set_baud(uid=uid, baud=final_baud)
             logging.info(f"Extensometer configuration successful")  
-            return True
+            
+        
+        with IPXSerialCommunicator(port=com_port, baudrate=final_baud, verify=True) as ipx:
+            # Final get status to store in the report
+            for uid in uids_list:
+                final_status = ipx.get_status(uid=uid, data_type='dict')
+                report.add_sensor_data(uid=uid, data_key='final_status', data_value=final_status)
+                logging.debug(f"Successfully retrieved final status for UID {uid}, final status: {final_status}")
+            
+            # save final report:
+            report.save_report(final_status="Success")
+
             
                 # Try to catch any unexpected errrors
     except(IPXSerialError,RuntimeError) as e:
@@ -423,7 +470,7 @@ def initial_uid_update():
                 logging.info(f"Successfully updated UID from {last_uid} to {new_uid}")
 
             elif confirm == "abort":
-                raise SystemExit("UID update aborted by user.") # need to change all system exits
+                raise UserAbortError("UID update aborted by user.") # need to change all system exits
             elif confirm == "retry" or confirm:
                 logging.info("Retrying UID update...")
                 continue
@@ -472,7 +519,7 @@ def main_menu():
             elif choice == '1':
                 run_uid_update_flow()
             elif choice == '2':
-                run_configuraton_flow(baudrate=baudrate)
+                run_configuraton_flow()
             elif choice == '3':
                 initial_uid_update()
             elif choice == '4':
