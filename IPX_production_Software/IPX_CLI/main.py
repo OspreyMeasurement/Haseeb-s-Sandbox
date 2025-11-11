@@ -339,7 +339,9 @@ def run_configuraton_flow():
 
             #2. apply default parameters to all sensors:
 
-            configurator.set_default_parameters(ipx, uids_list)
+            alias_and_uids_list = configurator.set_default_parameters(ipx, uids_list)
+
+            txt_content = report.create_txt_content(aliases_and_uids_list=alias_and_uids_list) # create the .txt content for the report generator
 
             #3. run calibration with retry handling:
             for uid in uids_list:
@@ -430,8 +432,10 @@ def run_configuraton_flow():
                 report.add_sensor_data(uid=uid, data_key='final_status', data_value=final_status)
                 logging.debug(f"Successfully retrieved final status for UID {uid}, final status: {final_status}")
             
-            # save final report:
+            # save final json report and uid + alias text file:
             report.save_report(final_status="Success")
+            report.save_txt_file(txt_content=txt_content)
+            logging.debug("Report generation completed successfully.")
 
             
                 # Try to catch any unexpected errrors

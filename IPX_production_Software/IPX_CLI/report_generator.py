@@ -132,3 +132,42 @@ class ReportGenerator:
             logging.error(f"Failed to save configuration report: {e}")
         except TypeError as e:
             logging.error(f"Failed to serialize report data to JSON. Check Data types: {e}")
+
+
+    # create a function to get the txt file ready, and then another function to save
+    def create_txt_content(self, aliases_and_uids_list: list[tuple[str, str]]):
+        """ New method to save a txt file with aliases and UIDs (would be good for UID requests)"""
+        try:
+            logging.debug("Generating txt file with aliases and UIDs")
+            logging.debug(f"Received alias and UID list: {aliases_and_uids_list}")
+            # Create a list to hold the lines of the txt file
+            txt_lines = []
+            meta = self.report_data["metadata"] # get all the metadata
+            logging.debug(f"Retrieved metadata for txt file: {meta}")
+            # now sort into header information
+            txt_lines.append(f"Customer Order: {meta['CO number']}")
+            txt_lines.append(f"Manufacturing Order: {meta['MO number']}")
+            txt_lines.append(f"String Description: {meta['String Description']}")
+            txt_lines.append("\n" + "-" * 40)
+            
+            for alias, uid in aliases_and_uids_list:
+                txt_lines.append(f"\n Alias: {alias}")
+                txt_lines.append(f" UID: {uid}")
+                txt_lines.append("-" * 30)
+            return "\n".join(txt_lines)  # Join all lines with newlines to get final string
+        except Exception as e:
+            logging.error(f"Error generating txt content: {e}")
+            return "Error Could not generare txt content, check logs"
+        
+    def save_txt_file(self, txt_content: str):
+        """ takes the generated txt content and saves it to a file in the same directory as the json report"""
+        logging.debug(" Saving txt file with aliases and UIDs")
+        content_to_save = txt_content # get the content to save
+        savedir = self.target_dir + "/" + f"{self.report_data['metadata']['String Description']}_alias_uid_list.txt" # define full filepath
+        try:
+            with open(savedir, 'w') as txt_file:
+                txt_file.write(content_to_save)
+                logging.debug(f"Alias and UID list saved to {savedir}")
+        except Exception as e:
+            logging.error(f"Error saving txt file: {e}")
+        

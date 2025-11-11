@@ -589,7 +589,9 @@ class IPXConfigurator:
 
             logging.info(f"Setting parameters complete for sensor with uid:{uid}")
         logging.info("All sensors have been set with default parameters")
-
+        return aliases_and_uids_list # return this for reference later on (useful in main.py for generating a .txt file with uids and corresponding aliases)
+        # alias and uid list is of format [(uid, alias), (uid, alias),.....] etc, with the last sensors uid being at the start of the list
+        # so [(8, 1), (7,2), (6,3), (5,4), (4,5), (3,6), (2,7), (1,8)] for 8 sensors connected etc 
 
 
 # VALIDATION FUNCTIONS SHOULD ALWAYS RETURN A CONSISTENT TUPLE (SUCCESS BOOLEAN, DATA)
