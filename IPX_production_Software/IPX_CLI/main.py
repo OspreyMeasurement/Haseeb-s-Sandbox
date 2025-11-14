@@ -304,6 +304,8 @@ def run_configuraton_flow():
     # get all the initial settings from user
     com_port, num_sensors_int = get_initial_settings()
     co, mo, string_description, operator = get_order_details()
+
+
     # initialise the report generator
     report = ReportGenerator(
         port = com_port,
@@ -343,13 +345,17 @@ def run_configuraton_flow():
 
             txt_content = report.create_txt_content(aliases_and_uids_list=alias_and_uids_list) # create the .txt content for the report generator
 
-            #3. run calibration with retry handling:
+            #3. --------------------------------- run calibration with retry handling: ---------------------------------
             for uid in uids_list:
                 while True:
                     # use try loop to handle unexpected errors during calibration
                     try:
                         cal_df = ipx.calibrate(uid)
                         # validate cal_result
+                        # after getting calibration data, save it straight away?
+
+                        report.save_calibration_files(uid=uid, cal_df=cal_df) # save calibration data to file
+                
                         result_or_num_failed = configurator.validate_calibration_results(cal_df)
                         # unpack the  result_or_num_failed tuple of format ( bool, failed_sensor_nums| None)
                         sucess_bool , failed_sensor_nums = result_or_num_failed
@@ -422,7 +428,7 @@ def run_configuraton_flow():
             logging.info(f"Setting baud rate for all devices to {final_baud}")
             for uid in uids_list:
                 ipx.set_baud(uid=uid, baud=final_baud)
-            logging.info(f"Extensometer configuration successful")  
+            
             
         
         with IPXSerialCommunicator(port=com_port, baudrate=final_baud, verify=True) as ipx:
@@ -436,6 +442,8 @@ def run_configuraton_flow():
             report.save_report(final_status="Success")
             report.save_txt_file(txt_content=txt_content)
             logging.debug("Report generation completed successfully.")
+
+            logging.info(f"Extensometer configuration successful")  
 
             
                 # Try to catch any unexpected errrors

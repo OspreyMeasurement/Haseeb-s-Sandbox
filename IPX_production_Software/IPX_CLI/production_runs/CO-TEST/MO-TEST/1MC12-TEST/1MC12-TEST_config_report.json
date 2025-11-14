@@ -1,0 +1,139 @@
+{
+    "metadata": {
+        "CO number": "CO-TEST",
+        "MO number": "MO-TEST",
+        "String Description": "1MC12-TEST",
+        "Report ID": "20251114_094308",
+        "Start Time": "2025-11-14T09:43:08.437588",
+        "Operator": "HASEEB",
+        "COM Port": "COM5",
+        "Status": "In Progress",
+        "Detected UIDs": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+        ],
+        "status": "Success",
+        "End Time": "2025-11-14T09:48:23.499903",
+        "Duration (seconds)": 315.062315
+    },
+    "Sensors": {
+        "1": {
+            "final_status": {
+                "UID": "1",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "8",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        },
+        "2": {
+            "final_status": {
+                "UID": "2",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "7",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        },
+        "3": {
+            "final_status": {
+                "UID": "3",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "6",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        },
+        "4": {
+            "final_status": {
+                "UID": "4",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "5",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        },
+        "5": {
+            "final_status": {
+                "UID": "5",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "4",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        },
+        "6": {
+            "final_status": {
+                "UID": "6",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "3",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        },
+        "7": {
+            "final_status": {
+                "UID": "7",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "2",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        },
+        "8": {
+            "final_status": {
+                "UID": "8",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "1",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        }
+    }
+}
