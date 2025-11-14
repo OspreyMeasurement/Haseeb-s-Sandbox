@@ -518,6 +518,10 @@ class CALINBRATION_NO_CHANGE_ERROR(IPXConfigurationError):
     """Raised when calibration raw data shows no change across multiple readings"""
     pass
 
+class CALIBRATION_CHECK_ERROR(IPXConfigurationError):
+    """Raised when calibration results fail validation checks"""
+    pass
+
 """------------------------------------------------------------------------------------------------------------------------------------------------------"""
 
 
@@ -629,17 +633,41 @@ class IPXConfigurator:
 
 
 
-    def abnormal_high_magnitude_check(self, uid, raw_values: np.ndarray, max_raw_value=500) -> bool:
+    def abnormal_high_magnitude_check(self, uid, raw_values: np.ndarray, threshold=3.5, use_log=True) -> bool:
         """ small helper function for checking abnormally high magnitude values in raw data
-        Should also be used in raw_data_check_function"""
-        logging.debug(f"Performing abnormally high magnitude check on UID:{uid}")
+        Should also be used in raw_data_check_function
         
-        if np.any(np.abs(raw_values) > max_raw_value):
-            logging.error(f" CONFIGURATION FAILED: Sensor UID:{uid} has abnormally high raw data values: {raw_values}")
-            return False
+        Detects outliers in raw_values using the Median Absolute Deviation (MAD) method.
+            Args:
+                raw_values (np.array): Array of raw sensor values.
+                threshold (float): Modified z-score threshold to identify outliers.
+                use_log (bool): Whether to apply logarithmic scaling to the raw values.
+            Returns:
+            True if no abnormally high magnitude values are detected, False otherwise. (boolean)"""
+        logging.debug(f"Performing abnormally high magnitude check on UID:{uid}")
+
+        # Detect outliers using modified z-score method:
+        # firstly sort data
+        sorted_values = np.sort(raw_values)
+
+        if use_log:
+            y = np.log1p(np.abs(sorted_values)) # log scale for wide-range data
         else:
-            logging.debug(f"No abnormally high raw data values detected for UID:{uid}")
-            return True
+            y = sorted_values.copy()
+        
+        median = np.median(y)
+        mad_y = np.median(np.abs(y - median)) # median absolute deviation
+        # Avoid division by zero if mad_y is zero (rare but safe) (only happens if all values are identical)
+        if mad_y == 0:
+            raise CALIBRATION_CHECK_ERROR(f"Calibration check failed for UID:{uid} due to zero MAD value, indicating no variation in raw data values | VERY UNLIKELY.")
+        
+        for values in y:
+            modified_z_scores = 0.6745 * (values - median) / mad_y
+            if np.abs(modified_z_scores) > threshold:
+                logging.error(f" CONFIGURATION FAILED: Sensor UID:{uid} has abnormally high raw data values: {raw_values}, value trigger: {values} with modified z-score: {modified_z_scores}")
+                return False
+        logging.info(f"No abnormally high raw data values detected for UID:{uid}, check passed")
+        return True
 
     
 # CHECK FUNCTIONS SHOULD JUST RETURN BOOLEAN SUCCESS/FAILURE SUCCESS == TRUE, FAILURE == FALSE
