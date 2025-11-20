@@ -1,0 +1,9 @@
+Customer Order: CO-INSERT
+Manufacturing Order: MO-INSERT
+String Description: INSERT
+
+----------------------------------------
+INSERTS DETECTED - FOLLOWING UIDS:
+
+ UID: 0
+------------------------------

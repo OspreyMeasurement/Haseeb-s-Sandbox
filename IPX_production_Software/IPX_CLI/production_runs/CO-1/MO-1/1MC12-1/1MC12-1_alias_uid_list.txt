@@ -1,0 +1,9 @@
+Customer Order: CO-1
+Manufacturing Order: MO-1
+String Description: 1MC12-1
+
+----------------------------------------
+
+ Alias: 1
+ UID: 1020901182
+------------------------------

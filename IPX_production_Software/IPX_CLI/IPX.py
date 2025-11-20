@@ -567,35 +567,59 @@ class IPXConfigurator:
             return False # return false if failed to detect correct number of sensors after retries
 
 
-    def set_default_parameters(self, ipx:IPXSerialCommunicator, uids_list: list):
+    def set_default_parameters(self, ipx:IPXSerialCommunicator, uids_list: list, set_aliases: bool = True) -> list:
         """Private helper to loop through all uids and apply standard configurations + aliases"""
         logging.info("Appling deafualt parameters to all detected sensors...")
         uids_list
-        aliases_and_uids_list = list(zip(range(len(uids_list), 0, -1), uids_list)) # combine uids and list into a tuple in a list, of format (alias, uid)
-        logging.debug(f"Aliases and uid list completed succesfully: {aliases_and_uids_list}")
-        for alias_uid_tuple in aliases_and_uids_list:
+        # if set alis = false, skip setting aliases
 
-            alias = str(alias_uid_tuple[0]) # extract alias
-            uid = str(alias_uid_tuple[1]) # extract uid
-            logging.info(f"Beginning setting process for sensor uid :{uid}")
-            # now need to set all the paramaters, use all default config parameters in the IPXCommands section:
-            ipx.set_alias(uid, alias)
+        if set_aliases is True:
+            aliases_and_uids_list = list(zip(range(len(uids_list), 0, -1), uids_list)) # combine uids and list into a tuple in a list, of format (alias, uid)
+            logging.debug(f"Aliases and uid list completed succesfully: {aliases_and_uids_list}")
+            for alias_uid_tuple in aliases_and_uids_list:
 
-            ipx.set_gain(uid, gain=IPXCommands.Default_settings.Gain)
+                alias = str(alias_uid_tuple[0]) # extract alias
+                uid = str(alias_uid_tuple[1]) # extract uid
+                logging.info(f"Beginning setting process for sensor uid :{uid}")
+                # now need to set all the paramaters, use all default config parameters in the IPXCommands section:
 
-            ipx.set_centroid_threshold(uid, threshold=IPXCommands.Default_settings.Centroid_threshold)
+                ipx.set_alias(uid, alias)
+                
 
-            ipx.set_n_stds(uid=uid, n_stds=IPXCommands.Default_settings.N_stds)
+                ipx.set_gain(uid, gain=IPXCommands.Default_settings.Gain)
 
-            ipx.set_centroid_res(uid=uid, resolution=IPXCommands.Default_settings.Centroid_res)
+                ipx.set_centroid_threshold(uid, threshold=IPXCommands.Default_settings.Centroid_threshold)
 
-            ipx.set_term(uid=uid, termination=IPXCommands.Default_settings.Termination)
+                ipx.set_n_stds(uid=uid, n_stds=IPXCommands.Default_settings.N_stds)
 
-            logging.info(f"Setting parameters complete for sensor with uid:{uid}")
-        logging.info("All sensors have been set with default parameters")
-        return aliases_and_uids_list # return this for reference later on (useful in main.py for generating a .txt file with uids and corresponding aliases)
-        # alias and uid list is of format [(uid, alias), (uid, alias),.....] etc, with the last sensors uid being at the start of the list
-        # so [(8, 1), (7,2), (6,3), (5,4), (4,5), (3,6), (2,7), (1,8)] for 8 sensors connected etc 
+                ipx.set_centroid_res(uid=uid, resolution=IPXCommands.Default_settings.Centroid_res)
+
+                ipx.set_term(uid=uid, termination=IPXCommands.Default_settings.Termination)
+
+                logging.info(f"Setting parameters complete for sensor with uid:{uid}")
+            logging.info("All sensors have been set with default parameters")
+            return aliases_and_uids_list # return this for reference later on (useful in main.py for generating a .txt file with uids and corresponding aliases)
+            # alias and uid list is of format [(uid, alias), (uid, alias),.....] etc, with the last sensors uid being at the start of the list
+            # so [(8, 1), (7,2), (6,3), (5,4), (4,5), (3,6), (2,7), (1,8)] for 8 sensors connected etc 
+
+        else: # gxm inserts, so set all other paramaters except aliases:
+            for uid in uids_list:
+                logging.info(f"Beginning setting process for sensor uid :{uid}")
+                # now need to set all the paramaters, use all default config parameters in the IPXCommands section:
+
+                ipx.set_gain(uid, gain=IPXCommands.Default_settings.Gain)
+
+                ipx.set_centroid_threshold(uid, threshold=IPXCommands.Default_settings.Centroid_threshold)
+
+                ipx.set_n_stds(uid=uid, n_stds=IPXCommands.Default_settings.N_stds)
+
+                ipx.set_centroid_res(uid=uid, resolution=IPXCommands.Default_settings.Centroid_res)
+
+                ipx.set_term(uid=uid, termination=IPXCommands.Default_settings.Termination)
+
+                logging.info(f"Setting parameters complete for sensor with uid:{uid}")
+            logging.info("All sensors have been set with default parameters")
+            return uids_list # return this for reference later on
 
 
 # VALIDATION FUNCTIONS SHOULD ALWAYS RETURN A CONSISTENT TUPLE (SUCCESS BOOLEAN, DATA)

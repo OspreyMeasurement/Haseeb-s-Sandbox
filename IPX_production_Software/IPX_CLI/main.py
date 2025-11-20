@@ -24,6 +24,46 @@ class UserAbortError(Exception):
 
 
 baudrate = int(input("Enter baud rate (default 9600): ") or "9600")
+com_port = input("Enter COM port (default COM8): ") or "COM8"
+
+def get_baudrate():
+    """Get current baudrate value."""
+    return baudrate
+
+def set_com_port(new_port: str = None):
+    """
+    Function to change the global COM port setting.
+    If new_port is not provided, prompts user for input.
+    """
+    global com_port
+    
+    if new_port is None:
+        # Prompt user for new COM port
+        try:
+            print(f"Current COM port: {com_port}")
+            user_input = input("Enter new COM port (COM1, COM5, COM8, etc.) or press Enter to keep current: ").strip()
+            
+            if user_input == "":
+                logging.info(f"COM port unchanged: {com_port}")
+                return com_port
+            
+            # Basic validation for COM port format
+            if not user_input.upper().startswith('COM'):
+                user_input = f"COM{user_input}"  # Add COM prefix if missing
+            
+            com_port = user_input.upper()
+            logging.info(f"COM port updated to: {com_port}")
+            return com_port
+            
+        except KeyboardInterrupt:
+            logging.info("COM port change cancelled by user.")
+            return com_port
+    else:
+        # Direct assignment when called programmatically
+        com_port = new_port
+        logging.info(f"COM port set to: {com_port}")
+        return com_port
+
 
 def set_baudrate(new_baudrate: int = None):
     """
@@ -76,39 +116,33 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 # Function for getting order details from user:
 def get_order_details():
     """Gets customer order details from user input."""
-    customer_order = input("Enter Customer Order (CO) number: ").strip()
-    manufacturing_order = input("Enter Manufacturing Order (MO) number: ").strip()
-    string_description = input("Enter String Description: ").strip()
-    operator = input("Enter Operator Name/ID: ").strip()
-    return customer_order, manufacturing_order, string_description, operator
+    try:
+        customer_order = input("Enter Customer Order (CO) number: ").strip()
+        manufacturing_order = input("Enter Manufacturing Order (MO) number: ").strip()
+        string_description = input("Enter String Description: ").strip()
+        operator = input("Enter Operator Name/ID: ").strip()
+        return customer_order, manufacturing_order, string_description, operator
+    except KeyboardInterrupt:
+        logging.info("Order details input cancelled by user.")
+        raise UserAbortError("Order details input cancelled by user.")
 
 
 
 def get_initial_settings():
-    """ Gets com port and number of sensors from user.
+    """ Gets number of sensors from user.
     Get initial settings from cmd arguments or use defaults."""
     try:
-        # real app would list available ports
-        com_port = input("Enter COM port (default COM8): ") or "COM8"
+        # COM port is now global, only need number of sensors
         num_sensors_int = int(input("Enter number of input sensors: "))
-        return com_port, num_sensors_int
+        return num_sensors_int
     except (ValueError, KeyboardInterrupt):
         logging.error("Invalid input or operation cancelled.")
-        sys.exit(1)
-        return None, None
-
-
-def get_com_port():
-    """Helper function to get COM port from user."""
-    com_port = input("Enter COM port (default COM8): ") or "COM8"
-    return com_port
-
+        raise UserAbortError("Initial settings input cancelled by user.")
 
 
 def list_uids():
     """Helper function to list UIDs of connected sensors."""
-    port = get_com_port()
-    with IPXSerialCommunicator(port=port, baudrate=baudrate, verify=True) as ipx:
+    with IPXSerialCommunicator(port=com_port, baudrate=baudrate, verify=True) as ipx:
         uids = ipx.list_uids(data_type='list')
         logging.info(f"Connected sensor UIDs: {uids}")
         return uids
@@ -124,40 +158,48 @@ def prompt_user_on_cal_failure(uid:int, error_message: str = "") -> str:
     Handles user input when a calibration failure occurs
     """
     while True:
-        choice = input(
-                f"\n CRITICAL: Calibration for UID {uid} failed: {error_message}\n"
-                "   Choose an option:\n"
-                "   [1] Retry calibration for this sensor\n"
-                "   [2] Skip this sensor and continue\n"
-                "   [3] Abort the entire configuration\n"
-                "   Enter your choice (1, 2, or 3): "
-            ).strip()
-        if choice == '1': return "retry"
-        if choice == '2': return "skip"
-        if choice == '3':
-            # FOR ABORTING AND RETURNING TO MAIN MENU
+        try:
+            choice = input(
+                    f"\n CRITICAL: Calibration for UID {uid} failed: {error_message}\n"
+                    "   Choose an option:\n"
+                    "   [1] Retry calibration for this sensor\n"
+                    "   [2] Skip this sensor and continue\n"
+                    "   [3] Abort the entire configuration\n"
+                    "   Enter your choice (1, 2, or 3): "
+                ).strip()
+            if choice == '1': return "retry"
+            if choice == '2': return "skip"
+            if choice == '3':
+                # FOR ABORTING AND RETURNING TO MAIN MENU
+                raise UserAbortError("User aborted configuration during calibration failure.")
+            print("Invalid choice. Please enter 1, 2, or 3.")
+        except KeyboardInterrupt:
+            logging.info("Calibration failure prompt cancelled by user.")
             raise UserAbortError("User aborted configuration during calibration failure.")
-        print("Invalid choice. Please enter 1, 2, or 3.")
 
 def prompt_user_on_other_failure(error_message:str = "") -> str:
     """
     Handles user input when a non-calibration failure occurs
     """
     while True:
-        choice = input(
-                "\n ERROR: An error occurred.\n"
-                "   Choose an option:\n"
-                "   [1] Retry the operation\n"
-                "   [2] Skip and continue\n"
-                "   [3] Abort the entire operation\n"
-                "   Enter your choice (1, 2, or 3): "
-            ).strip()
-        if choice == '1': return "retry"
-        if choice == '2': return "skip"
-        if choice == '3': 
-            # FOR ABORTING AND RETURNING TO MAIN MENU
+        try:
+            choice = input(
+                    "\n ERROR: An error occurred.\n"
+                    "   Choose an option:\n"
+                    "   [1] Retry the operation\n"
+                    "   [2] Skip and continue\n"
+                    "   [3] Abort the entire operation\n"
+                    "   Enter your choice (1, 2, or 3): "
+                ).strip()
+            if choice == '1': return "retry"
+            if choice == '2': return "skip"
+            if choice == '3': 
+                # FOR ABORTING AND RETURNING TO MAIN MENU
+                raise UserAbortError("User aborted operation during error handling.")
+            print("Invalid choice. Please enter 1, 2, or 3.")
+        except KeyboardInterrupt:
+            logging.info("Error handling prompt cancelled by user.")
             raise UserAbortError("User aborted operation during error handling.")
-        print("Invalid choice. Please enter 1, 2, or 3.")
 
 
 def retry_on_failure(operation_func, prompt_func, success_message: str = None, *args, **kwargs):
@@ -298,7 +340,11 @@ def run_uid_update_flow():
             for old_uids in uids_list:
                 display_uid_table(uid_mappings, uids_list) # display the uid table before each scan
 
-                new_uid_str = input(f"Scan new UID for sensor with Old UID (Top to bottom): {old_uids}: ")
+                try:
+                    new_uid_str = input(f"Scan new UID for sensor with Old UID (Top to bottom): {old_uids}: ")
+                except KeyboardInterrupt:
+                    logging.info("UID scanning cancelled by user.")
+                    raise UserAbortError("UID update cancelled by user.")
                 
                 try:
                     new_uid = int(new_uid_str) # convert to int to
@@ -312,7 +358,12 @@ def run_uid_update_flow():
 
             display_uid_table(uid_mappings, uids_list) # final display
 
-            confirm = input("Confirm applying these UID changes? (y/n): ").strip().lower()
+            try:
+                confirm = input("Confirm applying these UID changes? (y/n): ").strip().lower()
+            except KeyboardInterrupt:
+                logging.info("UID update confirmation cancelled by user.")
+                raise UserAbortError("UID update cancelled by user.")
+                
             if confirm != 'y':
                 logging.warning("UID update cancelled by user.")
                 return
@@ -342,201 +393,227 @@ def run_uid_update_flow():
 
 
 # Main function for handling configuration with user inputs:
-def run_configuraton_flow():
+def run_configuration_flow():
     """Handles full sensor configuration flow."""  
-    # get all the initial settings from user
-    com_port, num_sensors_int = get_initial_settings()
-    co, mo, string_description, operator = get_order_details()
-
-
-    # initialise the report generator
-    report = ReportGenerator(
-        port = com_port,
-        customer_order = co,
-        manufacturing_order = mo,
-        string_description = string_description,
-        operator = operator
-    )
-
-
-
-    configurator = IPXConfigurator(port=com_port, initial_baudrate=baudrate)
-
-    logging.info(f"--- Starting new external configuration session on {com_port} for {num_sensors_int} sensors ---")
     try:
-        with IPXSerialCommunicator(port=com_port, baudrate=baudrate, verify=True) as ipx:
-            # Step 1: Verify sensor count with automatic retry handling
-            uids_list = retry_on_failure(
-                operation_func=configurator.verify_sensor_count,
-                prompt_func=prompt_user_on_other_failure,
-                success_message=f"Successfully detected {num_sensors_int} sensors",
-                ipx=ipx,
-                num_sensors=num_sensors_int
-            )
-            
-            # could add failure rerpot?
-            if uids_list is None:
-                logging.error("Sensor detection failed or was skipped. Exiting configuration.")
-                return
+        # get all the initial settings from user
+        num_sensors_int = get_initial_settings()
+        co, mo, string_description, operator = get_order_details()
 
-            
-            report.set_detected_sensors(uids_list) # NEW log detected UIDs to report:
 
-            #2. apply default parameters to all sensors:
+        # initialise the report generator
+        report = ReportGenerator(
+            port = com_port,
+            customer_order = co,
+            manufacturing_order = mo,
+            string_description = string_description,
+            operator = operator
+        )
 
-            alias_and_uids_list = configurator.set_default_parameters(ipx, uids_list)
 
-            txt_content = report.create_txt_content(aliases_and_uids_list=alias_and_uids_list) # create the .txt content for the report generator
 
-            #3. --------------------------------- run calibration with retry handling: ---------------------------------
-            for uid in uids_list:
+        configurator = IPXConfigurator(port=com_port, initial_baudrate=baudrate)
+
+        logging.info(f"--- Starting new external configuration session on {com_port} for {num_sensors_int} sensors ---")
+        try:
+            with IPXSerialCommunicator(port=com_port, baudrate=baudrate, verify=True) as ipx:
+                # Step 1: Verify sensor count with automatic retry handling
+                uids_list = retry_on_failure(
+                    operation_func=configurator.verify_sensor_count,
+                    prompt_func=prompt_user_on_other_failure,
+                    success_message=f"Successfully detected {num_sensors_int} sensors",
+                    ipx=ipx,
+                    num_sensors=num_sensors_int
+                )
                 
-                counter = 0 # initialize a counter for calibration attempts, once we get to 3 cal attempts we can prompt user to skip/abort/retry the configuration for that specific sensor
+                # could add failure rerpot?
+                if uids_list is None:
+                    logging.error("Sensor detection failed or was skipped. Exiting configuration.")
+                    return
 
-                while True:
-                    # use try loop to handle unexpected errors during calibration
+
+                
+                report.set_detected_sensors(uids_list) # NEW log detected UIDs to report:
+
+                #2. apply default parameters to all sensors:
+                if all(str(uid).startswith("104") for uid in uids_list): # this are the inserts, skip assigning aliases to them
+                    logging.info("Inserts detected, skipping alias assigning process")
+
+
+                    configurator.set_default_parameters(ipx, uids_list, set_aliases=False)
+                    txt_content = report.create_txt_content(aliases_and_uids_list=uids_list, inserts=True) # create the .txt content for the report generator
+
+                # add a check in case there are some 104s connected and this should abort process
+                elif any(str(uid).startswith("104") for uid in uids_list): # little error catch for mixed sensor types
+                    logging.critical("Mixed sensor types detected (inserts and extensometers). Aborting configuration.")
+                    raise UserAbortError("Configuration aborted due to mixed sensor types (inserts and extensometers).")
+
+
+                # else will be normal extensometers    
+                else:
+                    logging.info("Normal extensometers detected, proceeding with full configuration (including alias assignment) ")
+                    alias_and_uids_list = configurator.set_default_parameters(ipx, uids_list)
+                    txt_content = report.create_txt_content(aliases_and_uids_list=alias_and_uids_list) # create the .txt content for the report generator
+                
+
+                #3. --------------------------------- run calibration with retry handling: ---------------------------------
+                for uid in uids_list:
                     
-                    counter += 1
-                    try:
-                        cal_df = ipx.calibrate(uid)
-                        # validate cal_result
-                        # after getting calibration data, save it straight away?
+                    counter = 0 # initialize a counter for calibration attempts, once we get to 3 cal attempts we can prompt user to skip/abort/retry the configuration for that specific sensor
 
-                        report.save_calibration_files(uid=uid, cal_df=cal_df) # save calibration data to file
-                
-                        result_or_num_failed = configurator.validate_calibration_results(cal_df)
-                        # unpack the  result_or_num_failed tuple of format ( bool, failed_sensor_nums| None)
-                        sucess_bool , failed_sensor_nums = result_or_num_failed
+                    while True:
+                        # use try loop to handle unexpected errors during calibration
+                        
+                        counter += 1
+                        try:
+                            cal_df = ipx.calibrate(uid)
+                            # validate cal_result
+                            # after getting calibration data, save it straight away?
 
-                        if sucess_bool == True:
-                            # ---- INITIAL CALIBRATION CHECK PASSED ----
-                            # we should also do the abnormal high magnitude check here as well, if rawdatacheck is not called 
+                            report.save_calibration_files(uid=uid, cal_df=cal_df) # save calibration data to file
+                    
+                            result_or_num_failed = configurator.validate_calibration_results(cal_df)
+                            # unpack the  result_or_num_failed tuple of format ( bool, failed_sensor_nums| None)
+                            sucess_bool , failed_sensor_nums = result_or_num_failed
 
-                            # this is all due to abnormal magnitude
-                            #1. if we've failed < 3 times, auto retry
-                            raw_data = ipx.get_raw(uid=uid, data_type='array')
-                            if not configurator.abnormal_high_magnitude_check(uid, raw_values=raw_data): # if result is false run this loop
-                                if counter < 3:
-                                    logging.warning(f"Calibration for UID {uid} has failed abnormal high magnitude check {counter} times, retrying automatically.")
-                                    continue # retry calibration automatically
-                                # if we've failed > 3 times, then prompt user for action
-                                else:
-                                    logging.warning(f"Calibration for UID {uid} has failed abnormal high magnitude check {counter} times., prompting user for action.")
-                                    choice = prompt_user_on_cal_failure(uid, error_message=f"Abnormal high magnitude detected in raw data after successful calibration, for uid {uid} with raw values: {raw_data}." )
+                            if sucess_bool == True:
+                                # ---- INITIAL CALIBRATION CHECK PASSED ----
+                                # we should also do the abnormal high magnitude check here as well, if rawdatacheck is not called 
 
-                                    if choice == "retry":
-                                        logging.info(f"Retrying calibration for UID {uid} due to abnormal high magnitude...")
-                                        continue
-                                    elif choice == "skip":
-                                        logging.warning(f"User chose to skip retrying calibration for UID {uid}.")
-                                        break  # exit while loop to skip
-                                    elif choice == "abort":
-                                        logging.warning("User aborted configuration.")
-                                        raise UserAbortError("Configuration aborted by user.") # maybe not system exit, return to main menu
-                                logging.info(f"Abnormal high magnitude check passed for UID {uid}")
+                                # this is all due to abnormal magnitude
+                                #1. if we've failed < 3 times, auto retry
+                                raw_data = ipx.get_raw(uid=uid, data_type='array')
+                                if not configurator.abnormal_high_magnitude_check(uid, raw_values=raw_data): # if result is false run this loop
+                                    if counter < 3:
+                                        logging.warning(f"Calibration for UID {uid} has failed abnormal high magnitude check {counter} times, retrying automatically.")
+                                        continue # retry calibration automatically
+                                    # if we've failed > 3 times, then prompt user for action
+                                    else:
+                                        logging.warning(f"Calibration for UID {uid} has failed abnormal high magnitude check {counter} times., prompting user for action.")
+                                        choice = prompt_user_on_cal_failure(uid, error_message=f"Abnormal high magnitude detected in raw data after successful calibration, for uid {uid} with raw values: {raw_data}." )
+
+                                        if choice == "retry":
+                                            logging.info(f"Retrying calibration for UID {uid} due to abnormal high magnitude...")
+                                            continue
+                                        elif choice == "skip":
+                                            logging.warning(f"User chose to skip retrying calibration for UID {uid}.")
+                                            break  # exit while loop to skip
+                                        elif choice == "abort":
+                                            logging.warning("User aborted configuration.")
+                                            raise UserAbortError("Configuration aborted by user.") # maybe not system exit, return to main menu
+                                    logging.info(f"Abnormal high magnitude check passed for UID {uid}")
+                                    logging.info(f"Calibration successful for UID {uid}")
+                                
+                                # if magnitude check passed:
                                 logging.info(f"Calibration successful for UID {uid}")
-                            
-                            # if magnitude check passed:
-                            logging.info(f"Calibration successful for UID {uid}")
-                            break  # exit while loop on success
-
-                        # no need for raw data check if it didnt fail
-                        # ------ INITIAL CALIBRATION CHECK FAILED (DUE TO ZERO MEAN/STD DEV) ------
-                        else:
-                            result2 = configurator.raw_data_check(ipx=ipx, uid=uid, sensor_index=failed_sensor_nums)
-                            if result2 == True:
-                                logging.info(f"Calibration successful for UID {uid} after raw data check")
                                 break  # exit while loop on success
 
-                            #if fails, retry calibration automatically, or give user option
+                            # no need for raw data check if it didnt fail
+                            # ------ INITIAL CALIBRATION CHECK FAILED (DUE TO ZERO MEAN/STD DEV) ------
                             else:
-                                if counter < 3:
-                                    logging.warning(f"Calibration for UID {uid} has failed stuck sensor/raw data check {counter} times, retrying automatically.")
-                                    continue # retry calibration automatically
+                                result2 = configurator.raw_data_check(ipx=ipx, uid=uid, sensor_index=failed_sensor_nums)
+                                if result2 == True:
+                                    logging.info(f"Calibration successful for UID {uid} after raw data check")
+                                    break  # exit while loop on success
+
+                                #if fails, retry calibration automatically, or give user option
                                 else:
-                                    logging.warning(f"Calibration for UID {uid} has failed stuck sensor/raw data check {counter} times., prompting user for action.")
-                                    choice = prompt_user_on_cal_failure(uid, error_message= f"Calibration validation failed after stuck sensor check, due to either\n"
-                                    f"Stuck sensor, or Abnormal high magnitude in raw data, for uid {uid}.\n")
-                                    if choice == "retry":
-                                        logging.info(f"Retrying calibration for UID {uid}...")
-                                        continue
-                                    elif choice == "skip":
-                                        logging.warning(f"User chose to skip retrying calibration for UID {uid}.")
-                                        break  # exit while loop to skip
-                                    elif choice == "abort":
-                                        logging.warning("User aborted configuration.")
-                                        raise UserAbortError("Configuration aborted by user.") # maybe not system exit, return to main menu
-                                
-                                # if we reach here, it means we need to handle error and give user option to retry/skip/abort
+                                    if counter < 3:
+                                        logging.warning(f"Calibration for UID {uid} has failed stuck sensor/raw data check {counter} times, retrying automatically.")
+                                        continue # retry calibration automatically
+                                    else:
+                                        logging.warning(f"Calibration for UID {uid} has failed stuck sensor/raw data check {counter} times., prompting user for action.")
+                                        choice = prompt_user_on_cal_failure(uid, error_message= f"Calibration validation failed after stuck sensor check, due to either\n"
+                                        f"Stuck sensor, or Abnormal high magnitude in raw data, for uid {uid}.\n")
+                                        if choice == "retry":
+                                            logging.info(f"Retrying calibration for UID {uid}...")
+                                            continue
+                                        elif choice == "skip":
+                                            logging.warning(f"User chose to skip retrying calibration for UID {uid}.")
+                                            break  # exit while loop to skip
+                                        elif choice == "abort":
+                                            logging.warning("User aborted configuration.")
+                                            raise UserAbortError("Configuration aborted by user.") # maybe not system exit, return to main menu
+                                    
+                                    # if we reach here, it means we need to handle error and give user option to retry/skip/abort
 
 
+                            
+
+                        except Exception as e: # if we get an error do we want to retry this calibration?
+                            logging.error(f"An error occurred during calibration for UID {uid}: {e}", exc_info=True)
+                            choice = prompt_user_on_cal_failure(uid, error_message=f" An unexpected error occurred during calibration: {e}")
+
+                            if choice == "retry":
+                                logging.info(f"Retrying calibration for UID {uid}...")
+                                continue
                         
+                            elif choice == "skip":
+                                logging.warning(f"User chose to skip retrying calibration for UID {uid}, moving on to next sensor")
+                                break  # exit while loop to skip
 
-                    except Exception as e: # if we get an error do we want to retry this calibration?
-                        logging.error(f"An error occurred during calibration for UID {uid}: {e}", exc_info=True)
-                        choice = prompt_user_on_cal_failure(uid, error_message=f" An unexpected error occurred during calibration: {e}")
-
-                        if choice == "retry":
-                            logging.info(f"Retrying calibration for UID {uid}...")
-                            continue
-                    
-                        elif choice == "skip":
-                            logging.warning(f"User chose to skip retrying calibration for UID {uid}, moving on to next sensor")
-                            break  # exit while loop to skip
-
-                        elif choice == "abort" or choice: # or choice incase user inputs something else, so will always abort
-                            logging.warning("User aborted configuration.")
-                            raise UserAbortError("Configuration aborted by user.")
+                            elif choice == "abort":
+                                logging.warning("User aborted configuration.")
+                                raise UserAbortError("Configuration aborted by user.")
+                
+                #4. now check for abnormal high magnitude raw data across all sensors (after configuration):
+                # the only thing is that we are already doing a raw data check and then doing the abnomalous high magnitude check, we should integrate this into the raw data check function?
+                # The abnormal high magnitude check should be integrated during the calibration loop, as we can choose to re-calibrate a function an abnormal mag is present
+                        
+                #5. set final baud rate to 9600 for all sensors:
+                final_baud = IPXCommands.Default_settings.Baud_rate
+                logging.info(f"Setting baud rate for all devices to {final_baud}")
+                for uid in uids_list:
+                    ipx.set_baud(uid=uid, baud=final_baud)
+                
+                
             
-            #4. now check for abnormal high magnitude raw data across all sensors (after configuration):
-            # the only thing is that we are already doing a raw data check and then doing the abnomalous high magnitude check, we should integrate this into the raw data check function?
-            # The abnormal high magnitude check should be integrated during the calibration loop, as we can choose to re-calibrate a function an abnormal mag is present
-                    
-            #5. set final baud rate to 9600 for all sensors:
-            final_baud = IPXCommands.Default_settings.Baud_rate
-            logging.info(f"Setting baud rate for all devices to {final_baud}")
-            for uid in uids_list:
-                ipx.set_baud(uid=uid, baud=final_baud)
-            
-            
-        
-        with IPXSerialCommunicator(port=com_port, baudrate=final_baud, verify=True) as ipx:
-            # Final get status to store in the report
-            for uid in uids_list:
-                #put this into a try catch, while retry loop, as have had issues where a sensor hasnt responded in time
-                retry_on_exception(
-                    operation_func=lambda: report.add_sensor_data(uid=uid, data_key='final_status', data_value=ipx.get_status(uid=uid, data_type='dict')),
-                    prompt_func=prompt_user_on_other_failure
-                )
-                logging.debug(f"Successfully retrieved final status for UID {uid}")
+            with IPXSerialCommunicator(port=com_port, baudrate=final_baud, verify=True) as ipx:
+                # Final get status to store in the report
+                for uid in uids_list:
+                    #put this into a try catch, while retry loop, as have had issues where a sensor hasnt responded in time
+                    retry_on_exception(
+                        operation_func=lambda: report.add_sensor_data(uid=uid, data_key='final_status', data_value=ipx.get_status(uid=uid, data_type='dict')),
+                        prompt_func=prompt_user_on_other_failure
+                    )
+                    logging.debug(f"Successfully retrieved final status for UID {uid}")
 
-            # save final json report and uid + alias text file:
-            report.save_report(final_status="Success")
-            report.save_txt_file(txt_content=txt_content)
-            logging.debug("Report generation completed successfully.")
+                # save final json report and uid + alias text file:
+                report.save_report(final_status="Success")
+                report.save_txt_file(txt_content=txt_content)
+                logging.debug("Report generation completed successfully.")
+                logging.info("-----------------------------------------------")
+                logging.info(f"EXTENSOMETER CONFIGURATION SUCCESSFUL")  
+                logging.info("-----------------------------------------------")
 
-            logging.info(f"Extensometer configuration successful")  
-
+                
+                    # Try to catch any unexpected errrors
+        except UserAbortError:
+            # Re-raise UserAbortError so it's handled by main menu
+            logging.info("Configuration aborted by user.")
+            raise
+        except(IPXSerialError,RuntimeError) as e:
+            logging.critical(f" CONFIGURATION FAILED: A critical error occurred: {e}")
+            return False
             
-                # Try to catch any unexpected errrors
-    except(IPXSerialError,RuntimeError) as e:
-        logging.critical(f" CONFIGURATION FAILED: A critical error occurred: {e}")
-        return False
-        
-    except Exception as e:
-        # Catch any other unexpected errors
-        logging.critical(f"CONFIGURATION FAILED: An unexpected error occurred: {e}", exc_info=True)
-        return False
+        except Exception as e:
+            # Catch any other unexpected errors
+            logging.critical(f"CONFIGURATION FAILED: An unexpected error occurred: {e}", exc_info=True)
+            return False
+
+    except KeyboardInterrupt:
+        logging.info("Configuration flow interrupted by user (Ctrl+C). Returning to main menu.")
+        raise UserAbortError("Configuration flow cancelled by user.")
     
 
 def initial_uid_update():
     """ Function for renaming the UIDs of sensors initially. Automatically renames sensors to 
     sequential UIDs starting from 1 based on the number of sensors detected."""
     logging.info("--- Starting initial UID update session ---")
-    com_port = get_com_port() # _ as we only need com_port here
     if not com_port:
         logging.error("Invalid COM port")
         return
+    baudrate = get_baudrate()
     while True:
         with IPXSerialCommunicator(port=com_port, baudrate=baudrate, verify=True) as ipx: # instantiate communicator
             uids_list = retry_on_exception(operation_func=ipx.list_uids, prompt_func=prompt_user_on_other_failure, data_type='list')# use retry on exception to get uuds as list 
@@ -548,7 +625,13 @@ def initial_uid_update():
             print(uids_list)
             last_uid = uids_list[-1] # get last element in uid list
             new_uid = len(uids_list)  # sequential UID starting from 1
-            confirm = input(f"Press Enter to set UID of sensor with current UID {last_uid} to new UID {new_uid}... or abort (type 'abort'): or type 'retry' retry uid update ").strip().lower()
+            
+            try:
+                confirm = input(f"Press Enter to set UID of sensor with current UID {last_uid} to new UID {new_uid}... or abort (type 'abort'): or type 'retry' retry uid update ").strip().lower()
+            except KeyboardInterrupt:
+                logging.info("UID update cancelled by user.")
+                raise UserAbortError("UID update cancelled by user.")
+                
             if confirm == "": # proceed to next, and rename uid
                 ipx.set_uid(current_uid=last_uid, new_uid=new_uid) # set uid to new uid
                 logging.info(f"Successfully updated UID from {last_uid} to {new_uid}")
@@ -560,7 +643,12 @@ def initial_uid_update():
                 continue
 
             logging.info("Proceeding to next UID update..., Please press enter when ready.")
-            confirm = input("Press Enter to continue updating the next sensor UID, or type 'exit' to finish: ").strip().lower()
+            try:
+                confirm = input("Press Enter to continue updating the next sensor UID, or type 'exit' to finish: ").strip().lower()
+            except KeyboardInterrupt:
+                logging.info("UID update cancelled by user.")
+                raise UserAbortError("UID update cancelled by user.")
+                
             if confirm == "":
                 continue
             if confirm == "exit" or confirm:
@@ -576,12 +664,12 @@ def switch_all_to_115200():
     """ Function to switch all connected sensors to 115200 baud rate."""
     # Firstly detect sensors on the given com port
     # instantiate configurato
-    com_port = get_com_port() # _ as we only need com_port here
+    num_sensors_int = get_initial_settings()
     configurator = IPXConfigurator(port=com_port, initial_baudrate=9600)
 
 
-    if not com_port:
-        logging.error("Invalid COM port")
+    if not com_port or not num_sensors_int:
+        logging.error("Invalid COM port or number of sensors.")
         return
     try:
         with IPXSerialCommunicator(port=com_port, baudrate=9600, verify=True) as ipx:
@@ -635,7 +723,8 @@ def main_menu():
     while True:
         # Clear the terminal screen ('cls' for Windows, 'clear' for macOS/Linux)
 
-        print("Current Baud Rate:", baudrate)
+        print(f"Current COM Port: {com_port}")
+        print(f"Current Baud Rate: {baudrate}")
         print("Select an option:")
         print("cls for clearing the terminal")
         print("1. Update Sensor UIDs via Barcode Scanner")
@@ -644,9 +733,10 @@ def main_menu():
         print("4. List uids of connected sensors")
         print("5. Switch all connected sensors to 115200 baud rate")
         print("6. Change Baud Rate")
+        print("7. Change COM Port")
         print("Ctrl+C to exit")
 
-        choice = input("Enter your choice (1, 2, 3, 4, 5, 6): ").strip()
+        choice = input("Enter your choice (1, 2, 3, 4, 5, 6, 7): ").strip()
     
 
         try:
@@ -655,16 +745,17 @@ def main_menu():
             elif choice == '1':
                 run_uid_update_flow()
             elif choice == '2':
-                run_configuraton_flow()
+                run_configuration_flow()
             elif choice == '3':
                 initial_uid_update()
             elif choice == '4':
                 list_uids()
             elif choice == '5': switch_all_to_115200() 
             elif choice == '6': set_baudrate()  # prompt user to change baud rate
+            elif choice == '7': set_com_port()  # prompt user to change COM port
             else:
-                print("Invalid choice. Please enter 1,2,3,4, 5.")
-            time.sleep(3) # brief pause before returning to main menu
+                print("Invalid choice. Please enter 1, 2, 3, 4, 5, 6, or 7.")
+            time.sleep(1) # brief pause before returning to main menu
 
         except UserAbortError as e:
             logging.warning(f"Operation aborted by user: {e}")

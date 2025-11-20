@@ -245,7 +245,7 @@ class ReportGenerator:
 
 
     # create a function to get the txt file ready, and then another function to save
-    def create_txt_content(self, aliases_and_uids_list: list[tuple[str, str]]):
+    def create_txt_content(self, aliases_and_uids_list: list[tuple[str, str]], inserts:bool = False):
         """ New method to save a txt file with aliases and UIDs (would be good for UID requests)"""
         try:
             logging.debug("Generating txt file with aliases and UIDs")
@@ -260,10 +260,19 @@ class ReportGenerator:
             txt_lines.append(f"String Description: {meta['String Description']}")
             txt_lines.append("\n" + "-" * 40)
             
-            for alias, uid in aliases_and_uids_list:
-                txt_lines.append(f"\n Alias: {alias}")
-                txt_lines.append(f" UID: {uid}")
-                txt_lines.append("-" * 30)
+            if inserts is False:
+                txt_lines.append("Alias and UID List:")
+                for alias, uid in aliases_and_uids_list:
+                    txt_lines.append(f"\n Alias: {alias}")
+                    txt_lines.append(f" UID: {uid}")
+                    txt_lines.append("-" * 30)
+            else: 
+                txt_lines.append("INSERTS DETECTED - FOLLOWING UIDS:")
+                for uid in aliases_and_uids_list:
+                    uid = str(uid)  # ensure uid is string
+                    txt_lines.append(f"\n UID: {uid}")  # uid is just uid here 
+                    txt_lines.append("-" * 30)
+
             return "\n".join(txt_lines)  # Join all lines with newlines to get final string
         except Exception as e:
             logging.error(f"Error generating txt content: {e}")
