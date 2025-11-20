@@ -662,6 +662,8 @@ class IPXConfigurator:
             raise CALIBRATION_CHECK_ERROR(f"Calibration check failed for UID:{uid} due to zero MAD value, indicating no variation in raw data values | VERY UNLIKELY.")
         
         for values in y:
+            if values == 0:
+                continue # skip zero values to avoid false positives
             modified_z_scores = 0.6745 * (values - median) / mad_y
             if np.abs(modified_z_scores) > threshold:
                 logging.error(f" CONFIGURATION FAILED: Sensor UID:{uid} has abnormally high raw data values: {raw_values}, value trigger: {values} with modified z-score: {modified_z_scores}")

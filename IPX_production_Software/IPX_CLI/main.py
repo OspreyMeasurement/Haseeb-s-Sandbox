@@ -25,6 +25,49 @@ class UserAbortError(Exception):
 
 baudrate = int(input("Enter baud rate (default 9600): ") or "9600")
 
+def set_baudrate(new_baudrate: int = None):
+    """
+    Function to change the global baudrate setting.
+    If new_baudrate is not provided, prompts user for input.
+    """
+    global baudrate
+    
+    if new_baudrate is None:
+        # Prompt user for new baudrate
+        try:
+            print(f"Current baud rate: {baudrate}")
+            user_input = input("Enter new baud rate (9600, 115200, etc.) or press Enter to keep current: ").strip()
+            
+            if user_input == "":
+                logging.info(f"Baud rate unchanged: {baudrate}")
+                return baudrate
+            
+            new_baudrate = int(user_input)
+            
+            # Validate common baud rates
+            valid_rates = [9600, 115200]
+            if new_baudrate not in valid_rates:
+                confirm = input(f"Warning: {new_baudrate} is not a standard baud rate. Continue? (y/n): ").strip().lower()
+                if confirm != 'y':
+                    logging.info("Baud rate change cancelled.")
+                    return baudrate
+            
+            baudrate = new_baudrate
+            logging.info(f"Baud rate updated to: {baudrate}")
+            return baudrate
+            
+        except ValueError:
+            logging.error("Invalid baud rate entered. Must be a number.")
+            return baudrate
+        except KeyboardInterrupt:
+            logging.info("Baud rate change cancelled by user.")
+            return baudrate
+    else:
+        # Direct assignment when called programmatically
+        baudrate = new_baudrate
+        logging.info(f"Baud rate set to: {baudrate}")
+        return baudrate
+
 
 # setup log level
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -76,13 +119,13 @@ def list_uids():
     
 
 #
-def prompt_user_on_cal_failure(uid:int) -> str:
+def prompt_user_on_cal_failure(uid:int, error_message: str = "") -> str:
     """
     Handles user input when a calibration failure occurs
     """
     while True:
         choice = input(
-                f"\n CRITICAL: Calibration for UID {uid} failed.\n"
+                f"\n CRITICAL: Calibration for UID {uid} failed: {error_message}\n"
                 "   Choose an option:\n"
                 "   [1] Retry calibration for this sensor\n"
                 "   [2] Skip this sensor and continue\n"
@@ -96,7 +139,7 @@ def prompt_user_on_cal_failure(uid:int) -> str:
             raise UserAbortError("User aborted configuration during calibration failure.")
         print("Invalid choice. Please enter 1, 2, or 3.")
 
-def prompt_user_on_other_failure() -> str:
+def prompt_user_on_other_failure(error_message:str = "") -> str:
     """
     Handles user input when a non-calibration failure occurs
     """
@@ -347,8 +390,13 @@ def run_configuraton_flow():
 
             #3. --------------------------------- run calibration with retry handling: ---------------------------------
             for uid in uids_list:
+                
+                counter = 0 # initialize a counter for calibration attempts, once we get to 3 cal attempts we can prompt user to skip/abort/retry the configuration for that specific sensor
+
                 while True:
                     # use try loop to handle unexpected errors during calibration
+                    
+                    counter += 1
                     try:
                         cal_df = ipx.calibrate(uid)
                         # validate cal_result
@@ -363,19 +411,32 @@ def run_configuraton_flow():
                         if sucess_bool == True:
                             # ---- INITIAL CALIBRATION CHECK PASSED ----
                             # we should also do the abnormal high magnitude check here as well, if rawdatacheck is not called 
+
+                            # this is all due to abnormal magnitude
+                            #1. if we've failed < 3 times, auto retry
                             raw_data = ipx.get_raw(uid=uid, data_type='array')
                             if not configurator.abnormal_high_magnitude_check(uid, raw_values=raw_data): # if result is false run this loop
-                                choice = prompt_user_on_cal_failure(uid)
-                                if choice == "retry":
-                                    logging.info(f"Retrying calibration for UID {uid} due to abnormal high magnitude...")
-                                    continue
-                                elif choice == "skip":
-                                    logging.warning(f"User chose to skip retrying calibration for UID {uid}.")
-                                    break  # exit while loop to skip
-                                elif choice == "abort":
-                                    logging.warning("User aborted configuration.")
-                                    raise UserAbortError("Configuration aborted by user.") # maybe not system exit, return to main menu
-                            logging.info(f"Abnormal high magnitude check passed for UID {uid}")
+                                if counter < 3:
+                                    logging.warning(f"Calibration for UID {uid} has failed abnormal high magnitude check {counter} times, retrying automatically.")
+                                    continue # retry calibration automatically
+                                # if we've failed > 3 times, then prompt user for action
+                                else:
+                                    logging.warning(f"Calibration for UID {uid} has failed abnormal high magnitude check {counter} times., prompting user for action.")
+                                    choice = prompt_user_on_cal_failure(uid, error_message=f"Abnormal high magnitude detected in raw data after successful calibration, for uid {uid} with raw values: {raw_data}." )
+
+                                    if choice == "retry":
+                                        logging.info(f"Retrying calibration for UID {uid} due to abnormal high magnitude...")
+                                        continue
+                                    elif choice == "skip":
+                                        logging.warning(f"User chose to skip retrying calibration for UID {uid}.")
+                                        break  # exit while loop to skip
+                                    elif choice == "abort":
+                                        logging.warning("User aborted configuration.")
+                                        raise UserAbortError("Configuration aborted by user.") # maybe not system exit, return to main menu
+                                logging.info(f"Abnormal high magnitude check passed for UID {uid}")
+                                logging.info(f"Calibration successful for UID {uid}")
+                            
+                            # if magnitude check passed:
                             logging.info(f"Calibration successful for UID {uid}")
                             break  # exit while loop on success
 
@@ -386,17 +447,25 @@ def run_configuraton_flow():
                             if result2 == True:
                                 logging.info(f"Calibration successful for UID {uid} after raw data check")
                                 break  # exit while loop on success
+
+                            #if fails, retry calibration automatically, or give user option
                             else:
-                                choice = prompt_user_on_cal_failure(uid)
-                                if choice == "retry":
-                                    logging.info(f"Retrying calibration for UID {uid}...")
-                                    continue
-                                elif choice == "skip":
-                                    logging.warning(f"User chose to skip retrying calibration for UID {uid}.")
-                                    break  # exit while loop to skip
-                                elif choice == "abort":
-                                    logging.warning("User aborted configuration.")
-                                    raise UserAbortError("Configuration aborted by user.") # maybe not system exit, return to main menu
+                                if counter < 3:
+                                    logging.warning(f"Calibration for UID {uid} has failed stuck sensor/raw data check {counter} times, retrying automatically.")
+                                    continue # retry calibration automatically
+                                else:
+                                    logging.warning(f"Calibration for UID {uid} has failed stuck sensor/raw data check {counter} times., prompting user for action.")
+                                    choice = prompt_user_on_cal_failure(uid, error_message= f"Calibration validation failed after stuck sensor check, due to either\n"
+                                    f"Stuck sensor, or Abnormal high magnitude in raw data, for uid {uid}.\n")
+                                    if choice == "retry":
+                                        logging.info(f"Retrying calibration for UID {uid}...")
+                                        continue
+                                    elif choice == "skip":
+                                        logging.warning(f"User chose to skip retrying calibration for UID {uid}.")
+                                        break  # exit while loop to skip
+                                    elif choice == "abort":
+                                        logging.warning("User aborted configuration.")
+                                        raise UserAbortError("Configuration aborted by user.") # maybe not system exit, return to main menu
                                 
                                 # if we reach here, it means we need to handle error and give user option to retry/skip/abort
 
@@ -405,7 +474,7 @@ def run_configuraton_flow():
 
                     except Exception as e: # if we get an error do we want to retry this calibration?
                         logging.error(f"An error occurred during calibration for UID {uid}: {e}", exc_info=True)
-                        choice = prompt_user_on_cal_failure(uid)
+                        choice = prompt_user_on_cal_failure(uid, error_message=f" An unexpected error occurred during calibration: {e}")
 
                         if choice == "retry":
                             logging.info(f"Retrying calibration for UID {uid}...")
@@ -434,10 +503,13 @@ def run_configuraton_flow():
         with IPXSerialCommunicator(port=com_port, baudrate=final_baud, verify=True) as ipx:
             # Final get status to store in the report
             for uid in uids_list:
-                final_status = ipx.get_status(uid=uid, data_type='dict')
-                report.add_sensor_data(uid=uid, data_key='final_status', data_value=final_status)
-                logging.debug(f"Successfully retrieved final status for UID {uid}, final status: {final_status}")
-            
+                #put this into a try catch, while retry loop, as have had issues where a sensor hasnt responded in time
+                retry_on_exception(
+                    operation_func=lambda: report.add_sensor_data(uid=uid, data_key='final_status', data_value=ipx.get_status(uid=uid, data_type='dict')),
+                    prompt_func=prompt_user_on_other_failure
+                )
+                logging.debug(f"Successfully retrieved final status for UID {uid}")
+
             # save final json report and uid + alias text file:
             report.save_report(final_status="Success")
             report.save_txt_file(txt_content=txt_content)
@@ -500,7 +572,55 @@ def initial_uid_update():
             
 
 
-            
+def switch_all_to_115200():    
+    """ Function to switch all connected sensors to 115200 baud rate."""
+    # Firstly detect sensors on the given com port
+    # instantiate configurato
+    com_port = get_com_port() # _ as we only need com_port here
+    configurator = IPXConfigurator(port=com_port, initial_baudrate=9600)
+
+
+    if not com_port:
+        logging.error("Invalid COM port")
+        return
+    try:
+        with IPXSerialCommunicator(port=com_port, baudrate=9600, verify=True) as ipx:
+            # Step 1: Verify sensor count with automatic retry handling
+            initial_uids_list = ipx.list_uids(data_type='list')
+            if initial_uids_list is None:
+                logging.error("No sensors detected at 9600 baud rate.")
+                return
+            logging.info(f"Detected {len(initial_uids_list)} sensors: {initial_uids_list}")
+            logging.info("Switching all sensors to 115200 baud rate...")
+
+
+            # now set baud rate for all detected sensors to 115200
+            for uid in initial_uids_list:
+                ipx.set_baud(uid=uid, baud=115200)
+                logging.info(f"Set baud rate to 115200 for UID {uid}")
+
+    except Exception as e:
+        logging.critical(f"An error occurred while switching baud rates: {e}", exc_info=True)
+        raise e # exit function on error
+    
+    # now all baud rates are set to 115200, we can verify by reconnecting at 115200, and verifying number of sensors again
+    try:
+        with IPXSerialCommunicator(port=com_port, baudrate=115200, verify=True) as ipx:
+            # Step 1: Verify sensor count with automatic retry handling
+            new_uids_list = ipx.list_uids(data_type='list')
+            logging.info(f"Verifying baud rate change, detected {len(new_uids_list)} sensors: {new_uids_list}")
+            if new_uids_list is None:
+                logging.error("Sensor detection failed or was skipped after baud rate change.")
+                return
+            if len(new_uids_list) != len(initial_uids_list):
+                logging.error("❌ FAILURE: Number of sensors detected after baud rate change does not match initial count.")
+                return
+            logging.info("✅ SUCCESS: All sensors switched to 115200 baud rate successfully.")
+    except Exception as e:
+        logging.critical(f"An error occurred while verifying baud rate change: {e}", exc_info=True)
+    return
+    
+
 
 
             
@@ -515,14 +635,18 @@ def main_menu():
     while True:
         # Clear the terminal screen ('cls' for Windows, 'clear' for macOS/Linux)
 
+        print("Current Baud Rate:", baudrate)
         print("Select an option:")
         print("cls for clearing the terminal")
         print("1. Update Sensor UIDs via Barcode Scanner")
         print("2. Run Full Sensor Configuration")
         print("3. Initial UID Update (sequential UIDs starting from 1)")
         print("4. List uids of connected sensors")
+        print("5. Switch all connected sensors to 115200 baud rate")
+        print("6. Change Baud Rate")
+        print("Ctrl+C to exit")
 
-        choice = input("Enter your choice (1, 2, 3, 4): ").strip()
+        choice = input("Enter your choice (1, 2, 3, 4, 5, 6): ").strip()
     
 
         try:
@@ -536,9 +660,16 @@ def main_menu():
                 initial_uid_update()
             elif choice == '4':
                 list_uids()
+            elif choice == '5': switch_all_to_115200() 
+            elif choice == '6': set_baudrate()  # prompt user to change baud rate
             else:
-                print("Invalid choice. Please enter 1,2,3,4.")
+                print("Invalid choice. Please enter 1,2,3,4, 5.")
             time.sleep(3) # brief pause before returning to main menu
+
+        except UserAbortError as e:
+            logging.warning(f"Operation aborted by user: {e}")
+            time.sleep(5)  # brief pause before returning to main menu
+            continue  # Return to main menu
 
         except Exception as e:
             logging.error(f"An error occurred: {e}", exc_info=True)
@@ -546,10 +677,7 @@ def main_menu():
             continue
 
         
-        except UserAbortError as e:
-            logging.warning(f"Operation aborted by user: {e}")
-            time.sleep(5)  # brief pause before returning to main menu
-            continue  # Return to main menu
+
 
 
 

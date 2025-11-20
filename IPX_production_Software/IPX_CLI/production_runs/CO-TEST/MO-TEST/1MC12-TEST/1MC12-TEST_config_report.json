@@ -3,8 +3,8 @@
         "CO number": "CO-TEST",
         "MO number": "MO-TEST",
         "String Description": "1MC12-TEST",
-        "Report ID": "20251114_114513",
-        "Start Time": "2025-11-14T11:45:13.229848",
+        "Report ID": "20251114_142214",
+        "Start Time": "2025-11-14T14:22:14.978865",
         "Operator": "HASEEB",
         "COM Port": "COM5",
         "Status": "In Progress",
@@ -19,8 +19,8 @@
             8
         ],
         "status": "Success",
-        "End Time": "2025-11-14T11:51:39.281256",
-        "Duration (seconds)": 386.051408
+        "End Time": "2025-11-14T14:28:19.430133",
+        "Duration (seconds)": 364.451268
     },
     "Sensors": {
         "1": {

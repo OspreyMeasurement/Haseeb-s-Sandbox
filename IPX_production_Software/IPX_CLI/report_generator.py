@@ -217,6 +217,7 @@ class ReportGenerator:
 
         self.report_data["Sensors"][uid_str][data_key] = data_value
         logging.debug(f"Added data for UID {uid_str}: {data_key} = {data_value}")
+        return True # for use in retry loops, if exception occurs, we wont get to here and it will not return ture
 
     def save_report(self, final_status: str):
         """ Finalizes and saves the report to a JSON file
