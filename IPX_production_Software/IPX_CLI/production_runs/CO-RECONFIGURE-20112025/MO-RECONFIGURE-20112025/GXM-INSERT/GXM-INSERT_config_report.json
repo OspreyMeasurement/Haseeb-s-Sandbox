@@ -1,0 +1,244 @@
+{
+    "metadata": {
+        "CO number": "CO-RECONFIGURE-20112025",
+        "MO number": "MO-RECONFIGURE-20112025",
+        "String Description": "GXM-INSERT",
+        "Report ID": "20251121_120814",
+        "Start Time": "2025-11-21T12:08:14.859162",
+        "Operator": "HASEEB",
+        "COM Port": "COM5",
+        "Status": "In Progress",
+        "Detected UIDs": [
+            1040802249,
+            1040802254,
+            1040802263,
+            1040802275,
+            1040802273,
+            1040802270,
+            1040802266,
+            1040802272,
+            1040802262,
+            1040802268,
+            1040802267,
+            1040802271,
+            1040802269,
+            1040802264,
+            1040802265
+        ],
+        "status": "Success",
+        "End Time": "2025-11-21T12:19:08.530034",
+        "Duration (seconds)": 653.670872
+    },
+    "Sensors": {
+        "1040802249": {
+            "final_status": {
+                "UID": "1040802249",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "0",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        },
+        "1040802254": {
+            "final_status": {
+                "UID": "1040802254",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "0",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        },
+        "1040802263": {
+            "final_status": {
+                "UID": "1040802263",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "0",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        },
+        "1040802275": {
+            "final_status": {
+                "UID": "1040802275",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "0",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        },
+        "1040802273": {
+            "final_status": {
+                "UID": "1040802273",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "0",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        },
+        "1040802270": {
+            "final_status": {
+                "UID": "1040802270",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "0",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        },
+        "1040802266": {
+            "final_status": {
+                "UID": "1040802266",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "0",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        },
+        "1040802272": {
+            "final_status": {
+                "UID": "1040802272",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "0",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        },
+        "1040802262": {
+            "final_status": {
+                "UID": "1040802262",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "0",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        },
+        "1040802268": {
+            "final_status": {
+                "UID": "1040802268",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "0",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        },
+        "1040802267": {
+            "final_status": {
+                "UID": "1040802267",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "0",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        },
+        "1040802271": {
+            "final_status": {
+                "UID": "1040802271",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "0",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        },
+        "1040802269": {
+            "final_status": {
+                "UID": "1040802269",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "0",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        },
+        "1040802264": {
+            "final_status": {
+                "UID": "1040802264",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "0",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        },
+        "1040802265": {
+            "final_status": {
+                "UID": "1040802265",
+                "HW Version": "7.0.0",
+                "SW Version": "4.8.5",
+                "Alias": "0",
+                "Baud": "9600",
+                "Axis": "1",
+                "Termination Resistor": "0",
+                "Gain": "3",
+                "Centroid Threshold": "800",
+                "Standard Devs Threshold": "10.000"
+            }
+        }
+    }
+}

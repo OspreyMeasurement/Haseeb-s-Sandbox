@@ -313,7 +313,7 @@ def display_uid_table(mappings, all_uids):
 def run_uid_update_flow():
     """Handles UID updating via barcode scanner input."""
     logging.info("--- Starting UID update session via barcode scanner ---")
-    com_port, num_sensors_int = get_initial_settings() # _ as we only need com_port here
+    num_sensors_int = get_initial_settings() # _ as we only need com_port here, need verify sensor count as well
     if not com_port or not num_sensors_int:
         logging.error("Invalid COM port or number of sensors.")
         return
@@ -323,7 +323,7 @@ def run_uid_update_flow():
             # UID updating logic here
             logging.info("Discovering connected sensors...")
             # Step 1: Verify sensor count with automatic retry handling
-            uids_list = retry_on_failure(
+            uids_list, _ = retry_on_failure(# _ as we dont need the check_sensor_present value here
                 operation_func=configurator.verify_sensor_count,
                 prompt_func=prompt_user_on_other_failure,
                 success_message=f"Successfully detected {num_sensors_int} sensors",
@@ -375,9 +375,10 @@ def run_uid_update_flow():
                 logging.debug(f"Set UID from {mapping['old']} to {mapping['new']}")
                 time.sleep(0.5)  # small delay to ensure command is processed
                 
-            # Final verification
+            # Final verification ( should this just not use verify_sensor_count again? )
             logging.info("Verifying updated UIDs...")
-            final_uids = ipx.list_uids(data_type='list')
+            # reverify after uid update
+            final_uids, _ = configurator.verify_sensor_count(ipx=ipx, num_sensors=num_sensors_int)
 
             expected_uids = [m['new'] for m in uid_mappings]
             if all(uid in final_uids for uid in expected_uids):
@@ -418,7 +419,7 @@ def run_configuration_flow():
         try:
             with IPXSerialCommunicator(port=com_port, baudrate=baudrate, verify=True) as ipx:
                 # Step 1: Verify sensor count with automatic retry handling
-                uids_list = retry_on_failure(
+                uids_list, check_sensor_present = retry_on_failure(
                     operation_func=configurator.verify_sensor_count,
                     prompt_func=prompt_user_on_other_failure,
                     success_message=f"Successfully detected {num_sensors_int} sensors",
@@ -435,18 +436,25 @@ def run_configuration_flow():
                 
                 report.set_detected_sensors(uids_list) # NEW log detected UIDs to report:
 
-                #2. apply default parameters to all sensors:
+                #2. check whether inserts or normal extensometers are connected, and set default parameters accordingly:
                 if all(str(uid).startswith("104") for uid in uids_list): # this are the inserts, skip assigning aliases to them
                     logging.info("Inserts detected, skipping alias assigning process")
-
-
+                    if check_sensor_present is False:
+                        logging.warning("Bottom check sensors has not been detected")
+                        user_response = input("Bottom check sensors not detected. Do you want to continue? (y/n): ").strip().lower()
+                        if user_response != 'y':
+                            logging.info("Configuration aborted by user due to missing bottom check sensors.")
+                            raise UserAbortError("Configuration aborted by user due to missing bottom check sensors.")
+                    # now log paramaters etc
                     configurator.set_default_parameters(ipx, uids_list, set_aliases=False)
                     txt_content = report.create_txt_content(aliases_and_uids_list=uids_list, inserts=True) # create the .txt content for the report generator
+
+
 
                 # add a check in case there are some 104s connected and this should abort process
                 elif any(str(uid).startswith("104") for uid in uids_list): # little error catch for mixed sensor types
                     logging.critical("Mixed sensor types detected (inserts and extensometers). Aborting configuration.")
-                    raise UserAbortError("Configuration aborted due to mixed sensor types (inserts and extensometers).")
+                    raise UserAbortError("Configuration aborted due to mixed sensor types (inserts and normal extensometers).")
 
 
                 # else will be normal extensometers    
@@ -625,6 +633,10 @@ def initial_uid_update():
             print(uids_list)
             last_uid = uids_list[-1] # get last element in uid list
             new_uid = len(uids_list)  # sequential UID starting from 1
+
+            if last_uid == IPXCommands.Default_settings.Check_sensor_uid:
+                logging.error("Last detected sensor is a check sensor. Aborting UID update to prevent renaming check sensor.")
+                return
             
             try:
                 confirm = input(f"Press Enter to set UID of sensor with current UID {last_uid} to new UID {new_uid}... or abort (type 'abort'): or type 'retry' retry uid update ").strip().lower()
@@ -695,14 +707,19 @@ def switch_all_to_115200():
     try:
         with IPXSerialCommunicator(port=com_port, baudrate=115200, verify=True) as ipx:
             # Step 1: Verify sensor count with automatic retry handling
-            new_uids_list = ipx.list_uids(data_type='list')
+            # might as well use verify sensor count function
+            new_uids_list, _ = configurator.verify_sensor_count(ipx=ipx, num_sensors=num_sensors_int)
+            
             logging.info(f"Verifying baud rate change, detected {len(new_uids_list)} sensors: {new_uids_list}")
+
             if new_uids_list is None:
                 logging.error("Sensor detection failed or was skipped after baud rate change.")
-                return
+                return # this code is redundant due to retry on failure function, but just in case who knows
+
             if len(new_uids_list) != len(initial_uids_list):
                 logging.error("❌ FAILURE: Number of sensors detected after baud rate change does not match initial count.")
-                return
+                return # this is lowkey redundant as well
+            
             logging.info("✅ SUCCESS: All sensors switched to 115200 baud rate successfully.")
     except Exception as e:
         logging.critical(f"An error occurred while verifying baud rate change: {e}", exc_info=True)

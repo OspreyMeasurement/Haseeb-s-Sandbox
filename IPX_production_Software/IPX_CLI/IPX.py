@@ -87,7 +87,6 @@ class IPXVerificationError(IPXSerialError):
 """------------------------------------------------------------------------------------------------------------------------------------------------------"""
 
 
-
 """------------------------------------------------------------------------------------------------------------------------------------------------------"""
 """ MAIN IPX SERIAL COMMUNICATOR CLASS FOR HANDLING SERIAL COMMUNICATION WITH IPX DEVICES """
 
@@ -549,26 +548,55 @@ class IPXConfigurator:
         logging.debug(f"IPX Configurator initialised for port {self.port}")
 
 
-    def verify_sensor_count(self, ipx: IPXSerialCommunicator ,num_sensors:int) -> list:
+    def verify_sensor_count(self, ipx: IPXSerialCommunicator ,num_sensors:int) -> tuple[list, bool] | None:
         """Private helper to detect and verify the number of connected sensors
-        Should return uid list"""
+        Should return uid list
+        Args:
+            ipx (IPXSerialCommunicator): An instance of the IPXSerialCommunicator class
+            num_sensors (int): Expected number of connected sensors
+        Returns:
+            (list, bool) | None: List of detected sensor UIDs if the expected number is met, check sensor found boolean\n
+            or none if the expected number is not met after retries
+             """
         logging.debug(f"Attempting to detect {num_sensors} sensors")
+        # ADD logic for removing check senssor from this
+        check_uid = int(IPXCommands.Default_settings.Check_sensor_uid) # get check sensor uid from config file (needs to be int)
+
         for attempt in range (1, self.max_retries + 1): # loop that retries so long as the right number of sensors are not detected, keeps retrying as long as doesnt exceed max_retries
-            uids_list = ipx.list_uids(data_type='list') # get uids list
-            detected_sensors = len(uids_list) # variable to hold the number of detected sensors
+            all_uids = ipx.list_uids(data_type='list') # get uids list
+            # Filtering out check sensor logic:
+            valid_uids = []
+            check_sensor_found = False
+            for uid in all_uids: # check if check sensor is present, and filter it out
+                if uid == check_uid:
+                    check_sensor_found = True
+                    logging.debug("Check sensor detected and will be excluded from count")
+                else:
+                    valid_uids.append(uid) # add all other uids to valid uids list
+            
+            #verify count of valid sensors
+            detected_sensors = len(valid_uids) # variable to hold the number of detected sensors
             if detected_sensors == num_sensors: # check then number of uids received is the number that is expected, if not retry
+                if check_sensor_found:
+                    logging.info(f"Check sensor with uid {check_uid} detected")
                 logging.info("Number of expected sensors are connected")
-                return uids_list
+                return valid_uids, check_sensor_found # return the valid uids list and check sensor found boolean
             else:
                 logging.error(f"Incorrect number of sensors detected. Detected: {detected_sensors}, expected {num_sensors}")
                 time.sleep(self.retry_delay)# retry delay
         else:
             logging.error("Failed to detect all sensors after multiple retries| Check inputted number of sensors") # log error
-            return False # return false if failed to detect correct number of sensors after retries
+            return None # return false if failed to detect correct number of sensors after retries
 
 
     def set_default_parameters(self, ipx:IPXSerialCommunicator, uids_list: list, set_aliases: bool = True) -> list:
-        """Private helper to loop through all uids and apply standard configurations + aliases"""
+        """Private helper to loop through all uids and apply standard configurations + aliases
+        Args:
+            ipx (IPXSerialCommunicator): An instance of the IPXSerialCommunicator class
+            uids_list (list): List of UIDs to configure
+            set_aliases (bool): Whether to set aliases for the sensors  
+            Returns:
+            list: A list of tuples containing (alias, uid) if aliases are set, else a list of uids (for referecne later on)"""
         logging.info("Appling deafualt parameters to all detected sensors...")
         uids_list
         # if set alis = false, skip setting aliases
@@ -628,6 +656,8 @@ class IPXConfigurator:
     def validate_calibration_results(self, cal_df: pd.DataFrame) -> tuple[bool, list| None]:
         """
         Checks calibration DataFrame for zero mean OR zero std dev across all axes.
+        Args:
+            cal_df (pd.DataFrame): DataFrame containing calibration results with columns 'sensor_num', 'mean', 'std_dev', and 'axis'.
         
         Returns:
             A tuple containing a list of unique failed sensor numbers, and a boolean for success.
@@ -700,7 +730,15 @@ class IPXConfigurator:
 
     def raw_data_check(self, ipx: IPXSerialCommunicator, uid:int, sensor_index: list, num_readings: int = 5) -> tuple [(int, None), bool]:
         """Checks a sensors raw data ouptus, and ensures that the values are changing
-        Secondary verification step after zero mean/ std dev are detected"""
+        Secondary verification step after zero mean/ std dev are detected
+        Should really be called stuck sensor and abnormal magnitude check
+        Args:
+            ipx (IPXSerialCommunicator): An instance of the IPXSerialCommunicator class.
+            uid (int): The UID of the sensor to check.
+            sensor_index (list): List of sensor indexes to monitor for changes.
+            num_readings (int): Number of raw data readings to take for comparison.
+        Returns:
+            True if the raw data check passes, False otherwise."""
         num_no_changes_allowed = 3 # number of no change instances allowed before failing the check
         logging.info(f"Performing raw data check on UID:{uid}")
         raw_readings_list = []
