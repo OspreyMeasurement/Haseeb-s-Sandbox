@@ -162,10 +162,13 @@ class ReportGenerator:
         #4. clean string description to make it a valid filename (using re)
         #According to gemini, this will replace any characters like \/ : * ? with an underscore (not valid in filenames)
         sane_filename = self.string_description
+        
+        #4.5 create timestamp string for filenames
+        timestamp_str = self.start_time.strftime("%Y%m%d_%H%M%S")
 
         #5. create full final filepath for saving full report:
-        self.json_filepath = os.path.join(self.target_dir, f"{sane_filename}_config_report.json")
-        self.txt_filepath = os.path.join(self.target_dir, f"{sane_filename}_alias_uid_list.txt")
+        self.json_filepath = os.path.join(self.target_dir, f"{sane_filename}_{timestamp_str}_config_report.json")
+        self.txt_filepath = os.path.join(self.target_dir, f"{sane_filename}_{timestamp_str}_alias_uid_list.txt")
         #-------- END FILESAVING LOGIC --------
 
 
@@ -217,7 +220,33 @@ class ReportGenerator:
 
         self.report_data["Sensors"][uid_str][data_key] = data_value
         logging.debug(f"Added data for UID {uid_str}: {data_key} = {data_value}")
+        
+        # If this is status data, also save it as a separate text file in sensor folder
+        if data_key == 'final_status' and isinstance(data_value, dict):
+            self._save_status_txt_file(uid, data_value)
+        
         return True # for use in retry loops, if exception occurs, we wont get to here and it will not return ture
+    
+    def _save_status_txt_file(self, uid: int, status_dict: dict):
+        """Saves sensor status as a text file in the sensor-specific folder."""
+        uid_str = str(uid)
+        sensor_folder = os.path.join(self.target_dir, f"sensor_{uid_str}")
+        
+        try:
+            os.makedirs(sensor_folder, exist_ok=True)
+            status_filepath = os.path.join(sensor_folder, f"sensor_{uid_str}_status.txt")
+            
+            with open(status_filepath, 'w') as f:
+                f.write(f"Sensor UID: {uid_str}\n")
+                f.write(f"Status Report\n")
+                f.write("=" * 50 + "\n\n")
+                
+                for key, value in status_dict.items():
+                    f.write(f"{key}: {value}\n")
+            
+            logging.debug(f"Saved status text file for UID {uid_str} to {status_filepath}")
+        except Exception as e:
+            logging.error(f"Error saving status text file for UID {uid_str}: {e}", exc_info=True)
 
     def save_report(self, final_status: str):
         """ Finalizes and saves the report to a JSON file
@@ -292,26 +321,37 @@ class ReportGenerator:
 
 
     def save_calibration_files(self, uid: int, cal_df: pd.DataFrame):
-        """ Saves calibration df to csv, and generates the .html plot files"""
+        """ Saves calibration df to csv, and generates the .html plot files
+        All files are saved in a sensor-specific subfolder"""
         if cal_df is None or cal_df.empty:
             logging.warning(f"No calibration data to save for UID {uid}")
             return
         
-        #1. Save cal_df to CSV
+        #1. Create sensor-specific folder
         uid_str = str(uid)
+        sensor_folder = os.path.join(self.target_dir, f"sensor_{uid_str}")
+        
+        try:
+            os.makedirs(sensor_folder, exist_ok=True)
+            logging.debug(f"Created sensor folder: {sensor_folder}")
+        except Exception as e:
+            logging.error(f"Error creating sensor folder for UID {uid_str}: {e}", exc_info=True)
+            return
+        
+        #2. Save cal_df to CSV in sensor folder
         try:
             csv_filename = f"sensor_{uid_str}_calibration_data.csv"
-            csv_filepath = os.path.join(self.target_dir, csv_filename)
+            csv_filepath = os.path.join(sensor_folder, csv_filename)
             cal_df.to_csv(csv_filepath, index=False)
             logging.debug(f"Saved calibration data for UID {uid_str} to {csv_filepath}")
         except Exception as e:
             logging.error(f"Error saving calibration CSV for UID {uid_str}: {e}", exc_info=True)
 
-        #2. Generate and save plots using plotmanager class
+        #3. Generate and save plots using plotmanager class in sensor folder
         fig_mean, fig_std = self.plot_manager.create_calibration_plots(cal_df, uid_str)
 
-        self.plot_manager.save_plot(fig_mean, f"sensor_{uid_str}_calibration_means.html", self.target_dir)
-        self.plot_manager.save_plot(fig_std, f"sensor_{uid_str}_calibration_stddevs.html", self.target_dir)
+        self.plot_manager.save_plot(fig_mean, f"sensor_{uid_str}_calibration_means.html", sensor_folder)
+        self.plot_manager.save_plot(fig_std, f"sensor_{uid_str}_calibration_stddevs.html", sensor_folder)
 
 
 

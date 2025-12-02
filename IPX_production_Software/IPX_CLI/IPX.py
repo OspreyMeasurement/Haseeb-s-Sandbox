@@ -728,7 +728,7 @@ class IPXConfigurator:
     
 # CHECK FUNCTIONS SHOULD JUST RETURN BOOLEAN SUCCESS/FAILURE SUCCESS == TRUE, FAILURE == FALSE
 
-    def raw_data_check(self, ipx: IPXSerialCommunicator, uid:int, sensor_index: list, num_readings: int = 5) -> tuple [(int, None), bool]:
+    def raw_data_check(self, ipx: IPXSerialCommunicator, uid:int, sensor_index: list, num_readings: int = 5) -> tuple [bool, np.ndarray]:
         """Checks a sensors raw data ouptus, and ensures that the values are changing
         Secondary verification step after zero mean/ std dev are detected
         Should really be called stuck sensor and abnormal magnitude check
@@ -746,10 +746,12 @@ class IPXConfigurator:
             raw_readings_list.append(ipx.get_raw(uid=uid, data_type='array')) # get initial raw data
             time.sleep(0.5) # wait a bit before next measurment
 
+        raw_values = raw_readings_list[0] # return the first set of raw values for reference later on
+
         # before comparing the readings, do an abnormally high magnitude check, just for the first tuple that is returned
         if not self.abnormal_high_magnitude_check(uid=uid, raw_values=raw_readings_list[0]):
             logging.error(f" Raw data check failed for UID:{uid} due to abnormally high magnitude values")
-            return False
+            return False, raw_values
         logging.info(f" Abnormally high magnitude check passed for UID:{uid}, proceeding to no change check")
 
         # then need to check the readings for changes by comparing indexes of all measurements
@@ -768,10 +770,10 @@ class IPXConfigurator:
                     logging.debug(f"No change detected at index {i} between readings: {tuple_1} and {tuple_2}. Value was {tuple_1[i]}")
             if num_no_change > num_no_changes_allowed:
                 logging.warning(f" Raw data check failed for UID:{uid}, {num_no_change} instances of no change detected between readings")
-                return False
+                return False, raw_values
         else:
             logging.info(f" Raw data check passed for UID:{uid}")
-            return True
+            return True, raw_values
 
 # debating whether i want the magnitude check function to do a get raw or not.
 

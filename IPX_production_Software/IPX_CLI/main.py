@@ -23,8 +23,8 @@ class UserAbortError(Exception):
 
 
 
-baudrate = int(input("Enter baud rate (default 9600): ") or "9600")
-com_port = input("Enter COM port (default COM8): ") or "COM8"
+baudrate = int(input("Enter baud rate (default 115200): ") or "115200")
+com_port = input("Enter COM port (default COM5): ") or "COM5"
 
 def get_baudrate():
     """Get current baudrate value."""
@@ -491,6 +491,9 @@ def run_configuration_flow():
                                 # this is all due to abnormal magnitude
                                 #1. if we've failed < 3 times, auto retry
                                 raw_data = ipx.get_raw(uid=uid, data_type='array')
+                                raw_log = str(raw_data.tolist()) # convert to string for json serialization
+                                # save raw data value to report
+                                report.add_sensor_data(uid=uid, data_key='raw_data_sample', data_value=raw_log)
                                 if not configurator.abnormal_high_magnitude_check(uid, raw_values=raw_data): # if result is false run this loop
                                     if counter < 3:
                                         logging.warning(f"Calibration for UID {uid} has failed abnormal high magnitude check {counter} times, retrying automatically.")
@@ -502,6 +505,8 @@ def run_configuration_flow():
 
                                         if choice == "retry":
                                             logging.info(f"Retrying calibration for UID {uid} due to abnormal high magnitude...")
+                                            logging.debug("Resetting counter to 0 for retry attempts.")
+                                            counter = 0  # reset counter for retries
                                             continue
                                         elif choice == "skip":
                                             logging.warning(f"User chose to skip retrying calibration for UID {uid}.")
@@ -519,7 +524,10 @@ def run_configuration_flow():
                             # no need for raw data check if it didnt fail
                             # ------ INITIAL CALIBRATION CHECK FAILED (DUE TO ZERO MEAN/STD DEV) ------
                             else:
-                                result2 = configurator.raw_data_check(ipx=ipx, uid=uid, sensor_index=failed_sensor_nums)
+                                result2, raw_values = configurator.raw_data_check(ipx=ipx, uid=uid, sensor_index=failed_sensor_nums)
+                                raw_log = str(raw_values.tolist()) # convert to string for json serialization
+                                # save sensor data
+                                report.add_sensor_data(uid=uid, data_key='raw_data_sample', data_value=raw_log)
                                 if result2 == True:
                                     logging.info(f"Calibration successful for UID {uid} after raw data check")
                                     break  # exit while loop on success
@@ -686,9 +694,10 @@ def switch_all_to_115200():
     try:
         with IPXSerialCommunicator(port=com_port, baudrate=9600, verify=True) as ipx:
             # Step 1: Verify sensor count with automatic retry handling
-            initial_uids_list = ipx.list_uids(data_type='list')
+            # should use verify sensor count function here
+            initial_uids_list, _ = configurator.verify_sensor_count(ipx=ipx, num_sensors=num_sensors_int)
             if initial_uids_list is None:
-                logging.error("No sensors detected at 9600 baud rate.")
+                logging.error("incorrect numnber of sensors detected")
                 return
             logging.info(f"Detected {len(initial_uids_list)} sensors: {initial_uids_list}")
             logging.info("Switching all sensors to 115200 baud rate...")
@@ -776,12 +785,12 @@ def main_menu():
 
         except UserAbortError as e:
             logging.warning(f"Operation aborted by user: {e}")
-            time.sleep(5)  # brief pause before returning to main menu
+            time.sleep(2)  # brief pause before returning to main menu
             continue  # Return to main menu
 
         except Exception as e:
             logging.error(f"An error occurred: {e}", exc_info=True)
-            time.sleep(5)  # brief pause before returning to main menu
+            time.sleep(2)  # brief pause before returning to main menu
             continue
 
         
@@ -791,6 +800,7 @@ def main_menu():
 
 
             
+
 
 
 
