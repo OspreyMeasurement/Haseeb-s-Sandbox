@@ -353,6 +353,32 @@ class ReportGenerator:
         self.plot_manager.save_plot(fig_mean, f"sensor_{uid_str}_calibration_means.html", sensor_folder)
         self.plot_manager.save_plot(fig_std, f"sensor_{uid_str}_calibration_stddevs.html", sensor_folder)
 
+    def save_modbus_results(self, modbus_df: pd.DataFrame):
+        """ Saves modbus test results DataFrame to CSV file
+        All files are saved in the main report directory
+        
+        Args:
+            modbus_df (pd.DataFrame): DataFrame containing modbus test results with columns like
+                                      UID, Alias, Overall_Pass, Status_Val, Dist_mm, Temp_C, Volt_V, etc.
+        """
+        if modbus_df is None or modbus_df.empty:
+            logging.warning("No modbus data to save")
+            return
+        
+        try:
+            # Create timestamp for filename
+            timestamp_str = self.start_time.strftime("%Y%m%d_%H%M%S")
+            
+            # Save modbus_df to CSV in main report directory
+            csv_filename = f"modbus_test_results_{timestamp_str}.csv"
+            csv_filepath = os.path.join(self.target_dir, csv_filename)
+            modbus_df.to_csv(csv_filepath, index=False)
+            logging.info(f"Saved modbus test results to {csv_filepath}")
+        except Exception as e:
+            logging.error(f"Error saving modbus results CSV: {e}", exc_info=True)
+
+
+
 
 
 #--------------------------------- END OF REPORT GENERATOR CLASS ---------------------------------

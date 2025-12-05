@@ -5,10 +5,14 @@ import sys
 from IPX import IPXSerialCommunicator
 from IPX import IPXConfigurator
 from IPX import IPXSerialError
+from IPX_Modbus import IPXModbusTester
 import numpy as np
+import pandas as pd
 from IPX_Config import IPXCommands
 import os
 import time
+
+
 
 # import files for JSON report generation
 from report_generator import ReportGenerator
@@ -461,6 +465,7 @@ def run_configuration_flow():
                 else:
                     logging.info("Normal extensometers detected, proceeding with full configuration (including alias assignment) ")
                     alias_and_uids_list = configurator.set_default_parameters(ipx, uids_list)
+                    # alias_and_uids_list is a list of tuples of format [(alias, uid), (alias, uid), etc....]
                     txt_content = report.create_txt_content(aliases_and_uids_list=alias_and_uids_list) # create the .txt content for the report generator
                 
 
@@ -594,13 +599,94 @@ def run_configuration_flow():
                     )
                     logging.debug(f"Successfully retrieved final status for UID {uid}")
 
-                # save final json report and uid + alias text file:
-                report.save_report(final_status="Success")
-                report.save_txt_file(txt_content=txt_content)
-                logging.debug("Report generation completed successfully.")
-                logging.info("-----------------------------------------------")
-                logging.info(f"EXTENSOMETER CONFIGURATION SUCCESSFUL")  
-                logging.info("-----------------------------------------------")
+            #------------------------- Modbus testing time! -------------------------
+            logging.info("Starting Modbus communication test for all sensors...")
+            modbus_record = [] # list to store all modbus test results:
+            # i should mimic how the datalogger would test, it would get all of the results and then we would manually check them after
+            # so mimic that process, but instead of manually checking them, we automate the checking process
+            try:
+                with IPXModbusTester(port=com_port, baudrate=final_baud) as modbus_tester:
+                    for tuple in alias_and_uids_list:
+                        alias = tuple[0]
+                        uid = tuple[1]
+                        
+                        logging.debug(f"Starting Modbus test for UID {uid} (Alias: {alias})")
+                        test_result = modbus_tester.run_full_test(uid=uid, alias=alias)
+                        filtered_result = 
+                        report.add_sensor_data(uid=uid, data_key='modbus_test_result', data_value=test_result) # log modbus test result to report
+                        # log immediate status just for info:
+                        if test_result["Overall_Pass"]:
+                            logging.info(f"Modbus test PASSED for UID {uid} (Alias: {alias})")
+                        else:
+                            logging.warning(f"Modbus test FAILED for UID {uid} (Alias: {alias})")
+                        
+                        modbus_record.append(test_result) # add result dict to record list
+            
+            except Exception as e:
+                logging.critical(f"An error occurred during Modbus testing: {e}", exc_info=True)
+                report.save_report(final_status="Modbus Test Failed") # save normal json report
+                report.save_txt_file(txt_content=txt_content) # save normal txt file of alias / uid mappings
+                log_msg = ("=" * 50 + "\n"
+                           "Configuration was succesful but Modbus testing failed due to an unexpected error.\n"
+                           "=" * 50 + "\n")
+                return False
+
+            # Analysis + Reporting:
+            modbus_df = pd.DataFrame(modbus_record)
+            # check for failures:
+            failed_sensors = modbus_df[modbus_df["Overall_Pass"] == False]
+
+            # Reporting to user:
+            logging.info("\n" + "="*40)
+            logging.info("      MODBUS VERIFICATION SUMMARY      ")
+            logging.info("="*40)
+
+            # -------- Report to user --------
+            # print all modbus test results to user:
+            logging.info("\nDetailed Test Results:\n")
+            for index, row in modbus_df.iterrows():
+                log_msg = (f"Datalogger test results for: \n"
+                          f"\n=============================== \n"
+                          f"UID: {row['UID']}, Alias: {row['Alias']} \n"
+                          f"=============================== \n"
+                          f"Status: {row['Status_Val']} \n" 
+                          f"Distance: {row['Dist_mm']} mm \n"
+                          f"Temperature: {row['Temp_C']:.3g} °C \n"
+                          f"Voltage: {row['Volt_V']:.3g} V \n"
+                          f"Overall Result: {'✅ PASS' if row['Overall_Pass'] else '❌ FAIL'} \n"
+                          f"=============================== \n")
+                logging.info(log_msg)
+
+            if failed_sensors.empty:
+                logging.info(f"✅ ALL {len(modbus_df)} SENSORS PASSED.")
+                logging.info("="*40 + "\n")
+                final_run_status = "SUCCESS"
+                logging.info("Modbus verification complete. All sensors passed.")
+            else:
+                logging.info(f"❌ {len(failed_sensors)} OUT OF {len(modbus_df)} SENSORS FAILED MODBUS TESTING:")
+                for index, row in failed_sensors.iterrows():
+                    logging.info(f"   - UID {row['UID']} (Alias: {row['Alias']}) failed.")
+                logging.info("="*40 + "\n")
+                final_run_status = "Configuration completed with failures"
+                logging.warning(f"Modbus verification complete. {len(failed_sensors)} sensors failed.")
+
+                # pause so user sees summary:
+                input("Press Enter to acknowledge and save reports")
+
+                report.add_sensor_data()
+
+
+            
+            
+            # save final json report and uid + alias text file:
+            report.save_report(final_status="Success")
+            report.save_txt_file(txt_content=txt_content)
+            report.save_modbus_results(modbus_df=modbus_df)
+
+            logging.debug("Report generation completed successfully.")
+            logging.info("-----------------------------------------------")
+            logging.info(str(final_run_status).upper())  
+            logging.info("-----------------------------------------------")
 
                 
                     # Try to catch any unexpected errrors
@@ -748,9 +834,10 @@ def switch_all_to_115200():
 def main_menu():
     while True:
         # Clear the terminal screen ('cls' for Windows, 'clear' for macOS/Linux)
-
+        print("\n ----------------- Main Menu -----------------------------------")
+        print("Software current settings:")
         print(f"Current COM Port: {com_port}")
-        print(f"Current Baud Rate: {baudrate}")
+        print(f"Current Baud Rate: {baudrate} \n")
         print("Select an option:")
         print("cls for clearing the terminal")
         print("1. Update Sensor UIDs via Barcode Scanner")
@@ -761,8 +848,7 @@ def main_menu():
         print("6. Change Baud Rate")
         print("7. Change COM Port")
         print("Ctrl+C to exit")
-
-        choice = input("Enter your choice (1, 2, 3, 4, 5, 6, 7): ").strip()
+        choice = input("Enter your choice (1, 2, 3, 4, 5, 6, 7):").strip()
     
 
         try:
