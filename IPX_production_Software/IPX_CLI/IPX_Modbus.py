@@ -81,6 +81,7 @@ class IPXModbusTester:
         """ Function for establishing modbus connection 
         called when entering context manager"""
         try:
+            # instantiate client (for rtu over serial)
             self.client = ModbusSerialClient(
                 port=self.port,
                 baudrate=self.baudrate,
@@ -91,11 +92,11 @@ class IPXModbusTester:
                 framer=FramerType.RTU
             )
             logging.debug(f"Attempting to connect to Modbus on {self.port}...")
-            if not self.client.connect():
+            if not self.client.connect(): # if failed to connect raise error
                 logging.error(f"Failed to connect to Modbus on {self.port}")
                 raise IPXModbusError(f"Failed to connect to Modbus on {self.port}")
             logging.info(f"Connected to Modbus on {self.port}")
-        except Exception as e:
+        except Exception as e: # catch all exceptions during connection
             logging.error(f"Error connecting to Modbus on {self.port}: {e}")
             raise IPXModbusError(f"Error connecting to Modbus: {e}")
         
@@ -129,13 +130,13 @@ class IPXModbusTester:
 
         try:
 
-            #1. Trigger measurement
+            #1. Trigger measurement (write to register 0x0063):
             write_result = self.client.write_register(
                 address=self.TRIGGER_REG,
                 value=0xFFFF,
                 device_id=alias,
             )
-            if write_result.isError():
+            if write_result.isError(): # check if the write was successful
                 logging.error(f"Trigger write failed for alias {alias}: {write_result}")
                 raise IPXModbusWriteError(f"Trigger write failed for alias {alias}: {write_result}")
             logging.info("Measurment sequence successfully triggered")
@@ -214,13 +215,13 @@ class IPXModbusTester:
                          f"Voltage: {result['Voltage']:.3g} V \n"
                          "=============================== \n")
             
-            logging.info(log_msg)
+            # logging.info(log_msg) # reduce verbosity by commenting out, should be printed in main script instead
 
             return result
         
         except Exception as e:
             logging.error(f"Exception during modbus datalogger test for Alias {alias}: {e}")
-            return {"uid": uid, "alias": alias, "error": str(e)}
+            raise e # maybe just raise the error instead?, should be caught in main script??
         
 
         
@@ -324,7 +325,7 @@ class IPXModbusTester:
             "Errors": "; ".join(verification.get("failures", []))
         }
         logging.debug(f"Flattened record created successfully: {flat_record}")
-        return flat_record
+        return flat_record# flat dictionary is for easy logging int pandas dataframe, so we can save the results as a csv file easily.
 
 
 

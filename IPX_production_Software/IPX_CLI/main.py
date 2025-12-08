@@ -69,6 +69,7 @@ def set_com_port(new_port: str = None):
         return com_port
 
 
+
 def set_baudrate(new_baudrate: int = None):
     """
     Function to change the global baudrate setting.
@@ -316,83 +317,87 @@ def display_uid_table(mappings, all_uids):
 # function for updating sensor UIDs via barcode scanner
 def run_uid_update_flow():
     """Handles UID updating via barcode scanner input."""
-    logging.info("--- Starting UID update session via barcode scanner ---")
-    num_sensors_int = get_initial_settings() # _ as we only need com_port here, need verify sensor count as well
-    if not com_port or not num_sensors_int:
-        logging.error("Invalid COM port or number of sensors.")
-        return
-    configurator = IPXConfigurator(port=com_port, initial_baudrate=baudrate)
     try:
-        with IPXSerialCommunicator(port=com_port, baudrate=baudrate, verify=True) as ipx:
-            # UID updating logic here
-            logging.info("Discovering connected sensors...")
-            # Step 1: Verify sensor count with automatic retry handling
-            uids_list, _ = retry_on_failure(# _ as we dont need the check_sensor_present value here
-                operation_func=configurator.verify_sensor_count,
-                prompt_func=prompt_user_on_other_failure,
-                success_message=f"Successfully detected {num_sensors_int} sensors",
-                ipx=ipx,
-                num_sensors=num_sensors_int
-            )
+        logging.info("--- Starting UID update session via barcode scanner ---")
+        num_sensors_int = get_initial_settings() # _ as we only need com_port here, need verify sensor count as well
+        if not com_port or not num_sensors_int:
+            logging.error("Invalid COM port or number of sensors.")
+            return
+        configurator = IPXConfigurator(port=com_port, initial_baudrate=baudrate)
+        try:
+            with IPXSerialCommunicator(port=com_port, baudrate=baudrate, verify=True) as ipx:
+                # UID updating logic here
+                logging.info("Discovering connected sensors...")
+                # Step 1: Verify sensor count with automatic retry handling
+                uids_list, _ = retry_on_failure(# _ as we dont need the check_sensor_present value here
+                    operation_func=configurator.verify_sensor_count,
+                    prompt_func=prompt_user_on_other_failure,
+                    success_message=f"Successfully detected {num_sensors_int} sensors",
+                    ipx=ipx,
+                    num_sensors=num_sensors_int
+                )
 
-            uid_mappings = [] # list will store our proposed uid changes
+                uid_mappings = [] # list will store our proposed uid changes
 
-            if uids_list is None: # small check to ensure we have uids
-                logging.error("Sensor detection failed or was skipped. Exiting UID update.")
-                return
-            
-            for old_uids in uids_list:
-                display_uid_table(uid_mappings, uids_list) # display the uid table before each scan
+                if uids_list is None: # small check to ensure we have uids
+                    logging.error("Sensor detection failed or was skipped. Exiting UID update.")
+                    return
+                
+                for old_uids in uids_list:
+                    display_uid_table(uid_mappings, uids_list) # display the uid table before each scan
+
+                    try:
+                        new_uid_str = input(f"Scan new UID for sensor with Old UID (Top to bottom): {old_uids}: ")
+                    except KeyboardInterrupt:
+                        logging.info("UID scanning cancelled by user.")
+                        raise UserAbortError("UID update cancelled by user.")
+                    
+                    try:
+                        new_uid = int(new_uid_str) # convert to int to
+                        # add to mapping list
+                        uid_mappings.append({'old': old_uids, 'new': new_uid})
+                        logging.info(f"Mapped Old UID {old_uids} to New UID {new_uid}")
+                    except ValueError:
+                        logging.error(f"Invalid UID scanned: {new_uid_str}. Please try again.")
+                        continue
+                # After collecting all mappings, apply them, show the final table
+
+                display_uid_table(uid_mappings, uids_list) # final display
 
                 try:
-                    new_uid_str = input(f"Scan new UID for sensor with Old UID (Top to bottom): {old_uids}: ")
+                    confirm = input("Confirm applying these UID changes? (y/n): ").strip().lower()
                 except KeyboardInterrupt:
-                    logging.info("UID scanning cancelled by user.")
+                    logging.info("UID update confirmation cancelled by user.")
                     raise UserAbortError("UID update cancelled by user.")
+                    
+                if confirm != 'y':
+                    logging.warning("UID update cancelled by user.")
+                    return
                 
-                try:
-                    new_uid = int(new_uid_str) # convert to int to
-                    # add to mapping list
-                    uid_mappings.append({'old': old_uids, 'new': new_uid})
-                    logging.info(f"Mapped Old UID {old_uids} to New UID {new_uid}")
-                except ValueError:
-                    logging.error(f"Invalid UID scanned: {new_uid_str}. Please try again.")
-                    continue
-            # After collecting all mappings, apply them, show the final table
+                logging.info("Applying UID changes to sensors...")
+                for mapping in uid_mappings:
+                    ipx.set_uid(current_uid=mapping['old'], new_uid=mapping['new'])
+                    
+                    logging.debug(f"Set UID from {mapping['old']} to {mapping['new']}")
+                    time.sleep(0.5)  # small delay to ensure command is processed
+                    
+                # Final verification ( should this just not use verify_sensor_count again? )
+                logging.info("Verifying updated UIDs...")
+                # reverify after uid update
+                final_uids, _ = configurator.verify_sensor_count(ipx=ipx, num_sensors=num_sensors_int)
 
-            display_uid_table(uid_mappings, uids_list) # final display
+                expected_uids = [m['new'] for m in uid_mappings]
+                if all(uid in final_uids for uid in expected_uids):
+                    logging.info("✅ SUCCESS: All UIDs were updated successfully.")
+                else:
+                    logging.error("❌ FAILURE: Some UIDs were not updated. Please check the device.")
 
-            try:
-                confirm = input("Confirm applying these UID changes? (y/n): ").strip().lower()
-            except KeyboardInterrupt:
-                logging.info("UID update confirmation cancelled by user.")
-                raise UserAbortError("UID update cancelled by user.")
-                
-            if confirm != 'y':
-                logging.warning("UID update cancelled by user.")
-                return
-            
-            logging.info("Applying UID changes to sensors...")
-            for mapping in uid_mappings:
-                ipx.set_uid(current_uid=mapping['old'], new_uid=mapping['new'])
-                
-                logging.debug(f"Set UID from {mapping['old']} to {mapping['new']}")
-                time.sleep(0.5)  # small delay to ensure command is processed
-                
-            # Final verification ( should this just not use verify_sensor_count again? )
-            logging.info("Verifying updated UIDs...")
-            # reverify after uid update
-            final_uids, _ = configurator.verify_sensor_count(ipx=ipx, num_sensors=num_sensors_int)
+        except (IPXSerialError, SystemExit) as e:
+            logging.critical(f"An error occurred during the UID update process: {e}")
 
-            expected_uids = [m['new'] for m in uid_mappings]
-            if all(uid in final_uids for uid in expected_uids):
-                logging.info("✅ SUCCESS: All UIDs were updated successfully.")
-            else:
-                logging.error("❌ FAILURE: Some UIDs were not updated. Please check the device.")
-
-    except (IPXSerialError, SystemExit) as e:
-        logging.critical(f"An error occurred during the UID update process: {e}")
-
+    except KeyboardInterrupt:
+        logging.info("UID update process cancelled by user. (Ctrl+C), returning to main menu")
+        raise UserAbortError("UID update process cancelled by user.")
 
 
 
@@ -612,15 +617,20 @@ def run_configuration_flow():
                         
                         logging.debug(f"Starting Modbus test for UID {uid} (Alias: {alias})")
                         test_result = modbus_tester.run_full_test(uid=uid, alias=alias)
-                        filtered_result = 
-                        report.add_sensor_data(uid=uid, data_key='modbus_test_result', data_value=test_result) # log modbus test result to report
+
+
+                        # log only certain test results, such as overall pass/fail, temperature, voltage, distance
+                        test_results_to_keep = ["Overall_Pass", "Dist_mm", "Temp_C", "Volt_V", "Status_Val"]
+                        test_result_for_report = {key: test_result[key] for key in test_results_to_keep}
+                        report.add_sensor_data(uid=uid, data_key='modbus_test_result', data_value=test_result_for_report) # log modbus test result to report
+                        
                         # log immediate status just for info:
                         if test_result["Overall_Pass"]:
                             logging.info(f"Modbus test PASSED for UID {uid} (Alias: {alias})")
                         else:
                             logging.warning(f"Modbus test FAILED for UID {uid} (Alias: {alias})")
                         
-                        modbus_record.append(test_result) # add result dict to record list
+                        modbus_record.append(test_result) # add result dict to record list ( so list of dicts )
             
             except Exception as e:
                 logging.critical(f"An error occurred during Modbus testing: {e}", exc_info=True)
@@ -667,19 +677,17 @@ def run_configuration_flow():
                 for index, row in failed_sensors.iterrows():
                     logging.info(f"   - UID {row['UID']} (Alias: {row['Alias']}) failed.")
                 logging.info("="*40 + "\n")
-                final_run_status = "Configuration completed with failures"
+                final_run_status = "Configuration completed , but modbust testing has failures"
                 logging.warning(f"Modbus verification complete. {len(failed_sensors)} sensors failed.")
 
                 # pause so user sees summary:
                 input("Press Enter to acknowledge and save reports")
 
-                report.add_sensor_data()
-
-
-            
+# ------------------------------------------- End of modbus testing  --------------------------------------------------------
+# Now onto saving the reports:
             
             # save final json report and uid + alias text file:
-            report.save_report(final_status="Success")
+            report.save_report(final_status=final_run_status) # should be consistent with the final_run_status variable
             report.save_txt_file(txt_content=txt_content)
             report.save_modbus_results(modbus_df=modbus_df)
 
@@ -708,60 +716,66 @@ def run_configuration_flow():
         raise UserAbortError("Configuration flow cancelled by user.")
     
 
+
 def initial_uid_update():
     """ Function for renaming the UIDs of sensors initially. Automatically renames sensors to 
     sequential UIDs starting from 1 based on the number of sensors detected."""
-    logging.info("--- Starting initial UID update session ---")
-    if not com_port:
-        logging.error("Invalid COM port")
-        return
-    baudrate = get_baudrate()
-    while True:
-        with IPXSerialCommunicator(port=com_port, baudrate=baudrate, verify=True) as ipx: # instantiate communicator
-            uids_list = retry_on_exception(operation_func=ipx.list_uids, prompt_func=prompt_user_on_other_failure, data_type='list')# use retry on exception to get uuds as list 
-            
-            if uids_list is None: # just for catching errors, should already be integrated into ipx serial communicator class
-                logging.error("Sensor detection failed or was skipped. Exiting UID update.") # slight error catch
-                return
-            logging.info(f"Detected {len(uids_list)} sensors. Proceeding to update UID of last detected sensor.")
-            print(uids_list)
-            last_uid = uids_list[-1] # get last element in uid list
-            new_uid = len(uids_list)  # sequential UID starting from 1
-
-            if last_uid == IPXCommands.Default_settings.Check_sensor_uid:
-                logging.error("Last detected sensor is a check sensor. Aborting UID update to prevent renaming check sensor.")
-                return
-            
-            try:
-                confirm = input(f"Press Enter to set UID of sensor with current UID {last_uid} to new UID {new_uid}... or abort (type 'abort'): or type 'retry' retry uid update ").strip().lower()
-            except KeyboardInterrupt:
-                logging.info("UID update cancelled by user.")
-                raise UserAbortError("UID update cancelled by user.")
+    try:
+        logging.info("--- Starting initial UID update session ---")
+        if not com_port:
+            logging.error("Invalid COM port")
+            return
+        baudrate = get_baudrate()
+        while True:
+            with IPXSerialCommunicator(port=com_port, baudrate=baudrate, verify=True) as ipx: # instantiate communicator
+                uids_list = retry_on_exception(operation_func=ipx.list_uids, prompt_func=prompt_user_on_other_failure, data_type='list')# use retry on exception to get uuds as list 
                 
-            if confirm == "": # proceed to next, and rename uid
-                ipx.set_uid(current_uid=last_uid, new_uid=new_uid) # set uid to new uid
-                logging.info(f"Successfully updated UID from {last_uid} to {new_uid}")
+                if uids_list is None: # just for catching errors, should already be integrated into ipx serial communicator class
+                    logging.error("Sensor detection failed or was skipped. Exiting UID update.") # slight error catch
+                    return
+                logging.info(f"Detected {len(uids_list)} sensors. Proceeding to update UID of last detected sensor.")
+                print(uids_list)
+                last_uid = uids_list[-1] # get last element in uid list
+                new_uid = len(uids_list)  # sequential UID starting from 1
 
-            elif confirm == "abort":
-                raise UserAbortError("UID update aborted by user.") # need to change all system exits
-            elif confirm == "retry" or confirm:
-                logging.info("Retrying UID update...")
-                continue
-
-            logging.info("Proceeding to next UID update..., Please press enter when ready.")
-            try:
-                confirm = input("Press Enter to continue updating the next sensor UID, or type 'exit' to finish: ").strip().lower()
-            except KeyboardInterrupt:
-                logging.info("UID update cancelled by user.")
-                raise UserAbortError("UID update cancelled by user.")
+                if last_uid == IPXCommands.Default_settings.Check_sensor_uid:
+                    logging.error("Last detected sensor is a check sensor. Aborting UID update to prevent renaming check sensor.")
+                    return
                 
-            if confirm == "":
-                continue
-            if confirm == "exit" or confirm:
-                logging.info("UID update session completed by user.")
-                break
+                try:
+                    confirm = input(f"Press Enter to set UID of sensor with current UID {last_uid} to new UID {new_uid}... or abort (type 'abort'): or type 'retry' retry uid update ").strip().lower()
+                except KeyboardInterrupt:
+                    logging.info("UID update cancelled by user.")
+                    raise UserAbortError("UID update cancelled by user.")
+                    
+                if confirm == "": # proceed to next, and rename uid
+                    ipx.set_uid(current_uid=last_uid, new_uid=new_uid) # set uid to new uid
+                    logging.info(f"Successfully updated UID from {last_uid} to {new_uid}")
 
-        return
+                elif confirm == "abort":
+                    raise UserAbortError("UID update aborted by user.") # need to change all system exits
+                elif confirm == "retry" or confirm:
+                    logging.info("Retrying UID update...")
+                    continue
+
+                logging.info("Proceeding to next UID update..., Please press enter when ready.")
+                try:
+                    confirm = input("Press Enter to continue updating the next sensor UID, or type 'exit' to finish: ").strip().lower()
+                except KeyboardInterrupt:
+                    logging.info("UID update cancelled by user.")
+                    raise UserAbortError("UID update cancelled by user.")
+                    
+                if confirm == "":
+                    continue
+                if confirm == "exit" or confirm:
+                    logging.info("UID update session completed by user.")
+                    break
+
+            return
+        
+    except KeyboardInterrupt:
+        logging.info("UID update session interrupted by user (Ctrl+C). Returning to main menu.")
+        raise UserAbortError("UID update session cancelled by user.")
 
             
 
@@ -770,55 +784,60 @@ def switch_all_to_115200():
     """ Function to switch all connected sensors to 115200 baud rate."""
     # Firstly detect sensors on the given com port
     # instantiate configurato
-    num_sensors_int = get_initial_settings()
-    configurator = IPXConfigurator(port=com_port, initial_baudrate=9600)
+    try:
+        num_sensors_int = get_initial_settings()
+        configurator = IPXConfigurator(port=com_port, initial_baudrate=9600)
 
 
-    if not com_port or not num_sensors_int:
-        logging.error("Invalid COM port or number of sensors.")
+        if not com_port or not num_sensors_int:
+            logging.error("Invalid COM port or number of sensors.")
+            return
+        try:
+            with IPXSerialCommunicator(port=com_port, baudrate=9600, verify=True) as ipx:
+                # Step 1: Verify sensor count with automatic retry handling
+                # should use verify sensor count function here
+                initial_uids_list, _ = configurator.verify_sensor_count(ipx=ipx, num_sensors=num_sensors_int)
+                if initial_uids_list is None:
+                    logging.error("incorrect numnber of sensors detected")
+                    return
+                logging.info(f"Detected {len(initial_uids_list)} sensors: {initial_uids_list}")
+                logging.info("Switching all sensors to 115200 baud rate...")
+
+
+                # now set baud rate for all detected sensors to 115200
+                for uid in initial_uids_list:
+                    ipx.set_baud(uid=uid, baud=115200)
+                    logging.info(f"Set baud rate to 115200 for UID {uid}")
+
+        except Exception as e:
+            logging.critical(f"An error occurred while switching baud rates: {e}", exc_info=True)
+            raise e # exit function on error
+        
+        # now all baud rates are set to 115200, we can verify by reconnecting at 115200, and verifying number of sensors again
+        try:
+            with IPXSerialCommunicator(port=com_port, baudrate=115200, verify=True) as ipx:
+                # Step 1: Verify sensor count with automatic retry handling
+                # might as well use verify sensor count function
+                new_uids_list, _ = configurator.verify_sensor_count(ipx=ipx, num_sensors=num_sensors_int)
+                
+                logging.info(f"Verifying baud rate change, detected {len(new_uids_list)} sensors: {new_uids_list}")
+
+                if new_uids_list is None:
+                    logging.error("Sensor detection failed or was skipped after baud rate change.")
+                    return # this code is redundant due to retry on failure function, but just in case who knows
+
+                if len(new_uids_list) != len(initial_uids_list):
+                    logging.error("❌ FAILURE: Number of sensors detected after baud rate change does not match initial count.")
+                    return # this is lowkey redundant as well
+                
+                logging.info("✅ SUCCESS: All sensors switched to 115200 baud rate successfully.")
+        except Exception as e:
+            logging.critical(f"An error occurred while verifying baud rate change: {e}", exc_info=True)
         return
-    try:
-        with IPXSerialCommunicator(port=com_port, baudrate=9600, verify=True) as ipx:
-            # Step 1: Verify sensor count with automatic retry handling
-            # should use verify sensor count function here
-            initial_uids_list, _ = configurator.verify_sensor_count(ipx=ipx, num_sensors=num_sensors_int)
-            if initial_uids_list is None:
-                logging.error("incorrect numnber of sensors detected")
-                return
-            logging.info(f"Detected {len(initial_uids_list)} sensors: {initial_uids_list}")
-            logging.info("Switching all sensors to 115200 baud rate...")
-
-
-            # now set baud rate for all detected sensors to 115200
-            for uid in initial_uids_list:
-                ipx.set_baud(uid=uid, baud=115200)
-                logging.info(f"Set baud rate to 115200 for UID {uid}")
-
-    except Exception as e:
-        logging.critical(f"An error occurred while switching baud rates: {e}", exc_info=True)
-        raise e # exit function on error
     
-    # now all baud rates are set to 115200, we can verify by reconnecting at 115200, and verifying number of sensors again
-    try:
-        with IPXSerialCommunicator(port=com_port, baudrate=115200, verify=True) as ipx:
-            # Step 1: Verify sensor count with automatic retry handling
-            # might as well use verify sensor count function
-            new_uids_list, _ = configurator.verify_sensor_count(ipx=ipx, num_sensors=num_sensors_int)
-            
-            logging.info(f"Verifying baud rate change, detected {len(new_uids_list)} sensors: {new_uids_list}")
-
-            if new_uids_list is None:
-                logging.error("Sensor detection failed or was skipped after baud rate change.")
-                return # this code is redundant due to retry on failure function, but just in case who knows
-
-            if len(new_uids_list) != len(initial_uids_list):
-                logging.error("❌ FAILURE: Number of sensors detected after baud rate change does not match initial count.")
-                return # this is lowkey redundant as well
-            
-            logging.info("✅ SUCCESS: All sensors switched to 115200 baud rate successfully.")
-    except Exception as e:
-        logging.critical(f"An error occurred while verifying baud rate change: {e}", exc_info=True)
-    return
+    except KeyboardInterrupt:
+        logging.info("Baud rate switching session interrupted by user (Ctrl+C). Returning to main menu.")
+        raise UserAbortError("Baud rate switching session cancelled by user.")
     
 
 
