@@ -139,17 +139,17 @@ class IPXModbusTester:
             if write_result.isError(): # check if the write was successful
                 logging.error(f"Trigger write failed for alias {alias}: {write_result}")
                 raise IPXModbusWriteError(f"Trigger write failed for alias {alias}: {write_result}")
-            logging.info("Measurment sequence successfully triggered")
+            logging.debug("Measurment sequence successfully triggered")
             #2. wait for measurement to complete (wait 1s):
             time.sleep(1.0)
 
-            logging.info("Moving on to reading results...")
+            logging.debug("Moving on to reading results...")
             # add uid and alis to results dictionary
 
             result = {"uid": uid, "alias": alias}
 
             #3. read status:
-            logging.info("Reading status...")
+            logging.debug("Reading status...")
             rr_status = self.client.read_holding_registers(
                 address=self.STATUS_REG,
                 count=1,
@@ -160,10 +160,10 @@ class IPXModbusTester:
             else:
                 result["Status"] = rr_status.registers[0]
             
-            logging.info(f"Status read successfully")   
+            logging.debug(f"Status read successfully")   
             
             #4. read distance:
-            logging.info("Reading distance...")
+            logging.debug("Reading distance...")
             rr_distance = self.client.read_holding_registers(
                 address=self.DISTANCE_REG,
                 count=2,
@@ -175,10 +175,10 @@ class IPXModbusTester:
                 distance = self._regs_to_float(rr_distance.registers[0], rr_distance.registers[1]) # convert from bytes to python float
                 result["Distance_mm"] = distance
             
-            logging.info(f"Distance read successfully")
+            logging.debug(f"Distance read successfully")
 
             #5. read temperature:
-            logging.info("Reading temperature...")
+            logging.debug("Reading temperature...")
             rr_temp = self.client.read_holding_registers(
                 address=self.TEMP_REG,
                 count=2,
@@ -189,10 +189,10 @@ class IPXModbusTester:
             else:
                 temperature = self._regs_to_float(rr_temp.registers[0], rr_temp.registers[1])
                 result["Temperature"] = temperature
-            logging.info(f"Temperature read successfully")
+            logging.debug(f"Temperature read successfully")
 
             #6. read voltage:
-            logging.info("Reading voltage...")
+            logging.debug("Reading voltage...")
             rr_voltage = self.client.read_holding_registers(
                 address=self.VOLTAGE_REG,
                 count=2,
@@ -203,7 +203,7 @@ class IPXModbusTester:
             else:
                 voltage = self._regs_to_float(rr_voltage.registers[0], rr_voltage.registers[1])
                 result["Voltage"] = voltage
-            logging.info(f"Voltage read successfully")
+            logging.debug(f"Voltage read successfully")
 
             log_msg = (f" Datalogger test results for: \n"
                        "\n=============================== \n"
@@ -257,7 +257,7 @@ class IPXModbusTester:
             "voltage": voltage is not None and 11.2 <= voltage <= 12.8,
         }
         
-        logging.info(f"Checking results for UID {uid}, Alias {alias}:")
+        logging.debug(f"Checking results for UID {uid}, Alias {alias}:")
 
         failures = []
         if not checks["status"]:

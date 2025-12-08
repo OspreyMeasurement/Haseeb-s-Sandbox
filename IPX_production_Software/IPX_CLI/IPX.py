@@ -11,6 +11,8 @@ import pandas as pd
 import re # apparently good for handling text
 
 
+logger = logging.getLogger(__name__)
+
 
 # com port 5 for testing
 
@@ -137,7 +139,7 @@ class IPXSerialCommunicator:
         # Clear input buffer to ensure we only read the response to *this* command
         self.connection.reset_input_buffer()
         self.connection.write(command.encode("UTF-8"))
-        logging.info(f"Sent command: {command.strip()}")
+        logging.debug(f"Sent command: {command.strip()}")
 
         # 1. block and wait for the first byte to arrive
         first_byte = self.connection.read(1)
@@ -184,18 +186,18 @@ class IPXSerialCommunicator:
                 for line in lines:
                     line = line.strip()
                     if line:
-                        logging.info(line)
+                        logging.debug(line)
 
                         # adding stop on string logic
                         if stop_on_string and stop_on_string in line:
-                            logging.info(f" Terminator string found. Finalising read")
+                            logging.debug(f" Terminator string found. Finalising read")
                             stop_reading_now = True
             if stop_reading_now == True:
                 break
             
             elif time.time() - start_time > listen_duration:
                 # no new data received within listen_duration
-                logging.info("No new data received within listen duration, ending read.") # change to debug later
+                logging.debug("No new data received within listen duration, ending read.") # change to debug later
                 break # break the while loop
             time.sleep(0.01)  # short delay to stop loop from hogging CPU (gemini)
         
@@ -203,7 +205,7 @@ class IPXSerialCommunicator:
         if response:
             logging.debug(f"Received response: {response}")
         else:
-            logging.warning("No response received from device.")
+            logging.error("No response received from device.")
             raise IPXNoResponseError("No response received from device within the expected timeout.") # add this exception for error catching
         return response
     
@@ -227,7 +229,7 @@ class IPXSerialCommunicator:
                 logging.error(error_message)
                 raise IPXVerificationError(error_message) # raise verification error
             else:
-                logging.info(f"response verified successfully for command: {command}")
+                logging.debug(f"response verified successfully for command: {command}")
 
         
         return response_str
@@ -365,7 +367,7 @@ class IPXSerialCommunicator:
             # use regex to define the pattern to capture the 4 data groups
             pattern = re.compile(r"Sensor number (\d+) mean = (-?\d+), standard dev = (\d+) axis (\d+)") # extract sensor number, mean, std dev and axis number as seperate values
             matches = pattern.findall(response_str) # do this to response_str, should generate list of tuples, of format ('sensornum', "mean", "std dev ", "axis number")
-            logging.debug(f"Created matches tuple as follows: {matches} ")
+            # logger.trace(f"Created matches tuple as follows: {matches} ")
             if not matches:
                 logging.error(f"Match object was empty, received this as reponse: {response_str}")
                 # raise Exception(f"Did not find any values for creation of DF: {response_str}") # gemini says raising an exception is too harsh
@@ -597,7 +599,7 @@ class IPXConfigurator:
             set_aliases (bool): Whether to set aliases for the sensors  
             Returns:
             list: A list of tuples containing (alias, uid) if aliases are set, else a list of uids (for referecne later on)"""
-        logging.info("Appling deafualt parameters to all detected sensors...")
+        logging.debug ("Appling deafualt parameters to all detected sensors...")
         uids_list
         # if set alis = false, skip setting aliases
 

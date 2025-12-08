@@ -14,6 +14,14 @@ import time
 
 
 
+# setup_logging(level=logging.INFO)  # Set default log level to INFO
+
+
+# setup log level
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+
+
 # import files for JSON report generation
 from report_generator import ReportGenerator
 
@@ -114,8 +122,8 @@ def set_baudrate(new_baudrate: int = None):
         return baudrate
 
 
-# setup log level
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+# # setup log level
+# logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
 # Function for getting order details from user:
@@ -665,7 +673,8 @@ def run_configuration_flow():
                           f"Voltage: {row['Volt_V']:.3g} V \n"
                           f"Overall Result: {'✅ PASS' if row['Overall_Pass'] else '❌ FAIL'} \n"
                           f"=============================== \n")
-                logging.info(log_msg)
+                logging.debug(log_msg) # this is for debug log, for when i start saving the logs with every configuration run
+                print(log_msg) # this will look cleaner in the terminal
 
             if failed_sensors.empty:
                 logging.info(f"✅ ALL {len(modbus_df)} SENSORS PASSED.")
@@ -680,8 +689,8 @@ def run_configuration_flow():
                 final_run_status = "Configuration completed , but modbust testing has failures"
                 logging.warning(f"Modbus verification complete. {len(failed_sensors)} sensors failed.")
 
-                # pause so user sees summary:
-                input("Press Enter to acknowledge and save reports")
+            # pause so user sees summary:
+            input("Press Enter to acknowledge results and save repots...")
 
 # ------------------------------------------- End of modbus testing  --------------------------------------------------------
 # Now onto saving the reports:
