@@ -284,8 +284,8 @@ def retry_on_exception(operation_func, prompt_func, handled_exceptions=(Exceptio
                 time.sleep(retry_delay)
                 continue
             elif choice == "skip":
-                logging.warning("User chose to skip this operation.")
-                return None
+                logging.warning("User chose to skip this operation., returning current result")
+                return result
             elif choice == "abort":
                 logging.critical("User aborted operation.")
                 raise UserAbortError("Configuration aborted by user.")
@@ -618,13 +618,14 @@ def run_configuration_flow():
             # i should mimic how the datalogger would test, it would get all of the results and then we would manually check them after
             # so mimic that process, but instead of manually checking them, we automate the checking process
             try:
-                with IPXModbusTester(port=com_port, baudrate=final_baud) as modbus_tester:
+                with IPXModbusTester(port=com_port, baudrate=9600) as modbus_tester:
                     for tuple in alias_and_uids_list:
                         alias = tuple[0]
                         uid = tuple[1]
                         
                         logging.debug(f"Starting Modbus test for UID {uid} (Alias: {alias})")
-                        test_result = modbus_tester.run_full_test(uid=uid, alias=alias)
+                        test_result = retry_on_exception(lambda: modbus_tester.run_full_test(uid=uid, alias=alias), prompt_func=prompt_user_on_other_failure)
+                        # retry incase a modbus read fails due to timeout or other comms error
 
 
                         # log only certain test results, such as overall pass/fail, temperature, voltage, distance

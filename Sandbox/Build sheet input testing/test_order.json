@@ -1,0 +1,70 @@
+{
+  "id": "CO12345_MO001_STR1",
+  "customer_order": "CO12345",
+  "manufacturing_order": "MO001",
+  "project": "HS2",
+  "area_section": "WSCT",
+  "customer": "SOCOTEC UK LTD",
+  "notes": "WARRANTY replacement string — verify bottom sensor readings carefully",
+
+  "string": {
+    "id": "STR1",
+    "string_description": "WSCT-XM01001",
+    "connector_pairs": 0,
+    "connector_flying_lead": 0,
+    "total_cable_m": 48.82,
+    "cable_slack_mm": 15,
+    "standard_or_slimline": "Standard",
+
+    "expected_sensors": 8,
+    "segments": [
+    {
+        "label": "Top / Magnet 8",
+        "magnet_no": 8,
+        "length_m": 6.12
+    },
+    {
+        "label": "Magnet 7",
+        "magnet_no": 7,
+        "length_m": 5.74
+    },
+    {
+        "label": "Magnet 6",
+        "magnet_no": 6,
+        "length_m": 4.91
+    },
+    {
+        "label": "Magnet 5",
+        "magnet_no": 5,
+        "length_m": 4.45
+    },
+    {
+        "label": "Magnet 4",
+        "magnet_no": 4,
+        "length_m": 3.87
+    },
+    {
+        "label": "Magnet 3",
+        "magnet_no": 3,
+        "length_m": 3.54
+    },
+    {
+        "label": "Magnet 2",
+        "magnet_no": 2,
+        "length_m": 3.04
+    },
+    {
+        "label": "Datum / Bottom Magnet 1",
+        "magnet_no": 1,
+        "length_m": 17.15
+    }
+    ],
+
+    "box_contents": [
+    { "item": "Top support", "qty": 1 },
+    { "item": "Bottom support", "qty": 1 },
+    { "item": "Installation screwdriver", "qty": 1 },
+    { "item": "USB to RS485 adapter", "qty": 1 }
+    ]
+}
+}
