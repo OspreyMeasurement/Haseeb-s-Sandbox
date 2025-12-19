@@ -112,7 +112,7 @@ class PlotManager:
             os.makedirs(target_dir, exist_ok=True) # save to same directory as json reports etc.
             filepath = os.path.join(target_dir, filename)
             fig.write_html(filepath)
-            logging.info(f"Saved plot to {filepath}")
+            logging.debug(f"Saved plot to {filepath}")
         except Exception as e:
             logging.error(f"Error saving plot {filename}: {e}", exc_info=True)
 

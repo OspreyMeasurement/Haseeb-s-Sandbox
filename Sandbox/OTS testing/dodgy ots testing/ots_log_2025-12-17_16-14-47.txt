@@ -1,0 +1,695 @@
+2025-12-17 16:14:47,495 - INFO - Relay serial port opened successfully.
+2025-12-17 16:14:47,496 - INFO - OTS serial port opened successfully.
+2025-12-17 16:14:49,497 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:14:49,797 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:14:49,800 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:14:52,804 - INFO - Relay toggled off and on. With delay of 0.0 seconds.
+2025-12-17 16:14:52,806 - INFO - ----------------------------------------
+2025-12-17 16:14:52,808 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:14:53,106 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:14:53,107 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:14:56,113 - INFO - Relay toggled off and on. With delay of 0.001 seconds.
+2025-12-17 16:14:56,115 - INFO - ----------------------------------------
+2025-12-17 16:14:56,117 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:14:56,415 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:14:56,415 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:14:59,421 - INFO - Relay toggled off and on. With delay of 0.002 seconds.
+2025-12-17 16:14:59,422 - INFO - ----------------------------------------
+2025-12-17 16:14:59,425 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:14:59,722 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:14:59,724 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:15:02,734 - INFO - Relay toggled off and on. With delay of 0.003 seconds.
+2025-12-17 16:15:02,736 - INFO - ----------------------------------------
+2025-12-17 16:15:02,738 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:15:03,035 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:15:03,036 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:15:06,045 - INFO - Relay toggled off and on. With delay of 0.004 seconds.
+2025-12-17 16:15:06,047 - INFO - ----------------------------------------
+2025-12-17 16:15:06,049 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:15:06,347 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:15:06,348 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:15:09,360 - INFO - Relay toggled off and on. With delay of 0.005 seconds.
+2025-12-17 16:15:09,360 - INFO - ----------------------------------------
+2025-12-17 16:15:09,361 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:15:09,659 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:15:09,660 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:15:12,671 - INFO - Relay toggled off and on. With delay of 0.006 seconds.
+2025-12-17 16:15:12,673 - INFO - ----------------------------------------
+2025-12-17 16:15:12,675 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:15:12,973 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:15:12,974 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:15:15,987 - INFO - Relay toggled off and on. With delay of 0.007 seconds.
+2025-12-17 16:15:15,988 - INFO - ----------------------------------------
+2025-12-17 16:15:15,991 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:15:16,289 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:15:16,290 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:15:19,303 - INFO - Relay toggled off and on. With delay of 0.008 seconds.
+2025-12-17 16:15:19,304 - INFO - ----------------------------------------
+2025-12-17 16:15:19,306 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:15:19,604 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:15:19,604 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:15:22,619 - INFO - Relay toggled off and on. With delay of 0.009 seconds.
+2025-12-17 16:15:22,620 - INFO - ----------------------------------------
+2025-12-17 16:15:22,622 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:15:22,919 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:15:22,920 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:15:25,933 - INFO - Relay toggled off and on. With delay of 0.01 seconds.
+2025-12-17 16:15:25,934 - INFO - ----------------------------------------
+2025-12-17 16:15:25,936 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:15:26,234 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:15:26,236 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:15:29,255 - INFO - Relay toggled off and on. With delay of 0.011 seconds.
+2025-12-17 16:15:29,256 - INFO - ----------------------------------------
+2025-12-17 16:15:29,258 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:15:29,556 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:15:29,557 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:15:32,575 - INFO - Relay toggled off and on. With delay of 0.012 seconds.
+2025-12-17 16:15:32,577 - INFO - ----------------------------------------
+2025-12-17 16:15:32,579 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:15:32,877 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:15:32,879 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:15:35,898 - INFO - Relay toggled off and on. With delay of 0.013 seconds.
+2025-12-17 16:15:35,898 - INFO - ----------------------------------------
+2025-12-17 16:15:35,899 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:15:36,197 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:15:36,199 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:15:39,220 - INFO - Relay toggled off and on. With delay of 0.014 seconds.
+2025-12-17 16:15:39,221 - INFO - ----------------------------------------
+2025-12-17 16:15:39,223 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:15:39,522 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:15:39,523 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:15:42,546 - INFO - Relay toggled off and on. With delay of 0.015 seconds.
+2025-12-17 16:15:42,547 - INFO - ----------------------------------------
+2025-12-17 16:15:42,549 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:15:42,847 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:15:42,848 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:15:45,872 - INFO - Relay toggled off and on. With delay of 0.016 seconds.
+2025-12-17 16:15:45,874 - INFO - ----------------------------------------
+2025-12-17 16:15:45,876 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:15:46,173 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:15:46,174 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:15:49,198 - INFO - Relay toggled off and on. With delay of 0.017 seconds.
+2025-12-17 16:15:49,200 - INFO - ----------------------------------------
+2025-12-17 16:15:49,202 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:15:49,500 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:15:49,502 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:15:52,526 - INFO - Relay toggled off and on. With delay of 0.018 seconds.
+2025-12-17 16:15:52,528 - INFO - ----------------------------------------
+2025-12-17 16:15:52,530 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:15:52,828 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:15:52,829 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:15:55,855 - INFO - Relay toggled off and on. With delay of 0.019 seconds.
+2025-12-17 16:15:55,857 - INFO - ----------------------------------------
+2025-12-17 16:15:55,858 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:15:56,156 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:15:56,158 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:15:59,185 - INFO - Relay toggled off and on. With delay of 0.02 seconds.
+2025-12-17 16:15:59,187 - INFO - ----------------------------------------
+2025-12-17 16:15:59,189 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:15:59,487 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:15:59,487 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:16:02,514 - INFO - Relay toggled off and on. With delay of 0.021 seconds.
+2025-12-17 16:16:02,516 - INFO - ----------------------------------------
+2025-12-17 16:16:02,518 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:16:02,816 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:16:02,817 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:16:05,846 - INFO - Relay toggled off and on. With delay of 0.022 seconds.
+2025-12-17 16:16:05,848 - INFO - ----------------------------------------
+2025-12-17 16:16:05,850 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:16:06,148 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:16:06,149 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:16:09,178 - INFO - Relay toggled off and on. With delay of 0.023 seconds.
+2025-12-17 16:16:09,179 - INFO - ----------------------------------------
+2025-12-17 16:16:09,181 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:16:09,479 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:16:09,480 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:16:12,512 - INFO - Relay toggled off and on. With delay of 0.024 seconds.
+2025-12-17 16:16:12,513 - INFO - ----------------------------------------
+2025-12-17 16:16:12,516 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:16:12,814 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:16:12,815 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:16:15,847 - INFO - Relay toggled off and on. With delay of 0.025 seconds.
+2025-12-17 16:16:15,848 - INFO - ----------------------------------------
+2025-12-17 16:16:15,850 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:16:16,149 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:16:16,150 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:16:19,182 - INFO - Relay toggled off and on. With delay of 0.026 seconds.
+2025-12-17 16:16:19,183 - INFO - ----------------------------------------
+2025-12-17 16:16:19,185 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:16:19,483 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:16:19,484 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:16:22,518 - INFO - Relay toggled off and on. With delay of 0.027 seconds.
+2025-12-17 16:16:22,520 - INFO - ----------------------------------------
+2025-12-17 16:16:22,522 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:16:22,820 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:16:22,821 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:16:25,855 - INFO - Relay toggled off and on. With delay of 0.028 seconds.
+2025-12-17 16:16:25,857 - INFO - ----------------------------------------
+2025-12-17 16:16:25,859 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:16:26,158 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:16:26,159 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:16:29,194 - INFO - Relay toggled off and on. With delay of 0.029 seconds.
+2025-12-17 16:16:29,195 - INFO - ----------------------------------------
+2025-12-17 16:16:29,197 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:16:29,495 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:16:29,496 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:16:32,533 - INFO - Relay toggled off and on. With delay of 0.03 seconds.
+2025-12-17 16:16:32,534 - INFO - ----------------------------------------
+2025-12-17 16:16:32,536 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:16:32,834 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:16:32,836 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:16:35,874 - INFO - Relay toggled off and on. With delay of 0.031 seconds.
+2025-12-17 16:16:35,875 - INFO - ----------------------------------------
+2025-12-17 16:16:35,877 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:16:36,176 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:16:36,177 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:16:39,216 - INFO - Relay toggled off and on. With delay of 0.032 seconds.
+2025-12-17 16:16:39,218 - INFO - ----------------------------------------
+2025-12-17 16:16:39,220 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:16:39,518 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:16:39,519 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:16:42,560 - INFO - Relay toggled off and on. With delay of 0.033 seconds.
+2025-12-17 16:16:42,561 - INFO - ----------------------------------------
+2025-12-17 16:16:42,562 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:16:42,861 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:16:42,862 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:16:45,902 - INFO - Relay toggled off and on. With delay of 0.034 seconds.
+2025-12-17 16:16:45,903 - INFO - ----------------------------------------
+2025-12-17 16:16:45,904 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:16:46,203 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:16:46,204 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:16:49,246 - INFO - Relay toggled off and on. With delay of 0.035 seconds.
+2025-12-17 16:16:49,247 - INFO - ----------------------------------------
+2025-12-17 16:16:49,249 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:16:49,547 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:16:49,547 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:16:52,587 - INFO - Relay toggled off and on. With delay of 0.036 seconds.
+2025-12-17 16:16:52,588 - INFO - ----------------------------------------
+2025-12-17 16:16:52,589 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:16:52,887 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:16:52,888 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:16:55,929 - INFO - Relay toggled off and on. With delay of 0.037 seconds.
+2025-12-17 16:16:55,929 - INFO - ----------------------------------------
+2025-12-17 16:16:55,931 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:16:56,229 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:16:56,229 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:16:59,272 - INFO - Relay toggled off and on. With delay of 0.038 seconds.
+2025-12-17 16:16:59,274 - INFO - ----------------------------------------
+2025-12-17 16:16:59,276 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:16:59,573 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:16:59,575 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:17:02,619 - INFO - Relay toggled off and on. With delay of 0.039 seconds.
+2025-12-17 16:17:02,621 - INFO - ----------------------------------------
+2025-12-17 16:17:02,623 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:17:02,921 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:17:02,923 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:17:05,969 - INFO - Relay toggled off and on. With delay of 0.04 seconds.
+2025-12-17 16:17:05,971 - INFO - ----------------------------------------
+2025-12-17 16:17:05,974 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:17:06,272 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:17:06,273 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:17:09,321 - INFO - Relay toggled off and on. With delay of 0.041 seconds.
+2025-12-17 16:17:09,322 - INFO - ----------------------------------------
+2025-12-17 16:17:09,324 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:17:09,622 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:17:09,624 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:17:12,671 - INFO - Relay toggled off and on. With delay of 0.042 seconds.
+2025-12-17 16:17:12,673 - INFO - ----------------------------------------
+2025-12-17 16:17:12,675 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:17:12,973 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:17:12,974 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:17:16,025 - INFO - Relay toggled off and on. With delay of 0.043 seconds.
+2025-12-17 16:17:16,026 - INFO - ----------------------------------------
+2025-12-17 16:17:16,028 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:17:16,327 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:17:16,328 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:17:19,378 - INFO - Relay toggled off and on. With delay of 0.044 seconds.
+2025-12-17 16:17:19,380 - INFO - ----------------------------------------
+2025-12-17 16:17:19,382 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:17:19,680 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:17:19,681 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:17:22,734 - INFO - Relay toggled off and on. With delay of 0.045 seconds.
+2025-12-17 16:17:22,736 - INFO - ----------------------------------------
+2025-12-17 16:17:22,737 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:17:23,035 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:17:23,037 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:17:26,090 - INFO - Relay toggled off and on. With delay of 0.046 seconds.
+2025-12-17 16:17:26,092 - INFO - ----------------------------------------
+2025-12-17 16:17:26,094 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:17:26,392 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:17:26,394 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:17:29,446 - INFO - Relay toggled off and on. With delay of 0.047 seconds.
+2025-12-17 16:17:29,448 - INFO - ----------------------------------------
+2025-12-17 16:17:29,449 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:17:29,747 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:17:29,749 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:17:32,805 - INFO - Relay toggled off and on. With delay of 0.048 seconds.
+2025-12-17 16:17:32,807 - INFO - ----------------------------------------
+2025-12-17 16:17:32,809 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:17:33,107 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:17:33,108 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:17:36,163 - INFO - Relay toggled off and on. With delay of 0.049 seconds.
+2025-12-17 16:17:36,164 - INFO - ----------------------------------------
+2025-12-17 16:17:36,166 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:17:36,464 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:17:36,465 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:17:39,522 - INFO - Relay toggled off and on. With delay of 0.05 seconds.
+2025-12-17 16:17:39,523 - INFO - ----------------------------------------
+2025-12-17 16:17:39,525 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:17:39,823 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:17:39,824 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:17:42,880 - INFO - Relay toggled off and on. With delay of 0.051 seconds.
+2025-12-17 16:17:42,881 - INFO - ----------------------------------------
+2025-12-17 16:17:42,884 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:17:43,182 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:17:43,183 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:17:46,242 - INFO - Relay toggled off and on. With delay of 0.052 seconds.
+2025-12-17 16:17:46,244 - INFO - ----------------------------------------
+2025-12-17 16:17:46,246 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:17:46,544 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:17:46,545 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:17:49,605 - INFO - Relay toggled off and on. With delay of 0.053 seconds.
+2025-12-17 16:17:49,606 - INFO - ----------------------------------------
+2025-12-17 16:17:49,608 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:17:49,906 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:17:49,908 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:17:52,968 - INFO - Relay toggled off and on. With delay of 0.054 seconds.
+2025-12-17 16:17:52,970 - INFO - ----------------------------------------
+2025-12-17 16:17:52,972 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:17:53,270 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:17:53,272 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:17:56,334 - INFO - Relay toggled off and on. With delay of 0.055 seconds.
+2025-12-17 16:17:56,336 - INFO - ----------------------------------------
+2025-12-17 16:17:56,339 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:17:56,637 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:17:56,638 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:17:59,700 - INFO - Relay toggled off and on. With delay of 0.056 seconds.
+2025-12-17 16:17:59,702 - INFO - ----------------------------------------
+2025-12-17 16:17:59,704 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:18:00,002 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:18:00,003 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:18:03,068 - INFO - Relay toggled off and on. With delay of 0.057 seconds.
+2025-12-17 16:18:03,069 - INFO - ----------------------------------------
+2025-12-17 16:18:03,071 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:18:03,369 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:18:03,370 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:18:06,435 - INFO - Relay toggled off and on. With delay of 0.058 seconds.
+2025-12-17 16:18:06,436 - INFO - ----------------------------------------
+2025-12-17 16:18:06,438 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:18:06,736 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:18:06,737 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:18:09,802 - INFO - Relay toggled off and on. With delay of 0.059 seconds.
+2025-12-17 16:18:09,803 - INFO - ----------------------------------------
+2025-12-17 16:18:09,805 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:18:10,103 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:18:10,105 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:18:13,172 - INFO - Relay toggled off and on. With delay of 0.06 seconds.
+2025-12-17 16:18:13,173 - INFO - ----------------------------------------
+2025-12-17 16:18:13,175 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:18:13,473 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:18:13,474 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:18:16,543 - INFO - Relay toggled off and on. With delay of 0.061 seconds.
+2025-12-17 16:18:16,544 - INFO - ----------------------------------------
+2025-12-17 16:18:16,547 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:18:16,845 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:18:16,847 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:18:19,914 - INFO - Relay toggled off and on. With delay of 0.062 seconds.
+2025-12-17 16:18:19,914 - INFO - ----------------------------------------
+2025-12-17 16:18:19,915 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:18:20,213 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:18:20,214 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:18:23,282 - INFO - Relay toggled off and on. With delay of 0.063 seconds.
+2025-12-17 16:18:23,284 - INFO - ----------------------------------------
+2025-12-17 16:18:23,286 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:18:23,584 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:18:23,585 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:18:26,656 - INFO - Relay toggled off and on. With delay of 0.064 seconds.
+2025-12-17 16:18:26,658 - INFO - ----------------------------------------
+2025-12-17 16:18:26,660 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:18:26,958 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:18:26,960 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:18:30,029 - INFO - Relay toggled off and on. With delay of 0.065 seconds.
+2025-12-17 16:18:30,031 - INFO - ----------------------------------------
+2025-12-17 16:18:30,033 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:18:30,331 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:18:30,332 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:18:33,403 - INFO - Relay toggled off and on. With delay of 0.066 seconds.
+2025-12-17 16:18:33,403 - INFO - ----------------------------------------
+2025-12-17 16:18:33,404 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:18:33,702 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:18:33,703 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:18:36,774 - INFO - Relay toggled off and on. With delay of 0.067 seconds.
+2025-12-17 16:18:36,775 - INFO - ----------------------------------------
+2025-12-17 16:18:36,778 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:18:37,076 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:18:37,077 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:18:40,150 - INFO - Relay toggled off and on. With delay of 0.068 seconds.
+2025-12-17 16:18:40,151 - INFO - ----------------------------------------
+2025-12-17 16:18:40,152 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:18:40,451 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:18:40,452 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:18:43,528 - INFO - Relay toggled off and on. With delay of 0.069 seconds.
+2025-12-17 16:18:43,530 - INFO - ----------------------------------------
+2025-12-17 16:18:43,531 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:18:43,829 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:18:43,831 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:18:46,908 - INFO - Relay toggled off and on. With delay of 0.07 seconds.
+2025-12-17 16:18:46,909 - INFO - ----------------------------------------
+2025-12-17 16:18:46,911 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:18:47,209 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:18:47,211 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:18:50,289 - INFO - Relay toggled off and on. With delay of 0.071 seconds.
+2025-12-17 16:18:50,290 - INFO - ----------------------------------------
+2025-12-17 16:18:50,291 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:18:50,589 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:18:50,590 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:18:53,670 - INFO - Relay toggled off and on. With delay of 0.072 seconds.
+2025-12-17 16:18:53,672 - INFO - ----------------------------------------
+2025-12-17 16:18:53,674 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:18:53,972 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:18:53,974 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:18:57,054 - INFO - Relay toggled off and on. With delay of 0.073 seconds.
+2025-12-17 16:18:57,055 - INFO - ----------------------------------------
+2025-12-17 16:18:57,055 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:18:57,354 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:18:57,354 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:19:00,434 - INFO - Relay toggled off and on. With delay of 0.074 seconds.
+2025-12-17 16:19:00,436 - INFO - ----------------------------------------
+2025-12-17 16:19:00,439 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:19:00,737 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:19:00,738 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:19:03,818 - INFO - Relay toggled off and on. With delay of 0.075 seconds.
+2025-12-17 16:19:03,819 - INFO - ----------------------------------------
+2025-12-17 16:19:03,821 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:19:04,119 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:19:04,121 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:19:07,203 - INFO - Relay toggled off and on. With delay of 0.076 seconds.
+2025-12-17 16:19:07,204 - INFO - ----------------------------------------
+2025-12-17 16:19:07,207 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:19:07,505 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:19:07,506 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:19:10,588 - INFO - Relay toggled off and on. With delay of 0.077 seconds.
+2025-12-17 16:19:10,590 - INFO - ----------------------------------------
+2025-12-17 16:19:10,592 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:19:10,890 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:19:10,891 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:19:13,976 - INFO - Relay toggled off and on. With delay of 0.078 seconds.
+2025-12-17 16:19:13,978 - INFO - ----------------------------------------
+2025-12-17 16:19:13,980 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:19:14,278 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:19:14,279 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:19:17,365 - INFO - Relay toggled off and on. With delay of 0.079 seconds.
+2025-12-17 16:19:17,366 - INFO - ----------------------------------------
+2025-12-17 16:19:17,368 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:19:17,666 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:19:17,668 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:19:20,752 - INFO - Relay toggled off and on. With delay of 0.08 seconds.
+2025-12-17 16:19:20,754 - INFO - ----------------------------------------
+2025-12-17 16:19:20,756 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:19:21,053 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:19:21,055 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:19:24,143 - INFO - Relay toggled off and on. With delay of 0.081 seconds.
+2025-12-17 16:19:24,145 - INFO - ----------------------------------------
+2025-12-17 16:19:24,147 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:19:24,445 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:19:24,447 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:19:27,537 - INFO - Relay toggled off and on. With delay of 0.082 seconds.
+2025-12-17 16:19:27,538 - INFO - ----------------------------------------
+2025-12-17 16:19:27,541 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:19:27,839 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:19:27,840 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:19:30,931 - INFO - Relay toggled off and on. With delay of 0.083 seconds.
+2025-12-17 16:19:30,932 - INFO - ----------------------------------------
+2025-12-17 16:19:30,934 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:19:31,232 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:19:31,233 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:19:34,325 - INFO - Relay toggled off and on. With delay of 0.084 seconds.
+2025-12-17 16:19:34,326 - INFO - ----------------------------------------
+2025-12-17 16:19:34,328 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:19:34,626 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:19:34,627 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:19:37,719 - INFO - Relay toggled off and on. With delay of 0.085 seconds.
+2025-12-17 16:19:37,721 - INFO - ----------------------------------------
+2025-12-17 16:19:37,724 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:19:38,022 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:19:38,024 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:19:41,117 - INFO - Relay toggled off and on. With delay of 0.086 seconds.
+2025-12-17 16:19:41,118 - INFO - ----------------------------------------
+2025-12-17 16:19:41,120 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:19:41,419 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:19:41,420 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:19:44,516 - INFO - Relay toggled off and on. With delay of 0.087 seconds.
+2025-12-17 16:19:44,518 - INFO - ----------------------------------------
+2025-12-17 16:19:44,521 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:19:44,818 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:19:44,820 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:19:47,913 - INFO - Relay toggled off and on. With delay of 0.088 seconds.
+2025-12-17 16:19:47,915 - INFO - ----------------------------------------
+2025-12-17 16:19:47,916 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:19:48,214 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:19:48,216 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:19:51,311 - INFO - Relay toggled off and on. With delay of 0.089 seconds.
+2025-12-17 16:19:51,314 - INFO - ----------------------------------------
+2025-12-17 16:19:51,316 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:19:51,614 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:19:51,615 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:19:54,713 - INFO - Relay toggled off and on. With delay of 0.09 seconds.
+2025-12-17 16:19:54,715 - INFO - ----------------------------------------
+2025-12-17 16:19:54,718 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:19:55,015 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:19:55,017 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:19:58,115 - INFO - Relay toggled off and on. With delay of 0.091 seconds.
+2025-12-17 16:19:58,116 - INFO - ----------------------------------------
+2025-12-17 16:19:58,119 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:19:58,417 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:19:58,418 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:20:01,518 - INFO - Relay toggled off and on. With delay of 0.092 seconds.
+2025-12-17 16:20:01,520 - INFO - ----------------------------------------
+2025-12-17 16:20:01,522 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:20:01,820 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:20:01,821 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:20:04,921 - INFO - Relay toggled off and on. With delay of 0.093 seconds.
+2025-12-17 16:20:04,923 - INFO - ----------------------------------------
+2025-12-17 16:20:04,925 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:20:05,223 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:20:05,225 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:20:08,326 - INFO - Relay toggled off and on. With delay of 0.094 seconds.
+2025-12-17 16:20:08,328 - INFO - ----------------------------------------
+2025-12-17 16:20:08,330 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:20:08,628 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:20:08,629 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:20:11,732 - INFO - Relay toggled off and on. With delay of 0.095 seconds.
+2025-12-17 16:20:11,733 - INFO - ----------------------------------------
+2025-12-17 16:20:11,735 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:20:12,033 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:20:12,034 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:20:15,136 - INFO - Relay toggled off and on. With delay of 0.096 seconds.
+2025-12-17 16:20:15,138 - INFO - ----------------------------------------
+2025-12-17 16:20:15,140 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:20:15,438 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:20:15,440 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:20:18,544 - INFO - Relay toggled off and on. With delay of 0.097 seconds.
+2025-12-17 16:20:18,545 - INFO - ----------------------------------------
+2025-12-17 16:20:18,547 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:20:18,845 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:20:18,846 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:20:21,950 - INFO - Relay toggled off and on. With delay of 0.098 seconds.
+2025-12-17 16:20:21,952 - INFO - ----------------------------------------
+2025-12-17 16:20:21,954 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:20:22,252 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:20:22,253 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:20:25,359 - INFO - Relay toggled off and on. With delay of 0.099 seconds.
+2025-12-17 16:20:25,361 - INFO - ----------------------------------------
+2025-12-17 16:20:25,363 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:20:25,661 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:20:25,662 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:20:28,768 - INFO - Relay toggled off and on. With delay of 0.1 seconds.
+2025-12-17 16:20:28,770 - INFO - ----------------------------------------
+2025-12-17 16:20:28,771 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:20:29,069 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:20:29,070 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:20:32,178 - INFO - Relay toggled off and on. With delay of 0.101 seconds.
+2025-12-17 16:20:32,179 - INFO - ----------------------------------------
+2025-12-17 16:20:32,182 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:20:32,480 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:20:32,481 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:20:35,590 - INFO - Relay toggled off and on. With delay of 0.102 seconds.
+2025-12-17 16:20:35,592 - INFO - ----------------------------------------
+2025-12-17 16:20:35,595 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:20:35,893 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:20:35,895 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:20:39,004 - INFO - Relay toggled off and on. With delay of 0.103 seconds.
+2025-12-17 16:20:39,006 - INFO - ----------------------------------------
+2025-12-17 16:20:39,008 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:20:39,306 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:20:39,308 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:20:42,419 - INFO - Relay toggled off and on. With delay of 0.104 seconds.
+2025-12-17 16:20:42,421 - INFO - ----------------------------------------
+2025-12-17 16:20:42,423 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:20:42,721 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:20:42,723 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:20:45,835 - INFO - Relay toggled off and on. With delay of 0.105 seconds.
+2025-12-17 16:20:45,837 - INFO - ----------------------------------------
+2025-12-17 16:20:45,839 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:20:46,137 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:20:46,138 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:20:49,252 - INFO - Relay toggled off and on. With delay of 0.106 seconds.
+2025-12-17 16:20:49,253 - INFO - ----------------------------------------
+2025-12-17 16:20:49,255 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:20:49,553 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:20:49,554 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:20:52,667 - INFO - Relay toggled off and on. With delay of 0.107 seconds.
+2025-12-17 16:20:52,668 - INFO - ----------------------------------------
+2025-12-17 16:20:52,669 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:20:52,967 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:20:52,969 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:20:56,085 - INFO - Relay toggled off and on. With delay of 0.108 seconds.
+2025-12-17 16:20:56,086 - INFO - ----------------------------------------
+2025-12-17 16:20:56,088 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:20:56,386 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:20:56,388 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:20:59,504 - INFO - Relay toggled off and on. With delay of 0.109 seconds.
+2025-12-17 16:20:59,506 - INFO - ----------------------------------------
+2025-12-17 16:20:59,508 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:20:59,806 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:20:59,808 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:21:02,925 - INFO - Relay toggled off and on. With delay of 0.11 seconds.
+2025-12-17 16:21:02,927 - INFO - ----------------------------------------
+2025-12-17 16:21:02,929 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:21:03,227 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:21:03,228 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:21:06,346 - INFO - Relay toggled off and on. With delay of 0.111 seconds.
+2025-12-17 16:21:06,348 - INFO - ----------------------------------------
+2025-12-17 16:21:06,350 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:21:06,648 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:21:06,649 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:21:09,767 - INFO - Relay toggled off and on. With delay of 0.112 seconds.
+2025-12-17 16:21:09,768 - INFO - ----------------------------------------
+2025-12-17 16:21:09,769 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:21:10,067 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:21:10,067 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:21:13,184 - INFO - Relay toggled off and on. With delay of 0.113 seconds.
+2025-12-17 16:21:13,186 - INFO - ----------------------------------------
+2025-12-17 16:21:13,189 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:21:13,487 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:21:13,487 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:21:16,608 - INFO - Relay toggled off and on. With delay of 0.114 seconds.
+2025-12-17 16:21:16,609 - INFO - ----------------------------------------
+2025-12-17 16:21:16,612 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:21:16,910 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:21:16,911 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:21:20,034 - INFO - Relay toggled off and on. With delay of 0.115 seconds.
+2025-12-17 16:21:20,035 - INFO - ----------------------------------------
+2025-12-17 16:21:20,036 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:21:20,334 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:21:20,336 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:21:23,460 - INFO - Relay toggled off and on. With delay of 0.116 seconds.
+2025-12-17 16:21:23,461 - INFO - ----------------------------------------
+2025-12-17 16:21:23,463 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:21:23,761 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:21:23,762 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:21:26,886 - INFO - Relay toggled off and on. With delay of 0.117 seconds.
+2025-12-17 16:21:26,888 - INFO - ----------------------------------------
+2025-12-17 16:21:26,890 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:21:27,188 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:21:27,189 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:21:30,315 - INFO - Relay toggled off and on. With delay of 0.118 seconds.
+2025-12-17 16:21:30,317 - INFO - ----------------------------------------
+2025-12-17 16:21:30,319 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:21:30,617 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:21:30,619 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:21:33,744 - INFO - Relay toggled off and on. With delay of 0.119 seconds.
+2025-12-17 16:21:33,746 - INFO - ----------------------------------------
+2025-12-17 16:21:33,748 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:21:34,046 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:21:34,047 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:21:37,174 - INFO - Relay toggled off and on. With delay of 0.12 seconds.
+2025-12-17 16:21:37,176 - INFO - ----------------------------------------
+2025-12-17 16:21:37,178 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:21:37,476 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:21:37,478 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:21:40,606 - INFO - Relay toggled off and on. With delay of 0.121 seconds.
+2025-12-17 16:21:40,607 - INFO - ----------------------------------------
+2025-12-17 16:21:40,609 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:21:40,907 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:21:40,908 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:21:44,038 - INFO - Relay toggled off and on. With delay of 0.122 seconds.
+2025-12-17 16:21:44,039 - INFO - ----------------------------------------
+2025-12-17 16:21:44,041 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:21:44,339 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:21:44,340 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:21:47,469 - INFO - Relay toggled off and on. With delay of 0.123 seconds.
+2025-12-17 16:21:47,471 - INFO - ----------------------------------------
+2025-12-17 16:21:47,474 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:21:47,772 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:21:47,773 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:21:50,903 - INFO - Relay toggled off and on. With delay of 0.124 seconds.
+2025-12-17 16:21:50,905 - INFO - ----------------------------------------
+2025-12-17 16:21:50,907 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:21:51,205 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:21:51,207 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:21:54,339 - INFO - Relay toggled off and on. With delay of 0.125 seconds.
+2025-12-17 16:21:54,340 - INFO - ----------------------------------------
+2025-12-17 16:21:54,342 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:21:54,640 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:21:54,641 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:21:57,774 - INFO - Relay toggled off and on. With delay of 0.126 seconds.
+2025-12-17 16:21:57,776 - INFO - ----------------------------------------
+2025-12-17 16:21:57,778 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:21:58,076 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:21:58,077 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:22:01,211 - INFO - Relay toggled off and on. With delay of 0.127 seconds.
+2025-12-17 16:22:01,212 - INFO - ----------------------------------------
+2025-12-17 16:22:01,214 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:22:01,513 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:22:01,514 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:22:04,650 - INFO - Relay toggled off and on. With delay of 0.128 seconds.
+2025-12-17 16:22:04,651 - INFO - ----------------------------------------
+2025-12-17 16:22:04,653 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:22:04,951 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:22:04,953 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:22:08,089 - INFO - Relay toggled off and on. With delay of 0.129 seconds.
+2025-12-17 16:22:08,091 - INFO - ----------------------------------------
+2025-12-17 16:22:08,093 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:22:08,390 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:22:08,392 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:22:11,529 - INFO - Relay toggled off and on. With delay of 0.13 seconds.
+2025-12-17 16:22:11,531 - INFO - ----------------------------------------
+2025-12-17 16:22:11,533 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:22:11,831 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:22:11,832 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:22:14,970 - INFO - Relay toggled off and on. With delay of 0.131 seconds.
+2025-12-17 16:22:14,972 - INFO - ----------------------------------------
+2025-12-17 16:22:14,974 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:22:15,272 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:22:15,273 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:22:18,412 - INFO - Relay toggled off and on. With delay of 0.132 seconds.
+2025-12-17 16:22:18,414 - INFO - ----------------------------------------
+2025-12-17 16:22:18,416 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:22:18,714 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:22:18,715 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:22:21,854 - INFO - Relay toggled off and on. With delay of 0.133 seconds.
+2025-12-17 16:22:21,856 - INFO - ----------------------------------------
+2025-12-17 16:22:21,858 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:22:22,157 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:22:22,158 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:22:25,298 - INFO - Relay toggled off and on. With delay of 0.134 seconds.
+2025-12-17 16:22:25,298 - INFO - ----------------------------------------
+2025-12-17 16:22:25,299 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:22:25,597 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:22:25,598 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:22:28,739 - INFO - Relay toggled off and on. With delay of 0.135 seconds.
+2025-12-17 16:22:28,741 - INFO - ----------------------------------------
+2025-12-17 16:22:28,743 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:22:29,041 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:22:29,041 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:22:32,180 - INFO - Relay toggled off and on. With delay of 0.136 seconds.
+2025-12-17 16:22:32,182 - INFO - ----------------------------------------
+2025-12-17 16:22:32,184 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:22:32,482 - INFO - Raw response from OTS: b"8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']\n"
+2025-12-17 16:22:32,483 - INFO - Received from OTS: 8483399594: ['OTS.mpy', 'adxl355.mpy', 'adxl367.mpy', 'common_commands.mpy', 'config.mpy', 'ina230.mpy', 'lfs2', 'mlx90393.mpy', 'ots_config.json', 'product.mpy', 'register_map.mpy', 'w_ots_config.json']
+2025-12-17 16:22:35,623 - INFO - Relay toggled off and on. With delay of 0.137 seconds.
+2025-12-17 16:22:35,624 - INFO - ----------------------------------------
+2025-12-17 16:22:35,625 - INFO - Sent 'op bus 0 ls' command to OTS.
+2025-12-17 16:22:35,899 - INFO - Program interrupted by user. KeyboardInterrupt detected.
+2025-12-17 16:22:35,929 - INFO - Serial ports closed. Exiting program.

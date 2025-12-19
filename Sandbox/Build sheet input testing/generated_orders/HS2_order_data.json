@@ -1,0 +1,67 @@
+{
+    "meta": {
+        "customer": "SOCOTEC",
+        "project": "HS2",
+        "area": "WSC",
+        "date": "2025-12-12",
+        "completed_by": "OSPREY",
+        "num_strings": 1
+    },
+    "strings": [
+        {
+            "index": 0,
+            "name": "WSCT-XM01001",
+            "type": "Standard",
+            "depth": 0.0,
+            "top_cable": 12.0,
+            "slack": 150,
+            "has_connectors": false,
+            "n_pairs": 0,
+            "fly_lead": 0.0,
+            "top_supp": false,
+            "bot_supp": true,
+            "segments": [
+                {
+                    "Magnet #": 8,
+                    "Depth (m)": 1.0,
+                    "Label": "Top / Magnet 8"
+                },
+                {
+                    "Magnet #": 7,
+                    "Depth (m)": 3.01,
+                    "Label": "Magnet 7"
+                },
+                {
+                    "Magnet #": 6,
+                    "Depth (m)": 4.97,
+                    "Label": "Magnet 6"
+                },
+                {
+                    "Magnet #": 5,
+                    "Depth (m)": 6.96,
+                    "Label": "Magnet 5"
+                },
+                {
+                    "Magnet #": 4,
+                    "Depth (m)": 8.91,
+                    "Label": "Magnet 4"
+                },
+                {
+                    "Magnet #": 3,
+                    "Depth (m)": 13.94,
+                    "Label": "Magnet 3"
+                },
+                {
+                    "Magnet #": 2,
+                    "Depth (m)": 18.82,
+                    "Label": "Magnet 2"
+                },
+                {
+                    "Magnet #": 1,
+                    "Depth (m)": 39.82,
+                    "Label": "Datum / Bottom Magnet 1"
+                }
+            ]
+        }
+    ]
+}

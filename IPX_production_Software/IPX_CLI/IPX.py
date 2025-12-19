@@ -591,7 +591,7 @@ class IPXConfigurator:
             return None # return false if failed to detect correct number of sensors after retries
 
 
-    def set_default_parameters(self, ipx:IPXSerialCommunicator, uids_list: list, set_aliases: bool = True) -> list:
+    def set_default_parameters(self, ipx:IPXSerialCommunicator, uids_list: list, baud: int ,set_aliases: bool = True) -> list:
         """Private helper to loop through all uids and apply standard configurations + aliases
         Args:
             ipx (IPXSerialCommunicator): An instance of the IPXSerialCommunicator class
@@ -612,6 +612,8 @@ class IPXConfigurator:
                 uid = str(alias_uid_tuple[1]) # extract uid
                 logging.info(f"Beginning setting process for sensor uid :{uid}")
                 # now need to set all the paramaters, use all default config parameters in the IPXCommands section:
+                
+                ipx.set_baud(uid, baud) # set baud first to prevent any errors
 
                 ipx.set_alias(uid, alias)
                 
@@ -636,6 +638,8 @@ class IPXConfigurator:
             for uid in uids_list:
                 logging.info(f"Beginning setting process for sensor uid :{uid}")
                 # now need to set all the paramaters, use all default config parameters in the IPXCommands section:
+                
+                ipx.set_baud(uid, baud) # set baud first to prevent any errors
 
                 ipx.set_gain(uid, gain=IPXCommands.Default_settings.Gain)
 
@@ -722,7 +726,7 @@ class IPXConfigurator:
                 continue # skip zero values to avoid false positives
             modified_z_scores = 0.6745 * (values - median) / mad_y
             if np.abs(modified_z_scores) > threshold:
-                logging.error(f" CONFIGURATION FAILED: Sensor UID:{uid} has abnormally high raw data values: {raw_values}, value trigger: {values} with modified z-score: {modified_z_scores}")
+                logging.warning(f" CONFIGURATION FAILED: Sensor UID:{uid} has abnormally high raw data values: {raw_values}, value trigger: {values} with modified z-score: {modified_z_scores}")
                 return False
         logging.info(f"No abnormally high raw data values detected for UID:{uid}, check passed")
         return True

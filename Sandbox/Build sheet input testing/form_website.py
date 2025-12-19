@@ -6,6 +6,13 @@ from fpdf import FPDF
 from barcode import Code128
 from barcode.writer import ImageWriter
 
+
+# for running the file, use command below in terminal:
+# streamlit run form_website.py
+
+
+
+
 # --- 1. CONFIGURATION ---
 # This is where your files will be saved. 
 # Change this to your OneDrive folder path in the future.

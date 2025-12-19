@@ -12,6 +12,9 @@ from IPX_Config import IPXCommands
 import os
 import time
 
+import os
+import platform
+
 
 
 # setup_logging(level=logging.INFO)  # Set default log level to INFO
@@ -39,7 +42,7 @@ baudrate = int(input("Enter baud rate (default 115200): ") or "115200")
 com_port = input("Enter COM port (default COM5): ") or "COM5"
 
 def get_baudrate():
-    """Get current baudrate value."""
+    """Get current baudrate value.""" # i think this function is redundant now??? not sure tho
     return baudrate
 
 def set_com_port(new_port: str = None):
@@ -463,7 +466,7 @@ def run_configuration_flow():
                             logging.info("Configuration aborted by user due to missing bottom check sensors.")
                             raise UserAbortError("Configuration aborted by user due to missing bottom check sensors.")
                     # now log paramaters etc
-                    configurator.set_default_parameters(ipx, uids_list, set_aliases=False)
+                    configurator.set_default_parameters(ipx, uids_list, baud=baudrate, set_aliases=False,)
                     txt_content = report.create_txt_content(aliases_and_uids_list=uids_list, inserts=True) # create the .txt content for the report generator
 
 
@@ -477,7 +480,7 @@ def run_configuration_flow():
                 # else will be normal extensometers    
                 else:
                     logging.info("Normal extensometers detected, proceeding with full configuration (including alias assignment) ")
-                    alias_and_uids_list = configurator.set_default_parameters(ipx, uids_list)
+                    alias_and_uids_list = configurator.set_default_parameters(ipx, uids_list, baud=baudrate)
                     # alias_and_uids_list is a list of tuples of format [(alias, uid), (alias, uid), etc....]
                     txt_content = report.create_txt_content(aliases_and_uids_list=alias_and_uids_list) # create the .txt content for the report generator
                 
@@ -486,7 +489,7 @@ def run_configuration_flow():
                 for uid in uids_list:
                     
                     counter = 0 # initialize a counter for calibration attempts, once we get to 3 cal attempts we can prompt user to skip/abort/retry the configuration for that specific sensor
-
+                    logging.info(f"Starting calibration for UID {uid}...")
                     while True:
                         # use try loop to handle unexpected errors during calibration
                         
@@ -705,8 +708,18 @@ def run_configuration_flow():
             logging.info("-----------------------------------------------")
             logging.info(str(final_run_status).upper())  
             logging.info("-----------------------------------------------")
+            
+            # Open json file automatically when done:
+            try:
+                file_path = report.json_filepath
+                logging.info(f"Automatically opening report file: {file_path}")
+                if platform.system() == 'Windows':
+                    os.startfile(file_path)
+            except Exception as e:
+                logging.warning(f"Could not automatically open report file: {e}")
 
-                
+            return True
+
                     # Try to catch any unexpected errrors
         except UserAbortError:
             # Re-raise UserAbortError so it's handled by main menu

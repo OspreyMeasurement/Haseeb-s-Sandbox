@@ -1,0 +1,10 @@
+Customer Order: TEST
+Manufacturing Order: TEST
+String Description: 1
+
+----------------------------------------
+Alias and UID List:
+
+ Alias: 1
+ UID: 1020904329
+------------------------------
