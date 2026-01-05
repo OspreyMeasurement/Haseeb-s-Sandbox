@@ -6,6 +6,7 @@ from IPX import IPXSerialCommunicator
 from IPX import IPXConfigurator
 from IPX import IPXSerialError
 from IPX_Modbus import IPXModbusTester
+from IPX_Modbus import IPXGeosenseTester
 import numpy as np
 import pandas as pd
 from IPX_Config import IPXCommands
@@ -456,8 +457,11 @@ def run_configuration_flow():
                 
                 report.set_detected_sensors(uids_list) # NEW log detected UIDs to report:
 
+                inserts = False # initialise this flag for whether inserts are connected or not
                 #2. check whether inserts or normal extensometers are connected, and set default parameters accordingly:
+
                 if all(str(uid).startswith("104") for uid in uids_list): # this are the inserts, skip assigning aliases to them
+                    inserts = True # set the inserts flag to true
                     logging.info("Inserts detected, skipping alias assigning process")
                     if check_sensor_present is False:
                         logging.warning("Bottom check sensors has not been detected")
@@ -480,6 +484,7 @@ def run_configuration_flow():
                 # else will be normal extensometers    
                 else:
                     logging.info("Normal extensometers detected, proceeding with full configuration (including alias assignment) ")
+                    inserts = False # ensure inserts flag is false
                     alias_and_uids_list = configurator.set_default_parameters(ipx, uids_list, baud=baudrate)
                     # alias_and_uids_list is a list of tuples of format [(alias, uid), (alias, uid), etc....]
                     txt_content = report.create_txt_content(aliases_and_uids_list=alias_and_uids_list) # create the .txt content for the report generator
@@ -615,94 +620,177 @@ def run_configuration_flow():
                     )
                     logging.debug(f"Successfully retrieved final status for UID {uid}")
 
-            #------------------------- Modbus testing time! -------------------------
-            logging.info("Starting Modbus communication test for all sensors...")
-            modbus_record = [] # list to store all modbus test results:
-            # i should mimic how the datalogger would test, it would get all of the results and then we would manually check them after
-            # so mimic that process, but instead of manually checking them, we automate the checking process
-            try:
-                with IPXModbusTester(port=com_port, baudrate=9600) as modbus_tester:
-                    for tuple in alias_and_uids_list:
-                        alias = tuple[0]
-                        uid = tuple[1]
-                        
-                        logging.debug(f"Starting Modbus test for UID {uid} (Alias: {alias})")
-                        test_result = retry_on_exception(lambda: modbus_tester.run_full_test(uid=uid, alias=alias), prompt_func=prompt_user_on_other_failure)
-                        # retry incase a modbus read fails due to timeout or other comms error
 
 
-                        # log only certain test results, such as overall pass/fail, temperature, voltage, distance
-                        test_results_to_keep = ["Overall_Pass", "Dist_mm", "Temp_C", "Volt_V", "Status_Val"]
-                        test_result_for_report = {key: test_result[key] for key in test_results_to_keep}
-                        report.add_sensor_data(uid=uid, data_key='modbus_test_result', data_value=test_result_for_report) # log modbus test result to report
-                        
-                        # log immediate status just for info:
-                        if test_result["Overall_Pass"]:
-                            logging.info(f"Modbus test PASSED for UID {uid} (Alias: {alias})")
-                        else:
-                            logging.warning(f"Modbus test FAILED for UID {uid} (Alias: {alias})")
-                        
-                        modbus_record.append(test_result) # add result dict to record list ( so list of dicts )
+                #------------------------- Modbus testing time! -------------------------
+            if inserts == False: # only run modbus testing for normal extensometers
+                logging.info("Starting Modbus communication test for all sensors...")
+                modbus_record = [] # list to store all modbus test results:
+                # i should mimic how the datalogger would test, it would get all of the results and then we would manually check them after
+                # so mimic that process, but instead of manually checking them, we automate the checking process
+                try:
+                    with IPXModbusTester(port=com_port, baudrate=9600) as modbus_tester:
+                        for tuple in alias_and_uids_list:
+                            alias = tuple[0]
+                            uid = tuple[1]
+                            
+                            logging.debug(f"Starting Modbus test for UID {uid} (Alias: {alias})")
+                            test_result = retry_on_exception(lambda: modbus_tester.run_full_test(uid=uid, alias=alias), prompt_func=prompt_user_on_other_failure)
+                            # retry incase a modbus read fails due to timeout or other comms error
+
+
+                            # log only certain test results, such as overall pass/fail, temperature, voltage, distance
+                            test_results_to_keep = ["Overall_Pass", "Dist_mm", "Temp_C", "Volt_V", "Status_Val"]
+                            test_result_for_report = {key: test_result[key] for key in test_results_to_keep}
+                            report.add_sensor_data(uid=uid, data_key='modbus_test_result', data_value=test_result_for_report) # log modbus test result to report
+                            
+                            # log immediate status just for info:
+                            if test_result["Overall_Pass"]:
+                                logging.info(f"Modbus test PASSED for UID {uid} (Alias: {alias})")
+                            else:
+                                logging.warning(f"Modbus test FAILED for UID {uid} (Alias: {alias})")
+                            
+                            modbus_record.append(test_result) # add result dict to record list ( so list of dicts )
+                
+                except Exception as e:
+                    logging.critical(f"An error occurred during Modbus testing: {e}", exc_info=True)
+                    report.save_report(final_status="Modbus Test Failed") # save normal json report
+                    report.save_txt_file(txt_content=txt_content) # save normal txt file of alias / uid mappings
+                    log_msg = ("=" * 50 + "\n"
+                            "Configuration was succesful but Modbus testing failed due to an unexpected error.\n"
+                            "=" * 50 + "\n")
+                    return False
+
+                # Analysis + Reporting:
+                modbus_df = pd.DataFrame(modbus_record)
+                # check for failures:
+                failed_sensors = modbus_df[modbus_df["Overall_Pass"] == False]
+
+                # Reporting to user:
+                logging.info("\n" + "="*40)
+                logging.info("      MODBUS VERIFICATION SUMMARY      ")
+                logging.info("="*40)
+
+                # -------- Report to user --------
+                # print all modbus test results to user:
+                logging.info("\nDetailed Test Results:\n")
+                for index, row in modbus_df.iterrows():
+                    log_msg = (f"Datalogger test results for: \n"
+                            f"\n=============================== \n"
+                            f"UID: {row['UID']}, Alias: {row['Alias']} \n"
+                            f"=============================== \n"
+                            f"Status: {row['Status_Val']} \n" 
+                            f"Distance: {row['Dist_mm']} mm \n"
+                            f"Temperature: {row['Temp_C']:.3g} °C \n"
+                            f"Voltage: {row['Volt_V']:.3g} V \n"
+                            f"Overall Result: {'✅ PASS' if row['Overall_Pass'] else '❌ FAIL'} \n"
+                            f"=============================== \n")
+                    logging.debug(log_msg) # this is for debug log, for when i start saving the logs with every configuration run
+                    print(log_msg) # this will look cleaner in the terminal
+
+                if failed_sensors.empty:
+                    logging.info(f"✅ ALL {len(modbus_df)} SENSORS PASSED.")
+                    logging.info("="*40 + "\n")
+                    final_run_status = "SUCCESS"
+                    logging.info("Modbus verification complete. All sensors passed.")
+                else:
+                    logging.info(f"❌ {len(failed_sensors)} OUT OF {len(modbus_df)} SENSORS FAILED MODBUS TESTING:")
+                    for index, row in failed_sensors.iterrows():
+                        logging.info(f"   - UID {row['UID']} (Alias: {row['Alias']}) failed.")
+                    logging.info("="*40 + "\n")
+                    final_run_status = "Configuration completed , but modbust testing has failures"
+                    logging.warning(f"Modbus verification complete. {len(failed_sensors)} sensors failed.")
+
+                # pause so user sees summary:
+                input("Press Enter to acknowledge results and save reports...")
+                
             
-            except Exception as e:
-                logging.critical(f"An error occurred during Modbus testing: {e}", exc_info=True)
-                report.save_report(final_status="Modbus Test Failed") # save normal json report
-                report.save_txt_file(txt_content=txt_content) # save normal txt file of alias / uid mappings
-                log_msg = ("=" * 50 + "\n"
-                           "Configuration was succesful but Modbus testing failed due to an unexpected error.\n"
-                           "=" * 50 + "\n")
-                return False
-
-            # Analysis + Reporting:
-            modbus_df = pd.DataFrame(modbus_record)
-            # check for failures:
-            failed_sensors = modbus_df[modbus_df["Overall_Pass"] == False]
-
-            # Reporting to user:
-            logging.info("\n" + "="*40)
-            logging.info("      MODBUS VERIFICATION SUMMARY      ")
-            logging.info("="*40)
-
-            # -------- Report to user --------
-            # print all modbus test results to user:
-            logging.info("\nDetailed Test Results:\n")
-            for index, row in modbus_df.iterrows():
-                log_msg = (f"Datalogger test results for: \n"
-                          f"\n=============================== \n"
-                          f"UID: {row['UID']}, Alias: {row['Alias']} \n"
-                          f"=============================== \n"
-                          f"Status: {row['Status_Val']} \n" 
-                          f"Distance: {row['Dist_mm']} mm \n"
-                          f"Temperature: {row['Temp_C']:.3g} °C \n"
-                          f"Voltage: {row['Volt_V']:.3g} V \n"
-                          f"Overall Result: {'✅ PASS' if row['Overall_Pass'] else '❌ FAIL'} \n"
-                          f"=============================== \n")
-                logging.debug(log_msg) # this is for debug log, for when i start saving the logs with every configuration run
-                print(log_msg) # this will look cleaner in the terminal
-
-            if failed_sensors.empty:
-                logging.info(f"✅ ALL {len(modbus_df)} SENSORS PASSED.")
-                logging.info("="*40 + "\n")
-                final_run_status = "SUCCESS"
-                logging.info("Modbus verification complete. All sensors passed.")
-            else:
-                logging.info(f"❌ {len(failed_sensors)} OUT OF {len(modbus_df)} SENSORS FAILED MODBUS TESTING:")
-                for index, row in failed_sensors.iterrows():
-                    logging.info(f"   - UID {row['UID']} (Alias: {row['Alias']}) failed.")
-                logging.info("="*40 + "\n")
-                final_run_status = "Configuration completed , but modbust testing has failures"
-                logging.warning(f"Modbus verification complete. {len(failed_sensors)} sensors failed.")
-
-            # pause so user sees summary:
-            input("Press Enter to acknowledge results and save repots...")
 
 # ------------------------------------------- End of modbus testing  --------------------------------------------------------
+
+
+
+# ------------------------------------------- Geosense measurement procedure --------------------------------------------------------
+            # debating whether to chane modbus_df to just datalogger_df, that way can keep saving seperate
+            # insert measurements should be in df as well
+            elif inserts == True:
+                logging.info("Starting Geosense measurement procedure for all inserts....")
+                # instantiate geosensemeasurer
+                try:
+                    with IPXGeosenseTester(port=com_port, baudrate=final_baud) as geosense_tester:
+                        measurement_record = [] # list to store all measurement results, (list of dicts)
+                        for uid in uids_list: 
+                            logging.debug(f"Starting Geosense measurement for UID {uid}")
+                            measurement_result = retry_on_exception(
+                                operation_func=lambda: geosense_tester.gxm_measure_test(uid=uid),
+                                prompt_func=prompt_user_on_other_failure
+                            )
+                            # log measurement result to report
+                            report.add_sensor_data(uid=uid, data_key='geosense_measurement', data_value=measurement_result)
+
+                            logging.info(f"Geosense measurement completed for UID {uid} with results: {measurement_result}")
+                            measurement_record.append(measurement_result) # add result dict to record list
+
+                except Exception as e:
+                    logging.critical(f"A critical error occurred during Geosense measurement: {e}", exc_info=True)
+                    report.save_report(final_status="Geosense Measurement Failed") # save normal json report
+                    report.save_txt_file(txt_content=txt_content) # save normal txt file of uids
+                    log_msg = ("=" * 50 + "\n"
+                            "Configuration was succesful but Geosense measurement failed due to an unexpected error.\n"
+                            "=" * 50 + "\n")
+                    logging.critical(log_msg)
+
+                # Analysis + Reporting:
+                modbus_df = pd.DataFrame(measurement_record)
+                # check for failures:
+                failed_sensors = modbus_df[modbus_df["pass"] == False]
+
+                # Reporting to user:
+                logging.info("="*40)
+                logging.info("      GEOSENSE VERIFICATION SUMMARY      ")
+                logging.info("="*40)
+
+                # -------- Report to user --------
+                # print all modbus test results to user:
+                logging.info("\nDetailed Test Results:\n")
+                for index, row in modbus_df.iterrows():
+                    log_msg = (
+                            f"\n=============================== \n"
+                            f"UID: {row['uid']},\n"
+                            f"=============================== \n"
+                            f"Axis A: {row['axis_a']} \n" 
+                            f"Temperature: {row['temperature']} °C \n"
+                            f"Overall Result: {'✅ PASS' if row['pass'] else '❌ FAIL'} \n"
+                            f"=============================== \n")
+                    logging.debug(log_msg) # this is for debug log, for when i start saving the logs with every configuration run
+                    print(log_msg) # this will look cleaner in the terminal
+
+                if failed_sensors.empty:
+                    logging.info(f"✅ ALL {len(modbus_df)} SENSORS PASSED.")
+                    logging.info("="*40 + "\n")
+                    final_run_status = "SUCCESS"
+                    logging.info("Modbus verification complete. All sensors passed.")
+                else:
+                    logging.info(f"❌ {len(failed_sensors)} OUT OF {len(modbus_df)} SENSORS FAILED GEOSENSE TESTING:")
+                    for index, row in failed_sensors.iterrows():
+                        logging.info(f"   - UID {row['uid']}  failed.")
+                    logging.info("="*40 + "\n")
+                    final_run_status = "Configuration completed , but geosense testing has failures"
+                    logging.warning(f"Geosense verification complete. {len(failed_sensors)} sensors failed.")
+
+                # pause so user sees summary:
+                input("Press Enter to acknowledge results and save reports...")
+
+
+
+                
 # Now onto saving the reports:
             
             # save final json report and uid + alias text file:
+            report.save_modbus_results(modbus_df=modbus_df) # moved saving modbus results to here, as we do not need to save it for inserts
             report.save_report(final_status=final_run_status) # should be consistent with the final_run_status variable
             report.save_txt_file(txt_content=txt_content)
-            report.save_modbus_results(modbus_df=modbus_df)
+            
 
             logging.debug("Report generation completed successfully.")
             logging.info("-----------------------------------------------")

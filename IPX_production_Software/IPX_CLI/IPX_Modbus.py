@@ -8,6 +8,11 @@ from pymodbus.client import ModbusSerialClient
 from pymodbus import FramerType
 from pymodbus.exceptions import ModbusException
 
+from IPX import IPXSerialCommunicator
+from IPX_Config import IPXCommands
+from typing import Literal
+import math
+
 
 # logging.basicConfig(
 #     level=logging.DEBUG,
@@ -335,3 +340,133 @@ class IPXModbusTester:
 # with IPXModbusTester(port="COM5", baudrate=9600, timeout=1) as client:
 #     # Example usage for alias 1
 #     client.run_full_test(uid=12345, alias=1)
+
+
+
+
+
+# Create seperate class for geosense ascii testing
+
+class IPXGeosenseTester:
+    """
+    High-level tester for Geosense IPX inserts using ASCII commands over serial.
+    Implements the sequence:
+        - send GXM measurement command
+        - parse response
+    """
+
+    def __init__(self,
+                 port: str,
+                 baudrate: int = 9600
+                 ):
+        self.port = port
+        self.baudrate = baudrate
+        self.communicator = None
+
+
+
+    # create enter/exit for context manager
+    # Should be creating IPXSerialCommunicator instance here
+    def __enter__(self):
+        self.communicator = IPXSerialCommunicator(
+            port=self.port,
+            baudrate=self.baudrate
+        )
+        self.communicator.__enter__()
+        return self
+    
+    # essentially referencing
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.communicator.__exit__(exc_type, exc_value, traceback)
+        return
+    
+    # need to add the IPX geosense ascii command ( this should be an internal function):
+    def _get_gxm_measurement(self, geo_uid:int, data_type: Literal['string', 'bytes'] = 'string'): 
+        """UID IS 8 DIGIT (1 0 are missing)
+          Gets measurement from IPX insert using geosense protocol
+        Response should be of format:
+        SR <UID>,<AxisA>,<temperature>\r\n
+        Args:
+            geo_uid (int): UID of the IPX insert
+            data_type (str): Type of data to return ('string', 'bytes')"""
+        #1. validation check
+        allowed_types = ['string', 'bytes']
+        if data_type not in allowed_types:
+            raise ValueError(f"Invalid data_type '{data_type}'. Allowed types are: {allowed_types}")
+        if geo_uid == 0:
+            logging.warning("UID 0 is reserved for broadcasting to all devices, please provide a valid device UID.")
+            return ""
+        
+        command = IPXCommands.Commands.get_GXM_measurement.format(uid=str(geo_uid))
+        response = self.communicator._send_and_receive_listen(command, listen_duration=0.5)
+        response_str = self.communicator._decode_string_and_check(response)
+
+        if data_type == 'bytes':
+            return(response)
+        elif data_type == 'string':
+            return(response_str)
+
+        
+    def gxm_measure_test(self, uid:int) -> dict:
+        """ Performs GXM measurement sample for one insert, and verifies whether the response is ok
+        Args:
+            geo_uid (int): UID of the IPX insert
+        Returns:
+            dict: dictionary with relevant data:
+            {
+                "uid": uid,
+                "axis_a": float,
+                "temperature": float,
+                "pass": bool
+            }
+        """
+
+        logging.debug(f"Starting GXM measurement test for IPX insert with UID {uid}")
+        # remove first two digits from uid for geosense command
+        geo_uid = int(str(uid)[2:])
+
+        response_str = self._get_gxm_measurement(geo_uid=geo_uid, data_type='string')
+        logging.debug(f"Received response: {response_str}")
+        # slpit up the response string
+        # expected format: SR <UID>,<AxisA>,<temperature>\r\n
+        # should also remove "SR "
+        response_str = response_str[2:].strip()
+        parts = response_str.strip().split(',')
+        # part[0] = UID
+        # part[1] = AxisA, should also be to 3 decimal places
+        # part[2] = temperature
+        # Axis A need arcsin on it
+        AxisA_raw = float(parts[1])
+        # add check for value being in range -1 to 1
+        AxisA_clamped = max(-1.0, min(1.0, AxisA_raw))
+        if AxisA_raw != AxisA_clamped:
+            logging.warning(f"AxisA raw value {AxisA_raw} was out of domain for asin, clamped to {AxisA_clamped}")
+
+        AxisA = round(math.degrees(math.asin(AxisA_raw)), 3)
+
+        temperature = float(parts[2])
+
+
+        # ---------------- Checks ----------------
+        # now should check everything is within expected ranges
+        checks = {
+            "axis_a": AxisA is not None and AxisA == -0.096,
+            "temperature": temperature is not None and 10 <= temperature <= 40,
+        }
+
+        if not checks["axis_a"]:
+            logging.warning(f"Axis A check failed: {AxisA}° (expected -0.096°)")
+
+
+        if not checks["temperature"]:
+            logging.warning(f"Temperature check failed: {temperature} °C (expected 10–40 °C)")
+        
+
+        pass_flag = all(checks.values()) # should be true if all checks passed
+
+
+        result = {"uid": uid,
+                    "axis_a": AxisA,
+                    "temperature": temperature,
+                    "pass": pass_flag}
+        return result

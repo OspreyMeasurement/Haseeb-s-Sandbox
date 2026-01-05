@@ -235,7 +235,8 @@ class IPXSerialCommunicator:
         return response_str
 
 
-
+    
+        
 
 
     

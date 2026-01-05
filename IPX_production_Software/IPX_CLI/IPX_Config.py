@@ -49,6 +49,10 @@ class IPXCommands:
         set_term: str = "op ipx {uid} set_term {termination}\n"
         set_alias: str = "op ipx {uid} set_alias {alias}\n"
 
+        # geosense command string/s
+        get_GXM_measurement: str = "@@{uid} SR\r" # Geosense command to get measurement from IPX insert
+
+
     class Responses:
         """ Expected response strings from IPX devices """
         set_axis: str = "CMD_EXEC_Set_Axis: Axis set to"
@@ -61,6 +65,12 @@ class IPXCommands:
         set_baud: str = "CMD_EXEC_Set_Baud: Baudrate set to"
         set_alias: str = "CMD_EXEC_Set_Alias: Alias set to"
         CALIBRATION_COMPLETE: str = "CMD_EXEC_Calibrate: Calibration on all sensors complete, saving to memory."
+        get_gxm_measurement: str = "SR"  # Response prefix for Geosense measurement command
+
+
+
+
+
 
 
 
