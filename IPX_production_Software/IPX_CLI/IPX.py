@@ -535,17 +535,14 @@ class IPXConfigurator:
     """ High level class to manage the configuration process for extensometer
     contains functions which perform various configuration tasks
     """
-    def __init__(self, port: str, initial_baudrate: int = 115200, max_retries: int=3, retry_delay: int=2):
+    def __init__(self, max_retries: int=3, retry_delay: int=2):
         """ Initialises configurator with connection settings
 
         Args:
-        port(str): The com port to use
         baudrate (int): The initial baudrate for communication
         max_retries (int): Number of times to retry sensor detection
         retry_delay (int): Seconds to wait between retries
         """
-        self.port = port
-        self.initial_baudrate = initial_baudrate
         self.max_retries = max_retries
         self.retry_delay = retry_delay
         logging.debug(f"IPX Configurator initialised for port {self.port}")

@@ -5,8 +5,8 @@ import sys
 from IPX import IPXSerialCommunicator
 from IPX import IPXConfigurator
 from IPX import IPXSerialError
-from IPX_Modbus import IPXModbusTester
-from IPX_Modbus import IPXGeosenseTester
+from IPX_datalogger_tester import IPXModbusTester
+from IPX_datalogger_tester import IPXGeosenseTester
 import numpy as np
 import pandas as pd
 from IPX_Config import IPXCommands
@@ -411,12 +411,130 @@ def run_uid_update_flow():
         logging.info("UID update process cancelled by user. (Ctrl+C), returning to main menu")
         raise UserAbortError("UID update process cancelled by user.")
 
+# ----------------------------- HELPER FUNCTIONS FOR BREAKING UP RUN CONFIGURATION FLOW -----------------------------
+# functions for breaking up the run configuration flow, as the function is getting too long ( approx 400 lines rn)
+
+# change calibration loop into a function:
+def _run_calibration_loop(uids_list, ipx: IPXSerialCommunicator, configurator: IPXConfigurator, report: ReportGenerator):
+    """ Iterates through all uids, and attempts to calibrate all ipxs,
+    Handles retries, failures and any raw data checks"""
+    for uid in uids_list:
+                    
+        counter = 0 # initialize a counter for calibration attempts, once we get to 3 cal attempts we can prompt user to skip/abort/retry the configuration for that specific sensor
+        logging.info(f"Starting calibration for UID {uid}...")
+        while True:
+            # use try loop to handle unexpected errors during calibration
+            
+            counter += 1
+            try:
+                cal_df = ipx.calibrate(uid)
+                # validate cal_result
+                # after getting calibration data, save it straight away?
+
+                report.save_calibration_files(uid=uid, cal_df=cal_df) # save calibration data to file
+        
+                result_or_num_failed = configurator.validate_calibration_results(cal_df)
+                # unpack the  result_or_num_failed tuple of format ( bool, failed_sensor_nums| None)
+                sucess_bool , failed_sensor_nums = result_or_num_failed
+
+                if sucess_bool == True:
+                    # ---- INITIAL CALIBRATION CHECK PASSED ----
+                    # we should also do the abnormal high magnitude check here as well, if rawdatacheck is not called 
+
+                    # this is all due to abnormal magnitude
+                    #1. if we've failed < 3 times, auto retry
+                    raw_data = ipx.get_raw(uid=uid, data_type='array')
+                    raw_log = str(raw_data.tolist()) # convert to string for json serialization
+                    # save raw data value to report
+                    report.add_sensor_data(uid=uid, data_key='raw_data_sample', data_value=raw_log)
+                    if not configurator.abnormal_high_magnitude_check(uid, raw_values=raw_data): # if result is false run this loop
+                        if counter < 3:
+                            logging.warning(f"Calibration for UID {uid} has failed abnormal high magnitude check {counter} times, retrying automatically.")
+                            continue # retry calibration automatically
+                        # if we've failed > 3 times, then prompt user for action
+                        else:
+                            logging.warning(f"Calibration for UID {uid} has failed abnormal high magnitude check {counter} times., prompting user for action.")
+                            choice = prompt_user_on_cal_failure(uid, error_message=f"Abnormal high magnitude detected in raw data after successful calibration, for uid {uid} with raw values: {raw_data}." )
+
+                            if choice == "retry":
+                                logging.info(f"Retrying calibration for UID {uid} due to abnormal high magnitude...")
+                                logging.debug("Resetting counter to 0 for retry attempts.")
+                                counter = 0  # reset counter for retries
+                                continue
+                            elif choice == "skip":
+                                logging.warning(f"User chose to skip retrying calibration for UID {uid}.")
+                                break  # exit while loop to skip
+                            elif choice == "abort":
+                                logging.warning("User aborted configuration.")
+                                raise UserAbortError("Configuration aborted by user.") # maybe not system exit, return to main menu
+                        logging.info(f"Abnormal high magnitude check passed for UID {uid}")
+                        logging.info(f"Calibration successful for UID {uid}")
+                    
+                    # if magnitude check passed:
+                    logging.info(f"Calibration successful for UID {uid}")
+                    break  # exit while loop on success
+
+                # no need for raw data check if it didnt fail
+                # ------ INITIAL CALIBRATION CHECK FAILED (DUE TO ZERO MEAN/STD DEV) ------
+                else:
+                    result2, raw_values = configurator.raw_data_check(ipx=ipx, uid=uid, sensor_index=failed_sensor_nums)
+                    raw_log = str(raw_values.tolist()) # convert to string for json serialization
+                    # save sensor data
+                    report.add_sensor_data(uid=uid, data_key='raw_data_sample', data_value=raw_log)
+                    if result2 == True:
+                        logging.info(f"Calibration successful for UID {uid} after raw data check")
+                        break  # exit while loop on success
+
+                    #if fails, retry calibration automatically, or give user option
+                    else:
+                        if counter < 3:
+                            logging.warning(f"Calibration for UID {uid} has failed stuck sensor/raw data check {counter} times, retrying automatically.")
+                            continue # retry calibration automatically
+                        else:
+                            logging.warning(f"Calibration for UID {uid} has failed stuck sensor/raw data check {counter} times., prompting user for action.")
+                            choice = prompt_user_on_cal_failure(uid, error_message= f"Calibration validation failed after stuck sensor check, due to either\n"
+                            f"Stuck sensor, or Abnormal high magnitude in raw data, for uid {uid}.\n")
+                            if choice == "retry":
+                                logging.info(f"Retrying calibration for UID {uid}...")
+                                continue
+                            elif choice == "skip":
+                                logging.warning(f"User chose to skip retrying calibration for UID {uid}.")
+                                break  # exit while loop to skip
+                            elif choice == "abort":
+                                logging.warning("User aborted configuration.")
+                                raise UserAbortError("Configuration aborted by user.") # maybe not system exit, return to main menu
+                        
+                        # if we reach here, it means we need to handle error and give user option to retry/skip/abort
 
 
+                
+
+            except Exception as e: # if we get an error do we want to retry this calibration?
+                logging.error(f"An error occurred during calibration for UID {uid}: {e}", exc_info=True)
+                choice = prompt_user_on_cal_failure(uid, error_message=f" An unexpected error occurred during calibration: {e}")
+
+                if choice == "retry":
+                    logging.info(f"Retrying calibration for UID {uid}...")
+                    continue
+            
+                elif choice == "skip":
+                    logging.warning(f"User chose to skip retrying calibration for UID {uid}, moving on to next sensor")
+                    break  # exit while loop to skip
+
+                elif choice == "abort":
+                    logging.warning("User aborted configuration.")
+                    raise UserAbortError("Configuration aborted by user.")
+    
+        #4. now check for abnormal high magnitude raw data across all sensors (after configuration):
+        # the only thing is that we are already doing a raw data check and then doing the abnomalous high magnitude check, we should integrate this into the raw data check function?
+        # The abnormal high magnitude check should be integrated during the calibration loop, as we can choose to re-calibrate a function an abnormal mag is present
+        return True
 
 # Main function for handling configuration with user inputs:
 def run_configuration_flow():
-    """Handles full sensor configuration flow."""  
+    """Handles full sensor configuration flow.""" 
+
+    # ------------------------- get initial settings, plus instantiate classes -------------------------------------- 
     try:
         # get all the initial settings from user
         num_sensors_int = get_initial_settings()
@@ -434,7 +552,9 @@ def run_configuration_flow():
 
 
 
-        configurator = IPXConfigurator(port=com_port, initial_baudrate=baudrate)
+        configurator = IPXConfigurator() # initialise IPX configurator without port or baudrate, as these will be set in the communicator context manager
+
+        # --------------------------- End of intial setup, ipx communicator is used in with loop -------------------------------
 
         logging.info(f"--- Starting new external configuration session on {com_port} for {num_sensors_int} sensors ---")
         try:
@@ -662,9 +782,9 @@ def run_configuration_flow():
                     return False
 
                 # Analysis + Reporting:
-                modbus_df = pd.DataFrame(modbus_record)
+                datalogger_df = pd.DataFrame(modbus_record)
                 # check for failures:
-                failed_sensors = modbus_df[modbus_df["Overall_Pass"] == False]
+                failed_sensors = datalogger_df[datalogger_df["Overall_Pass"] == False]
 
                 # Reporting to user:
                 logging.info("\n" + "="*40)
@@ -674,7 +794,7 @@ def run_configuration_flow():
                 # -------- Report to user --------
                 # print all modbus test results to user:
                 logging.info("\nDetailed Test Results:\n")
-                for index, row in modbus_df.iterrows():
+                for index, row in datalogger_df.iterrows():
                     log_msg = (f"Datalogger test results for: \n"
                             f"\n=============================== \n"
                             f"UID: {row['UID']}, Alias: {row['Alias']} \n"
@@ -689,12 +809,12 @@ def run_configuration_flow():
                     print(log_msg) # this will look cleaner in the terminal
 
                 if failed_sensors.empty:
-                    logging.info(f"✅ ALL {len(modbus_df)} SENSORS PASSED.")
+                    logging.info(f"✅ ALL {len(datalogger_df)} SENSORS PASSED.")
                     logging.info("="*40 + "\n")
                     final_run_status = "SUCCESS"
                     logging.info("Modbus verification complete. All sensors passed.")
                 else:
-                    logging.info(f"❌ {len(failed_sensors)} OUT OF {len(modbus_df)} SENSORS FAILED MODBUS TESTING:")
+                    logging.info(f"❌ {len(failed_sensors)} OUT OF {len(datalogger_df)} SENSORS FAILED MODBUS TESTING:")
                     for index, row in failed_sensors.iterrows():
                         logging.info(f"   - UID {row['UID']} (Alias: {row['Alias']}) failed.")
                     logging.info("="*40 + "\n")
@@ -741,9 +861,9 @@ def run_configuration_flow():
                     logging.critical(log_msg)
 
                 # Analysis + Reporting:
-                modbus_df = pd.DataFrame(measurement_record)
+                datalogger_df = pd.DataFrame(measurement_record)
                 # check for failures:
-                failed_sensors = modbus_df[modbus_df["pass"] == False]
+                failed_sensors = datalogger_df[datalogger_df["pass"] == False]
 
                 # Reporting to user:
                 logging.info("="*40)
@@ -753,7 +873,7 @@ def run_configuration_flow():
                 # -------- Report to user --------
                 # print all modbus test results to user:
                 logging.info("\nDetailed Test Results:\n")
-                for index, row in modbus_df.iterrows():
+                for index, row in datalogger_df.iterrows():
                     log_msg = (
                             f"\n=============================== \n"
                             f"UID: {row['uid']},\n"
@@ -766,12 +886,12 @@ def run_configuration_flow():
                     print(log_msg) # this will look cleaner in the terminal
 
                 if failed_sensors.empty:
-                    logging.info(f"✅ ALL {len(modbus_df)} SENSORS PASSED.")
+                    logging.info(f"✅ ALL {len(datalogger_df)} SENSORS PASSED.")
                     logging.info("="*40 + "\n")
                     final_run_status = "SUCCESS"
                     logging.info("Modbus verification complete. All sensors passed.")
                 else:
-                    logging.info(f"❌ {len(failed_sensors)} OUT OF {len(modbus_df)} SENSORS FAILED GEOSENSE TESTING:")
+                    logging.info(f"❌ {len(failed_sensors)} OUT OF {len(datalogger_df)} SENSORS FAILED GEOSENSE TESTING:")
                     for index, row in failed_sensors.iterrows():
                         logging.info(f"   - UID {row['uid']}  failed.")
                     logging.info("="*40 + "\n")
@@ -787,7 +907,7 @@ def run_configuration_flow():
 # Now onto saving the reports:
             
             # save final json report and uid + alias text file:
-            report.save_modbus_results(modbus_df=modbus_df) # moved saving modbus results to here, as we do not need to save it for inserts
+            report.save_datalogger_results(datalogger_df=datalogger_df) # moved saving modbus results to here, as we do not need to save it for inserts
             report.save_report(final_status=final_run_status) # should be consistent with the final_run_status variable
             report.save_txt_file(txt_content=txt_content)
             
@@ -803,6 +923,8 @@ def run_configuration_flow():
                 logging.info(f"Automatically opening report file: {file_path}")
                 if platform.system() == 'Windows':
                     os.startfile(file_path)
+                else:
+                    logging.warning("Automatic opening of report file is only supported on Windows.")
             except Exception as e:
                 logging.warning(f"Could not automatically open report file: {e}")
 
@@ -813,6 +935,7 @@ def run_configuration_flow():
             # Re-raise UserAbortError so it's handled by main menu
             logging.info("Configuration aborted by user.")
             raise
+
         except(IPXSerialError,RuntimeError) as e:
             logging.critical(f" CONFIGURATION FAILED: A critical error occurred: {e}")
             return False
@@ -897,7 +1020,7 @@ def switch_all_to_115200():
     # instantiate configurato
     try:
         num_sensors_int = get_initial_settings()
-        configurator = IPXConfigurator(port=com_port, initial_baudrate=9600)
+        configurator = IPXConfigurator() # initialise IPX configurator without port or baudrate, as these will be set in the communicator context manager
 
 
         if not com_port or not num_sensors_int:
