@@ -396,10 +396,17 @@ class IPXGeosenseTester:
         if geo_uid == 0:
             logging.warning("UID 0 is reserved for broadcasting to all devices, please provide a valid device UID.")
             return ""
-        
+        # First of all we need to do a TR command to trigger measurement
+        logging.debug("Sending GXM measurement trigger command...")
+        trigger_command = IPXCommands.Commands.GXM_measure_command.format(uid=str(geo_uid))
+        response = self.communicator._send_and_receive_listen(trigger_command, listen_duration=0.5) # The listen duration of 0.5 should give enough time for the insert to take measurement, and measurement to be ready
+        response_str = self.communicator._decode_string_and_check(response, expected_response=IPXCommands.Responses.GXM_measure_command)
+        # Now we can send the SR command to get the measurement
+
+        logging.debug("Sending GXM measurement get command...")
         command = IPXCommands.Commands.get_GXM_measurement.format(uid=str(geo_uid))
         response = self.communicator._send_and_receive_listen(command, listen_duration=0.5)
-        response_str = self.communicator._decode_string_and_check(response)
+        response_str = self.communicator._decode_string_and_check(response, expected_response=IPXCommands.Responses.get_GXM_measurement)
 
         if data_type == 'bytes':
             return(response)
@@ -430,6 +437,7 @@ class IPXGeosenseTester:
         # slpit up the response string
         # expected format: SR <UID>,<AxisA>,<temperature>\r\n
         # should also remove "SR "
+        logging.debug("Parsing GXM measurement response, and extracting values...")
         response_str = response_str[2:].strip()
         parts = response_str.strip().split(',')
         # part[0] = UID
@@ -451,6 +459,7 @@ class IPXGeosenseTester:
         # now should check everything is within expected ranges
         checks = {
             "axis_a": AxisA is not None and AxisA == -0.099, # should be hard to exactly -0.099, this is what the value should be
+            # A value of -0.096 indicates an error, should there be an error catch and raising an exception here?
             "temperature": temperature is not None and 10 <= temperature <= 40,
         }
 

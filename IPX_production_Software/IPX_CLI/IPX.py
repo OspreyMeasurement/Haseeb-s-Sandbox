@@ -545,7 +545,7 @@ class IPXConfigurator:
         """
         self.max_retries = max_retries
         self.retry_delay = retry_delay
-        logging.debug(f"IPX Configurator initialised for port {self.port}")
+        logging.debug("IPX Configurator initialised")
 
 
     def verify_sensor_count(self, ipx: IPXSerialCommunicator ,num_sensors:int) -> tuple[list, bool] | None:
@@ -779,11 +779,7 @@ class IPXConfigurator:
             logging.info(f" Raw data check passed for UID:{uid}")
             return True, raw_values
 
-# debating whether i want the magnitude check function to do a get raw or not.
-
-
-
-
+    # debating whether i want the magnitude check function to do a get raw or not.
 
     # def abnormal_high_magnitude_check(self, ipx: IPXSerialCommunicator, uid:int , max_raw_value:500) -> bool:
     #     """ Small helper function for checking abnormally high magnitude values in raw data
@@ -813,5 +809,6 @@ class IPXConfigurator:
 5. Finally set baud rate to 9600 for all sensors
 
 """ 
+
 
 

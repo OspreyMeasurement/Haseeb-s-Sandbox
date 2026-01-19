@@ -50,6 +50,8 @@ class IPXCommands:
         set_alias: str = "op ipx {uid} set_alias {alias}\n"
 
         # geosense command string/s
+        # for geosense we need both the get and measure command
+        GXM_measure_command: str = "@@{uid} TR\r"  # Geosense command to trigger measurement, then need to wait about 400 ms to give ipx time to take measurement
         get_GXM_measurement: str = "@@{uid} SR\r" # Geosense command to get measurement from IPX insert
 
 
@@ -65,8 +67,9 @@ class IPXCommands:
         set_baud: str = "CMD_EXEC_Set_Baud: Baudrate set to"
         set_alias: str = "CMD_EXEC_Set_Alias: Alias set to"
         CALIBRATION_COMPLETE: str = "CMD_EXEC_Calibrate: Calibration on all sensors complete, saving to memory."
-        get_gxm_measurement: str = "SR"  # Response prefix for Geosense measurement command
 
+        get_GXM_measurement: str = "SR"  # Response prefix for Geosense measurement command
+        GXM_measure_command: str = "TR"  # Response prefix for Geosense trigger measurement command
 
 
 
