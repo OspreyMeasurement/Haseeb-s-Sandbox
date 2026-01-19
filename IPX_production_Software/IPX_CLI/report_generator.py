@@ -127,7 +127,6 @@ class ReportGenerator:
     """ Creates and manages JSON "Digital Birth Certificate" for each IPX configuration session"""
 
     def __init__(self, port:str,
-                 customer_order: str,
                  manufacturing_order: str,
                  string_description: str,
                  operator:str):
@@ -135,7 +134,6 @@ class ReportGenerator:
 
         # ------------------------------------
         self.port = port.upper()
-        self.customer_order = customer_order.upper()
         self.manufacturing_order = manufacturing_order.upper()
         self.string_description = (re.sub(r'[^\w\-_.]', '_', string_description)).upper()
         self.operator = operator.upper()
@@ -147,7 +145,7 @@ class ReportGenerator:
         base_dir = "production_runs"
 
         #2. create nested directory path:
-        self.target_dir = os.path.join(base_dir, self.customer_order, self.manufacturing_order, self.string_description) # this should create a subdirectory known as string description
+        self.target_dir = os.path.join(base_dir, self.manufacturing_order, self.string_description) # this should create a subdirectory known as string description
         # this should also include checks to make sure that the string stays consistent, using upper lower etc.
 
         #3. create directories if they dont exist:
@@ -182,7 +180,6 @@ class ReportGenerator:
         # Create main dictonary structure, which hold all our data:
         self.report_data = {
             "metadata": {
-                "CO number": self.customer_order,
                 "MO number": self.manufacturing_order,
                 "String Description": self.string_description,
                 "Report ID": self.start_time.strftime("%Y%m%d_%H%M%S"),
@@ -284,7 +281,6 @@ class ReportGenerator:
             meta = self.report_data["metadata"] # get all the metadata
             logging.debug(f"Retrieved metadata for txt file: {meta}")
             # now sort into header information
-            txt_lines.append(f"Customer Order: {meta['CO number']}")
             txt_lines.append(f"Manufacturing Order: {meta['MO number']}")
             txt_lines.append(f"String Description: {meta['String Description']}")
             txt_lines.append("\n" + "-" * 40)

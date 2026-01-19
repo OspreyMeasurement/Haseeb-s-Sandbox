@@ -676,13 +676,12 @@ def _run_geosense_verification(uids_list, report, txt_content, com_port):
     
 # Function for getting order details from user:
 def get_order_details():
-    """Gets customer order details from user input."""
+    """Gets manufacturing order details from user input."""
     try:
-        customer_order = input("Enter Customer Order (CO) number: ").strip()
         manufacturing_order = input("Enter Manufacturing Order (MO) number: ").strip()
         string_description = input("Enter String Description: ").strip()
         operator = input("Enter Operator Name/ID: ").strip()
-        return customer_order, manufacturing_order, string_description, operator
+        return manufacturing_order, string_description, operator
     except KeyboardInterrupt:
         logging.info("Order details input cancelled by user.")
         raise fh.UserAbortError("Order details input cancelled by user.")
@@ -696,13 +695,12 @@ def run_configuration_flow(com_port, baudrate):
     try:
         # get all the initial settings from user
         num_sensors_int = get_initial_settings()
-        co, mo, string_description, operator = get_order_details()
+        mo, string_description, operator = get_order_details()
 
 
         # initialise the report generator
         report = ReportGenerator(
             port = com_port,
-            customer_order = co,
             manufacturing_order = mo,
             string_description = string_description,
             operator = operator
