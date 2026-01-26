@@ -1,9 +1,0 @@
-Customer Order: CO-TEST
-Manufacturing Order: MO-TEST
-String Description: 1-TEST
-
-----------------------------------------
-INSERTS DETECTED - FOLLOWING UIDS:
-
- UID: 1040901186
-------------------------------

@@ -1,4 +1,0 @@
-UID,Alias,Overall_Pass,Status_Val,Status_Pass,Dist_mm,Dist_Pass,Temp_C,Temp_Pass,Volt_V,Volt_Pass,Errors
-1020904219,3,True,1,True,-99.0,True,22.100000381469727,True,11.994114875793457,True,
-1020904215,2,True,1,True,-99.0,True,23.299999237060547,True,12.02994441986084,True,
-1020904204,1,True,1,True,-99.0,True,23.700000762939453,True,11.904540061950684,True,

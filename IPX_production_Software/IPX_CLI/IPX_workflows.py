@@ -490,10 +490,10 @@ def _run_calibration_loop(uids_list, ipx: IPXSerialCommunicator, configurator: I
                     logging.warning("User aborted configuration.")
                     raise fh.UserAbortError("Configuration aborted by user.")
     
-        #4. now check for abnormal high magnitude raw data across all sensors (after configuration):
-        # the only thing is that we are already doing a raw data check and then doing the abnomalous high magnitude check, we should integrate this into the raw data check function?
-        # The abnormal high magnitude check should be integrated during the calibration loop, as we can choose to re-calibrate a function an abnormal mag is present
-        return True
+    #4. now check for abnormal high magnitude raw data across all sensors (after configuration):
+    # the only thing is that we are already doing a raw data check and then doing the abnomalous high magnitude check, we should integrate this into the raw data check function?
+    # The abnormal high magnitude check should be integrated during the calibration loop, as we can choose to re-calibrate a function an abnormal mag is present
+    return True
 
 
 
@@ -745,8 +745,9 @@ def run_configuration_flow(com_port, baudrate):
                         if user_response != 'y':
                             logging.info("Configuration aborted by user due to missing bottom check sensors.")
                             raise fh.UserAbortError("Configuration aborted by user due to missing bottom check sensors.")
+                        
                     # now log paramaters etc
-                    configurator.set_default_parameters(ipx, uids_list, baud=baudrate, set_aliases=False,)
+                    fh.retry_on_exception(lambda: configurator.set_default_parameters(ipx, uids_list, baud=baudrate, set_aliases=False,))
                     txt_content = report.create_txt_content(aliases_and_uids_list=uids_list, inserts=True) # create the .txt content for the report generator
 
 
@@ -765,6 +766,7 @@ def run_configuration_flow(com_port, baudrate):
                     # alias_and_uids_list is a list of tuples of format [(alias, uid), (alias, uid), etc....]
                     txt_content = report.create_txt_content(aliases_and_uids_list=alias_and_uids_list) # create the .txt content for the report generator
                 
+                logging.debug(f"UIDS_list before parsing into cal loop: {uids_list}")
 
                 #3. --------------------------------- run calibration with retry handling: ---------------------------------
                 _run_calibration_loop(uids_list=uids_list, ipx=ipx, configurator=configurator, report=report)
