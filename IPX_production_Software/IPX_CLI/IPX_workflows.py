@@ -5,7 +5,11 @@ import logging
 import sys
 from IPX import IPXSerialCommunicator, IPXConfigurator, IPXSerialError
 
+
+
+
 from IPX_datalogger_tester import IPXModbusTester, IPXGeosenseTester
+
 
 import numpy as np
 import pandas as pd
@@ -140,6 +144,12 @@ def initial_uid_update(com_port, baudrate):
                 if confirm == "": # proceed to next, and rename uid
                     ipx.set_uid(current_uid=last_uid, new_uid=new_uid) # set uid to new uid
                     logging.info(f"Successfully updated UID from {last_uid} to {new_uid}")
+                    # should also do a get raw check to ensure this sensor is responding correctly before gluing
+                    logging.info("Please ensure the raw data looks correct for this sensor: (BELOW)")
+                    raw = ipx.get_raw(uid=new_uid, data_type='string')
+                    logging.info(f"Raw data sample from newly updated UID {new_uid}: {raw}")
+
+
 
                 elif confirm == "abort":
                     raise fh.UserAbortError("UID update aborted by user.") # need to change all system exits
@@ -777,7 +787,7 @@ def run_configuration_flow(com_port, baudrate):
                 final_baud = IPXCommands.Default_settings.Baud_rate
                 logging.info(f"Setting baud rate for all devices to {final_baud}")
                 for uid in uids_list:
-                    ipx.set_baud(uid=uid, baud=final_baud)
+                    fh.retry_on_exception(operation_func=lambda:ipx.set_baud(uid=uid, baud=final_baud))
                 
                 
             
