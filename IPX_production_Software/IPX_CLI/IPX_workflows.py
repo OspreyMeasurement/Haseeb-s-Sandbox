@@ -147,7 +147,7 @@ def initial_uid_update(com_port, baudrate):
                     # should also do a get raw check to ensure this sensor is responding correctly before gluing
                     logging.info("Please ensure the raw data looks correct for this sensor: (BELOW)")
                     raw = ipx.get_raw(uid=new_uid, data_type='string')
-                    logging.info(f"Raw data sample from newly updated UID {new_uid}: {raw}")
+                    logging.info(f"Raw data sample from newly updated UID {new_uid}: \n {raw}")
 
 
 
@@ -184,20 +184,21 @@ def switch_all_to_115200(com_port):
     # Firstly detect sensors on the given com port
     # instantiate configurato
     try:
-        num_sensors_int = get_initial_settings()
-        configurator = IPXConfigurator() # initialise IPX configurator without port or baudrate, as these will be set in the communicator context manager
-
-
-        if not com_port or not num_sensors_int:
-            logging.error("Invalid COM port or number of sensors.")
+        confirmation = input("Confirm swithcing to 115200? (Press enter to confirm, type 'abort' to cancel): ").strip().lower()
+        if confirmation != "":
+            logging.warning("Baud rate switching cancelled by user.")
+            raise fh.UserAbortError("Baud rate switching cancelled by user.")
+        
+        if not com_port:
+            logging.error("Invalid COM port")
             return
         try:
             with IPXSerialCommunicator(port=com_port, baudrate=9600, verify=True) as ipx:
                 # Step 1: Verify sensor count with automatic retry handling
                 # should use verify sensor count function here
-                initial_uids_list, _ = configurator.verify_sensor_count(ipx=ipx, num_sensors=num_sensors_int)
+                initial_uids_list = ipx.list_uids(data_type='list')
                 if initial_uids_list is None:
-                    logging.error("incorrect numnber of sensors detected")
+                    logging.error("No sensors detected")
                     return
                 logging.info(f"Detected {len(initial_uids_list)} sensors: {initial_uids_list}")
                 logging.info("Switching all sensors to 115200 baud rate...")
@@ -217,7 +218,7 @@ def switch_all_to_115200(com_port):
             with IPXSerialCommunicator(port=com_port, baudrate=115200, verify=True) as ipx:
                 # Step 1: Verify sensor count with automatic retry handling
                 # might as well use verify sensor count function
-                new_uids_list, _ = configurator.verify_sensor_count(ipx=ipx, num_sensors=num_sensors_int)
+                new_uids_list = ipx.list_uids(data_type='list')
                 
                 logging.info(f"Verifying baud rate change, detected {len(new_uids_list)} sensors: {new_uids_list}")
 
@@ -225,9 +226,6 @@ def switch_all_to_115200(com_port):
                     logging.error("Sensor detection failed or was skipped after baud rate change.")
                     return # this code is redundant due to retry on failure function, but just in case who knows
 
-                if len(new_uids_list) != len(initial_uids_list):
-                    logging.error("❌ FAILURE: Number of sensors detected after baud rate change does not match initial count.")
-                    return # this is lowkey redundant as well
                 
                 logging.info("✅ SUCCESS: All sensors switched to 115200 baud rate successfully.")
         except Exception as e:
