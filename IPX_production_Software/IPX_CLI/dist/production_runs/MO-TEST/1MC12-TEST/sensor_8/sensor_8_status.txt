@@ -1,0 +1,14 @@
+Sensor UID: 8
+Status Report
+==================================================
+
+UID: 8
+HW Version: 7.0.0
+SW Version: 4.8.5
+Alias: 1
+Baud: 9600
+Axis: 1
+Termination Resistor: 0
+Gain: 3
+Centroid Threshold: 800
+Standard Devs Threshold: 10.000
